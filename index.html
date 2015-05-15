@@ -46,23 +46,23 @@
 			function render() {
 				requestAnimationFrame(render);
 				if(mouse.x > 0.5){
-					if (cube.rotation.y < 0.75){
+					// if (cube.rotation.y < 0.75){
 						cube.rotation.y += 0.01;
-					}
+					// }
 				}else if(mouse.x < 0.5){
-					if (cube.rotation.y > -0.75){
+					// if (cube.rotation.y > -0.75){
 						cube.rotation.y -= 0.01;
-					}
+					// }
 				}
 
 				if(mouse.y > 0.5){
-					if (cube.rotation.x < 0.75){
+					// if (cube.rotation.x < 0.75){
 						cube.rotation.x += 0.01;
-					}
+					// }
 				}else if(mouse.y < 0.5){
-					if (cube.rotation.x > -0.75){
+					// if (cube.rotation.x > -0.75){
 						cube.rotation.x -= 0.01;
-					}
+					// }
 				}
 				renderer.render(scene, camera);
 			};
