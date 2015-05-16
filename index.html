@@ -64,12 +64,18 @@
 				}
 
 				if (accl.y > 6){
-					if (cube.rotation.x < 0.2){
-						cube.rotation.x += 0.005;
-					}
-				}else if (accl.y < -6){
+					// if (cube.rotation.x < 0.2){
+					// 	cube.rotation.x += 0.005;
+					// }
 					if (cube.rotation.x > -0.2){
 						cube.rotation.x -= 0.005;
+					}
+				}else if (accl.y < -6){
+					// if (cube.rotation.x > -0.2){
+					// 	cube.rotation.x -= 0.005;
+					// }
+					if (cube.rotation.x < 0.2){
+						cube.rotation.x += 0.005;
 					}
 				}
 				cube.rotation.z += 0.0005;
