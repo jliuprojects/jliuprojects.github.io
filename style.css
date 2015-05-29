@@ -1,0 +1,20 @@
+body{
+	background-color: #f0f0f0;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #707070;
+}
+
+.personal{
+	font-weight: bold;
+	
+}
+
+.projects{
+
+}
+
+.kid{
+	position: relative;
+	top: -15px;
+	left: 20px;
+}
