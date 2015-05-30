@@ -10,6 +10,8 @@ var transitionFrames = 30;
 var i = 0;
 var transitionCounter = 0;
 var leftScroll = false;
+var dLeftScroll = false;
+var dRightScroll = false;
 var rightScroll = false;
 var val =  - window.innerHeight/2
 var oriHeight = Math.min(window.innerHeight,window.innerWidth);
@@ -51,7 +53,7 @@ scene.add(cube3);
 camera.position.z = 500;
 
 cube2.position.x = 1500;
-cube3.position.x = -1500;
+cube3.position.x = 3000;
 
 document.addEventListener( 'mousemove', onDocumentMouseMove, false );
 document.addEventListener( 'mousedown', onMouseDown, false);
