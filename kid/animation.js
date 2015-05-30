@@ -15,6 +15,7 @@ var val =  - window.innerHeight/2
 var oriHeight = Math.min(window.innerHeight,window.innerWidth);
 var minSize = Math.min(window.innerHeight,window.innerWidth);
 var oriRatio = window.innerHeight / window.innerWidth;
+var currentFocus = 1; 
 
 $('.next').css('transform', 'rotate(90deg) translateX(' + val + 'px)');
 $('.prev').css('transform', 'rotate(90deg) translateX(' + val + 'px)');
@@ -59,12 +60,24 @@ $('.next').click(onNext);
 $('.prev').click(onPrev);
 
 function onNext(e) {
-	leftScroll = true;
+	if(currentFocus == 3){
+		currentFocus = 1;
+		dRightScroll = true;
+	}else{
+		currentFocus += 1;
+		leftScroll = true;
+	}
 	console.log('next');
 }
 
 function onPrev(e) {
-	rightScroll = true;
+	if(currentFocus == 1){
+		currentFocus = 3;
+		dLeftScroll = true;
+	}else{
+		currentFocus -= 1;
+		rightScroll = true;
+	}
 	console.log('prev');
 }
 
@@ -222,6 +235,16 @@ function render() {
 		}
 	}
 
+	if(dLeftScroll){
+		if(transitionCounter <= transitionFrames){
+			camera.position.x += 48*2;
+			transitionCounter++;
+		}else{
+			transitionCounter = 0;
+			dLeftScroll = false;
+		}
+	}
+
 	if(rightScroll){
 		if(transitionCounter <= transitionFrames){
 			camera.position.x -= 48;
@@ -229,6 +252,16 @@ function render() {
 		}else{
 			transitionCounter = 0;
 			rightScroll = false;
+		}
+	}
+
+	if(dRightScroll){
+		if(transitionCounter <= transitionFrames){
+			camera.position.x -= 48 * 2;
+			transitionCounter++;
+		}else{
+			transitionCounter = 0;
+			dRightScroll = false;
 		}
 	}
 
