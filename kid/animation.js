@@ -62,23 +62,27 @@ $('.next').click(onNext);
 $('.prev').click(onPrev);
 
 function onNext(e) {
-	if(currentFocus == 3){
-		currentFocus = 1;
-		dRightScroll = true;
-	}else{
-		currentFocus += 1;
-		leftScroll = true;
+	if (!dRightScroll && !dLeftScroll && !rightScroll && !leftScroll){
+		if(currentFocus == 3){
+			currentFocus = 1;
+			dRightScroll = true;
+		}else{
+			currentFocus += 1;
+			leftScroll = true;
+		}
 	}
 	console.log('next');
 }
 
 function onPrev(e) {
-	if(currentFocus == 1){
-		currentFocus = 3;
-		dLeftScroll = true;
-	}else{
-		currentFocus -= 1;
-		rightScroll = true;
+	if (!dRightScroll && !dLeftScroll && !rightScroll && !leftScroll){
+		if(currentFocus == 1){
+			currentFocus = 3;
+			dLeftScroll = true;
+		}else{
+			currentFocus -= 1;
+			rightScroll = true;
+		}
 	}
 	console.log('prev');
 }
