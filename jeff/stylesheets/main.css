@@ -189,8 +189,13 @@ footer ul li a {
   position: relative;
   width: 50%;
 }
+/* line 67, ../sass/main.scss */
+#intro-container p {
+  position: relative;
+  width: 50%;
+}
 
-/* line 68, ../sass/main.scss */
+/* line 73, ../sass/main.scss */
 #featured-teas {
   position: relative;
   width: 75%;
@@ -201,18 +206,18 @@ footer ul li a {
   overflow: hidden;
   text-align: center;
 }
-/* line 79, ../sass/main.scss */
+/* line 84, ../sass/main.scss */
 #featured-teas #tea1 {
   overflow: hidden;
   width: 30%;
   height: 100%;
 }
-/* line 84, ../sass/main.scss */
+/* line 89, ../sass/main.scss */
 #featured-teas #tea1 #tea1-button {
   position: relative;
   top: 200px;
 }
-/* line 91, ../sass/main.scss */
+/* line 96, ../sass/main.scss */
 #featured-teas #tea2 {
   position: relative;
   top: -290px;
@@ -221,12 +226,12 @@ footer ul li a {
   width: 30%;
   height: 100%;
 }
-/* line 99, ../sass/main.scss */
+/* line 104, ../sass/main.scss */
 #featured-teas #tea2 #tea2-button {
   position: relative;
   top: 200px;
 }
-/* line 106, ../sass/main.scss */
+/* line 111, ../sass/main.scss */
 #featured-teas #tea3 {
   position: relative;
   top: -580px;
@@ -235,7 +240,7 @@ footer ul li a {
   width: 30%;
   height: 100%;
 }
-/* line 114, ../sass/main.scss */
+/* line 119, ../sass/main.scss */
 #featured-teas #tea3 #tea3-button {
   position: relative;
   top: 200px;
