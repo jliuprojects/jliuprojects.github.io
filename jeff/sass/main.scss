@@ -51,6 +51,7 @@
 }
 
 #intro-container {
+	border: 1px solid black;
 	position: relative;
 	width: 75%;
 	margin: 0 auto;
@@ -59,7 +60,12 @@
 	overflow: hidden;
 	text-align: center;
 
+	h2 {
+		border: 1px solid black;
+	}
+
 	p {
+		border: 1px solid black;
 		position: relative;
 		width: 50%;
 		text-align: center;
