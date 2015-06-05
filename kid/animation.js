@@ -5,7 +5,6 @@ var mouse = {x: 0, y: 0};
 var prevMouse = {x:0,y:0};
 var distMouse = {x:0,y:0};
 var timerx = 500;
-var timery = 5;
 var transitionFrames = 30;
 var i = 0;
 var transitionCounter = 0;
@@ -18,9 +17,10 @@ var oriHeight = Math.min(window.innerHeight,window.innerWidth);
 var minSize = Math.min(window.innerHeight,window.innerWidth);
 var oriRatio = window.innerHeight / window.innerWidth;
 var currentFocus = 1; 
-
+var noHover = false;
+var floatingEffect = true;
 $('.next').css('transform', 'rotate(90deg) translateX(' + val + 'px)');
-$('.prev').css('transform', 'rotate(90deg) translateX(' + val + 'px)');
+$('.prev').css('transform', 'rotate(270deg) translateX(' + -val + 'px)');
 
 
 document.getElementById('featured').appendChild(renderer.domElement);
@@ -100,6 +100,8 @@ function onMouseUp( ){
 }
 
 function onDocumentMouseMove(e){
+	noHover = false;
+	floatingEffect = false;
 	mouse.x = (e.clientX / window.innerWidth);
 	mouse.y = (e.clientY / window.innerHeight);
 }
@@ -107,15 +109,11 @@ function onDocumentMouseMove(e){
 var dimension = {x: window.innerWidth, y: window.innerHeight};
 
 $(window).resize(function(e){
-	// renderer.setSize(window.innerWidth, window.innerHeight);
 	val =  - window.innerHeight/2
 	minSize = Math.min(window.innerHeight,window.innerWidth);
 	height = oriRatio * window.innerWidth;
 	$('.next').css('transform', 'rotate(90deg) translateX(' + val + 'px)');
-	$('.prev').css('transform', 'rotate(90deg) translateX(' + val + 'px)');
-	// cube.scale.x = Math.min(window.innerHeight,window.innerWidth)/oriHeight;
-	// cube.scale.y = Math.min(window.innerHeight,window.innerWidth)/oriHeight;
-	// cube.scale.z = Math.min(window.innerHeight,window.innerWidth)/oriHeight;
+	$('.prev').css('transform', 'rotate(270deg) translateX(' + (-1) * val + 'px)');
 
 	var scale = window.innerHeight / height;
 	height = scale * height;
@@ -126,110 +124,88 @@ $(window).resize(function(e){
 function render() {
 	requestAnimationFrame(render);
 
-	if (i == timerx){
-		i = 0;
-	}
-	if(i < timerx / 2){
-		cube.rotation.x += 0.001;
-		cube.rotation.y -= 0.001;
-
-		cube2.rotation.x += 0.001;
-		cube2.rotation.y -= 0.001;
-
-		cube3.rotation.x += 0.001;
-		cube3.rotation.y -= 0.001;
-	}else{
-		cube.rotation.x -= 0.001;
-		cube.rotation.y += 0.001;
-
-		cube2.rotation.x -= 0.001;
-		cube2.rotation.y += 0.001;
-
-		cube3.rotation.x -= 0.001;
-		cube3.rotation.y += 0.001;
-	}
-	//feature1
+	
+	//rotating images
 	if(mouseDown){
 		distMouse.x = prevMouse.x - mouse.x;
 		distMouse.y = prevMouse.y - mouse.y;
 		cube.rotation.y -= distMouse.x * 2;
 		cube.rotation.x -= distMouse.y * 2;
-	}else{
+		cube2.rotation.y -= distMouse.x * 2;
+		cube2.rotation.x -= distMouse.y * 2;
+		cube3.rotation.y -= distMouse.x * 2;
+		cube3.rotation.x -= distMouse.y * 2;
+	}else if (floatingEffect){
+		if (i == timerx){
+			i = 0;
+		}
+		if(i < timerx / 2){
+			cube.rotation.x += 0.001;
+			cube.rotation.y += 0.001;
+
+			cube2.rotation.x += 0.001;
+			cube2.rotation.y -= 0.001;
+
+			cube3.rotation.x += 0.001;
+			cube3.rotation.y -= 0.001;
+		}else{
+			cube.rotation.x -= 0.001;
+			cube.rotation.y -= 0.001;
+
+			cube2.rotation.x -= 0.001;
+			cube2.rotation.y += 0.001; 
+
+			cube3.rotation.x -= 0.001;
+			cube3.rotation.y += 0.001;
+		}
+		i++;
+	}else if (true && cube.rotation.y < 0.75 && cube.rotation.y > -0.75 && cube.rotation.x < 0.75 && cube.rotation.x > -0.75){
 		if(mouse.x > 0.5){
 			if (cube.rotation.y < 0.75){
 				cube.rotation.y += 0.005;
+				cube2.rotation.y += 0.005;
+				cube3.rotation.y += 0.005;
 			}
 		}else if(mouse.x < 0.5){
 			if (cube.rotation.y > -0.75){
 				cube.rotation.y -= 0.005;
+				cube2.rotation.y -= 0.005;
+				cube3.rotation.y -= 0.005;
 			}
 		}
 
 		if(mouse.y > 0.5){
 			if (cube.rotation.x < 0.75){
 				cube.rotation.x += 0.005;
+				cube2.rotation.x += 0.005;
+				cube3.rotation.x += 0.005;
 			}
 		}else if(mouse.y < 0.5){
 			if (cube.rotation.x > -0.75){
 				cube.rotation.x -= 0.005;
-			}
-		}
-	}
-//feature2
-	if(mouseDown){
-		distMouse.x = prevMouse.x - mouse.x;
-		distMouse.y = prevMouse.y - mouse.y;
-		cube2.rotation.y -= distMouse.x * 2;
-		cube2.rotation.x -= distMouse.y * 2;
-	}else{
-		if(mouse.x > 0.5){
-			if (cube2.rotation.y < 0.75){
-				cube2.rotation.y += 0.005;
-			}
-		}else if(mouse.x < 0.5){
-			if (cube2.rotation.y > -0.75){
-				cube2.rotation.y -= 0.005;
-			}
-		}
-
-		if(mouse.y > 0.5){
-			if (cube2.rotation.x < 0.75){
-				cube2.rotation.x += 0.005;
-			}
-		}else if(mouse.y < 0.5){
-			if (cube2.rotation.x > -0.75){
 				cube2.rotation.x -= 0.005;
-			}
-		}
-	}
-//feature3
-	if(mouseDown){
-		distMouse.x = prevMouse.x - mouse.x;
-		distMouse.y = prevMouse.y - mouse.y;
-		cube3.rotation.y -= distMouse.x * 2;
-		cube3.rotation.x -= distMouse.y * 2;
-	}else{
-		if(mouse.x > 0.5){
-			if (cube3.rotation.y < 0.75){
-				cube3.rotation.y += 0.005;
-			}
-		}else if(mouse.x < 0.5){
-			if (cube3.rotation.y > -0.75){
-				cube3.rotation.y -= 0.005;
-			}
-		}
-
-		if(mouse.y > 0.5){
-			if (cube3.rotation.x < 0.75){
-				cube3.rotation.x += 0.005;
-			}
-		}else if(mouse.y < 0.5){
-			if (cube3.rotation.x > -0.75){
 				cube3.rotation.x -= 0.005;
 			}
 		}
+	}else{
+		noHover = true;
+		console.log(cube.rotation.x);
+		console.log(cube.rotation.y);
+		if (cube.rotation.y < 0.01 && cube.rotation.y > -0.01 && cube.rotation.x < 0.01 && cube.rotation.x > -0.01){
+			noHover = false;
+			floatingEffect = true;
+		}
+		if (cube.rotation.x > 0){
+			cube.rotation.x -= 0.005;
+		}else if (cube.rotation.x < 0){
+			cube.rotation.x += 0.005;
+		}
+		if (cube.rotation.y > 0){
+			cube.rotation.y -= 0.005;
+		}else if (cube.rotation.y < 0){
+			cube.rotation.y += 0.005;
+		}
 	}
-
 
 	if(leftScroll){
 		if(transitionCounter <= transitionFrames){
@@ -275,7 +251,6 @@ function render() {
 		prevMouse.y = mouse.y;
 		prevMouse.x = mouse.x;
 	}
-	i++;
 	
 	renderer.render(scene, camera);
 };
