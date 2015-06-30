@@ -34,12 +34,19 @@ img {
 }
 
 #main_clients {
-	position: absolute;
+/*	position: absolute;
 	opacity: 0;
 	top: 0%;
 	left: 50%;
 	width: 500px;
-	margin-left: -250px; /* Half the width */
+	margin-left: -250px;*/ /* Half the width */
+
+	position: fixed;
+	opacity: 0;
+	width: 500px;
+	left: 50%;
+	margin-left: -250px;
+	top: 0%;
 }
 
 #main_about {
@@ -52,12 +59,19 @@ img {
 }
 
 #main_press {
-	position: absolute;
+/*	position: absolute;
 	opacity: 0;
 	top: 0%;
 	left: 50%;
 	width: 500px;
-	margin-left: -250px; /* Half the width */
+	margin-left: -250px;*/ /* Half the width */
+
+	position: fixed;
+	opacity: 0;
+	width: 500px;
+	left: 50%;
+	margin-left: -250px;
+	top: 0%;
 }
 
 #main_shop {
@@ -159,10 +173,7 @@ img {
 }
 
 .hidden {
-	animation-duration: .5s;
-    transition-timing-function: ease-in;
-    animation-fill-mode: both;
-    animation-name: fadeOut;
+	opacity: 0;
 }
 
 .m-scene .scene_element {
