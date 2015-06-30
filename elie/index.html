@@ -1,15 +1,94 @@
 <html>
 <head>
 	<title>Visionelie</title>
-	<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
-	<link rel="stylesheet" href="styling.css">
 	<meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" href="styling.css" type='text/css'>
+	<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+	<script src='jquery.smoothstate.js' type='text/javascript'></script>
 </head>
 <body>
-	<a class="nav" href="clients.html" id="clients">CLIENTS</a>
-	<a class="nav" href="about.html" id="about">ABOUT</a>
-	<a class="nav" href="press.html" id="press">PRESS</a>
-	<a class="nav" href="shop.html" id="shop">SHOP</a>
-	<img id="logo" src="assets/logo.png"></img>
+
+		<a class="nav" id="top-mid-button">CLIENTS</a>
+		<a class="nav" id="mid-right-button">ABOUT</a>
+		<a class="nav" id="mid-left-button">PRESS</a>
+		<a class="nav" id="bottom-mid-button">SHOP</a>
+
+			<div id='main_home'>
+				<img id="logo" src="assets/logo.png"></img>
+			</div>
+
+			<div id='main_clients'>
+				<img id="client1" class="client_img" src="assets/Vice_Logo.png"></img>
+				<img id="client2" class="client_img" src="assets/Vice_Logo.png"></img>
+				<img id="client3" class="client_img" src="assets/Vice_Logo.png"></img>
+				<img id="client4" class="client_img" src="assets/Vice_Logo.png"></img>
+				<img id="client5" class="client_img" src="assets/Vice_Logo.png"></img>
+			</div>
+
+			<div id='main_about'>
+				<img id="about1" class="about_img" src="assets/about.png"></img>
+			</div>
+
+			<div id='main_press'>
+				<img id="press1" class="press_img" src="assets/Vice_Logo.png"></img>
+				<img id="press2" class="press_img" src="assets/Vice_Logo.png"></img>
+				<img id="press3" class="press_img" src="assets/Vice_Logo.png"></img>
+				<img id="press4" class="press_img" src="assets/Vice_Logo.png"></img>
+				<img id="press5" class="press_img" src="assets/Vice_Logo.png"></img>
+			</div>
+
+			<div id='main_shop'>
+
+			</div>
+	<script>
+		var oldlink = 'index'
+		var oldtext = "HOME";
+		function changeLinks(dest, clicked) {
+			if (dest == "CLIENTS"){
+				hide('main_home');
+			    show('main_clients');
+			    hide('main_about');
+			    hide('main_press');
+			    hide('main_shop');
+			}else if (dest == "ABOUT"){
+				hide('main_home');
+			    hide('main_clients');
+			    show('main_about');
+			    hide('main_press');
+			    hide('main_shop');
+			}else if (dest == "PRESS"){
+			    hide('main_home');
+			    hide('main_clients');
+			    hide('main_about');
+			    show('main_press');
+			    hide('main_shop');
+			}else if (dest == "SHOP"){
+				hide('main_home');
+			    hide('main_clients');
+			    hide('main_about');
+			    hide('main_press');
+			    show('main_shop');
+			}else if (dest == "HOME"){
+				show('main_home');
+			    hide('main_clients');
+			    hide('main_about');
+			    hide('main_press');
+			    hide('main_shop');
+			}
+			$("#" + clicked).text(oldtext);
+			oldtext = dest;
+		}
+
+		function show(page) {
+		    $("#" + page).removeClass( "hidden" ).addClass( "visible" );          
+		}
+		function hide(page) {
+		    $("#" + page).removeClass( "visible" ).addClass( "hidden" ); 
+		}
+		$("a").click(function(e){
+		    e.preventDefault();
+		    changeLinks(e.target.text, e.target.id);
+		});
+	</script>
 </body>
 </html>
