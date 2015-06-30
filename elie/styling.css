@@ -219,3 +219,23 @@ img {
     opacity: 0;
   }
 }
+
+@keyframes spinLeft {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes spinRight {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}

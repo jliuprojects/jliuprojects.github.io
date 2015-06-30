@@ -91,5 +91,14 @@
 		    changeLinks(e.target.text, e.target.id);
 		});
 	</script>
+	<script type="text/javascript">
+		accl = {x : 0, y : 0, z : 0};
+		window.ondevicemotion = function(e){
+
+			accl.x = event.accelerationIncludingGravity.x * 5;
+			accl.y = event.accelerationIncludingGravity.y * 5;
+			alert(accl.x + ":" + accl.y);
+		}
+	</script>
 </body>
 </html>
