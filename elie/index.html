@@ -92,19 +92,24 @@
 		});
 	</script>
 	<script type="text/javascript">
-		var multx = 1;
-		accl = {x : 0, y : 0, z : 0};
-		window.ondevicemotion = function(e){
+		var MAX_ACCL = 100;
+		var MIN_ACCL = 0;
+		var curr_accl = 1;
+		var curr_pos = 0;
+		var curr_speed = 0;
+		var accl = {x : 0, y : 0, z : 0};
 
-			accl.x = event.accelerationIncludingGravity.x * multx;
-			accl.y = event.accelerationIncludingGravity.y * multx;
-			// alert(accl.x + ":" + accl.y);
+		window.ondevicemotion = function(e){
+			accl.x = event.accelerationIncludingGravity.x;
+			accl.y = event.accelerationIncludingGravity.y;
 		}
 
 		function render() {
-		  multx += 0.1;
-		  console.log(multx);
-		  $('#logo').css('transform', 'rotate(' + accl.y + 'deg)');
+		  curr_speed = accl.x;
+		  curr_speed += curr_accl;
+		  curr_pos += curr_speed;
+		  
+		  $('#logo').css('transform', 'rotate(' + curr_pos + 'deg)');
 		  requestAnimationFrame(render);
 		}
 		requestAnimationFrame(render);
