@@ -99,6 +99,12 @@
 			accl.y = event.accelerationIncludingGravity.y * 5;
 			alert(accl.x + ":" + accl.y);
 		}
+
+		function render() {
+		  $('#logo').css('transform', 'rotate(' + accl.y + ')');
+		  requestAnimationFrame(render);
+		}
+		requestAnimationFrame(render);
 	</script>
 </body>
 </html>
