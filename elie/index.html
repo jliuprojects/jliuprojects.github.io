@@ -103,7 +103,8 @@
 
 		function render() {
 		  multx += 0.1;
-		  $('#logo').css('transform', 'rotate(' + accl.y + ')');
+		  console.log(multx);
+		  $('#logo').css('transform', 'rotate(' + accl.y + 'deg)');
 		  requestAnimationFrame(render);
 		}
 		requestAnimationFrame(render);
