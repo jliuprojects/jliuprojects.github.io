@@ -92,15 +92,17 @@
 		});
 	</script>
 	<script type="text/javascript">
+		var multx = 1;
 		accl = {x : 0, y : 0, z : 0};
 		window.ondevicemotion = function(e){
 
-			accl.x = event.accelerationIncludingGravity.x * 5;
-			accl.y = event.accelerationIncludingGravity.y * 5;
+			accl.x = event.accelerationIncludingGravity.x * multx;
+			accl.y = event.accelerationIncludingGravity.y * multx;
 			// alert(accl.x + ":" + accl.y);
 		}
 
 		function render() {
+		  multx += 0.1;
 		  $('#logo').css('transform', 'rotate(' + accl.y + ')');
 		  requestAnimationFrame(render);
 		}
