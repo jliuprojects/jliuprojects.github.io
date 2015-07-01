@@ -106,7 +106,7 @@
 
 		function render() {
 		  curr_accl = Math.min(MAX_ACCL, accl.x/10);
-		  curr_speed += curr_accl;
+		  curr_speed = curr_accl;
 		  curr_pos += curr_speed;
 		  
 		  $('#logo').css('transform', 'rotate(' + curr_pos + 'deg)');
