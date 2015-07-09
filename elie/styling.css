@@ -17,10 +17,12 @@ img {
 }
 
 h1 {
+	font-size: 20px;
 	position: fixed;
 	height: 140px;
 	width: 220px;
 	left: 50%;
+	text-align: center;
 	margin-left: -100px;
 	top: 50%;
 	margin-top: -70px;
@@ -257,8 +259,8 @@ h1 {
 }
 
 .about-wrapper .about-img {
-	width: 250px;
-	height: 250px;
+	width: 200px;
+	height: 200px;
 	background-image: url(assets/about.png);
 	background-size: cover;
 	background-position: center center;
@@ -269,8 +271,8 @@ h1 {
 .about-wrapper .about-info {
 	font-family: Helvetica;
 	font-weight: 400;
-	font-size: 18px;
-	width: 70%;
+	font-size: 12px;
+	width: 60%;
 	max-width: 500px;
 	margin: 0 auto;
 }
