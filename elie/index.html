@@ -32,10 +32,10 @@
 
 			<div id='main_press'>
 				<div id="press_wrapper">
-					<a href="http://ca.complex.com/style/2014/04/toronto-photographers-showcase-streetwear"><img id="press1" class="press_img" src="assets/complex-1.png"></img></a>
-					<a href="http://www.vice.com/en_ca/read/visionelies-photographs-turn-torontos-generic-into-the-gargantuan-954"><img id="press2" class="press_img" src="assets/Vice_Logo.png"></img></a>
-					<a href="http://rootscanada.tumblr.com/post/97078542008/the-congo-born-content-creator-and-instagrammer"><img id="press3" class="press_img" src="assets/Hypbeast.png"></img></a>
-					<a href="http://nomadshop.net/editorial-coteciel-by-visionelie/"><img id="press4" class="press_img" src="assets/nomad.png"></img></a>
+					<a href="http://ca.complex.com/style/2014/04/toronto-photographers-showcase-streetwear"><img id="press1" class="press_img" src="assets/complex-1.png"></a>
+					<a href="http://www.vice.com/en_ca/read/visionelies-photographs-turn-torontos-generic-into-the-gargantuan-954"><img id="press2" class="press_img" src="assets/Vice_Logo.png"></a>
+					<a href="http://rootscanada.tumblr.com/post/97078542008/the-congo-born-content-creator-and-instagrammer"><img id="press3" class="press_img" src="assets/Hypbeast.png"></a>
+					<a href="http://nomadshop.net/editorial-coteciel-by-visionelie/"><img id="press4" class="press_img" src="assets/nomad.png"></a>
 				</div>
 			</div>
 
@@ -97,7 +97,7 @@
 		function hide(page) {
 		    $("#" + page).removeClass( "visible" ).addClass( "hidden" ); 
 		}
-		$("a").click(function(e){
+		$(".nav").click(function(e){
 		    e.preventDefault();
 		    changeLinks(e.target.text, e.target.id);
 		});
