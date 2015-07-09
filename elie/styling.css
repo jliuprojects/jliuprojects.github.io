@@ -15,7 +15,83 @@ img {
 	height: 62px;
 	width: 200px;
 }
-#clients {
+
+h1 {
+	position: fixed;
+	height: 140px;
+	width: 220px;
+	left: 50%;
+	margin-left: -100px;
+	top: 50%;
+	margin-top: -70px;
+}
+
+.about_img {
+	width: auto;
+	height: auto;
+}
+
+.nav{
+	z-index: 1000;
+}
+#main_featured {
+	position: absolute;
+	opacity: 0;
+	top: 0%;
+	left: 50%;
+	width: 500px;
+	margin-left: -250px; /* Half the width */
+}
+
+#main_clients {
+/*	position: absolute;
+	opacity: 0;
+	top: 0%;
+	left: 50%;
+	width: 500px;
+	margin-left: -250px;*/ /* Half the width */
+
+	position: relative;
+	opacity: 0;
+}
+
+#main_about {
+	position: relative;
+	opacity: 0;
+}
+
+#main_press {
+/*	position: absolute;
+	opacity: 0;
+	top: 0%;
+	left: 50%;
+	width: 500px;
+	margin-left: -250px;*/ /* Half the width */
+
+	/*position: fixed;
+	opacity: 0;
+	width: 500px;
+	left: 50%;
+	margin-left: -250px;
+	top: 0%;*/
+
+	position: relative;
+	opacity: 0;
+}
+
+#press_wrapper {
+
+}
+
+#main_shop {
+	position: absolute;
+	opacity: 0;
+	top: 0%;
+	left: 50%;
+	width: 500px;
+	margin-left: -250px; /* Half the width */
+}
+#top-mid-button {
 	position: fixed;
 	left: 50%;
 	width: 100px;
@@ -23,21 +99,21 @@ img {
 	margin-left: -50px;
 	text-align: center;
 }
-#about {
+#mid-right-button {
 	position: fixed;
 	width: 100px;
 	top: 50%;
 	left: -20px;
 	transform: rotate(90deg);
 }
-#press {
+#mid-left-button {
 	position: fixed;
 	width: 100px;
 	right: -20px;
 	top: 50%;
 	transform: rotate(90deg);
 }
-#shop {
+#bottom-mid-button {
 	position: fixed;
 	left: 50%;
 	width: 100px;
@@ -96,4 +172,111 @@ img {
 	margin-left: -70px;
 	top: 50%;
 	margin-top: -70px;
+}
+
+.visible {
+	display: block;
+	animation-duration: .5s;
+    transition-timing-function: ease-in;
+    animation-fill-mode: both;
+    animation-name: fadeIn;
+}
+
+.hidden {
+	display: none;
+	opacity: 0;
+}
+
+.m-scene .scene_element {
+    animation-duration: .5s;
+    transition-timing-function: ease-in;
+    animation-fill-mode: both;
+
+  }
+
+.m-scene .scene_element--fadein {
+    animation-name: fadeIn;
+  }
+.m-scene.is-exiting .scene_element {
+  animation-name: fadeOut;
+  nimation-duration: .5s;
+  transition-timing-function: ease-in;
+  animation-fill-mode: both;
+}
+  /** Reverse "exit" animations */
+.m-scene .is-exiting {
+  .scene_element {
+    animation-direction: alternate-reverse;
+  }
+}
+
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes spinLeft {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes spinRight {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.about-wrapper {
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+.about-wrapper .about-img {
+	width: 250px;
+	height: 250px;
+	background-image: url(assets/about.png);
+	background-size: cover;
+	background-position: center center;
+	margin: 0 auto;
+	margin-bottom: 50px;
+}
+
+.about-wrapper .about-info {
+	font-family: Helvetica;
+	font-weight: 400;
+	font-size: 18px;
+	width: 70%;
+	max-width: 500px;
+	margin: 0 auto;
+}
+
+.about-wrapper .about-info p {
+	letter-spacing: .1em;
+	font-family: inherit;
+	line-height: 1.5em;
 }
