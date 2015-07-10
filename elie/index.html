@@ -103,8 +103,8 @@
 		});
 	</script>
 	<script type="text/javascript">
-		var MAX_ACCL = 0.1;
-		var MIN_ACCL = 0;
+		var MAX_ACCL = 1;
+		var MIN_ACCL = -1;
 		var curr_accl = 1;
 		var curr_pos = 0;
 		var curr_speed = 0;
@@ -117,6 +117,7 @@
 
 		function render() {
 		  curr_speed = Math.min(MAX_ACCL, accl.x);
+		  curr_speed = Math.max(MIN_ACCL, curr_speed);
 		  curr_pos += curr_speed;
 		  
 		  $('#logo').css('transform', 'rotate(' + curr_pos + 'deg)');
