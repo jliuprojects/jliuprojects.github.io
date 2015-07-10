@@ -286,3 +286,8 @@ h1 {
 	font-family: inherit;
 	line-height: 1.5em;
 }
+
+#client3{
+	height: 70px; 
+	width: 300px;
+}
