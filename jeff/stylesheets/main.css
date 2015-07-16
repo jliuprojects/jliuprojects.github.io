@@ -1,114 +1,128 @@
-/* line 1, ../sass/_header.scss */
+html {
+  background-color: #e6e4da;
+}
+
 * {
-  background-color: rgba(230, 228, 218, 0.2);
-  font-family: "aktiv-grotesk-std";
+	margin: 0;
+	padding: 0;
 }
 
-/* line 5, ../sass/_header.scss */
-* * {
-  background-color: rgba(230, 228, 218, 0.2);
-  font-family: "aktiv-grotesk-std";
+/* line 5, ../sass/_header.scss 
+* {
+	border: 1px dashed black;
 }
 
-/* line 9, ../sass/_header.scss */
-* * * {
-  background-color: rgba(230, 228, 218, 0.2);
-  font-family: "aktiv-grotesk-std";
-}
-
-/* line 13, ../sass/_header.scss */
-* * * * {
-  background-color: rgba(230, 228, 218, 0.2);
-  font-family: "aktiv-grotesk-std";
-}
-
-/* line 17, ../sass/_header.scss */
-* * * * * {
-  background-color: rgba(230, 228, 218, 0.2);
-  font-family: "aktiv-grotesk-std";
-}
-
-/* line 21, ../sass/_header.scss */
-* * * * * * {
-  background-color: rgba(230, 228, 218, 0.2);
-  font-family: "aktiv-grotesk-std";
-}
-
-/* line 28, ../sass/_header.scss */
+/* line 7, ../sass/_header.scss */
 * {
   box-sizing: border-box;
 }
 
-/* line 32, ../sass/_header.scss */
+a, p, ul, li, h1, h2, h3, h4, h5 {
+	font-family: helvetica;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+a:hover {
+	color: #727272
+}
+
+/* line 11, ../sass/_header.scss */
 header {
   position: relative;
   width: 75%;
   margin: 0 auto;
 }
-/* line 37, ../sass/_header.scss */
+/* line 16, ../sass/_header.scss */
 header #subheader {
   position: relative;
-  height: 100px;
+  height: 110px;
   border-bottom: 2px solid black;
+	font-weight: bold;
 }
-/* line 42, ../sass/_header.scss */
+
+/* line 21, ../sass/_header.scss */
 header #subheader #logo {
   display: inline-block;
   float: left;
-  width: 250px;
-  height: 100px;
+  width: 213px;
+  height: 91px;
 }
-/* line 49, ../sass/_header.scss */
+/* line 28, ../sass/_header.scss */
 header #subheader #type-container {
   display: inline-block;
   position: absolute;
   right: 0;
 }
-/* line 55, ../sass/_header.scss */
+/* line 34, ../sass/_header.scss */
 header #subheader #type-container ul {
   margin: 0;
   padding: 0;
   right: 10px;
 }
-/* line 60, ../sass/_header.scss */
+
+header #subheader #type-container ul li a {
+	opacity: 1;
+}
+/* line 39, ../sass/_header.scss */
 header #subheader #type-container ul li {
   display: inline-block;
   list-style-type: none;
   line-height: 100px;
-  width: 100px;
-  height: 100px;
+  width: 130px;
+  height: 92px;
   text-align: center;
+  
 }
-/* line 72, ../sass/_header.scss */
+
+/* line 49, ../sass/_header.scss */
+header #subheader #type-container ul li::after {
+  content: "";
+  background: url(image.jpg);
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+/* line 64, ../sass/_header.scss */
 header #navigation-container {
-  padding: 10px 0px;
+  padding: 20px 0px;
   overflow: hidden;
   position: relative;
 }
-/* line 76, ../sass/_header.scss */
+/* line 68, ../sass/_header.scss */
 header #navigation-container ul {
   margin: 0;
   padding: 0;
   float: right;
 }
-/* line 80, ../sass/_header.scss */
+/* line 72, ../sass/_header.scss */
 header #navigation-container ul li {
   margin-left: 13px;
   display: inline;
   list-style-type: none;
 }
-/* line 85, ../sass/_header.scss */
+/* line 77, ../sass/_header.scss */
 header #navigation-container ul li a {
   text-decoration: none;
+	font-weight: bold;
 }
 
 /* line 2, ../sass/_footer.scss */
 footer {
   width: 75%;
-  padding: 10px 0px;
+  padding: 18px 0px;
   margin: 0 auto;
-  margin-top: 40px;
+  margin-top: 60px;
   overflow: hidden;
+	border-top: 2px solid black;
+	
 }
 /* line 9, ../sass/_footer.scss */
 footer p {
@@ -131,29 +145,70 @@ footer ul li a {
   text-decoration: none;
 }
 
-/* line 5, ../sass/main.scss */
+/* line 5, ../sass/main.scss 
 #story-background {
   margin-top: 50px;
-  position: relative;
-  width: 100%;
-  height: 560px;
+  max-width: 100%;
+  max-height: 560px;	
+	background-image: url("/assets/header-fish.jpg");
+	background-repeat: no-repeat;
+	padding: none;
 }
+
 /* line 11, ../sass/main.scss */
-#story-background #story {
-  width: 300px;
+#story-background img{
+	width: 100%;
+	height: auto;
+	clip: rect(0px, 0px, 400px, 400px);
+}
+
+#des-container {
+	max-width: 900px;
+	margin-top: -300px;
+	margin-bottom: 200px;
+	margin-left:  auto;
+	margin-right:  auto;
+}
+
+#story {
+  width: 400px;
   height: 200px;
   padding: 15px 8px;
-  position: absolute;
-  bottom: 60px;
-  left: 230px;
+	display: inline-block;
+	opacity: 0.8;
+	background: #e6e4da;
+	border: 1px solid black;
+}
+
+#story-background #story {
+  width: 400px;
+  height: 200px;
+  padding: 15px 8px;
+	display: inline-block;
+	opacity: 0.8;
+	margin-left: 168px;
+	border: 1px solid black;
+	margin-top: -500px;
+	margin-bottom: 200px;
+}
+
+
+#story h2, #story p {
+	padding-top: 25px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+#story p {
+	font-style: italic;
 }
 /* line 19, ../sass/main.scss */
-#story-background #story h2 {
+#story h2 {
   position: relative;
   bottom: 20px;
 }
 /* line 24, ../sass/main.scss */
-#story-background #story p {
+#story p {
   position: relative;
   bottom: 20px;
 }
@@ -193,9 +248,20 @@ footer ul li a {
 /* line 62, ../sass/main.scss */
 #intro-container p {
   position: relative;
-  width: 50%;
+  max-width: 700px;
   text-align: center;
   margin: 0 auto;
+	padding: 20px;
+	
+}
+
+.tea-button {
+	padding: 10px;
+	border: 2px solid black;
+	font-weight: bold;
+	letter-spacing: 0.15em;
+	margin: 10px;
+	background: #e6e4da
 }
 
 /* line 70, ../sass/main.scss */
@@ -208,43 +274,97 @@ footer ul li a {
   padding: 30px 20px;
   overflow: hidden;
   text-align: center;
+  letter-spacing: 0.08em;
+}
+
+#featured-teas img {
+	padding: 10px;
 }
 /* line 81, ../sass/main.scss */
 #featured-teas #tea1 {
+  float: left;
   overflow: hidden;
   width: 30%;
   height: 100%;
 }
-/* line 86, ../sass/main.scss */
-#featured-teas #tea1 #tea1-button {
-  position: relative;
-  top: 200px;
+
+/* line 91, ../sass/main.scss */
+#featured-teas #tea1 img {
+  height: 85%;
+  width: 85%;
 }
-/* line 93, ../sass/main.scss */
+/* line 97, ../sass/main.scss */
 #featured-teas #tea2 {
-  position: relative;
-  top: -290px;
-  left: 300px;
+  margin: 0 auto;
   overflow: hidden;
   width: 30%;
   height: 100%;
 }
-/* line 101, ../sass/main.scss */
-#featured-teas #tea2 #tea2-button {
-  position: relative;
-  top: 200px;
+/* line 107, ../sass/main.scss */
+#featured-teas #tea2 img {
+  height: 85%;
+  width: 85%;
 }
-/* line 108, ../sass/main.scss */
+/* line 113, ../sass/main.scss */
 #featured-teas #tea3 {
-  position: relative;
-  top: -580px;
-  left: 600px;
+  float: right;
   overflow: hidden;
   width: 30%;
   height: 100%;
 }
-/* line 116, ../sass/main.scss */
-#featured-teas #tea3 #tea3-button {
-  position: relative;
-  top: 200px;
+/* line 123, ../sass/main.scss */
+#featured-teas #tea3 img {
+  height: 85%;
+  width: 85%;
+}
+
+#tea2-button. #tea3-button, #tea1-button {
+	margin-top: 50px;
+}
+
+/* line 134, ../sass/main.scss */
+#product-header img {
+  width: 100%;
+  height: 80%;
+}
+
+#product-container {
+	margin: 0 auto;
+	max-width: 900px;
+}
+
+.product-tea {
+	height: 200px;
+	max-width: 900px;
+	border: 1px solid black;
+	margin-top: 50px;
+	position: relative;  
+}
+
+.product-tea img {
+  height: 150px; 
+	margin-top:25px;
+	margin-left: 75px;
+	float: left;
+ 
+}
+
+.product-tea #product-description {
+	float: left;
+	margin-top: 20px;
+	margin-left: 50px;
+	max-width: 450px;
+}
+
+.product-tea h3, .product-tea h4 {
+	padding: 3px;	
+}
+
+.product-tea p {
+	font-size: 14px;
+	font-style: italic;
+}
+
+.product-tea .tea-button {
+	margin-left: 0;
 }
