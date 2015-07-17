@@ -7,11 +7,9 @@
         <link rel="stylesheet" href="stylesheets/css/56.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
         <script src="scripts/three.min.js"></script>
-        <script src="scripts/three6.js"></script>
 	</head>
     <body>
-	    <div id="featured">
-	    </div>
+	    <div id="featured"></div>
 	</body>
 	<script>
 		var mouse = {x: 0, y: 0};
@@ -21,7 +19,9 @@
 		var scene = new THREE.Scene();
 		var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 1, 10000);
 		var renderer = new THREE.WebGLRenderer({alpha:true});
-		document.getElementById('featured').appendChild(renderer.domElement);
+		$(document).ready(function(){
+			document.getElementById('featured').appendChild(renderer.domElement);
+		});
 		renderer.setSize(window.innerWidth, window.innerHeight);
 		renderer.setClearColor( 0x000000, 0 );
 
