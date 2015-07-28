@@ -5,7 +5,19 @@ body {
 	font-size: 12px;
 	font-weight: 600;
 }
-img { 
+
+.client_img { 
+	display: block;
+	position: relative;
+	margin: 0 auto;
+	top: 50px;
+	margin-top: 35px;
+	margin-bottom: 100px;
+	height: 62px;
+	width: 200px;
+}
+
+.press_img { 
 	display: block;
 	position: relative;
 	margin: 0 auto;
@@ -46,12 +58,6 @@ h1 {
 }
 
 #main_clients {
-/*	position: absolute;
-	opacity: 0;
-	top: 0%;
-	left: 50%;
-	width: 500px;
-	margin-left: -250px;*/ /* Half the width */
 
 	position: relative;
 	opacity: 0;
@@ -65,19 +71,6 @@ h1 {
 }
 
 #main_press {
-/*	position: absolute;
-	opacity: 0;
-	top: 0%;
-	left: 50%;
-	width: 500px;
-	margin-left: -250px;*/ /* Half the width */
-
-	/*position: fixed;
-	opacity: 0;
-	width: 500px;
-	left: 50%;
-	margin-left: -250px;
-	top: 0%;*/
 
 	position: relative;
 	opacity: 0;
@@ -93,8 +86,8 @@ h1 {
 	opacity: 0;
 	top: 0%;
 	left: 50%;
-	width: 500px;
-	margin-left: -250px; /* Half the width */
+	width: 200px;
+	margin-left: -100px; /* Half the width */
 	display: none;
 }
 #top-mid-button {
@@ -287,7 +280,45 @@ h1 {
 	line-height: 1.5em;
 }
 
-#client3{
-	height: 70px; 
-	width: 300px;
+.paymentInfo {
+	position: relative;
+	display: inline-block;
+	margin: 0 auto;
+	top: 50px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	width: 200px;
+	float: left;
+}
+
+.paymentInfo p {
+	letter-spacing: .1em;
+	font-family: inherit;
+	line-height: 1.5em;
+}
+.stripe-button-el {
+	position: relative;
+	height: 30px;
+	width: 60px;
+	top: -45px;
+	float: right;
+	background-color: #ffffff;
+	background-image: none !important;
+	border-style: solid !important;
+    border-width: 2px !important;
+   	border-radius: 0px !important;
+}
+
+.shopImgContainer {
+	position: relative;
+	display: inline-block;
+	padding-bottom: 20px;
+}
+
+.shopImgContainer img {
+	position: relative;
+	height: 200px;
+	width: 200px;
+	
+	/*margin-left: -150px;*/
 }

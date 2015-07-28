@@ -4,7 +4,7 @@
 
 .side-nav {
 	position: relative;
-	width: 20%;
+	width: 200px;
 	margin: 0;
 	float: left;
 }
@@ -20,6 +20,8 @@ a {
 }
 
 #feature {
-	position: relative;
+	position: fixed;
+	top: 0px;
+	left: 200px;
 	float: left;
 }
