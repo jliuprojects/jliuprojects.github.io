@@ -75,6 +75,9 @@ $(document).ready(function(){
 		$('#feature').fadeIn(500);
 	}, function() {
 		$( this ).find("span:last").remove();
+		for (var i = 0; i < cubes.length; i++){
+			cubes[i].material.map = THREE.ImageUtils.loadTexture('assets/carousels/loading.jpg');
+		}
 		$('#feature').hide();
 	});
 });
