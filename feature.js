@@ -109,22 +109,32 @@ cube2.rotation.y = 0.25;
 cube3.rotation.y = 0.25;
 cube4.rotation.y = 0.25;
 
-var imgkid1 = THREE.ImageUtils.loadTexture('assets/carousels/kid1.jpg');
-var imgkid2 = THREE.ImageUtils.loadTexture('assets/carousels/kid2.jpg');
-var imgkid3 = THREE.ImageUtils.loadTexture('assets/carousels/kid3.jpg');
-var imgkid4 = THREE.ImageUtils.loadTexture('assets/carousels/kid4.jpg');
+var imgkid = [THREE.ImageUtils.loadTexture('assets/carousels/kid1.jpg'),
+			  THREE.ImageUtils.loadTexture('assets/carousels/kid2.jpg'),
+			  THREE.ImageUtils.loadTexture('assets/carousels/kid3.jpg'),
+			  THREE.ImageUtils.loadTexture('assets/carousels/kid4.jpg')];
+
+var imgtemp = [THREE.ImageUtils.loadTexture('assets/carousels/comingsoon.jpg'),
+			  THREE.ImageUtils.loadTexture('assets/carousels/comingsoon.jpg'),
+			  THREE.ImageUtils.loadTexture('assets/carousels/comingsoon.jpg'),
+			  THREE.ImageUtils.loadTexture('assets/carousels/comingsoon.jpg')];
+
+
+var cubes = [cube1,cube2,cube3,cube4];
 
 $(document).ready(function(){
 	$('.project-entry').hover(function() {
+		var imgarr;
 		$( this ).append( $("<span> &larr;</span>"));
-		cube1.material.map = imgkid1;
-		cube2.material.map = imgkid2;
-		cube3.material.map = imgkid3;
-		cube4.material.map = imgkid4;
-		// $('#feature').fadeIn(1000);
-		// setTimeout(function(){ $('#feature').show(); }, 1000);
-		$('#feature').show();
-		
+		if ($(this).attr('id') == "kid"){
+			imgarr = imgkid;
+		}else{
+			imgarr = imgtemp;
+		}
+		for (var i = 0; i < 4; i++){
+			cubes[i].material.map = imgarr[i];
+		}
+		$('#feature').fadeIn(500);
 	}, function() {
 		$( this ).find("span:last").remove();
 		$('#feature').hide();
