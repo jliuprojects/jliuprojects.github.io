@@ -115,7 +115,7 @@ $(document).ready(function(){
 		cube2.material.map = THREE.ImageUtils.loadTexture('assets/carousels/' + $(this).attr('id') + '2.jpg');
 		cube3.material.map = THREE.ImageUtils.loadTexture('assets/carousels/' + $(this).attr('id') + '3.jpg');
 		cube4.material.map = THREE.ImageUtils.loadTexture('assets/carousels/' + $(this).attr('id') + '4.jpg');
-		setTimeout(function(){ $('#feature').show(); }, 500);
+		setTimeout(function(){ $('#feature').show(); }, 1000);
 		
 	}, function() {
 		$( this ).find("span:last").remove();
