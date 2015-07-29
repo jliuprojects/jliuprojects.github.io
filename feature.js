@@ -13,26 +13,26 @@ renderer.setClearColor( 0x000000, 0 );
 
 var geometry1 = new THREE.BoxGeometry(13, 9, 0, 10, 10, 10);
 var feature1 = THREE.ImageUtils.loadTexture();
-var material1 = new THREE.MeshBasicMaterial({map: feature1, transparent: true, opacity: 0.5, color: 0xFF0000});
-// ultra hard var material1 = new THREE.MeshBasicMaterial({map: feature1, transparent: true, opacity: 0.5, color: 0xFF0000});
+var material1 = new THREE.MeshBasicMaterial({map: feature1, transparent: true, opacity: 1});
+// ultra hard var material1 = new THREE.MeshBasicMaterial({map: feature1, transparent: true, opacity: 1});
 var cube1 = new THREE.Mesh(geometry1, material1);
 cube1.material.needsUpdate = true;
 
 var geometry2 = new THREE.BoxGeometry(13, 9, 0, 10, 10, 10);
 var feature2 = THREE.ImageUtils.loadTexture();
-var material2 = new THREE.MeshBasicMaterial({map: feature2, transparent: true, opacity: 0.5, color: 0xFF0000});
+var material2 = new THREE.MeshBasicMaterial({map: feature2, transparent: true, opacity: 1});
 var cube2 = new THREE.Mesh(geometry2, material2);
 cube2.material.needsUpdate = true;
 
 var geometry3 = new THREE.BoxGeometry(13, 9, 0, 10, 10, 10);
 var feature3 = THREE.ImageUtils.loadTexture();
-var material3 = new THREE.MeshBasicMaterial({map: feature3, transparent: true, opacity: 0.5, color: 0xFF0000});
+var material3 = new THREE.MeshBasicMaterial({map: feature3, transparent: true, opacity: 1});
 var cube3 = new THREE.Mesh(geometry3, material3);
 cube3.material.needsUpdate = true;
 
 var geometry4 = new THREE.BoxGeometry(13, 9, 0, 10, 10, 10);
 var feature4 = THREE.ImageUtils.loadTexture();
-var material4 = new THREE.MeshBasicMaterial({map: feature4, transparent: true, opacity: 0.5, color: 0xFF0000});
+var material4 = new THREE.MeshBasicMaterial({map: feature4, transparent: true, opacity: 1});
 var cube4 = new THREE.Mesh(geometry4, material4);
 cube4.material.needsUpdate = true;
 
@@ -112,10 +112,10 @@ $(document).ready(function(){
 	$('.project-entry').hover(function() {
 		$( this ).append( $("<span> &larr;</span>"));
 		$('#feature').show();
-		cube1.material.map = THREE.ImageUtils.loadTexture($(this).attr('id') + '.png');
-		cube2.material.map = THREE.ImageUtils.loadTexture($(this).attr('id') + '.png');
-		cube3.material.map = THREE.ImageUtils.loadTexture($(this).attr('id') + '.png');
-		cube4.material.map = THREE.ImageUtils.loadTexture($(this).attr('id') + '.png');
+		cube1.material.map = THREE.ImageUtils.loadTexture('assets/carousels/' + $(this).attr('id') + '1.jpg');
+		cube2.material.map = THREE.ImageUtils.loadTexture('assets/carousels/' + $(this).attr('id') + '2.jpg');
+		cube3.material.map = THREE.ImageUtils.loadTexture('assets/carousels/' + $(this).attr('id') + '3.jpg');
+		cube4.material.map = THREE.ImageUtils.loadTexture('assets/carousels/' + $(this).attr('id') + '4.jpg');
 	}, function() {
 		$( this ).find("span:last").remove();
 		$('#feature').hide();
@@ -153,40 +153,40 @@ function render() {
 	}
 
 	if (cube1.position.z > -9 && cube1.position.z < 0){
-		if(cube1.material.opacity <= 0.5){
-			cube1.material.opacity += 0.01;
+		if(cube1.material.opacity <= 1){
+			cube1.material.opacity += 0.02;
 		}
 	}
 
 	if (cube2.position.z > -9 && cube2.position.z < 0){
-		if(cube2.material.opacity <= 0.5){
-			cube2.material.opacity += 0.01;
+		if(cube2.material.opacity <= 1){
+			cube2.material.opacity += 0.02;
 		}
 	}
 
 	if (cube3.position.z > -9 && cube3.position.z < 0){
-		if(cube3.material.opacity <= 0.5){
-			cube3.material.opacity += 0.01;
+		if(cube3.material.opacity <= 1){
+			cube3.material.opacity += 0.02;
 		}
 	}
 
 	if (cube4.position.z > -9 && cube4.position.z < 0){
-		if(cube4.material.opacity <= 0.5){
-			cube4.material.opacity += 0.01;
+		if(cube4.material.opacity <= 1){
+			cube4.material.opacity += 0.02;
 		}
 	}
 
 	if (cube1.position.z > 1){
-		cube1.material.opacity -= 0.01;
+		cube1.material.opacity -= 0.02;
 	}
 	if (cube2.position.z > 1){
-		cube2.material.opacity -= 0.01;
+		cube2.material.opacity -= 0.02;
 	}
 	if (cube3.position.z > 1){
-		cube3.material.opacity -= 0.01;
+		cube3.material.opacity -= 0.02;
 	}
 	if (cube4.position.z > 1){
-		cube4.material.opacity -= 0.01;
+		cube4.material.opacity -= 0.02;
 	}
 	
 
