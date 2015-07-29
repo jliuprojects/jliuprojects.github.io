@@ -82,7 +82,6 @@ $(document).ready(function(){
 		$( this ).append( $("<span> &larr;</span>"));
 		loadingBackground(cubes);
 		changeBackground(cubes, $(this).attr('id'));
-		
 		$('#feature').fadeIn(500);
 	}, function() {
 		$( this ).find("span:last").remove();
