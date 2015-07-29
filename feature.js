@@ -12,26 +12,26 @@ renderer.setSize(window.innerWidth * 0.75, window.innerHeight*0.8);
 renderer.setClearColor( 0x000000, 0 );
 
 var geometry1 = new THREE.BoxGeometry(13, 9, 0, 10, 10, 10);
-var feature1 = THREE.ImageUtils.loadTexture();
+var feature1 = THREE.ImageUtils.loadTexture('assets/carousels/loading.jpg');
 var material1 = new THREE.MeshBasicMaterial({map: feature1, transparent: true, opacity: 1});
 // ultra hard var material1 = new THREE.MeshBasicMaterial({map: feature1, transparent: true, opacity: 1});
 var cube1 = new THREE.Mesh(geometry1, material1);
 cube1.material.needsUpdate = true;
 
 var geometry2 = new THREE.BoxGeometry(13, 9, 0, 10, 10, 10);
-var feature2 = THREE.ImageUtils.loadTexture();
+var feature2 = THREE.ImageUtils.loadTexture('assets/carousels/loading.jpg');
 var material2 = new THREE.MeshBasicMaterial({map: feature2, transparent: true, opacity: 1});
 var cube2 = new THREE.Mesh(geometry2, material2);
 cube2.material.needsUpdate = true;
 
 var geometry3 = new THREE.BoxGeometry(13, 9, 0, 10, 10, 10);
-var feature3 = THREE.ImageUtils.loadTexture();
+var feature3 = THREE.ImageUtils.loadTexture('assets/carousels/loading.jpg');
 var material3 = new THREE.MeshBasicMaterial({map: feature3, transparent: true, opacity: 1});
 var cube3 = new THREE.Mesh(geometry3, material3);
 cube3.material.needsUpdate = true;
 
 var geometry4 = new THREE.BoxGeometry(13, 9, 0, 10, 10, 10);
-var feature4 = THREE.ImageUtils.loadTexture();
+var feature4 = THREE.ImageUtils.loadTexture('assets/carousels/loading.jpg');
 var material4 = new THREE.MeshBasicMaterial({map: feature4, transparent: true, opacity: 1});
 var cube4 = new THREE.Mesh(geometry4, material4);
 cube4.material.needsUpdate = true;
