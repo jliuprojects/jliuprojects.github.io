@@ -59,26 +59,35 @@ function animateCarousel(arr){
 var NUM_CUBES = 4;
 var cubes = createCarousel(NUM_CUBES);
 
+function changeBackground(arr, collection){
+	for (var i = 0; i < arr.length; i++){
+		var textureLoader = new THREE.TextureLoader();
+		textureLoader.load('assets/carousels/' + collection + i + '.jpg', function(t){
+			var url = t.image.currentSrc.split(".");
+			var index = url[url.length - 2][url[url.length - 2].length-1];
+		    arr[index].material.map = t;
+		});
+	}
+}
+
+function loadingBackground(arr){
+	for (var i = 0; i < arr.length; i++){
+		arr[i].material.map = THREE.ImageUtils.loadTexture('assets/carousels/loading.jpg');
+	}
+}
+
 $(document).ready(function(){
 	$('.project-entry').hover(function() {
-
+		console.log("hover");
 		$( this ).append( $("<span> &larr;</span>"));
-
-		for (var i = 0; i < cubes.length; i++){
-			var textureLoader = new THREE.TextureLoader();
-			textureLoader.load('assets/carousels/' + $(this).attr('id') + i + '.jpg', function(t){
-				var url = t.image.currentSrc.split(".");
-				var index = url[url.length - 2][url[url.length - 2].length-1];
-			    cubes[index].material.map = t;
-			});
-		}
+		loadingBackground(cubes);
+		changeBackground(cubes, $(this).attr('id'));
+		
 		$('#feature').fadeIn(500);
 	}, function() {
 		$( this ).find("span:last").remove();
-		for (var i = 0; i < cubes.length; i++){
-			cubes[i].material.map = THREE.ImageUtils.loadTexture('assets/carousels/loading.jpg');
-		}
 		$('#feature').hide();
+		loadingBackground(cubes);
 	});
 });
 
