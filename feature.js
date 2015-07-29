@@ -11,30 +11,17 @@ $(document).ready(function(){
 renderer.setSize(window.innerWidth * 0.75, window.innerHeight*0.8);
 renderer.setClearColor( 0x000000, 0 );
 
-var geometry1 = new THREE.BoxGeometry(13, 9, 0, 10, 10, 10);
-var feature1 = THREE.ImageUtils.loadTexture('assets/carousels/loading.jpg');
-var material1 = new THREE.MeshBasicMaterial({map: feature1, transparent: true, opacity: 1, color: 0xffffff});
-// ultra hard var material1 = new THREE.MeshBasicMaterial({map: feature1, transparent: true, opacity: 1});
-var cube1 = new THREE.Mesh(geometry1, material1);
-cube1.material.needsUpdate = true;
+var cubes = [];
 
-var geometry2 = new THREE.BoxGeometry(13, 9, 0, 10, 10, 10);
-var feature2 = THREE.ImageUtils.loadTexture('assets/carousels/loading.jpg');
-var material2 = new THREE.MeshBasicMaterial({map: feature2, transparent: true, opacity: 1, color: 0xffffff});
-var cube2 = new THREE.Mesh(geometry2, material2);
-cube2.material.needsUpdate = true;
+cubes[0] = new THREE.Mesh(new THREE.BoxGeometry(13, 9, 0), new THREE.MeshBasicMaterial({map: THREE.ImageUtils.loadTexture('assets/carousels/loading.jpg'), transparent: true, opacity: 1, color: 0xffffff}));
+cubes[1] = new THREE.Mesh(new THREE.BoxGeometry(13, 9, 0), new THREE.MeshBasicMaterial({map: THREE.ImageUtils.loadTexture('assets/carousels/loading.jpg'), transparent: true, opacity: 1, color: 0xffffff}));
+cubes[2] = new THREE.Mesh(new THREE.BoxGeometry(13, 9, 0), new THREE.MeshBasicMaterial({map: THREE.ImageUtils.loadTexture('assets/carousels/loading.jpg'), transparent: true, opacity: 1, color: 0xffffff}));
+cubes[3] = new THREE.Mesh(new THREE.BoxGeometry(13, 9, 0), new THREE.MeshBasicMaterial({map: THREE.ImageUtils.loadTexture('assets/carousels/loading.jpg'), transparent: true, opacity: 1, color: 0xffffff}));
 
-var geometry3 = new THREE.BoxGeometry(13, 9, 0, 10, 10, 10);
-var feature3 = THREE.ImageUtils.loadTexture('assets/carousels/loading.jpg');
-var material3 = new THREE.MeshBasicMaterial({map: feature3, transparent: true, opacity: 1, color: 0xffffff});
-var cube3 = new THREE.Mesh(geometry3, material3);
-cube3.material.needsUpdate = true;
-
-var geometry4 = new THREE.BoxGeometry(13, 9, 0, 10, 10, 10);
-var feature4 = THREE.ImageUtils.loadTexture('assets/carousels/loading.jpg');
-var material4 = new THREE.MeshBasicMaterial({map: feature4, transparent: true, opacity: 1, color: 0xffffff});
-var cube4 = new THREE.Mesh(geometry4, material4);
-cube4.material.needsUpdate = true;
+cubes[0].material.needsUpdate = true;
+cubes[1].material.needsUpdate = true;
+cubes[2].material.needsUpdate = true;
+cubes[3].material.needsUpdate = true;
 
 document.addEventListener( 'mousemove', onDocumentMouseMove, false );
 document.addEventListener( 'mousedown', onMouseDown, false);
@@ -84,30 +71,17 @@ function dragMove() {
 	prevMouse.y = mouse.y;
 }
 
-scene.add(cube1);
-scene.add(cube2);
-scene.add(cube3);
-scene.add(cube4);
+for (var i = 0; i < cubes.length; i++){
+	scene.add(cubes[i]);
+	cubes[i].position.x = -5*i;
+	cubes[i].position.y = -1*i;
+	cubes[i].position.z = -3*i;
+	cubes[i].rotation.y = 0.25;
+
+}
 
 camera.position.z = 10;
 camera.position.x = 1;
-
-cube2.position.x = -5;
-cube3.position.x = -10;
-cube4.position.x = -15;
-
-cube2.position.y = -1;
-cube3.position.y = -2;
-cube4.position.y = -3;
-
-cube2.position.z = -3;
-cube3.position.z = -6;
-cube4.position.z = -9;
-
-cube1.rotation.y = 0.25;
-cube2.rotation.y = 0.25;
-cube3.rotation.y = 0.25;
-cube4.rotation.y = 0.25;
 
 var imgkid = [THREE.ImageUtils.loadTexture('assets/carousels/kid1.jpg'),
 			  THREE.ImageUtils.loadTexture('assets/carousels/kid2.jpg'),
@@ -118,9 +92,6 @@ var imgtemp = [THREE.ImageUtils.loadTexture('assets/carousels/comingsoon.jpg'),
 			  THREE.ImageUtils.loadTexture('assets/carousels/comingsoon.jpg'),
 			  THREE.ImageUtils.loadTexture('assets/carousels/comingsoon.jpg'),
 			  THREE.ImageUtils.loadTexture('assets/carousels/comingsoon.jpg')];
-
-
-var cubes = [cube1,cube2,cube3,cube4];
 
 $(document).ready(function(){
 	$('.project-entry').hover(function() {
@@ -140,9 +111,9 @@ $(document).ready(function(){
 		$('#feature').hide();
 	});
 });
-// cube2.rotation.x = 0.25;
-// cube3.rotation.x = 0.5;
-// cube4.rotation.x = 0.75;
+// cubes[1].rotation.x = 0.25;
+// cubes[2].rotation.x = 0.5;
+// cubes[3].rotation.x = 0.75;
 function render() {
 	requestAnimationFrame(render);
 
@@ -150,79 +121,79 @@ function render() {
 		dragMove();
 	}
 
-	if (cube1.position.z > 3){
-		cube1.position.z = -9;
-		cube1.position.x = -15;
-		cube1.position.y = -3;
+	if (cubes[0].position.z > 3){
+		cubes[0].position.z = -9;
+		cubes[0].position.x = -15;
+		cubes[0].position.y = -3;
 	}
-	if (cube2.position.z > 3){
-		cube2.position.z = -9;
-		cube2.position.x = -15;
-		cube2.position.y = -3;
+	if (cubes[1].position.z > 3){
+		cubes[1].position.z = -9;
+		cubes[1].position.x = -15;
+		cubes[1].position.y = -3;
 	}
-	if (cube3.position.z > 3){
-		cube3.position.z = -9;
-		cube3.position.x = -15;
-		cube3.position.y = -3;
+	if (cubes[2].position.z > 3){
+		cubes[2].position.z = -9;
+		cubes[2].position.x = -15;
+		cubes[2].position.y = -3;
 	}
-	if (cube4.position.z > 3){
-		cube4.position.z = -9;
-		cube4.position.x = -15;
-		cube4.position.y = -3;
+	if (cubes[3].position.z > 3){
+		cubes[3].position.z = -9;
+		cubes[3].position.x = -15;
+		cubes[3].position.y = -3;
 	}
 
-	if (cube1.position.z > -9 && cube1.position.z < 0){
-		if(cube1.material.opacity <= 1){
-			cube1.material.opacity += 0.02;
+	if (cubes[0].position.z > -9 && cubes[0].position.z < 0){
+		if(cubes[0].material.opacity <= 1){
+			cubes[0].material.opacity += 0.02;
 		}
 	}
 
-	if (cube2.position.z > -9 && cube2.position.z < 0){
-		if(cube2.material.opacity <= 1){
-			cube2.material.opacity += 0.02;
+	if (cubes[1].position.z > -9 && cubes[1].position.z < 0){
+		if(cubes[1].material.opacity <= 1){
+			cubes[1].material.opacity += 0.02;
 		}
 	}
 
-	if (cube3.position.z > -9 && cube3.position.z < 0){
-		if(cube3.material.opacity <= 1){
-			cube3.material.opacity += 0.02;
+	if (cubes[2].position.z > -9 && cubes[2].position.z < 0){
+		if(cubes[2].material.opacity <= 1){
+			cubes[2].material.opacity += 0.02;
 		}
 	}
 
-	if (cube4.position.z > -9 && cube4.position.z < 0){
-		if(cube4.material.opacity <= 1){
-			cube4.material.opacity += 0.02;
+	if (cubes[3].position.z > -9 && cubes[3].position.z < 0){
+		if(cubes[3].material.opacity <= 1){
+			cubes[3].material.opacity += 0.02;
 		}
 	}
 
-	if (cube1.position.z > 1){
-		cube1.material.opacity -= 0.02;
+	if (cubes[0].position.z > 1){
+		cubes[0].material.opacity -= 0.02;
 	}
-	if (cube2.position.z > 1){
-		cube2.material.opacity -= 0.02;
+	if (cubes[1].position.z > 1){
+		cubes[1].material.opacity -= 0.02;
 	}
-	if (cube3.position.z > 1){
-		cube3.material.opacity -= 0.02;
+	if (cubes[2].position.z > 1){
+		cubes[2].material.opacity -= 0.02;
 	}
-	if (cube4.position.z > 1){
-		cube4.material.opacity -= 0.02;
+	if (cubes[3].position.z > 1){
+		cubes[3].material.opacity -= 0.02;
 	}
 	
 
-	cube1.position.z += 0.03;
-	cube2.position.z += 0.03;
-	cube3.position.z += 0.03;
-	cube4.position.z += 0.03;
+	cubes[0].position.z += 0.03;
+	cubes[1].position.z += 0.03;
+	cubes[2].position.z += 0.03;
+	cubes[3].position.z += 0.03;
 
-	cube1.position.x += 0.05;
-	cube2.position.x += 0.05;
-	cube3.position.x += 0.05;
-	cube4.position.x += 0.05;
+	cubes[0].position.x += 0.05;
+	cubes[1].position.x += 0.05;
+	cubes[2].position.x += 0.05;
+	cubes[3].position.x += 0.05;
 
-	cube1.position.y += 0.01;
-	cube2.position.y += 0.01;
-	cube3.position.y += 0.01;
-	cube4.position.y += 0.01;
+	cubes[0].position.y += 0.01;
+	cubes[1].position.y += 0.01;
+	cubes[2].position.y += 0.01;
+	cubes[3].position.y += 0.01;
 	renderer.render(scene, camera);
 };
 render();
