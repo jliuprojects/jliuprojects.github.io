@@ -111,11 +111,11 @@ cube4.rotation.y = 0.25;
 $(document).ready(function(){
 	$('.project-entry').hover(function() {
 		$( this ).append( $("<span> &larr;</span>"));
-		$('#feature').show();
 		cube1.material.map = THREE.ImageUtils.loadTexture('assets/carousels/' + $(this).attr('id') + '1.jpg');
 		cube2.material.map = THREE.ImageUtils.loadTexture('assets/carousels/' + $(this).attr('id') + '2.jpg');
 		cube3.material.map = THREE.ImageUtils.loadTexture('assets/carousels/' + $(this).attr('id') + '3.jpg');
 		cube4.material.map = THREE.ImageUtils.loadTexture('assets/carousels/' + $(this).attr('id') + '4.jpg');
+		$('#feature').show();
 	}, function() {
 		$( this ).find("span:last").remove();
 		$('#feature').hide();
