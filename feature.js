@@ -109,16 +109,28 @@ cube2.rotation.y = 0.25;
 cube3.rotation.y = 0.25;
 cube4.rotation.y = 0.25;
 
+var imgkid = [THREE.ImageUtils.loadTexture('assets/carousels/kid1.jpg'),
+			  THREE.ImageUtils.loadTexture('assets/carousels/kid2.jpg'),
+			  THREE.ImageUtils.loadTexture('assets/carousels/kid3.jpg'),
+			  THREE.ImageUtils.loadTexture('assets/carousels/kid4.jpg')];
+
+var imgtemp = [THREE.ImageUtils.loadTexture('assets/carousels/comingsoon.jpg'),
+			  THREE.ImageUtils.loadTexture('assets/carousels/comingsoon.jpg'),
+			  THREE.ImageUtils.loadTexture('assets/carousels/comingsoon.jpg'),
+			  THREE.ImageUtils.loadTexture('assets/carousels/comingsoon.jpg')];
+
+
 var cubes = [cube1,cube2,cube3,cube4];
 
 $(document).ready(function(){
 	$('.project-entry').hover(function() {
+		var imgarr;
 		$( this ).append( $("<span> &larr;</span>"));
-
-		var imgarr = [THREE.ImageUtils.loadTexture('assets/carousels/' + $(this).attr('id') + '1.jpg'),
-					  THREE.ImageUtils.loadTexture('assets/carousels/' + $(this).attr('id') + '2.jpg'),
-					  THREE.ImageUtils.loadTexture('assets/carousels/' + $(this).attr('id') + '3.jpg'),
-					  THREE.ImageUtils.loadTexture('assets/carousels/' + $(this).attr('id') + '4.jpg')];
+		if ($(this).attr('id') == "kid"){
+			imgarr = imgkid;
+		}else{
+			imgarr = imgtemp;
+		}
 		for (var i = 0; i < 4; i++){
 			cubes[i].material.map = imgarr[i];
 		}
