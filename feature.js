@@ -56,14 +56,12 @@ function Carousel (scene, len, posx, posy, posz, posxFactor, posyFactor, poszFac
 		}
 	};
 
-	this.changeBackground = function (collection) {
+	this.bgLock = false;
+
+	this.changeBackground = function (collection, callback) {
 		for (var i = 0; i < this.contents.length; i++){
 			var textureLoader = new THREE.TextureLoader();
-			textureLoader.load('assets/carousels/' + collection + i + '.jpg', function(t){
-				var url = t.image.currentSrc.split(".");
-				var index = url[url.length - 2][url[url.length - 2].length-1];
-			    self.contents[index].material.map = t;
-			});
+			textureLoader.load('assets/carousels/' + collection + i + '.jpg', callback);
 		}
 	};
 
@@ -77,14 +75,22 @@ function Carousel (scene, len, posx, posy, posz, posxFactor, posyFactor, poszFac
 var NUM_CUBES = 4;
 var cubes = new Carousel(scene, NUM_CUBES);
 // var cubes1 = new Carousel(scene, NUM_CUBES, 0, -5, 3, 5, 1, -3, -0.25);
-
+var collection;
 $(document).ready(function(){
 	$('.project-entry').hover(function() {
-		console.log("hover");
 		$( this ).append( $("<span> &larr;</span>"));
-
+		collection = $(this).attr('id');
 		cubes.setLoadingBg();
-		cubes.changeBackground($(this).attr('id'));
+		
+		cubes.changeBackground($(this).attr('id'), function (t){
+			var url = t.image.currentSrc.split(".");
+			var index = url[url.length - 2][url[url.length - 2].length-1];
+			var temp = url[url.length-2].split("/")[url[url.length-2].split("/").length-1];
+			temp = temp.substring(0, temp.length - 1);
+			if (temp == collection){
+				cubes.contents[index].material.map = t;
+			}
+		});
 
 		$('#feature').fadeIn(500);
 	}, function() {
