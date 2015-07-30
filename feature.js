@@ -10,90 +10,96 @@ $(document).ready(function(){
 	document.getElementById('feature').appendChild(renderer.domElement);
 });
 
-function createCarousel(len, posxOffset, posyOffset, poszOffset, posxFactor, posyFactor, poszFactor, roty){
-	posxFactor = posxFactor || -5;
-	posyFactor = posyFactor || -1;
-	poszFactor = poszFactor || -3;
-	roty = roty || 0.25;
-	posxOffset = posxOffset || 0;
-	posyOffset = posyOffset || 0;
-	poszOffset = poszOffset || 0;
-
-	var arr = [];
+function Carousel (scene, len, posx, posy, posz, posxFactor, posyFactor, poszFactor, roty) {
+	this.posxFactor = posxFactor || -5;
+	this.posyFactor = posyFactor || -1;
+	this.poszFactor = poszFactor || -3;
+	this.roty = roty || 0.25;
+	this.posx = posx || 0;
+	this.posy = posy || 0;
+	this.posz = posz || 0;
+	this.contents = [];
 	for (var i = 0; i < len; i++){
-		arr[i] = new THREE.Mesh(new THREE.BoxGeometry(13, 9, 0), new THREE.MeshBasicMaterial({map: THREE.ImageUtils.loadTexture('assets/carousels/loading.jpg'), transparent: true, opacity: 1, color: 0xffffff}));
-		arr[i].material.needsUpdate = true;
+		this.contents[i] = new THREE.Mesh(new THREE.BoxGeometry(13, 9, 0), new THREE.MeshBasicMaterial({map: THREE.ImageUtils.loadTexture('assets/carousels/loading.jpg'), transparent: true, opacity: 1, color: 0xffffff}));
+		this.contents[i].material.needsUpdate = true;
 
-		scene.add(arr[i]);
-		arr[i].position.x = posxFactor*i + posxOffset;
-		arr[i].position.y = posyFactor*i + posyOffset;
-		arr[i].position.z = poszFactor*i + poszOffset;
-		arr[i].rotation.y = roty;
+		scene.add(this.contents[i]);
+		this.contents[i].position.x = this.posxFactor*i + this.posx;
+		this.contents[i].position.y = this.posyFactor*i + this.posy;
+		this.contents[i].position.z = this.poszFactor*i + this.posz;
+		this.contents[i].rotation.y = this.roty;
 	}
-	return arr;
-}
 
-function animateCarousel(arr){
-	for (var i = 0; i < arr.length; i++){
-		if (arr[i].position.z > 3){
-			arr[i].position.z = -9;
-			arr[i].position.x = -15;
-			arr[i].position.y = -3;
-		}
-
-		if (arr[i].position.z > -9 && arr[i].position.z < 0){
-			if(arr[i].material.opacity <= 1){
-				arr[i].material.opacity += 0.02;
+	var self = this;
+	this.animate = function (maxz, x, y, z) {
+		for (var i = 0; i < this.contents.length; i++){
+			if (this.contents[i].position.z > maxz){
+				this.contents[i].position.x = this.posx + this.posxFactor * (this.contents.length - 1);
+				this.contents[i].position.y = this.posy + this.posyFactor * (this.contents.length - 1);
+				this.contents[i].position.z = this.posz + this.poszFactor * (this.contents.length - 1);
 			}
-		}
 
-		if (arr[i].position.z > 1){
-			arr[i].material.opacity -= 0.02;
-		}
+			if (this.contents[i].position.z > (this.posz + this.poszFactor * (this.contents.length - 1)) && this.contents[i].position.z < this.posz){
+				if(this.contents[i].material.opacity <= 1){
+					this.contents[i].material.opacity += 0.02;
+				}
+			}
 
-		arr[i].position.z += 0.03;
-		arr[i].position.x += 0.05;
-		arr[i].position.y += 0.01;
+			if (this.contents[i].position.z > this.posz + 1){
+				this.contents[i].material.opacity -= 0.02;
+			}
+
+			
+			this.contents[i].position.x += x;
+			this.contents[i].position.y += y;
+			this.contents[i].position.z += z;
+		}
+	};
+
+	this.changeBackground = function (collection) {
+		for (var i = 0; i < this.contents.length; i++){
+			var textureLoader = new THREE.TextureLoader();
+			textureLoader.load('assets/carousels/' + collection + i + '.jpg', function(t){
+				var url = t.image.currentSrc.split(".");
+				var index = url[url.length - 2][url[url.length - 2].length-1];
+			    self.contents[index].material.map = t;
+			});
+		}
+	};
+
+	this.setLoadingBg = function (){
+		for (var i = 0; i < this.contents.length; i++){
+			this.contents[i].material.map = THREE.ImageUtils.loadTexture('assets/carousels/loading.jpg');
+		}
 	}
 }
+
 var NUM_CUBES = 4;
-var cubes = createCarousel(NUM_CUBES);
-
-function changeBackground(arr, collection){
-	for (var i = 0; i < arr.length; i++){
-		var textureLoader = new THREE.TextureLoader();
-		textureLoader.load('assets/carousels/' + collection + i + '.jpg', function(t){
-			var url = t.image.currentSrc.split(".");
-			var index = url[url.length - 2][url[url.length - 2].length-1];
-		    arr[index].material.map = t;
-		});
-	}
-}
-
-function loadingBackground(arr){
-	for (var i = 0; i < arr.length; i++){
-		arr[i].material.map = THREE.ImageUtils.loadTexture('assets/carousels/loading.jpg');
-	}
-}
+var cubes = new Carousel(scene, NUM_CUBES);
+// var cubes1 = new Carousel(scene, NUM_CUBES, 0, -5, 3, 5, 1, -3, -0.25);
 
 $(document).ready(function(){
 	$('.project-entry').hover(function() {
 		console.log("hover");
 		$( this ).append( $("<span> &larr;</span>"));
-		loadingBackground(cubes);
-		changeBackground(cubes, $(this).attr('id'));
+
+		cubes.setLoadingBg();
+		cubes.changeBackground($(this).attr('id'));
+
 		$('#feature').fadeIn(500);
 	}, function() {
 		$( this ).find("span:last").remove();
 		$('#feature').hide();
-		loadingBackground(cubes);
+
+		cubes.setLoadingBg();
 	});
 });
 
 function render() {
 	requestAnimationFrame(render);
 	
-	animateCarousel(cubes);
+	cubes.animate(3, 0.05, 0.01, 0.03);
+	// cubes1.animate(6, -0.05, -0.01, 0.03);
 
 	renderer.render(scene, camera);
 };
