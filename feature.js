@@ -58,7 +58,7 @@ function Carousel (scene, len, posx, posy, posz, posxFactor, posyFactor, poszFac
 
 	this.bgLock = false;
 
-	this.changeBackground = function (collection, callback) {
+	this.loadBackground = function (collection, callback) {
 		for (var i = 0; i < this.contents.length; i++){
 			var textureLoader = new THREE.TextureLoader();
 			textureLoader.load('assets/carousels/' + collection + i + '.jpg', callback);
@@ -78,11 +78,17 @@ var cubes = new Carousel(scene, NUM_CUBES);
 var collection;
 $(document).ready(function(){
 	$('.project-entry').hover(function() {
-		$( this ).append( $("<span> &larr;</span>"));
+
+		if ($(this).attr('id') == 'kid'){
+			$( this ).append( $("<span> &larr; link currently unavailable</span>"));
+		}else{
+			$( this ).append( $("<span> &larr;</span>"));
+		}
+		
 		collection = $(this).attr('id');
 		cubes.setLoadingBg();
-		
-		cubes.changeBackground($(this).attr('id'), function (t){
+
+		cubes.loadBackground($(this).attr('id'), function (t){
 			var url = t.image.currentSrc.split(".");
 			var index = url[url.length - 2][url[url.length - 2].length-1];
 			var temp = url[url.length-2].split("/")[url[url.length-2].split("/").length-1];
