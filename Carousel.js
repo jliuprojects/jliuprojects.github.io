@@ -46,7 +46,7 @@ function Carousel (scene, len, posx, posy, posz, posxFactor, posyFactor, poszFac
 
 	this.bgLock = false;
 
-	this.changeBackground = function (collection, callback) {
+	this.loadBackground = function (collection, callback) {
 		for (var i = 0; i < this.contents.length; i++){
 			var textureLoader = new THREE.TextureLoader();
 			textureLoader.load('assets/carousels/' + collection + i + '.jpg', callback);
