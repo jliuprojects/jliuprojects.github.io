@@ -55,7 +55,6 @@ function Set(scene, size, dimensions, positions, urls, rotations, info){
 		this.features[i].userData.mouseoverEnterPos = {x:0,y:0};
 		this.features[i].userData.index = i;
 
-		scene.add(this.features[i]);
 		this.features[i].position.x = positions[i].x;
 		this.features[i].position.y = positions[i].y;
 		this.features[i].position.z = positions[i].z;
@@ -111,8 +110,17 @@ sets[0] = new Set(scene, 3, [		{width:4,height:8},				{width:9,height:6},				{wi
 								   [{x:0.005,y:0.005,z:0},			{x:-0.005,y:-0.005,z:0},		{x:0.005,y:0.005,z:0}],
 								   {title:'Visionelie', tags:'Web Development, Interactive Design, Responsive Design, Creative Direction', description:'dolor sit amet, consectetur adipiscing elit. Vestibulum a quam nulla. Fusce ex eros, dictum sed justo eu, commodo eleifend dolor. Cras pretium laoreet ligula vitae tempus.'});
 
+for (var i = 0; i < sets[0].features.length; i++){
+	scene.add(sets[0].features[i]);
+}
+
 var currentFocusedSet = 0;
 var initBuffer = 30;
+var change_set = 0;
+
+$('.next').click(function (){
+	change_set = 120;
+});
 function render() {
 	requestAnimationFrame(render);
 
@@ -137,7 +145,40 @@ function render() {
 		initBuffer--;
 	}
 
-	sets[currentFocusedSet].animate();
+	if (change_set){
+		if (change_set == 120){
+			sets[currentFocusedSet].text.fadeOut();
+		}
+		if (change_set > 60){
+			var rate = 0.3;
+		}else{
+			var rate = 0.4;
+		}
+		for(var i = 0; i < sets[currentFocusedSet].features.length; i++){
+			sets[currentFocusedSet].features[i].position.z += rate;
+		}
+		if (change_set == 60){
+			sets[currentFocusedSet].text.fadeIn();
+			for(var i = 0; i < sets[currentFocusedSet].features.length; i++){
+				scene.remove(sets[currentFocusedSet].features[i]);
+			}
+
+			if (currentFocusedSet == sets.length - 1){
+				currentFocusedSet = 0;
+			}else{
+				currentFocusedSet++;
+			}
+
+			for(var i = 0; i < sets[currentFocusedSet].features.length; i++){
+				scene.add(sets[currentFocusedSet].features[i]);
+				sets[currentFocusedSet].features[i].position.z = -24;
+			}
+		}
+		
+		change_set--;
+	}else{
+		sets[currentFocusedSet].animate();
+	}
 
 	renderer.render(scene, camera);
 };
