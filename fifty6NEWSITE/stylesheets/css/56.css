@@ -1,0 +1,153 @@
+@import "http://webfonts.ru/import/america.css";
+body, html {
+	margin:0;
+}
+
+* {
+	/*border: dotted #000000 2px;*/
+}
+
+p {
+	font-family: 'Montserrat', sans-serif;
+}
+
+#featured {
+}
+
+#container {
+
+}
+.project-info {
+	position:fixed;
+    top:50%;
+    bottom:0;
+    left:0;
+    right:0;
+    margin: auto;
+    margin-top: -160px;
+}
+
+.project-title {
+	font-size: 56pt;
+	margin: 0;
+	margin-bottom: 15px;
+	text-align: center;
+}
+
+.project-tags {
+	font-size: 8pt;
+	margin: 0 auto;
+	width: 300px;
+	text-align: center;
+	line-height: 18px;
+	margin-top: 30px;
+	font-style: italic;
+}
+
+.project-description {
+	font-size: 10pt;
+	margin: 0 auto;
+	width: 300px;
+	text-align: center;
+	line-height: 18px;
+}
+
+.btn {
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0px;
+	font-family: 'America XIX';
+	color: #000000;
+	font-size: 24pt;
+	background: #ffffff;
+	padding: 10px 20px 10px 20px;
+	border: solid #000000 2px;
+	text-decoration: none;
+	text-align: center;
+	width: 230px;
+	position: relative;
+	left: 50%;
+	margin-top: 30px;
+	margin-left: -136px;
+	transition: background 0.1s ease;
+}
+
+.btn:hover {
+	background: #000000;
+	color: #ffffff;
+	transition: background 0.1s ease;
+}
+
+.prev{
+	position: fixed;
+	left: 0;
+	width: 10%;
+	height: 100%;
+	z-index: 10;
+}
+
+.prev:hover{
+	background-image: url("../../assets/prev.png");
+	background-repeat: no-repeat;
+	background-position: center; 
+}
+.next{
+	position: fixed;
+	right: 0;
+	width: 10%;
+	height: 100%;
+	z-index: 10;
+}
+.next:hover{
+	background-image: url("../../assets/next.png");
+	background-repeat: no-repeat;
+	background-position: center; 
+}
+
+.logo{
+	position: fixed;
+	width: 180px;
+	left: 10%;
+	top: 20px;
+}
+
+.description1 {
+	position: fixed;
+	right: 500px;
+	top: 56px;
+	font-size: 12pt;
+}
+
+.description2 {
+	position: fixed;
+	right: 200px;
+	top: 56px;
+	font-size: 12pt;
+}
+
+.info {
+	position: fixed;
+	font-family: 'America XIX';
+	font-size: 24pt;
+	bottom: 30px;
+	left: 10%;
+	padding-bottom: 5px;
+	z-index: 15;
+	border-bottom: solid 2px #ffffff;
+}
+.info:hover {
+	border-bottom: solid 2px #000000;
+}
+.work {
+	position: fixed;
+	font-family: 'America XIX';
+	font-size: 24pt;
+	bottom: 30px;
+	right: 10%;
+	padding-bottom: 5px;
+	z-index: 15;
+	border-bottom: solid 2px #ffffff;
+}
+.work:hover {
+	border-bottom: solid 2px #000000;
+}
