@@ -317,3 +317,37 @@ h1 {
 	
 	/*margin-left: -150px;*/
 }
+
+.mobile_msg {
+	display: none;
+}
+
+@media (min-width: 600px) {
+	#main_home {
+		display:none;
+	}
+
+	#main_clients {
+		display:none;
+	}
+
+	#main_press {
+		display:none;
+	}
+
+	#main_about {
+		display:none;
+	}
+
+	#main_shop {
+		display: none;
+	}
+
+	.nav {
+		display: none;
+	}
+
+	.mobile_msg {
+		display: inline-block;
+	}
+}
