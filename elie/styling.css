@@ -13,8 +13,8 @@ body {
 	top: 50px;
 	margin-top: 35px;
 	margin-bottom: 100px;
-	height: 62px;
-	width: 200px;
+	height: 50px;
+	width: 150px;
 }
 
 .press_img { 
@@ -24,8 +24,8 @@ body {
 	top: 50px;
 	margin-top: 35px;
 	margin-bottom: 100px;
-	height: 62px;
-	width: 200px;
+	height: 50px;
+	width: 150px;
 }
 
 h1 {
@@ -38,11 +38,6 @@ h1 {
 	margin-left: -100px;
 	top: 50%;
 	margin-top: -70px;
-}
-
-.about_img {
-	width: auto;
-	height: auto;
 }
 
 .nav{
@@ -262,7 +257,7 @@ h1 {
 	background-size: cover;
 	background-position: center center;
 	margin: 0 auto;
-	margin-bottom: 50px;
+	margin-bottom: 30px;
 }
 
 .about-wrapper .about-info {
@@ -284,9 +279,7 @@ h1 {
 	position: relative;
 	display: inline-block;
 	margin: 0 auto;
-	top: 50px;
-	margin-top: 10px;
-	margin-bottom: 10px;
+	top: 60px;
 	width: 200px;
 	float: left;
 }
@@ -295,12 +288,14 @@ h1 {
 	letter-spacing: .1em;
 	font-family: inherit;
 	line-height: 1.5em;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 .stripe-button-el {
 	position: relative;
 	height: 30px;
 	width: 60px;
-	top: -45px;
+	top: -44px;
 	float: right;
 	background-color: #ffffff;
 	background-image: none !important;
