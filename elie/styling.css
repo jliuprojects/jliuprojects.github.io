@@ -307,7 +307,7 @@ h1 {
 .shopImgContainer {
 	position: relative;
 	display: inline-block;
-	padding-bottom: 20px;
+	padding-bottom: 10px;
 }
 
 .shopImgContainer img {
