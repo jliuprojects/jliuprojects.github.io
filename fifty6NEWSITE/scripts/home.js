@@ -117,10 +117,78 @@ for (var i = 0; i < sets[0].features.length; i++){
 var currentFocusedSet = 0;
 var initBuffer = 30;
 var change_set = 0;
+var prev_scroll = 0;
+var up_scroll, down_scroll = 0;
 
 $('.next').click(function (){
 	change_set = 120;
 });
+
+$(window).scroll(function(){
+	if (prev_scroll > $(document).scrollTop()){
+		console.log("scroll up");
+		up_scroll = 1;
+	}else if (prev_scroll < $(document).scrollTop()){
+		console.log("scroll down");
+		down_scroll = 1;
+	}
+	if ($(document).scrollTop() + window.innerHeight == $(window).height()){
+		document.body.scrollTop = document.documentElement.scrollTop = 0;
+	}else if ($(document).scrollTop() == 0){
+		document.body.scrollTop = document.documentElement.scrollTop = $(window).height();
+	}
+
+
+	prev_scroll = $(document).scrollTop();
+});
+
+function changeSet(){
+	if (change_set == 120){
+		sets[currentFocusedSet].text.fadeOut();
+	}
+	if (change_set > 60){
+		var rate = 0.3;
+	}else{
+		var rate = 0.4;
+	}
+	for(var i = 0; i < sets[currentFocusedSet].features.length; i++){
+		sets[currentFocusedSet].features[i].position.z += rate;
+	}
+	if (change_set == 60){
+		sets[currentFocusedSet].text.fadeIn();
+		for(var i = 0; i < sets[currentFocusedSet].features.length; i++){
+			scene.remove(sets[currentFocusedSet].features[i]);
+		}
+
+		if (currentFocusedSet == sets.length - 1){
+			currentFocusedSet = 0;
+		}else{
+			currentFocusedSet++;
+		}
+
+		for(var i = 0; i < sets[currentFocusedSet].features.length; i++){
+			scene.add(sets[currentFocusedSet].features[i]);
+			sets[currentFocusedSet].features[i].position.z = -24;
+		}
+	}
+	
+	change_set--;
+}
+
+function upScroll(){
+	for(var i = 0; i < sets[currentFocusedSet].features.length; i++){
+		sets[currentFocusedSet].features[i].position.z -= 1;
+	}
+	up_scroll--;
+}
+
+function downScroll(){
+	for(var i = 0; i < sets[currentFocusedSet].features.length; i++){
+		sets[currentFocusedSet].features[i].position.z += 1;
+	}
+	down_scroll--;
+}
+
 function render() {
 	requestAnimationFrame(render);
 
@@ -146,36 +214,11 @@ function render() {
 	}
 
 	if (change_set){
-		if (change_set == 120){
-			sets[currentFocusedSet].text.fadeOut();
-		}
-		if (change_set > 60){
-			var rate = 0.3;
-		}else{
-			var rate = 0.4;
-		}
-		for(var i = 0; i < sets[currentFocusedSet].features.length; i++){
-			sets[currentFocusedSet].features[i].position.z += rate;
-		}
-		if (change_set == 60){
-			sets[currentFocusedSet].text.fadeIn();
-			for(var i = 0; i < sets[currentFocusedSet].features.length; i++){
-				scene.remove(sets[currentFocusedSet].features[i]);
-			}
-
-			if (currentFocusedSet == sets.length - 1){
-				currentFocusedSet = 0;
-			}else{
-				currentFocusedSet++;
-			}
-
-			for(var i = 0; i < sets[currentFocusedSet].features.length; i++){
-				scene.add(sets[currentFocusedSet].features[i]);
-				sets[currentFocusedSet].features[i].position.z = -24;
-			}
-		}
-		
-		change_set--;
+		changeSet();
+	}else if (up_scroll){
+		upScroll();
+	}else if (down_scroll){
+		downScroll();
 	}else{
 		sets[currentFocusedSet].animate();
 	}

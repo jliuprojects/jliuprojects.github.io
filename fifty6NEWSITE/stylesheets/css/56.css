@@ -3,6 +3,10 @@ body, html {
 	margin:0;
 }
 
+body {
+	height: 200%;
+}
+
 * {
 	/*border: dotted #000000 2px;*/
 }
@@ -12,6 +16,7 @@ p {
 }
 
 #featured {
+	position: fixed;
 }
 
 #container {
