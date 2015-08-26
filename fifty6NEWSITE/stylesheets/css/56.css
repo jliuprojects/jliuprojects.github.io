@@ -169,6 +169,7 @@ p {
 	height: 100%;
 	width:20%;
 	left: -20%;
+	z-index: 565656;
 
 	-webkit-transition: background-color 1000ms linear;
     -moz-transition: background-color 1000ms linear;
@@ -183,6 +184,7 @@ p {
 	height: 100%;
 	width:20%;
 	right: -20%;
+	z-index: 565656;
 
 	-webkit-transition: background-color 1000ms linear;
     -moz-transition: background-color 1000ms linear;

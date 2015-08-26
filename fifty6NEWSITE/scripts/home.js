@@ -169,6 +169,7 @@ sets[2] = new Set(scene, 3, [		{width:5,height:5},				{width:9,height:6},				{wi
 								   [{x:0.005,y:0.005,z:0},			{x:-0.005,y:-0.005,z:0},		{x:0.005,y:0.005,z:0}],
 								   {title:'Kid. Studio', tags:'Web Development, Interactive Design, Creative Direction, Content Creation', description:'Responsive website made for film & design studio, Kid. Interactive 3D carousel feature with custom Kirby backend.'},
 								   {text_colour: '#656565', bg_colour: '#dddddd', logo_colour: '#656565'});
+
 sets[3] = new Set(scene, 3, [		{width:5,height:5},				{width:9,height:6},				{width:4,height:2}],
 								   [{x:5,y:0,z:0},					{x:-3,y:2.5,z:0},				{x:-3,y:-3,z:0}], 
 								   ['assets/carousels/knp2.png',	'assets/carousels/knp.png',	'assets/carousels/knp3.png'],
@@ -318,6 +319,37 @@ $('.work').click(function(){
 
 $('body').click(function(){
 	change_set = 120;
+});
+
+$('.work-text-container').click(function(){
+	var index = 0;
+	for (var i = 0; i < sets.length; i++){
+		if (sets[i].text.children('.project-title').text() == $(this).children('h1').text()){
+			index = i;
+			break;
+		}
+	}
+
+	var distance = 0;
+	for (var i = currentFocusedSet; i < sets.length; i++){
+		if (i == index){
+			break;
+		}else{
+			distance++;
+		}
+		if (i == sets.legnth - 1){
+			i = -1;
+		}
+	}
+
+	for (var i = 0; i < distance; i++){
+		setTimeout(function(){ change_set=120; }, 2000*i);
+	}
+	event.stopPropagation();
+});
+
+$('.right-nav, .left-nav').click(function(){
+	event.stopPropagation();
 });
 
 $(window).scroll(function(){
