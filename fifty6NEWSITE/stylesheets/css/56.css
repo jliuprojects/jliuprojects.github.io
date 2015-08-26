@@ -3,8 +3,23 @@ body, html {
 	margin:0;
 }
 
+::-webkit-scrollbar { 
+    display: none; 
+}
+
+h1 {
+	font-family: 'America XIX';
+	font-size: 24pt;
+	font-weight: normal;
+}
+
 body {
-	height: 200%;
+	height: 500%;
+	-webkit-transition: background-color 1000ms linear;
+    -moz-transition: background-color 1000ms linear;
+    -o-transition: background-color 1000ms linear;
+    -ms-transition: background-color 1000ms linear;
+    transition: background-color 1000ms linear;
 }
 
 * {
@@ -13,6 +28,9 @@ body {
 
 p {
 	font-family: 'Montserrat', sans-serif;
+	font-size: 8pt;
+	line-height: 18px;
+
 }
 
 #featured {
@@ -29,13 +47,13 @@ p {
     left:0;
     right:0;
     margin: auto;
-    margin-top: -160px;
+    margin-top: -170px;
 }
 
 .project-title {
-	font-size: 56pt;
+	font-size: 46pt;
 	margin: 0;
-	margin-bottom: 15px;
+	margin-bottom: 35px;
 	text-align: center;
 }
 
@@ -50,7 +68,7 @@ p {
 }
 
 .project-description {
-	font-size: 10pt;
+	font-size: 8pt;
 	margin: 0 auto;
 	width: 300px;
 	text-align: center;
@@ -64,7 +82,7 @@ p {
 	font-family: 'America XIX';
 	color: #000000;
 	font-size: 24pt;
-	background: #ffffff;
+	background-color: #ffffff;
 	padding: 10px 20px 10px 20px;
 	border: solid #000000 2px;
 	text-decoration: none;
@@ -72,9 +90,21 @@ p {
 	width: 230px;
 	position: relative;
 	left: 50%;
-	margin-top: 30px;
+	margin-top: 35px;
 	margin-left: -136px;
-	transition: background 0.1s ease;
+	/*transition: background 0.1s ease;*/
+
+	-webkit-transition: background-color 1000ms linear;
+    -moz-transition: background-color 1000ms linear;
+    -o-transition: background-color 1000ms linear;
+    -ms-transition: background-color 1000ms linear;
+    transition: background-color 1000ms linear;
+
+	-webkit-transition: color 1000ms linear;
+    -moz-transition: color 1000ms linear;
+    -o-transition: color 1000ms linear;
+    -ms-transition: color 1000ms linear;
+    transition: color 1000ms linear;
 }
 
 .btn:hover {
@@ -83,51 +113,26 @@ p {
 	transition: background 0.1s ease;
 }
 
-.prev{
-	position: fixed;
-	left: 0;
-	width: 10%;
-	height: 100%;
-	z-index: 10;
-}
-
-.prev:hover{
-	background-image: url("../../assets/prev.png");
-	background-repeat: no-repeat;
-	background-position: center; 
-}
-.next{
-	position: fixed;
-	right: 0;
-	width: 10%;
-	height: 100%;
-	z-index: 10;
-}
-.next:hover{
-	background-image: url("../../assets/next.png");
-	background-repeat: no-repeat;
-	background-position: center; 
-}
-
 .logo{
 	position: fixed;
 	width: 180px;
-	left: 10%;
+	left: 8%;
 	top: 20px;
+	z-index: 565656;
 }
 
 .description1 {
 	position: fixed;
-	right: 500px;
+	right: 25%;
 	top: 56px;
-	font-size: 12pt;
+	font-size: 10pt;
 }
 
 .description2 {
 	position: fixed;
-	right: 200px;
+	right: 10%;
 	top: 56px;
-	font-size: 12pt;
+	font-size: 10pt;
 }
 
 .info {
@@ -136,9 +141,10 @@ p {
 	font-size: 24pt;
 	bottom: 30px;
 	left: 10%;
+	font-weight: normal;
 	padding-bottom: 5px;
 	z-index: 15;
-	border-bottom: solid 2px #ffffff;
+	border-bottom: solid 2px transparent;
 }
 .info:hover {
 	border-bottom: solid 2px #000000;
@@ -151,8 +157,46 @@ p {
 	right: 10%;
 	padding-bottom: 5px;
 	z-index: 15;
-	border-bottom: solid 2px #ffffff;
+	border-bottom: solid 2px transparent;
 }
 .work:hover {
 	border-bottom: solid 2px #000000;
+}
+
+.left-nav {
+	position: fixed;
+	background-color: #ff0000;
+	height: 100%;
+	width:20%;
+	left: -20%;
+
+	-webkit-transition: background-color 1000ms linear;
+    -moz-transition: background-color 1000ms linear;
+    -o-transition: background-color 1000ms linear;
+    -ms-transition: background-color 1000ms linear;
+    transition: background-color 1000ms linear;
+}
+
+.right-nav {
+	position: fixed;
+	background-color: #ff0000;
+	height: 100%;
+	width:20%;
+	right: -20%;
+
+	-webkit-transition: background-color 1000ms linear;
+    -moz-transition: background-color 1000ms linear;
+    -o-transition: background-color 1000ms linear;
+    -ms-transition: background-color 1000ms linear;
+    transition: background-color 1000ms linear;
+}
+
+.info-text {
+	margin-left: 50px;
+	margin-right: 50px;
+}
+
+.work-text {
+	margin-left: 50px;
+	margin-right: 50px;
 }

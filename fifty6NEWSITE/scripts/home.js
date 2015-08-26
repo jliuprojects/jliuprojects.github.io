@@ -11,6 +11,11 @@ window.addEventListener( 'mousemove', onMouseMove, false );
 var raycaster = new THREE.Raycaster();
 var mouse = new THREE.Vector2();
 
+function shuffle(o){
+    for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+    return o;
+}
+
 function onMouseMove( event ) {
 	mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
 	mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
@@ -18,26 +23,66 @@ function onMouseMove( event ) {
 	mouse_pixels.y = event.clientY;
 }
 
+var infoOpen = false;
+var workOpen = false;
+function changeTheme(theme){
+	$('html body').css({'background-color': theme.bg_colour});
+	$('p, title').css({'color' : theme.text_colour});
+	$('#svglogo')[0].style.fill = theme.logo_colour;
+	$('.btn').css({'background-color': theme.bg_colour});
+	$('.btn').css({'color': theme.text_colour});
+	$('.right-nav, .left-nav').css({'background-color': theme.text_colour});
+	$('.info-text, .work-text').css({'color': theme.bg_colour});
+	$('.btn').css({'border': 'solid ' + theme.text_colour + ' 2px'});
+	if (infoOpen){
+		$('.info').css("border-bottom", "solid 2px " + theme.text_colour);
+	}
+	$('.info').hover(
+		function (){
+			$(this).css("border-bottom", "solid 2px " + theme.text_colour);
+		}, function() {
+			$(this).css("border-bottom", "solid 2px transparent");
+	});
+	if (workOpen){
+		$('.work').css("border-bottom", "solid 2px " + theme.text_colour);
+	}
+	$('.work').hover(
+		function (){
+			$(this).css("border-bottom", "solid 2px " + theme.text_colour);
+		}, function() {
+			$(this).css("border-bottom", "solid 2px transparent");
+	});
+	$('.btn').hover(
+		function (){
+			$(this).css("background-color", theme.text_colour);
+			$('.btn').css({'color': theme.bg_colour});
+		}, function() {
+			$(this).css("background-color", theme.bg_colour);
+			$('.btn').css({'color': theme.text_colour});
+	});
+}
+
 $(document).ready(function(){
 	document.getElementById('featured').appendChild(renderer.domElement);
+	document.body.scrollTop = document.documentElement.scrollTop = 0;
 });
 
 /*	dimensions is an {width:##, height:##} array with length = length of size
 	positions is an {x:##, y:## , y:##} array with length = length of size	
 */
-function Set(scene, size, dimensions, positions, urls, rotations, info){
+function Set(scene, size, dimensions, positions, urls, rotations, info, theme){
 	this.features = [];
 	this.size = size;
 	this.rotations = rotations;
 	this.text = $('<div class="project-info"></div>');
 	this.text.html('<p class="project-title">' + info.title + '</p>' + '<p class="project-description">' + info.description + '</p>' + '<p class="project-tags">' + info.tags + '</p>' + '<div class="btn">Launch Site</div>');
 	$('body').append(this.text);
-
+	this.text.fadeOut(0);
 	this.transitioningfwd = []; // counter for frames for transitioning positive x
 	this.transitioningbk = []; // counter for frames for transitioning negative x
 	this.accl = []; // accleration of x transitions
 	this.frames = []; // number of frames
-
+	this.theme = theme;
 	for (var i = 0; i < size; i++){
 		this.frames[i] = 250;
 		this.transitioningfwd[i] = this.frames[i];
@@ -108,8 +153,39 @@ sets[0] = new Set(scene, 3, [		{width:4,height:8},				{width:9,height:6},				{wi
 								   [{x:5,y:0,z:0},					{x:-3,y:2.5,z:0},				{x:-3,y:-3,z:0}], 
 								   ['assets/carousels/elie.png',	'assets/carousels/elie2.png',	'assets/carousels/elie3.png'],
 								   [{x:0.005,y:0.005,z:0},			{x:-0.005,y:-0.005,z:0},		{x:0.005,y:0.005,z:0}],
-								   {title:'Visionelie', tags:'Web Development, Interactive Design, Responsive Design, Creative Direction', description:'dolor sit amet, consectetur adipiscing elit. Vestibulum a quam nulla. Fusce ex eros, dictum sed justo eu, commodo eleifend dolor. Cras pretium laoreet ligula vitae tempus.'});
+								   {title:'Visionelie', tags:'Web Development, Interactive Design, Responsive Design, Creative Direction', description:'Mobile website built for photographer Visionelie. Used accelerometer technology to create a spatially interactive landing page feature.'},
+								   {text_colour: '#000000', bg_colour: '#ffffff', logo_colour: '#000000'});
 
+sets[1] = new Set(scene, 3, [		{width:5,height:4},				{width:9,height:6},				{width:4,height:2}],
+								   [{x:5,y:0,z:0},					{x:-3,y:2.5,z:0},				{x:-3,y:-3,z:0}], 
+								   ['assets/carousels/drew2.png',	'assets/carousels/drew.png',	'assets/carousels/drew3.png'],
+								   [{x:0.005,y:0.005,z:0},			{x:-0.005,y:-0.005,z:0},		{x:0.005,y:0.005,z:0}],
+								   {title:'Drew Howard', tags:'Web Development, Interactive Design, Creative Direction, Content Creation, Branding & Identity', description:'Interactive responsive website made for rapper Drew Howard featuring pseudo-3D influenced gameplay. Produced through the assistance of MuchFact'},
+								   {text_colour: '#fc457a', bg_colour: '#122f6a', logo_colour: '#fc457a'});
+
+sets[2] = new Set(scene, 3, [		{width:5,height:5},				{width:9,height:6},				{width:4,height:2}],
+								   [{x:5,y:0,z:0},					{x:-3,y:2.5,z:0},				{x:-3,y:-3,z:0}], 
+								   ['assets/carousels/kid2.png',	'assets/carousels/kid.png',	'assets/carousels/kid3.png'],
+								   [{x:0.005,y:0.005,z:0},			{x:-0.005,y:-0.005,z:0},		{x:0.005,y:0.005,z:0}],
+								   {title:'Kid. Studio', tags:'Web Development, Interactive Design, Creative Direction, Content Creation', description:'Responsive website made for film & design studio, Kid. Interactive 3D carousel feature with custom Kirby backend.'},
+								   {text_colour: '#656565', bg_colour: '#dddddd', logo_colour: '#656565'});
+sets[3] = new Set(scene, 3, [		{width:5,height:5},				{width:9,height:6},				{width:4,height:2}],
+								   [{x:5,y:0,z:0},					{x:-3,y:2.5,z:0},				{x:-3,y:-3,z:0}], 
+								   ['assets/carousels/knp2.png',	'assets/carousels/knp.png',	'assets/carousels/knp3.png'],
+								   [{x:0.005,y:0.005,z:0},			{x:-0.005,y:-0.005,z:0},		{x:0.005,y:0.005,z:0}],
+								   {title:'Kastor & Pollux', tags:'Web Development, Interactive Design, Creative Direction', description:'Responsive interactive wordpress theme built for full-service creative collective Kastor & Pollux.'},
+								   {text_colour: '#0f99e9', bg_colour: '#ebd413', logo_colour: '#0f99e9'});	
+
+sets[4] = new Set(scene, 3, [		{width:5,height:4},				{width:9,height:6},				{width:4,height:4}],
+								   [{x:5,y:0,z:0},					{x:-3,y:2.5,z:0},				{x:-3,y:-3,z:0}], 
+								   ['assets/carousels/mr2.png',	'assets/carousels/mr.png',	'assets/carousels/mr3.png'],
+								   [{x:0.005,y:0.005,z:0},			{x:-0.005,y:-0.005,z:0},		{x:0.005,y:0.005,z:0}],
+								   {title:'Maison Raksha', tags:'Web Development, Interactive Design, Creative Direction, Ecommerce', description:'Interactive website made for goldsmith & jeweller Maison Raksha. Featuring an interactive gallery and custom stripe payment system.'},
+								   {text_colour: '#ff4d49', bg_colour: '#000000', logo_colour: '#ff4d49'});	
+
+shuffle(sets);
+sets[0].text.fadeIn(0);
+changeTheme(sets[0].theme);
 for (var i = 0; i < sets[0].features.length; i++){
 	scene.add(sets[0].features[i]);
 }
@@ -120,7 +196,127 @@ var change_set = 0;
 var prev_scroll = 0;
 var up_scroll, down_scroll = 0;
 
-$('.next').click(function (){
+
+
+function openInfo(){
+	$('.logo').animate({'left':'25%'},'slow');
+
+	$('#featured').animate({'left':'10%'},'slow');
+	$('.work').animate({'right':'5%'},'slow');
+	$('.info').animate({'left':'25%'},'slow');
+	$('.project-info').animate({'left':'20%'},'slow');
+	$('.left-nav').animate({'left':'0%'},'slow');
+
+    $('.description1').animate({'right':'15%'},'slow');
+	$('.description2').animate({'right':'5%'},'slow');
+
+	$('.info').css("border-bottom", "solid 2px " + sets[currentFocusedSet].theme.text_colour);
+	$('.info').hover(
+	function (){
+			$('.info').css("border-bottom", "solid 2px " + sets[currentFocusedSet].theme.text_colour);
+		}, function() {
+			$('.info').css("border-bottom", "solid 2px " + sets[currentFocusedSet].theme.text_colour);
+	});
+}
+
+function closeInfo(){
+	$('.logo').animate({'left':'8%'},'slow');
+
+	$('#featured').animate({'left':'0%'},'slow');
+	$('.work').animate({'right':'10%'},'slow');
+	$('.info').animate({'left':'10%'},'slow');
+	$('.project-info').animate({'left':'0%'},'slow');
+	$('.left-nav').animate({'left':'-20%'},'slow');
+    $('.description1').animate({'right':'25%'},'slow');
+	$('.description2').animate({'right':'10%'},'slow');
+
+	$('.info').css("border-bottom", "solid 2px transparent");
+	$('.info').hover(
+	function (){
+			$('.info').css("border-bottom", "solid 2px " + sets[currentFocusedSet].theme.text_colour);
+		}, function() {
+			$('.info').css("border-bottom", "solid 2px transparent");
+	});
+}
+
+function openWork (){
+	$('.logo').animate({'left':'5%'},'slow');
+
+	$('#featured').animate({'left':'-10%'},'slow');
+	$('.work').animate({'right':'25%'},'slow');
+	$('.info').animate({'left':'5%'},'slow');
+	$('.project-info').animate({'left':'-20%'},'slow');
+	$('.right-nav').animate({'right':'0%'},'slow');
+    $('.description1').animate({'right':'40%'},'slow');
+	$('.description2').animate({'right':'25%'},'slow');
+
+	$('.work').css("border-bottom", "solid 2px " + sets[currentFocusedSet].theme.text_colour);
+	$('.work').hover(
+	function (){
+			$('.work').css("border-bottom", "solid 2px " + sets[currentFocusedSet].theme.text_colour);
+		}, function() {
+			$('.work').css("border-bottom", "solid 2px " + sets[currentFocusedSet].theme.text_colour);
+	});
+}
+
+function closeWork(){
+	$('.logo').animate({'left':'8%'},'slow');
+
+	$('#featured').animate({'left':'0%'},'slow');
+	$('.work').animate({'right':'10%'},'slow');
+	$('.info').animate({'left':'10%'},'slow');
+	$('.project-info').animate({'left':'0%'},'slow');
+	$('.right-nav').animate({'right':'-20%'},'slow');
+    $('.description1').animate({'right':'25%'},'slow');
+	$('.description2').animate({'right':'10%'},'slow');
+
+	$('.work').css("border-bottom", "solid 2px transparent");
+	$('.work').hover(
+	function (){
+			$('.work').css("border-bottom", "solid 2px " + sets[currentFocusedSet].theme.text_colour);
+		}, function() {
+			$('.work').css("border-bottom", "solid 2px transparent");
+	});
+}
+
+$('.info').click(function(){
+	console.log('infoclick');
+	if (!infoOpen){
+		if (workOpen){
+			closeWork();
+			workOpen = false;
+			setTimeout(function(){openInfo(); }, 1000);
+		}else{
+			openInfo();
+		}
+		infoOpen = true;
+	}else {
+		closeInfo();
+		infoOpen = false;
+	}
+	event.stopPropagation();
+});
+
+$('.work').click(function(){
+	console.log('workclick');
+	if (!workOpen){
+		if (infoOpen){
+			closeInfo();
+			infoOpen = false;
+			setTimeout(function(){openWork(); }, 1000);
+		}else{
+			openWork();
+		}
+		workOpen = true;
+	}else {
+		closeWork();
+		workOpen = false;
+	}
+	event.stopPropagation();
+	// $('.right-nav').animate({'right':'0%'},'slow');
+});
+
+$('body').click(function(){
 	change_set = 120;
 });
 
@@ -132,30 +328,29 @@ $(window).scroll(function(){
 		console.log("scroll down");
 		down_scroll = 1;
 	}
-	if ($(document).scrollTop() + window.innerHeight == $(window).height()){
-		document.body.scrollTop = document.documentElement.scrollTop = 0;
-	}else if ($(document).scrollTop() == 0){
+	if ($(window).height() - $(document).scrollTop() - window.innerHeight < 50){
+		document.body.scrollTop = document.documentElement.scrollTop = 60;
+	}else if ($(document).scrollTop() <= 50){
 		document.body.scrollTop = document.documentElement.scrollTop = $(window).height();
 	}
-
 
 	prev_scroll = $(document).scrollTop();
 });
 
+var rate = 0.2;
+// var opacityRate = 0.0167;
 function changeSet(){
 	if (change_set == 120){
-		sets[currentFocusedSet].text.fadeOut();
+		sets[currentFocusedSet].text.fadeOut(500);
+		opacityRate = 0.0167;
 	}
-	if (change_set > 60){
-		var rate = 0.3;
-	}else{
-		var rate = 0.4;
-	}
+
 	for(var i = 0; i < sets[currentFocusedSet].features.length; i++){
 		sets[currentFocusedSet].features[i].position.z += rate;
+		// sets[currentFocusedSet].features[i].material.opacity -= opacityRate;
 	}
 	if (change_set == 60){
-		sets[currentFocusedSet].text.fadeIn();
+		// opacityRate = -opacityRate;
 		for(var i = 0; i < sets[currentFocusedSet].features.length; i++){
 			scene.remove(sets[currentFocusedSet].features[i]);
 		}
@@ -166,25 +361,102 @@ function changeSet(){
 			currentFocusedSet++;
 		}
 
+		sets[currentFocusedSet].text.fadeIn(1000);
+		changeTheme(sets[currentFocusedSet].theme);
 		for(var i = 0; i < sets[currentFocusedSet].features.length; i++){
 			scene.add(sets[currentFocusedSet].features[i]);
-			sets[currentFocusedSet].features[i].position.z = -24;
+			sets[currentFocusedSet].features[i].position.z = -12;
+			// sets[currentFocusedSet].features[i].material.opacity = 0;
 		}
 	}
 	
 	change_set--;
 }
 
+// var main_focus_delay_up = 50;
+// var main_focus_delay_down = 50;
+
 function upScroll(){
+	// if (sets[currentFocusedSet].features[0].position.z == 0){
+	// 	if(main_focus_delay_up){
+	// 		main_focus_delay_up--;
+	// 		sets[currentFocusedSet].animate();
+	// 		return;
+	// 	}else{
+	// 		main_focus_delay_up = 50;
+	// 	}
+	// }
 	for(var i = 0; i < sets[currentFocusedSet].features.length; i++){
-		sets[currentFocusedSet].features[i].position.z -= 1;
+		sets[currentFocusedSet].features[i].position.z -= 0.5;
+		// if (sets[currentFocusedSet].features[i].position.z < 0){
+		// 	sets[currentFocusedSet].features[i].material.opacity -= 0.083;
+		// }else {
+		// 	sets[currentFocusedSet].features[i].material.opacity += 0.083;
+		// }
+
+		if (sets[currentFocusedSet].features[i].position.z <= -12){
+			sets[currentFocusedSet].text.fadeOut(0);
+			for(var i = 0; i < sets[currentFocusedSet].features.length; i++){
+				scene.remove(sets[currentFocusedSet].features[i]);
+			}
+
+			if (currentFocusedSet == sets.length - 1){
+				currentFocusedSet = 0;
+			}else{
+				currentFocusedSet++;
+			}
+
+			sets[currentFocusedSet].text.fadeIn(1000);
+			changeTheme(sets[currentFocusedSet].theme);
+			for(var i = 0; i < sets[currentFocusedSet].features.length; i++){
+				scene.add(sets[currentFocusedSet].features[i]);
+				sets[currentFocusedSet].features[i].position.z = 12;
+				// sets[currentFocusedSet].features[i].material.opacity = 0;
+			}
+		}
 	}
+
 	up_scroll--;
 }
 
 function downScroll(){
+	// if (sets[currentFocusedSet].features[0].position.z == 0){
+	// 	if(main_focus_delay_down){
+	// 		main_focus_delay_down--;
+	// 		sets[currentFocusedSet].animate();
+	// 		return;
+	// 	}else{
+	// 		main_focus_delay_down = 50;
+	// 	}
+	// }
 	for(var i = 0; i < sets[currentFocusedSet].features.length; i++){
 		sets[currentFocusedSet].features[i].position.z += 1;
+		// if (sets[currentFocusedSet].features[i].position.z > 0){
+		// 	sets[currentFocusedSet].features[i].material.opacity -= 0.04167;
+		// }else {
+		// 	sets[currentFocusedSet].features[i].material.opacity += 0.04167;
+		// }
+
+		if (sets[currentFocusedSet].features[i].position.z >= 12){
+			sets[currentFocusedSet].text.fadeOut(0);
+			for(var i = 0; i < sets[currentFocusedSet].features.length; i++){
+				scene.remove(sets[currentFocusedSet].features[i]);
+			}
+
+			if (currentFocusedSet == sets.length - 1){
+				currentFocusedSet = 0;
+			}else{
+				currentFocusedSet++;
+			}
+
+			sets[currentFocusedSet].text.fadeIn(1000);
+			changeTheme(sets[currentFocusedSet].theme);
+			for(var i = 0; i < sets[currentFocusedSet].features.length; i++){
+				scene.add(sets[currentFocusedSet].features[i]);
+				sets[currentFocusedSet].features[i].position.z = -12;
+				// sets[currentFocusedSet].features[i].material.opacity = 0;
+			}
+		}
 	}
 	down_scroll--;
 }
