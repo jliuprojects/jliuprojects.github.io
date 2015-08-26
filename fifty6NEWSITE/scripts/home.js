@@ -432,10 +432,10 @@ function upScroll(){
 				scene.remove(sets[currentFocusedSet].features[i]);
 			}
 
-			if (currentFocusedSet == sets.length - 1){
-				currentFocusedSet = 0;
+			if (currentFocusedSet == 0){
+				currentFocusedSet = sets.length - 1;
 			}else{
-				currentFocusedSet++;
+				currentFocusedSet--;
 			}
 
 			sets[currentFocusedSet].text.fadeIn(1000);
