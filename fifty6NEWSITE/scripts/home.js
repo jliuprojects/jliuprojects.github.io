@@ -70,7 +70,7 @@ $(document).ready(function(){
 /*	dimensions is an {width:##, height:##} array with length = length of size
 	positions is an {x:##, y:## , y:##} array with length = length of size	
 */
-function Set(scene, size, dimensions, positions, urls, rotations, info, theme){
+function Set(scene, size, dimensions, positions, urls, rotations, info, theme, extras){
 	this.features = [];
 	this.size = size;
 	this.rotations = rotations;
@@ -83,6 +83,11 @@ function Set(scene, size, dimensions, positions, urls, rotations, info, theme){
 	this.accl = []; // accleration of x transitions
 	this.frames = []; // number of frames
 	this.theme = theme;
+	this.extras = extras || [];
+	this.extras.push(urls[1]);
+
+	this.rotYBeforeAnimate = 0;
+
 	for (var i = 0; i < size; i++){
 		this.frames[i] = 250;
 		this.transitioningfwd[i] = this.frames[i];
@@ -100,6 +105,8 @@ function Set(scene, size, dimensions, positions, urls, rotations, info, theme){
 		this.features[i].userData.mouseoverEnterPos = {x:0,y:0};
 		this.features[i].userData.index = i;
 
+		this.features[i].material.needsUpdate = true;
+
 		this.features[i].position.x = positions[i].x;
 		this.features[i].position.y = positions[i].y;
 		this.features[i].position.z = positions[i].z;
@@ -110,6 +117,9 @@ function Set(scene, size, dimensions, positions, urls, rotations, info, theme){
 	rotations is {x:##, y:## , y:##} list where each property is the increase in rotation in that axis
 */
 Set.prototype.animate = function (){
+
+	this.rotYBeforeAnimate = Math.abs(this.features[1].rotation.y);
+
 	for (var i = 0; i < this.size; i++){
 
 		if (this.transitioningfwd[i]){
@@ -143,9 +153,33 @@ Set.prototype.animate = function (){
 		}
 
 		this.features[i].rotation.y += this.rotations[i].y;
-		this.features[i].rotation.z += this.rotations[i].z;
+		if (Math.abs(this.features[i].rotation.y) > 2*Math.PI){
+			this.features[i].rotation.y = this.features[i].rotation.y % (2* Math.PI);
+		}
+		
+	}
+
+	if (this.rotYBeforeAnimate < (Math.PI/2 - Math.PI/12) && Math.abs(this.features[1].rotation.y) >= (Math.PI/2 - Math.PI/12)){
+		this.changeDesktopImg();
+	}else if (this.rotYBeforeAnimate < (Math.PI*3/2 - Math.PI/12) && Math.abs(this.features[1].rotation.y) >= (Math.PI*3/2 - Math.PI/12)){
+		this.changeDesktopImg();
+	}else if (this.rotYBeforeAnimate > (Math.PI*3/2 - Math.PI/12) && Math.abs(this.features[1].rotation.y) <= (Math.PI*3/2 - Math.PI/12)){
+		this.changeDesktopImg();
+	}else if (this.rotYBeforeAnimate > (Math.PI/2 - Math.PI/12) && Math.abs(this.features[1].rotation.y) <= (Math.PI/2 - Math.PI/12)){
+		this.changeDesktopImg();
 	}
 }
+
+Set.prototype.changeDesktopImg = function () {
+	var textureLoader = new THREE.TextureLoader();
+	var next_extra = this.extras.shift();
+	this.extras.push(next_extra);
+	var self = this;
+	textureLoader.load(next_extra, function (t){
+		// debugger;
+		self.features[1].material.map = t;
+	});
+};
 
 var sets = [];
 									//phone							site							logo
@@ -154,7 +188,8 @@ sets[0] = new Set(scene, 3, [		{width:4,height:8},				{width:9,height:6},				{wi
 								   ['assets/carousels/elie.png',	'assets/carousels/elie2.png',	'assets/carousels/elie3.png'],
 								   [{x:0.005,y:0.005,z:0},			{x:-0.005,y:-0.005,z:0},		{x:0.005,y:0.005,z:0}],
 								   {title:'Visionelie', tags:'Web Development, Interactive Design, Responsive Design, Creative Direction', description:'Mobile website built for photographer Visionelie. Used accelerometer technology to create a spatially interactive landing page feature.'},
-								   {text_colour: '#000000', bg_colour: '#ffffff', logo_colour: '#000000'});
+								   {text_colour: '#000000', bg_colour: '#ffffff', logo_colour: '#000000'},
+								   ['assets/carousels/kid.png',	'assets/carousels/knp.png',	'assets/carousels/mr.png']);
 
 sets[1] = new Set(scene, 3, [		{width:5,height:4},				{width:9,height:6},				{width:4,height:2}],
 								   [{x:5,y:0,z:0},					{x:-3,y:2.5,z:0},				{x:-3,y:-3,z:0}], 
@@ -168,21 +203,24 @@ sets[2] = new Set(scene, 3, [		{width:5,height:5},				{width:9,height:6},				{wi
 								   ['assets/carousels/kid2.png',	'assets/carousels/kid.png',	'assets/carousels/kid3.png'],
 								   [{x:0.005,y:0.005,z:0},			{x:-0.005,y:-0.005,z:0},		{x:0.005,y:0.005,z:0}],
 								   {title:'Kid. Studio', tags:'Web Development, Interactive Design, Creative Direction, Content Creation', description:'Responsive website made for film & design studio, Kid. Interactive 3D carousel feature with custom Kirby backend.'},
-								   {text_colour: '#656565', bg_colour: '#dddddd', logo_colour: '#656565'});
+								   {text_colour: '#656565', bg_colour: '#dddddd', logo_colour: '#656565'},
+								   ['assets/carousels/kid.png',	'assets/carousels/knp.png',	'assets/carousels/mr.png']);
 
 sets[3] = new Set(scene, 3, [		{width:5,height:5},				{width:9,height:6},				{width:4,height:2}],
 								   [{x:5,y:0,z:0},					{x:-3,y:2.5,z:0},				{x:-3,y:-3,z:0}], 
 								   ['assets/carousels/knp2.png',	'assets/carousels/knp.png',	'assets/carousels/knp3.png'],
 								   [{x:0.005,y:0.005,z:0},			{x:-0.005,y:-0.005,z:0},		{x:0.005,y:0.005,z:0}],
 								   {title:'Kastor & Pollux', tags:'Web Development, Interactive Design, Creative Direction', description:'Responsive interactive wordpress theme built for full-service creative collective Kastor & Pollux.'},
-								   {text_colour: '#0f99e9', bg_colour: '#ebd413', logo_colour: '#0f99e9'});	
+								   {text_colour: '#0f99e9', bg_colour: '#ebd413', logo_colour: '#0f99e9'},
+								   ['assets/carousels/kid.png',	'assets/carousels/knp.png',	'assets/carousels/mr.png']);	
 
 sets[4] = new Set(scene, 3, [		{width:5,height:4},				{width:9,height:6},				{width:4,height:4}],
 								   [{x:5,y:0,z:0},					{x:-3,y:2.5,z:0},				{x:-3,y:-3,z:0}], 
 								   ['assets/carousels/mr2.png',	'assets/carousels/mr.png',	'assets/carousels/mr3.png'],
 								   [{x:0.005,y:0.005,z:0},			{x:-0.005,y:-0.005,z:0},		{x:0.005,y:0.005,z:0}],
 								   {title:'Maison Raksha', tags:'Web Development, Interactive Design, Creative Direction, Ecommerce', description:'Interactive website made for goldsmith & jeweller Maison Raksha. Featuring an interactive gallery and custom stripe payment system.'},
-								   {text_colour: '#ff4d49', bg_colour: '#000000', logo_colour: '#ff4d49'});	
+								   {text_colour: '#ff4d49', bg_colour: '#000000', logo_colour: '#ff4d49'},
+								   ['assets/carousels/kid.png',	'assets/carousels/knp.png',	'assets/carousels/mr.png']);	
 
 shuffle(sets);
 sets[0].text.fadeIn(0);
@@ -527,6 +565,17 @@ function render() {
 		sets[currentFocusedSet].animate();
 	}
 
+	// sets[currentFocusedSet].features[1].rotation.y = 0;
+	// sets[currentFocusedSet].features[2].rotation.y = Math.PI*3/4;
+	console.log(sets[currentFocusedSet].features[1].rotation.y);
+	// if (Math.abs(sets[currentFocusedSet].features[1].rotation.y)%(2*Math.PI)%(Math.PI/2) < 0.1 &&
+	// 	((Math.abs(sets[currentFocusedSet].features[1].rotation.y)%(2*Math.PI) >= Math.PI/4 &&
+	// 	Math.abs(sets[currentFocusedSet].features[1].rotation.y)%(2*Math.PI) <= Math.PI*3/4) ||
+	// 	(Math.abs(sets[currentFocusedSet].features[1].rotation.y)%(2*Math.PI) >= Math.PI*5/4 &&
+	// 	Math.abs(sets[currentFocusedSet].features[1].rotation.y)%(2*Math.PI) <= Math.PI*7/4))){
+	// 	// debugger;
+	// 	sets[currentFocusedSet].changeDesktopImg();
+	// }
 	renderer.render(scene, camera);
 };
 render();
