@@ -196,7 +196,8 @@ sets[1] = new Set(scene, 3, [		{width:5,height:4},				{width:9,height:6},				{wi
 								   ['assets/carousels/drew2.png',	'assets/carousels/drew.png',	'assets/carousels/drew3.png'],
 								   [{x:0.005,y:0.005,z:0},			{x:-0.005,y:-0.005,z:0},		{x:0.005,y:0.005,z:0}],
 								   {title:'Drew Howard', tags:'Web Development, Interactive Design, Creative Direction, Content Creation, Branding & Identity', description:'Interactive responsive website made for rapper Drew Howard featuring pseudo-3D influenced gameplay. Produced through the assistance of MuchFact'},
-								   {text_colour: '#fc457a', bg_colour: '#122f6a', logo_colour: '#fc457a'});
+								   {text_colour: '#fc457a', bg_colour: '#122f6a', logo_colour: '#fc457a'},
+								   ['assets/carousels/kid.png',	'assets/carousels/knp.png',	'assets/carousels/mr.png']);
 
 sets[2] = new Set(scene, 3, [		{width:5,height:5},				{width:9,height:6},				{width:4,height:2}],
 								   [{x:5,y:0,z:0},					{x:-3,y:2.5,z:0},				{x:-3,y:-3,z:0}], 
