@@ -150,6 +150,33 @@ Set.prototype.animate = function (){
 			// }
 
 			this.features[i].userData.mouseover--;
+			if (this.rotYBeforeAnimate < 0 && this.features[1].rotation.y > 0){
+				return;
+			}
+
+			if (this.rotYBeforeAnimate > 0 && this.features[1].rotation.y < 0){
+				return;
+			}
+
+			if (this.rotYBeforeAnimate < (Math.PI/2 - Math.PI/12) && this.features[1].rotation.y > (Math.PI/2 - Math.PI/12)){
+				this.changeDesktopImg();
+			}else if (this.rotYBeforeAnimate < (Math.PI*3/2 - Math.PI/12) && this.features[1].rotation.y > (Math.PI*3/2 - Math.PI/12)){
+				this.changeDesktopImg();
+			}else if (this.rotYBeforeAnimate > (Math.PI*3/2 - Math.PI/12) && this.features[1].rotation.y < (Math.PI*3/2 - Math.PI/12)){
+				this.changeDesktopImg();
+			}else if (this.rotYBeforeAnimate > (Math.PI/2 - Math.PI/12) && this.features[1].rotation.y < (Math.PI/2 - Math.PI/12)){
+				this.changeDesktopImg();
+
+
+			} else if (this.rotYBeforeAnimate < -(Math.PI/2 - Math.PI/12) && this.features[1].rotation.y > -(Math.PI/2 - Math.PI/12)){
+				this.changeDesktopImg();
+			}else if (this.rotYBeforeAnimate < -(Math.PI*3/2 - Math.PI/12) && this.features[1].rotation.y > -(Math.PI*3/2 - Math.PI/12)){
+				this.changeDesktopImg();
+			}else if (this.rotYBeforeAnimate > -(Math.PI*3/2 - Math.PI/12) && this.features[1].rotation.y < -(Math.PI*3/2 - Math.PI/12)){
+				this.changeDesktopImg();
+			}else if (this.rotYBeforeAnimate > -(Math.PI/2 - Math.PI/12) && this.features[1].rotation.y < -(Math.PI/2 - Math.PI/12)){
+				this.changeDesktopImg();
+			}
 		}
 
 		this.features[i].rotation.y += this.rotations[i].y;
@@ -157,27 +184,6 @@ Set.prototype.animate = function (){
 			this.features[i].rotation.y = this.features[i].rotation.y % (2*Math.PI);
 			return;
 		}
-		
-	}
-
-	if (this.rotYBeforeAnimate < (Math.PI/2 - Math.PI/12) && this.features[1].rotation.y > (Math.PI/2 - Math.PI/12)){
-		this.changeDesktopImg();
-	}else if (this.rotYBeforeAnimate < (Math.PI*3/2 - Math.PI/12) && this.features[1].rotation.y > (Math.PI*3/2 - Math.PI/12)){
-		this.changeDesktopImg();
-	}else if (this.rotYBeforeAnimate > (Math.PI*3/2 - Math.PI/12) && this.features[1].rotation.y < (Math.PI*3/2 - Math.PI/12)){
-		this.changeDesktopImg();
-	}else if (this.rotYBeforeAnimate > (Math.PI/2 - Math.PI/12) && this.features[1].rotation.y < (Math.PI/2 - Math.PI/12)){
-		this.changeDesktopImg();
-
-
-	} else if (this.rotYBeforeAnimate < -(Math.PI/2 - Math.PI/12) && this.features[1].rotation.y > -(Math.PI/2 - Math.PI/12)){
-		this.changeDesktopImg();
-	}else if (this.rotYBeforeAnimate < -(Math.PI*3/2 - Math.PI/12) && this.features[1].rotation.y > -(Math.PI*3/2 - Math.PI/12)){
-		this.changeDesktopImg();
-	}else if (this.rotYBeforeAnimate > -(Math.PI*3/2 - Math.PI/12) && this.features[1].rotation.y < -(Math.PI*3/2 - Math.PI/12)){
-		this.changeDesktopImg();
-	}else if (this.rotYBeforeAnimate > -(Math.PI/2 - Math.PI/12) && this.features[1].rotation.y < -(Math.PI/2 - Math.PI/12)){
-		this.changeDesktopImg();
 	}
 }
 
