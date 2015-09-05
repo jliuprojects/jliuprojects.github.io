@@ -118,7 +118,7 @@ function Set(scene, size, dimensions, positions, urls, rotations, info, theme, e
 */
 Set.prototype.animate = function (){
 
-	this.rotYBeforeAnimate = Math.abs(this.features[1].rotation.y);
+	this.rotYBeforeAnimate = this.features[1].rotation.y;
 
 	for (var i = 0; i < this.size; i++){
 
@@ -154,18 +154,29 @@ Set.prototype.animate = function (){
 
 		this.features[i].rotation.y += this.rotations[i].y;
 		if (Math.abs(this.features[i].rotation.y) > 2*Math.PI){
-			this.features[i].rotation.y = this.features[i].rotation.y % (2* Math.PI);
+			this.features[i].rotation.y = this.features[i].rotation.y % (2*Math.PI);
+			return;
 		}
 		
 	}
 
-	if (this.rotYBeforeAnimate < (Math.PI/2 - Math.PI/12) && Math.abs(this.features[1].rotation.y) >= (Math.PI/2 - Math.PI/12)){
+	if (this.rotYBeforeAnimate < (Math.PI/2 - Math.PI/12) && this.features[1].rotation.y > (Math.PI/2 - Math.PI/12)){
 		this.changeDesktopImg();
-	}else if (this.rotYBeforeAnimate < (Math.PI*3/2 - Math.PI/12) && Math.abs(this.features[1].rotation.y) >= (Math.PI*3/2 - Math.PI/12)){
+	}else if (this.rotYBeforeAnimate < (Math.PI*3/2 - Math.PI/12) && this.features[1].rotation.y > (Math.PI*3/2 - Math.PI/12)){
 		this.changeDesktopImg();
-	}else if (this.rotYBeforeAnimate > (Math.PI*3/2 - Math.PI/12) && Math.abs(this.features[1].rotation.y) <= (Math.PI*3/2 - Math.PI/12)){
+	}else if (this.rotYBeforeAnimate > (Math.PI*3/2 - Math.PI/12) && this.features[1].rotation.y < (Math.PI*3/2 - Math.PI/12)){
 		this.changeDesktopImg();
-	}else if (this.rotYBeforeAnimate > (Math.PI/2 - Math.PI/12) && Math.abs(this.features[1].rotation.y) <= (Math.PI/2 - Math.PI/12)){
+	}else if (this.rotYBeforeAnimate > (Math.PI/2 - Math.PI/12) && this.features[1].rotation.y < (Math.PI/2 - Math.PI/12)){
+		this.changeDesktopImg();
+
+
+	} else if (this.rotYBeforeAnimate < -(Math.PI/2 - Math.PI/12) && this.features[1].rotation.y > -(Math.PI/2 - Math.PI/12)){
+		this.changeDesktopImg();
+	}else if (this.rotYBeforeAnimate < -(Math.PI*3/2 - Math.PI/12) && this.features[1].rotation.y > -(Math.PI*3/2 - Math.PI/12)){
+		this.changeDesktopImg();
+	}else if (this.rotYBeforeAnimate > -(Math.PI*3/2 - Math.PI/12) && this.features[1].rotation.y < -(Math.PI*3/2 - Math.PI/12)){
+		this.changeDesktopImg();
+	}else if (this.rotYBeforeAnimate > -(Math.PI/2 - Math.PI/12) && this.features[1].rotation.y < -(Math.PI/2 - Math.PI/12)){
 		this.changeDesktopImg();
 	}
 }
@@ -176,7 +187,6 @@ Set.prototype.changeDesktopImg = function () {
 	this.extras.push(next_extra);
 	var self = this;
 	textureLoader.load(next_extra, function (t){
-		// debugger;
 		self.features[1].material.map = t;
 	});
 };
@@ -566,17 +576,7 @@ function render() {
 		sets[currentFocusedSet].animate();
 	}
 
-	// sets[currentFocusedSet].features[1].rotation.y = 0;
-	// sets[currentFocusedSet].features[2].rotation.y = Math.PI*3/4;
 	console.log(sets[currentFocusedSet].features[1].rotation.y);
-	// if (Math.abs(sets[currentFocusedSet].features[1].rotation.y)%(2*Math.PI)%(Math.PI/2) < 0.1 &&
-	// 	((Math.abs(sets[currentFocusedSet].features[1].rotation.y)%(2*Math.PI) >= Math.PI/4 &&
-	// 	Math.abs(sets[currentFocusedSet].features[1].rotation.y)%(2*Math.PI) <= Math.PI*3/4) ||
-	// 	(Math.abs(sets[currentFocusedSet].features[1].rotation.y)%(2*Math.PI) >= Math.PI*5/4 &&
-	// 	Math.abs(sets[currentFocusedSet].features[1].rotation.y)%(2*Math.PI) <= Math.PI*7/4))){
-	// 	// debugger;
-	// 	sets[currentFocusedSet].changeDesktopImg();
-	// }
 	renderer.render(scene, camera);
 };
 render();
