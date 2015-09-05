@@ -118,7 +118,7 @@ function Set(scene, size, dimensions, positions, urls, rotations, info, theme, e
 */
 Set.prototype.animate = function (){
 
-	this.rotYBeforeAnimate = this.features[1].rotation.y;
+	
 
 	for (var i = 0; i < this.size; i++){
 
@@ -137,6 +137,10 @@ Set.prototype.animate = function (){
 		}
 
 		if (this.features[i].userData.mouseover){
+			if (i == 1){
+				this.rotYBeforeAnimate = this.features[1].rotation.y;
+			}
+
 			if (this.features[i].userData.mouseoverVector.x > 0){
 				this.features[i].rotation.y += Math.abs(this.rotations[i].y * this.features[i].userData.mouseoverVector.x/window.innerWidth*this.features[i].userData.mouseover);
 			}else if (this.features[i].userData.mouseoverVector.x <= 0){
@@ -150,39 +154,38 @@ Set.prototype.animate = function (){
 			// }
 
 			this.features[i].userData.mouseover--;
-			if (this.rotYBeforeAnimate < 0 && this.features[1].rotation.y > 0){
-				return;
+
+			if (i == 1 && this.features[i].userData.mouseover == 0){
+				if (Math.abs(this.rotYBeforeAnimate - this.features[1].rotation.y) > Math.PI){
+					this.changeDesktopImg();
+				}
 			}
+			if (i == 1){
+				if (this.rotYBeforeAnimate < 0 && this.features[1].rotation.y > 0){
+					return;
+				}
 
-			if (this.rotYBeforeAnimate > 0 && this.features[1].rotation.y < 0){
-				return;
-			}
+				if (this.rotYBeforeAnimate > 0 && this.features[1].rotation.y < 0){
+					return;
+				}
 
-			if (this.rotYBeforeAnimate < (Math.PI/2 - Math.PI/12) && this.features[1].rotation.y > (Math.PI/2 - Math.PI/12)){
-				this.changeDesktopImg();
-			}else if (this.rotYBeforeAnimate < (Math.PI*3/2 - Math.PI/12) && this.features[1].rotation.y > (Math.PI*3/2 - Math.PI/12)){
-				this.changeDesktopImg();
-			}else if (this.rotYBeforeAnimate > (Math.PI*3/2 - Math.PI/12) && this.features[1].rotation.y < (Math.PI*3/2 - Math.PI/12)){
-				this.changeDesktopImg();
-			}else if (this.rotYBeforeAnimate > (Math.PI/2 - Math.PI/12) && this.features[1].rotation.y < (Math.PI/2 - Math.PI/12)){
-				this.changeDesktopImg();
-
-
-			} else if (this.rotYBeforeAnimate < -(Math.PI/2 - Math.PI/12) && this.features[1].rotation.y > -(Math.PI/2 - Math.PI/12)){
-				this.changeDesktopImg();
-			}else if (this.rotYBeforeAnimate < -(Math.PI*3/2 - Math.PI/12) && this.features[1].rotation.y > -(Math.PI*3/2 - Math.PI/12)){
-				this.changeDesktopImg();
-			}else if (this.rotYBeforeAnimate > -(Math.PI*3/2 - Math.PI/12) && this.features[1].rotation.y < -(Math.PI*3/2 - Math.PI/12)){
-				this.changeDesktopImg();
-			}else if (this.rotYBeforeAnimate > -(Math.PI/2 - Math.PI/12) && this.features[1].rotation.y < -(Math.PI/2 - Math.PI/12)){
-				this.changeDesktopImg();
+				if (this.rotYBeforeAnimate < (Math.PI/2 - Math.PI/12) && this.features[1].rotation.y > (Math.PI/2 - Math.PI/12)
+				|| (this.rotYBeforeAnimate < (Math.PI*3/2 - Math.PI/12) && this.features[1].rotation.y > (Math.PI*3/2 - Math.PI/12))
+				|| (this.rotYBeforeAnimate > (Math.PI*3/2 - Math.PI/12) && this.features[1].rotation.y < (Math.PI*3/2 - Math.PI/12))
+				|| (this.rotYBeforeAnimate > (Math.PI/2 - Math.PI/12) && this.features[1].rotation.y < (Math.PI/2 - Math.PI/12))
+					
+				|| (this.rotYBeforeAnimate < -(Math.PI/2 - Math.PI/12) && this.features[1].rotation.y > -(Math.PI/2 - Math.PI/12))
+				|| (this.rotYBeforeAnimate < -(Math.PI*3/2 - Math.PI/12) && this.features[1].rotation.y > -(Math.PI*3/2 - Math.PI/12))
+				|| (this.rotYBeforeAnimate > -(Math.PI*3/2 - Math.PI/12) && this.features[1].rotation.y < -(Math.PI*3/2 - Math.PI/12))
+				|| (this.rotYBeforeAnimate > -(Math.PI/2 - Math.PI/12) && this.features[1].rotation.y < -(Math.PI/2 - Math.PI/12))){
+					this.changeDesktopImg();
+				}
 			}
 		}
 
 		this.features[i].rotation.y += this.rotations[i].y;
 		if (Math.abs(this.features[i].rotation.y) > 2*Math.PI){
 			this.features[i].rotation.y = this.features[i].rotation.y % (2*Math.PI);
-			return;
 		}
 	}
 }
@@ -582,7 +585,7 @@ function render() {
 		sets[currentFocusedSet].animate();
 	}
 
-	console.log(sets[currentFocusedSet].features[1].rotation.y);
+	// console.log(sets[currentFocusedSet].features[1].rotation.y);
 	renderer.render(scene, camera);
 };
 render();
