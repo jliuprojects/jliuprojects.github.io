@@ -4,6 +4,10 @@
 	
 }
 
+body,html{
+	overflow-x: hidden;
+}
+
 #logo {
 	position: fixed;
 	height: 80px;
@@ -29,16 +33,19 @@
 .project-container {
 	position: relative;
 	height: 100%;
-
+	white-space: nowrap;
+	display: inline-block;
+	
 }
 
 .project-img {
 	position: relative;
 	height: 600px;
 	width: 900px;
-	left: 10%;
+	left: 650px;
 	top: 50%;
 	margin-top: -300px;
+	margin-right: 200px;
 	box-shadow: 20px 20px 20px #cccccc;
 }
 
@@ -47,9 +54,10 @@
 	width: 340px;
 	height: 400px;
 	float: right;
-	right: 15%;
+	left: 150px;
   	top: 50%;
   	margin-top: -250px;
+  	white-space: normal;
 }
 
 .project-title {
