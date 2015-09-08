@@ -5,7 +5,8 @@
 }
 
 body,html{
-	overflow-x: hidden;
+	/*height: 100% !important;*/
+	/*overflow: hidden;*/
 }
 
 #logo {
@@ -34,8 +35,8 @@ body,html{
 	position: relative;
 	height: 100%;
 	white-space: nowrap;
-	display: inline-block;
-	
+	/*display: inline-block;*/
+	overflow-x: scroll;
 }
 
 .project-img {
@@ -81,4 +82,13 @@ body,html{
 	line-height: 60px;
 	text-align: center;
 	margin-top: 50px;
+}
+
+.spacingdiv {
+	position: relative;
+	height: 100px;
+	width: 600px;
+	left: 650px;
+	box-shadow: 20px 20px 20px #cccccc;
+	display: inline-block;
 }
