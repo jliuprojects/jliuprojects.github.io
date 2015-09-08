@@ -1,0 +1,76 @@
+* {
+	font-family: 'Montserrat', sans-serif;
+	/*border: dashed 1px;*/
+	
+}
+
+#logo {
+	position: fixed;
+	height: 80px;
+	z-index: 500;
+}
+
+#bottom-nav {
+	position: fixed;
+	right: 0;
+	bottom: 50px;
+	width: 33%;
+	color: #aaaaaa;
+}
+
+.bottom-nav-btn {
+	position: relative;
+	display: inline-block;
+	margin-right: 16%;
+	float: right;
+	font-size: 2em;
+}
+
+.project-container {
+	position: relative;
+	height: 100%;
+
+}
+
+.project-img {
+	position: relative;
+	height: 600px;
+	width: 900px;
+	left: 10%;
+	top: 50%;
+	margin-top: -300px;
+	box-shadow: 20px 20px 20px #cccccc;
+}
+
+.project-metadata {
+	position: absolute;
+	width: 340px;
+	height: 400px;
+	float: right;
+	right: 15%;
+  	top: 50%;
+  	margin-top: -250px;
+}
+
+.project-title {
+	position: relative;
+	font-size: 2em;
+	margin-bottom: 50px;
+}
+
+.project-description {
+	position: relative;
+	font-size: .9em;
+}
+
+.project-launch {
+	position: relative;
+	font-size: 2em;
+	display: inline-block;
+	border: solid 2px black;
+	width: 220px;
+	height: 60px;
+	line-height: 60px;
+	text-align: center;
+	margin-top: 50px;
+}
