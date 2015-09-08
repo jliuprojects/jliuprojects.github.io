@@ -14,7 +14,7 @@ function Set(index, imgs, title, description, last){
 					imgshtml + "</div>");
 	this.num_imgs = imgs.length;
 	$('body').append(this.text);
-	this.text.width(this.text.width() + 1300 + window.innerHeight);
+	this.text.width(this.text.width() + 490 + window.innerHeight + (window.innerWidth * 0.4));
 
 
 

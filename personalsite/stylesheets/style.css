@@ -19,8 +19,9 @@ body,html{
 	position: fixed;
 	right: 0;
 	bottom: 50px;
-	width: 33%;
+	width: 700px;
 	color: #aaaaaa;
+	z-index: 500;
 }
 
 .bottom-nav-btn {
@@ -40,23 +41,24 @@ body,html{
 
 .project-img {
 	position: relative;
-	height: 600px;
-	width: 900px;
+	height: 580px;
+	width: 870px;
 	left: 650px;
 	top: 50%;
 	margin-top: -300px;
 	margin-right: 200px;
 	box-shadow: 20px 20px 20px #cccccc;
+	border: none;
 }
 
 .project-metadata {
 	position: fixed;
 	display: inline-block;
 	width: 340px;
-	height: 400px;
+	height: 320px;
 	left: 150px;
   	top: 50%;
-  	margin-top: -200px;
+  	margin-top: -160px;
   	white-space: normal;
 }
 
