@@ -32,11 +32,10 @@ body,html{
 }
 
 .project-container {
-	position: relative;
+	position: fixed;
 	height: 100%;
 	white-space: nowrap;
-	/*display: inline-block;*/
-	overflow-x: scroll;
+	top: 100%;
 }
 
 .project-img {
@@ -51,13 +50,13 @@ body,html{
 }
 
 .project-metadata {
-	position: absolute;
+	position: fixed;
+	display: inline-block;
 	width: 340px;
 	height: 400px;
-	float: right;
 	left: 150px;
   	top: 50%;
-  	margin-top: -250px;
+  	margin-top: -200px;
   	white-space: normal;
 }
 
@@ -84,11 +83,11 @@ body,html{
 	margin-top: 50px;
 }
 
-.spacingdiv {
+/*.spacingdiv {
 	position: relative;
 	height: 100px;
 	width: 600px;
 	left: 650px;
 	box-shadow: 20px 20px 20px #cccccc;
 	display: inline-block;
-}
+}*/
