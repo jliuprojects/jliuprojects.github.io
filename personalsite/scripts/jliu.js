@@ -100,9 +100,11 @@ document.getElementById('about-container').appendChild(renderer.domElement);
 var tetrahedron = new THREE.Mesh(new THREE.TetrahedronGeometry(6,0), new THREE.MeshBasicMaterial({transparent: true, opacity: 1, color: 0x000000, wireframe: true}));
 var dodecahedron = new THREE.Mesh(new THREE.DodecahedronGeometry(4,0), new THREE.MeshBasicMaterial({transparent: true, opacity: 1, color: 0x000000, wireframe: true}));
 var octahedron = new THREE.Mesh(new THREE.OctahedronGeometry(4,0), new THREE.MeshBasicMaterial({transparent: true, opacity: 1, color: 0x000000, wireframe: true}));
+var cube = new THREE.Mesh(new THREE.BoxGeometry(3,3,3,2,2,2), new THREE.MeshBasicMaterial({transparent: true, opacity: 1, color: 0x000000, wireframe: true}));
+var circle = new THREE.Mesh(new THREE.SphereGeometry(2,10,10), new THREE.MeshBasicMaterial({transparent: true, opacity: 1, color: 0x000000, wireframe: true}));
 
-tetrahedron.position.x = 7;
-tetrahedron.position.y = 3;
+tetrahedron.position.x = 8;
+tetrahedron.position.y = 0;
 
 dodecahedron.position.x = -1;
 dodecahedron.position.y = -3;
@@ -111,24 +113,37 @@ octahedron.position.x = -7;
 octahedron.position.y = 4;
 // octahedron.position.z = -5;
 
+cube.position.x = -10;
+cube.position.y = -3;
+
+circle.position.x = 3;
+circle.position.y = 4;
+
 scene.add(tetrahedron);
 scene.add(dodecahedron);
 scene.add(octahedron);
-
+scene.add(cube);
+scene.add(circle);
 
 function render() {
 	requestAnimationFrame(render);
 	tetrahedron.rotation.x += 0.003;
 	tetrahedron.rotation.y += 0.003;
-	tetrahedron.rotation.z += 0.003;
+	// tetrahedron.rotation.z += 0.003;
 
 	dodecahedron.rotation.x -= 0.003;
 	dodecahedron.rotation.y -= 0.003;
-	dodecahedron.rotation.z -= 0.003;
+	// dodecahedron.rotation.z -= 0.003;
 
 	octahedron.rotation.x += 0.003;
 	octahedron.rotation.y -= 0.003;
-	octahedron.rotation.z += 0.003;
+	// octahedron.rotation.z += 0.003;
+
+	cube.rotation.x -= 0.004;
+	cube.rotation.y -= 0.004;
+
+	circle.rotation.x -= 0.004;
+	circle.rotation.y -= 0.004;
 
 	// update the picking ray with the camera and mouse position	
 	raycaster.setFromCamera( mouse, camera );	
@@ -141,8 +156,8 @@ function render() {
 		intersects[i].object.userData.mouseoverEnterPosy = mouse_pixels.y; 
 		setTimeout(function(){ 
 			for ( var i = 0; i < intersects.length; i++ ) {
-				intersects[i].object.rotation.x += (mouse_pixels.x - intersects[i].object.userData.mouseoverEnterPosx)/10;
-				intersects[i].object.rotation.y += (mouse_pixels.y - intersects[i].object.userData.mouseoverEnterPosy)/10;
+				intersects[i].object.rotation.x -= (mouse_pixels.x - intersects[i].object.userData.mouseoverEnterPosx)/10;
+				intersects[i].object.rotation.y -= (mouse_pixels.y - intersects[i].object.userData.mouseoverEnterPosy)/10;
 			}
 		}, 100);
 	}
