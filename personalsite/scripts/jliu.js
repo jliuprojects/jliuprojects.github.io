@@ -20,7 +20,13 @@ function Set(index, imgs, title, description, last){
 					imgshtml + "</div>");
 
 	$('#work-container').append(this.text);
-	this.text.width(this.text.width() + 490 + window.innerHeight + (window.innerWidth * 0.4));
+
+	if (window.innerHeight < 870){
+		this.text.width(this.text.width() + 490 + 870 + (window.innerWidth * 0.4));
+	}else{
+		this.text.width(this.text.width() + 490 + window.innerHeight + (window.innerWidth * 0.4));
+	}
+	
 
 	if (index%2){
 		this.text.children('.project-metadata').css('right',(window.innerWidth * 0.10));
