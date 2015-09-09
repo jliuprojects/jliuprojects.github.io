@@ -13,7 +13,7 @@ function Set(index, imgs, title, description, last){
 					"</div><div class='project-launch'>Launch Site</div></div>" +
 					imgshtml + "</div>");
 	this.num_imgs = imgs.length;
-	$('body').append(this.text);
+	$('#work-container').append(this.text);
 	this.text.width(this.text.width() + 490 + window.innerHeight + (window.innerWidth * 0.4));
 
 
@@ -35,46 +35,36 @@ function Set(index, imgs, title, description, last){
 
 var sets = [];
 sets.push(new Set(sets.length, ["assets/kid.png","assets/kid.png","assets/kid.png"], "Kid Studio", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "));
-sets.push(new Set(sets.length,["assets/kid.png","assets/kid.png"], "Kid Studio", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "));
+sets.push(new Set(sets.length,["assets/kid.png"], "Kid Studio", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "));
 sets.push(new Set(sets.length,["assets/kid.png","assets/kid.png","assets/kid.png"], "Kid Studio", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ", true));
 
 sets[0].text.css({'top' : '0%'});
 
-// var currentFocusedSet = 0;
+$('.containers').fadeOut(0);
+$('body,html').css('overflow','hidden');
 
-// $('body').on({
-//     'mousewheel': function(e) {
-//         if (e.target.id == 'el') return;
+$('#work').click(function(){
+	$('body,html').css('overflow','auto');
+	$('.containers').fadeOut();
+	$('#work-container').fadeIn();
+	$('.bottom-nav-btn').css('border-bottom','solid 3px transparent');
+	$('#work').css('border-bottom','solid 3px #cccccc');
+});
 
-//         if (sets[currentFocusedSet].text.scrollLeft() >= sets[currentFocusedSet].text[0].scrollWidth - sets[currentFocusedSet].text[0].clientWidth && e.originalEvent.deltaY > 0){
-// 			if (currentFocusedSet < sets.length){
-// 				currentFocusedSet++;
-// 			}
-// 			return;
-// 		}
+$('#about').click(function(){
+	$('body,html').css('overflow','hidden');
+	$('.containers').fadeOut();
+	$('#about-container').fadeIn();
+	$('.bottom-nav-btn').css('border-bottom','solid 3px transparent');
+	$('#about').css('border-bottom','solid 3px #cccccc');
+});
 
-// 		if (sets[currentFocusedSet].text.scrollLeft() == 0 && e.originalEvent.deltaY < 0){
-// 			if (currentFocusedSet != 0){
-// 				currentFocusedSet--;
-// 			}
-// 			return;
-// 		}
+$('#contact').click(function(){
+	$('body,html').css('overflow','hidden');
+	$('.containers').fadeOut();
+	$('#contact-container').fadeIn();
+	$('.bottom-nav-btn').css('border-bottom','solid 3px transparent');
+	$('#contact').css('border-bottom','solid 3px #cccccc');
+});
 
-//     	if (sets[currentFocusedSet].num_imgs > 1){
-
-//     		if (e.originalEvent.deltaY > 0){
-//     			if (sets[currentFocusedSet].scroll <= sets[currentFocusedSet].text[0].scrollWidth - sets[currentFocusedSet].text[0].clientWidth){
-//     				sets[currentFocusedSet].scroll += 30;
-//     			}
-//     		}else{
-//     			if (sets[currentFocusedSet].scroll){
-//     				sets[currentFocusedSet].scroll -= 30;
-//     			}
-//     		}
-// 			sets[currentFocusedSet].text.scrollLeft(sets[currentFocusedSet].scroll);
-
-// 			e.preventDefault();
-//         	e.stopPropagation();
-// 		}
-//     }
-// });
+$('#about').click();

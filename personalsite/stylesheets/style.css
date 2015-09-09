@@ -1,7 +1,10 @@
 * {
 	font-family: 'Montserrat', sans-serif;
 	/*border: dashed 1px;*/
-	
+}
+
+::-webkit-scrollbar { 
+    display: none; 
 }
 
 body,html{
@@ -30,6 +33,7 @@ body,html{
 	margin-right: 16%;
 	float: right;
 	font-size: 2em;
+	border-bottom: solid 3px transparent;
 }
 
 .project-container {
@@ -83,6 +87,27 @@ body,html{
 	line-height: 60px;
 	text-align: center;
 	margin-top: 50px;
+}
+
+.containers {
+	/*display: none;*/
+	/*opacity: 0;*/
+}
+
+#about-container {
+	position: fixed;
+	width: 400px;
+	top: 50%;
+	margin-top: -200px;
+	left: 30%;
+}
+
+#contact-container {
+	position: fixed;
+	width: 400px;
+	top: 50%;
+	margin-top: -200px;
+	left: 30%;
 }
 
 /*.spacingdiv {
