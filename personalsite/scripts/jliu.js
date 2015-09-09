@@ -76,24 +76,31 @@ $('.project-launch').hover(function(){
 $('#about').click();
 
 var scene = new THREE.Scene();
-var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 1, 1000);
-var mouse_pixels = {x:0,y:0};
+var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 1, 10000);
+// var mouse_pixels = {x:0,y:0};
 var renderer = new THREE.WebGLRenderer({alpha:true});
+
 renderer.setSize(window.innerWidth - 1, window.innerHeight - 1);
-renderer.setClearColor( 0x000000, 0 );	
+renderer.setClearColor( 0x000000, 0 );
+
+window.addEventListener( 'resize', onWindowResize, false );
+
 camera.position.z = 10;
 
 var raycaster = new THREE.Raycaster();
 var mouse = new THREE.Vector2();
+var offset = new THREE.Vector3(),
+			INTERSECTED, SELECTED;
 
-window.addEventListener( 'mousemove', onMouseMove, false );
+// window.addEventListener( 'mousemove', onMouseMove, false );
 
-function onMouseMove( event ) {
-	mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-	mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
-	mouse_pixels.x = event.clientX;
-	mouse_pixels.y = event.clientY;
-}
+// function onMouseMove( event ) {
+// 	mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+// 	mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+// 	console.log(mouse);
+// 	mouse_pixels.x = event.clientX;
+// 	mouse_pixels.y = event.clientY;
+// }
 
 document.getElementById('about-container').appendChild(renderer.domElement);
 
@@ -102,6 +109,17 @@ var dodecahedron = new THREE.Mesh(new THREE.DodecahedronGeometry(4,0), new THREE
 var octahedron = new THREE.Mesh(new THREE.OctahedronGeometry(4,0), new THREE.MeshBasicMaterial({transparent: true, opacity: 1, color: 0x000000, wireframe: true}));
 var cube = new THREE.Mesh(new THREE.BoxGeometry(3,3,3,2,2,2), new THREE.MeshBasicMaterial({transparent: true, opacity: 1, color: 0x000000, wireframe: true}));
 var circle = new THREE.Mesh(new THREE.SphereGeometry(2,10,10), new THREE.MeshBasicMaterial({transparent: true, opacity: 1, color: 0x000000, wireframe: true}));
+
+var plane = new THREE.Mesh(
+					new THREE.PlaneBufferGeometry( 2000, 2000, 8, 8 ),
+					new THREE.MeshBasicMaterial( { color: 0x000000, opacity: 0.25, transparent: true }));
+
+var shapes = []
+shapes.push(tetrahedron);
+shapes.push(dodecahedron);
+shapes.push(octahedron);
+shapes.push(cube);
+shapes.push(circle);
 
 tetrahedron.position.x = 8;
 tetrahedron.position.y = 0;
@@ -124,6 +142,111 @@ scene.add(dodecahedron);
 scene.add(octahedron);
 scene.add(cube);
 scene.add(circle);
+
+renderer.domElement.addEventListener( 'mousemove', onDocumentMouseMove, false );
+renderer.domElement.addEventListener( 'mousedown', onDocumentMouseDown, false );
+renderer.domElement.addEventListener( 'mouseup', onDocumentMouseUp, false );
+
+function onWindowResize() {
+
+	camera.aspect = window.innerWidth / window.innerHeight;
+	camera.updateProjectionMatrix();
+
+	renderer.setSize( window.innerWidth, window.innerHeight );
+
+}
+
+function onDocumentMouseMove( event ) {
+
+	event.preventDefault();
+
+	mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+	mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+
+	//
+
+	raycaster.setFromCamera( mouse, camera );
+
+	if ( SELECTED ) {
+
+		var intersects = raycaster.intersectObject( plane );
+		SELECTED.position.copy( intersects[ 0 ].point.sub( offset ) );
+		return;
+
+	}
+
+	var intersects = raycaster.intersectObjects( shapes );
+
+	if ( intersects.length > 0 ) {
+
+		if ( INTERSECTED != intersects[ 0 ].object ) {
+
+			// if ( INTERSECTED ) INTERSECTED.material.color.setHex( INTERSECTED.currentHex );
+
+			INTERSECTED = intersects[ 0 ].object;
+			// INTERSECTED.currentHex = INTERSECTED.material.color.getHex();
+
+			plane.position.copy( INTERSECTED.position );
+			plane.lookAt( camera.position );
+
+		}
+
+		// container.style.cursor = 'pointer';
+
+	} else {
+
+		// if ( INTERSECTED ) INTERSECTED.material.color.setHex( INTERSECTED.currentHex );
+
+		INTERSECTED = null;
+
+		// container.style.cursor = 'auto';
+
+	}
+
+}
+
+function onDocumentMouseDown( event ) {
+
+	event.preventDefault();
+
+	var vector = new THREE.Vector3( mouse.x, mouse.y, 0.5 ).unproject( camera );
+
+	var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
+
+	var intersects = raycaster.intersectObjects( shapes );
+
+	if ( intersects.length > 0 ) {
+
+		// controls.enabled = false;
+
+		SELECTED = intersects[ 0 ].object;
+
+		var intersects = raycaster.intersectObject( plane );
+		offset.copy( intersects[ 0 ].point ).sub( plane.position );
+
+		// container.style.cursor = 'move';
+
+	}
+
+}
+
+function onDocumentMouseUp( event ) {
+
+	event.preventDefault();
+
+	// controls.enabled = true;
+
+	if ( INTERSECTED ) {
+
+		plane.position.copy( INTERSECTED.position );
+
+		SELECTED = null;
+
+	}
+
+	// container.style.cursor = 'auto';
+
+}
 
 function render() {
 	requestAnimationFrame(render);
@@ -149,24 +272,15 @@ function render() {
 	raycaster.setFromCamera( mouse, camera );	
 
 	// calculate objects intersecting the picking ray
-	var intersects = raycaster.intersectObjects( scene.children );
+	var intersects = raycaster.intersectObjects( shapes );
+
 
 	for ( var i = 0; i < intersects.length; i++ ) {
+		// console.log(intersects);
 		intersects[i].object.rotation.x += 0.06;
 		intersects[i].object.rotation.y += 0.06;
-
-		// intersects[i].object.userData.mouseoverEnterPosx = mouse_pixels.x;
-		// intersects[i].object.userData.mouseoverEnterPosy = mouse_pixels.y; 
-
-		// setTimeout(function(){ 
-		// 	for ( var i = 0; i < intersects.length; i++ ) {
-		// 		intersects[i].object.rotation.x -= (mouse_pixels.x - intersects[i].object.userData.mouseoverEnterPosx)/10;
-		// 		intersects[i].object.rotation.y -= (mouse_pixels.y - intersects[i].object.userData.mouseoverEnterPosy)/10;
-		// 	}
-		// }, 100);
 	}
 
 	renderer.render(scene, camera);
 };
 render();
-
