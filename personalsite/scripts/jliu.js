@@ -1,11 +1,17 @@
 var heightSoFar = 0;
 function Set(index, imgs, title, description, last){
 	var imgshtml = '';
+	var sign = 1;
+	var classname = 'left';
+	if (index%2){
+		sign = -1;
+		classname = 'right';
+	}
 	for (var i = 0; i < imgs.length; i++){
 		imgshtml += "<img class='project-img' src=" + imgs[i] + ">";
 	}
 
-	this.text = $("<div class='project-container'>" + 
+	this.text = $("<div class='project-container-" + classname + "'>" + 
 					"<div class='project-metadata'><div class='project-title'>" + 
 					title + 
 					"</div><div class='project-description'>" + 
@@ -16,12 +22,17 @@ function Set(index, imgs, title, description, last){
 	$('#work-container').append(this.text);
 	this.text.width(this.text.width() + 490 + window.innerHeight + (window.innerWidth * 0.4));
 
+	if (index%2){
+		this.text.children('.project-metadata').css('right',(window.innerWidth * 0.10));
+		this.text.children('.project-img').css('right',(window.innerWidth * 0.4 + 32));
+	}
+
 	this.text.attr( "data-" + heightSoFar, "transform: translate(0px, 0px)");
 	if (index){
 		this.text.attr( "data-" + (heightSoFar + window.innerHeight), "transform: translate(0px, -" + window.innerHeight + "px)");
-		this.text.attr( "data-" + (heightSoFar + this.text.width() - window.innerWidth), "transform: translate(" + (-1*(this.text.width() - window.innerWidth -  window.innerHeight)) + "px" + ", -" + window.innerHeight + "px)");
+		this.text.attr( "data-" + (heightSoFar + this.text.width() - window.innerWidth), "transform: translate(" + sign * (-1*(this.text.width() - window.innerWidth -  window.innerHeight)) + "px" + ", -" + window.innerHeight + "px)");
 		if (!last){
-			this.text.attr( "data-" + (heightSoFar + this.text.width() - window.innerWidth + window.innerHeight), "transform: translate(" + (-1*(this.text.width() - window.innerWidth -  window.innerHeight)) + "px" + ", -" + window.innerHeight*2 + "px)");
+			this.text.attr( "data-" + (heightSoFar + this.text.width() - window.innerWidth + window.innerHeight), "transform: translate(" + sign * (-1*(this.text.width() - window.innerWidth -  window.innerHeight)) + "px" + ", -" + window.innerHeight*2 + "px)");
 		}
 		heightSoFar += this.text.width() - window.innerWidth;
 	}else{
@@ -34,7 +45,9 @@ function Set(index, imgs, title, description, last){
 var sets = [];
 sets.push(new Set(sets.length, ["assets/kid.png","assets/kid.png","assets/kid.png"], "Kid Studio", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "));
 sets.push(new Set(sets.length,["assets/kid.png"], "Kid Studio", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "));
-sets.push(new Set(sets.length,["assets/kid.png","assets/kid.png","assets/kid.png"], "Kid Studio", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ", true));
+sets.push(new Set(sets.length,["assets/kid.png","assets/kid.png","assets/kid.png"], "Kid Studio", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "));
+sets.push(new Set(sets.length,["assets/kid.png","assets/kid.png"], "Kid Studio", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ", true));
+
 
 sets[0].text.css({'top' : '0%'});
 

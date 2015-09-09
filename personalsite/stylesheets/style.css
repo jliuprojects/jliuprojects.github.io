@@ -36,14 +36,23 @@ body,html{
 	border-bottom: solid 3px transparent;
 }
 
-.project-container {
+.project-container-left {
 	position: fixed;
 	height: 100%;
 	white-space: nowrap;
 	top: 100%;
 }
 
-.project-img {
+.project-container-right {
+	position: fixed;
+	height: 100%;
+	white-space: nowrap;
+	top: 100%;
+	right: 0;
+	float: right;
+}
+
+.project-container-left .project-img {
 	position: relative;
 	height: 580px;
 	width: 870px;
@@ -55,12 +64,36 @@ body,html{
 	border: none;
 }
 
-.project-metadata {
+.project-container-right .project-img {
+	position: relative;
+	height: 580px;
+	width: 870px;
+	/*right: 30%;*/
+	top: 50%;
+	float: right;
+	margin-top: -300px;
+	margin-left: 200px;
+	box-shadow: 20px 20px 20px #cccccc;
+	border: none;
+}
+
+.project-container-left .project-metadata {
 	position: fixed;
 	display: inline-block;
 	width: 340px;
 	height: 320px;
 	left: 150px;
+  	top: 50%;
+  	margin-top: -160px;
+  	white-space: normal;
+}
+
+.project-container-right .project-metadata {
+	position: fixed;
+	display: inline-block;
+	width: 340px;
+	height: 320px;
+	/*right: 15%;*/
   	top: 50%;
   	margin-top: -160px;
   	white-space: normal;
