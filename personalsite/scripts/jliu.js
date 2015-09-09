@@ -152,17 +152,19 @@ function render() {
 	var intersects = raycaster.intersectObjects( scene.children );
 
 	for ( var i = 0; i < intersects.length; i++ ) {
-		intersects[i].object.userData.mouseoverEnterPosx = mouse_pixels.x;
-		intersects[i].object.userData.mouseoverEnterPosy = mouse_pixels.y; 
-		setTimeout(function(){ 
-			for ( var i = 0; i < intersects.length; i++ ) {
-				intersects[i].object.rotation.x -= (mouse_pixels.x - intersects[i].object.userData.mouseoverEnterPosx)/10;
-				intersects[i].object.rotation.y -= (mouse_pixels.y - intersects[i].object.userData.mouseoverEnterPosy)/10;
-			}
-		}, 100);
+		intersects[i].object.rotation.x += 0.06;
+		intersects[i].object.rotation.y += 0.06;
+
+		// intersects[i].object.userData.mouseoverEnterPosx = mouse_pixels.x;
+		// intersects[i].object.userData.mouseoverEnterPosy = mouse_pixels.y; 
+
+		// setTimeout(function(){ 
+		// 	for ( var i = 0; i < intersects.length; i++ ) {
+		// 		intersects[i].object.rotation.x -= (mouse_pixels.x - intersects[i].object.userData.mouseoverEnterPosx)/10;
+		// 		intersects[i].object.rotation.y -= (mouse_pixels.y - intersects[i].object.userData.mouseoverEnterPosy)/10;
+		// 	}
+		// }, 100);
 	}
-
-
 
 	renderer.render(scene, camera);
 };
