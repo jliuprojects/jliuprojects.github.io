@@ -96,6 +96,14 @@ body,html{
 
 #about-container {
 	position: fixed;
+	/*width: 400px;*/
+/*	top: 50%;
+	margin-top: -200px;*/
+	/*left: 30%;*/
+}
+
+#about-text {
+	position: fixed;
 	width: 400px;
 	top: 50%;
 	margin-top: -200px;
