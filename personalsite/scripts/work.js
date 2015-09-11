@@ -12,11 +12,11 @@ sets.push(new Set(sets.length,["assets/elie.png","assets/elie2.png","assets/elie
 								(370+200)*4 + 200,
 								"Visionelie", 
 								"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "));
-sets.push(new Set(sets.length,["assets/kid.png","assets/kid.png"], 
-								(870+200)*2 + 200,
+sets.push(new Set(sets.length,["assets/starz.png","assets/starz2.png","assets/starz3.png"], 
+								(870+200)*3 + 200,
 								"STARZ Play", 
 								"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "));
-sets.push(new Set(sets.length,["assets/kid.png","assets/kid.png"], 
+sets.push(new Set(sets.length,["assets/zynga.png","assets/zynga2.png"], 
 								(870+200)*2 + 200,
 								"Zynga", 
 								"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ", true));
