@@ -9,7 +9,7 @@
 
 body,html{
 	/*height: 100% !important;*/
-	/*overflow: hidden;*/
+	overflow: hidden;
 	border: none;
 	margin: 0;
 }
@@ -59,7 +59,7 @@ body,html{
 .project-container-left .project-img {
 	position: relative;
 	height: 580px;
-	width: 870px;
+	/*width: 870px;*/
 	left: 650px;
 	top: 50%;
 	margin-top: -300px;
@@ -71,8 +71,8 @@ body,html{
 .project-container-right .project-img {
 	position: relative;
 	height: 580px;
-	width: 870px;
-	/*right: 30%;*/
+	/*width: 870px;*/
+	right: 650px;
 	top: 50%;
 	float: right;
 	margin-top: -300px;
@@ -85,10 +85,8 @@ body,html{
 	position: fixed;
 	display: inline-block;
 	width: 340px;
-	height: 320px;
 	left: 150px;
-  	top: 50%;
-  	margin-top: -160px;
+  	top: 30%;
   	white-space: normal;
 }
 
@@ -96,21 +94,17 @@ body,html{
 	position: fixed;
 	display: inline-block;
 	width: 340px;
-	height: 320px;
-	/*right: 15%;*/
-  	top: 50%;
-  	margin-top: -160px;
+	right: 150px;
+  	top: 30%;
   	white-space: normal;
 }
 
 .project-title {
-	position: relative;
 	font-size: 14pt;
 	margin-bottom: 50px;
 }
 
 .project-description {
-	position: relative;
 	font-size: 10pt;
 }
 
