@@ -3,13 +3,13 @@ var sets = [];
 sets.push(new Set(sets.length,["assets/starz.png","assets/starz2.png","assets/starz3.png"], 
 								(870+200)*3 + 200,
 								"<div class='project-launch'>Launch In Appstore</div>",
-								"STARZ Play", 
-								"<i>May/16 - Sept/16</i> <br><br> Contracted to Starz as a software engineer during my four month co-op at Digiflare Inc. One of two developers from Digiflare assigned to handle the development of the Starz Samsung Smart TV App."));
+								"STARZ Play <div class='date'>05.16 - 09.16</div>", 
+								"<i>Digiflare Inc.</i><br><br> A video streaming, multi-screen TV Everywhere application for American premium cable and satellite television network provider, Starz. <br><br><div class='tags'>AngularJS, Samsung Smart TV SDK, jQuery, HTML, CSS, SASS </div>"));
 sets.push(new Set(sets.length,["assets/zynga.png","assets/zynga2.png"], 
 								(870+200)*2 + 200,
 								"",
-								"Zynga", 
-								"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "));
+								"Universal Portal <div class='date'>08.16 - 12.16</div>", 
+								"<i>Zynga Inc.</i><br><br> Assisted in the creation and frontend development of an internal MEAN.JS application to unite and centralize all internal services within the organization."));
 sets.push(new Set(sets.length,["assets/elie.png","assets/elie2.png","assets/elie3.png","assets/elie4.png"], 
 								(370+200)*4 + 200,
 								"<div class='project-launch'>Launch Mobile Site</div>",

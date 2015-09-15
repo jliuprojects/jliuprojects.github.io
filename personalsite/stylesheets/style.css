@@ -101,7 +101,7 @@ body,html{
 
 .project-title {
 	font-size: 14pt;
-	margin-bottom: 30px;
+	margin-bottom: 20px;
 }
 
 .project-description {
@@ -117,7 +117,7 @@ body,html{
 	height: 60px;
 	line-height: 60px;
 	text-align: center;
-	margin-top: 50px;
+	margin-top: 30px;
 }
 
 .containers {
@@ -149,4 +149,18 @@ body,html{
 	top: 50%;
 	margin-top: -200px;
 	left: 30%;
+}
+
+.date {
+	position: relative;
+	float: right;
+	font-style: italic;
+	font-size: 10pt;
+	margin-right: 10px;
+	top: 5px;
+}
+
+.tags {
+	font-style: italic;
+	font-size: 8pt;
 }
