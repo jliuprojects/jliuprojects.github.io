@@ -1,5 +1,5 @@
 var heightSoFar = 0;
-function Set(index, imgs, widths, title, description, last){
+function Set(index, imgs, widths, launch, title, description, last){
 	this.imgshtml = '';
 	this.sign = -1;
 	this.classname = 'left';
@@ -17,7 +17,7 @@ function Set(index, imgs, widths, title, description, last){
 					title + 
 					"</div><div class='project-description'>" + 
 					description + 
-					"</div><div class='project-launch'>Launch Site</div></div>" +
+					"</div>" + launch + "</div>" +
 					this.imgshtml + "</div>");
 
 	$('#work-container').append(this.text);
