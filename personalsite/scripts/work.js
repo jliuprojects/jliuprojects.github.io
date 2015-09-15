@@ -4,7 +4,7 @@ sets.push(new Set(sets.length,["assets/starz.png","assets/starz2.png","assets/st
 								(870+200)*3 + 200,
 								"<div class='project-launch'>Launch In Appstore</div>",
 								"STARZ Play <div class='date'>05.16 - 09.16</div>", 
-								"<i>Digiflare Inc.</i><br><br> A video streaming, multi-screen TV Everywhere application for American premium cable and satellite television network provider, Starz. <br><br><div class='tags'>AngularJS, Samsung Smart TV SDK, jQuery, HTML, CSS, SASS </div>"));
+								"<div class='tags'>Digiflare Inc.</div> <div class='tags'>AngularJS, Samsung Smart TV SDK, jQuery, HTML, CSS, SASS </div> A video streaming, multi-screen TV Everywhere application for American premium cable and satellite television network provider, Starz."));
 sets.push(new Set(sets.length,["assets/zynga.png","assets/zynga2.png"], 
 								(870+200)*2 + 200,
 								"",
