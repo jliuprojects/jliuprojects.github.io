@@ -3,29 +3,33 @@ var sets = [];
 sets.push(new Set(sets.length,["assets/starz.png","assets/starz2.png","assets/starz3.png"], 
 								(870+200)*3 + 200,
 								"<div class='project-launch'>Launch In Appstore</div>",
-								"STARZ Play <div class='date'>05.16 - 09.16</div>", 
-								"<div class='tags'>Digiflare Inc.</div> <div class='tags'>AngularJS, Samsung Smart TV SDK, jQuery, HTML, CSS, SASS </div> A video streaming, multi-screen TV Everywhere application for American premium cable and satellite television network provider, Starz."));
+								"STARZ Play", 
+								"<div class='tags'>Digiflare Inc.<div class='date'>05.16 - 09.16</div></div> <div class='tags'>AngularJS, Samsung Smart TV SDK, jQuery, HTML, CSS, SASS </div> A video streaming, multi-screen TV Everywhere application for American premium cable and satellite television network provider, Starz."));
 sets.push(new Set(sets.length,["assets/zynga.png","assets/zynga2.png"], 
 								(870+200)*2 + 200,
 								"",
-								"Universal Portal <div class='date'>08.16 - 12.16</div>", 
-								"<i>Zynga Inc.</i><br><br> Assisted in the creation and frontend development of an internal MEAN.JS application to unite and centralize all internal services within the organization."));
+								"Universal Portal", 
+								"<div class='tags'>Zynga Inc. <div class='date'>08.16 - 12.16</div></div> <div class='tags'>AngularJS, NodeJS, ExpressJS, MongoDB, jQuery, HTML, CSS, SASS </div> An internal Zynga MEAN.JS portal to unite and centralize all internal services within the organization."));
 sets.push(new Set(sets.length,["assets/elie.png","assets/elie2.png","assets/elie3.png","assets/elie4.png"], 
 								(370+200)*4 + 200,
 								"<div class='project-launch'>Launch Mobile Site</div>",
 								"Visionelie", 
-								"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "));
+								"<div class='tags'>Fifty6<div class='date'>05.16 - Present</div></div> <div class='tags'>Javascript, jQuery, HTML, CSS </div>Mobile website built for photographer Visionelie. Used accelerometer technology to create a spatially interactive landing page feature."));
 sets.push(new Set(sets.length, ["assets/kid.png","assets/kid2.png","assets/kid3.png","assets/kid4.png","assets/kid5.png","assets/kid6.png"], 
 								(870+200)*6 + 200,
 								"<div class='project-launch'>Launch Site</div>",
 								"Kid Studio", 
-								"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "));
+								"<div class='tags'>Fifty6<div class='date'>05.16 - Present</div></div> <div class='tags'>ThreeJS, Javascript, KirbyCMS, jQuery, HTML, CSS </div>Responsive website made for film & design studio, Kid. Interactive 3D carousel feature with custom Kirby backend."));
 sets.push(new Set(sets.length,["assets/fifty6.png","assets/fifty62.png","assets/fifty63.png","assets/fifty64.png"], 
 								(870+200)*4 + 200,
 								"<div class='project-launch'>Launch Site</div>",
-								"Fifty6", 
-								"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ", true));
-
+								"Portfolio Website", 
+								"<div class='tags'>Fifty6<div class='date'>05.16 - Present</div></div> <div class='tags'>ThreeJS, Javascript, jQuery, HTML, CSS </div> Ineractive portfolio website made for creative design studio Fifty6."));
+sets.push(new Set(sets.length,["assets/zynga.png","assets/zynga2.png"], 
+								(870+200)*2 + 200,
+								"",
+								"Mobile Economy SDK", 
+								"<div class='tags'>Zynga Inc. <div class='date'>08.16 - 12.16</div></div><div class='tags'>AngularJS, NodeJS, ExpressJS, MongoDB, jQuery, HTML, CSS, SASS </div> An internal Zynga MEAN.JS portal to unite and centralize all internal services within the organization.", true));
 
 
 
