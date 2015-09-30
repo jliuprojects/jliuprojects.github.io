@@ -75,7 +75,7 @@ function Set(scene, size, dimensions, positions, urls, rotations, info, theme, e
 	this.size = size;
 	this.rotations = rotations;
 	this.text = $('<div class="project-info"></div>');
-	this.text.html('<p class="project-title">' + info.title + '</p>' + '<p class="project-description">' + info.description + '</p>' + '<p class="project-tags">' + info.tags + '</p>' + '<div class="btn">Launch Site</div>');
+	this.text.html('<p class="project-title">' + info.title + '</p>' + '<p class="project-description">' + info.description + '</p>' + '<p class="project-tags">' + info.tags + '</p>' + '<div class="btn" id="' + info.title + '">Launch Site</div>');
 	$('body').append(this.text);
 	this.text.fadeOut(0);
 	this.transitioningfwd = []; // counter for frames for transitioning positive x
@@ -373,6 +373,29 @@ $('.work').click(function(){
 	}
 	event.stopPropagation();
 	// $('.right-nav').animate({'right':'0%'},'slow');
+});
+
+$('.btn').click(function(){
+	var url;
+	switch ($(this).attr('id')){
+		case 'Visionelie':
+			url = 'http://visionelie.co/';
+			break;
+		case 'Drew Howard':
+			url = 'http://www.88camino.com/';
+			break;
+		case 'Kid. Studio':
+			url = 'http://new.kidstudio.co/';
+			break;
+		case 'Kastor & Pollux':
+			url = 'http://kastorandpollux.com/';
+			break;
+		default:
+			alert("Sorry, this link to has been disabled. This is either because the link is outdated of the client is moving their domain.");
+			break;
+	}
+	window.location.href = url;
+	event.stopPropagation();
 });
 
 $('body').click(function(){
