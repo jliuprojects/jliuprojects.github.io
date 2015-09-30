@@ -38,6 +38,13 @@ body,html{
 	float: right;
 	font-size: 16pt;
 	border-bottom: solid 3px transparent;
+	cursor: pointer;
+}
+
+.bottom-nav-btn a{
+	text-decoration: none;
+	color: #aaaaaa;
+	display: block;
 }
 
 .project-container-left {
