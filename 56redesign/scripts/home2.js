@@ -70,13 +70,20 @@ function main(){
 	$(window).scrollTop(HTMLProjects[0].getHeight());
 
 	console.log(content.height());
-	
+}
+
+function currentFocused (projects){
+	for (var i = 0; i < projects.length; i++){
+    	if (projects[i].isFocused()){
+    		return i;
+    	}
+    }
+    return 0;
 }
 
 $(window).scroll(function (event) {
     var scroll = $(window).scrollTop();
     var totalHeight = 0;
-    
 
     for (var i = 0; i < HTMLProjects.length; i++){
     	totalHeight += HTMLProjects[i].getHeight();
@@ -91,5 +98,20 @@ $(window).scroll(function (event) {
 
     if (scroll < HTMLProjects[0].getHeight()) {
     	$(window).scrollTop( totalHeight - HTMLProjects[HTMLProjects.length - 1].getHeight() - (HTMLProjects[0].getHeight() - scroll));
+    }
+
+    var heightSoFar = 0;
+    var focused = currentFocused(HTMLProjects);
+    for (var i = 0; i < HTMLProjects.length; i++){
+    	if (!HTMLProjects[i].isFocused() && 
+    		scroll >= heightSoFar &&
+    		scroll < heightSoFar + HTMLProjects[i].getHeight()){
+    			$("body").css('background-color' , HTMLProjects[i].getColour());
+    			HTMLProjects[focused].setFocus(false);
+    			HTMLProjects[i].setFocus(true);
+    			break;
+    	}
+
+    	heightSoFar += HTMLProjects[i].getHeight();
     }
 });

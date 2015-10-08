@@ -6,6 +6,7 @@ function HTMLProject (project) {
 	this.html["client"] = $("<div class='project-client'>" + "<p>" + project.getClient() + "</p></div>");
 	this.html["date"] = $("<div class='project-date'>" + "<p>" + project.getDate() + "</p></div>");
 	this.height = project.getHeight();
+	this.focused = false;
 
 	this.images = [];
 
@@ -34,5 +35,17 @@ function HTMLProject (project) {
 
 	this.getHeight = function(){
 		return this.html["container"].height();
+	}
+
+	this.getColour = function(){
+		return this.colour;
+	}
+
+	this.setFocus = function(focus){
+		this.focused = focus;
+	}
+
+	this.isFocused = function(){
+		return this.focused;
 	}
 }
