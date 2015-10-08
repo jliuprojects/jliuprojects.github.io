@@ -100,44 +100,23 @@ $('body').on({
     }
 });
 
-
-
-// $(window).scroll(function (event) {
-
-// 	lastScroll = scroll;
-//     scroll = $(window).scrollTop();
-    
-//     
-
-// });
-
 function checkLock (){
     var heightSoFar = 0;
     for (var i = 0; i < HTMLProjects.length; i++){
-    	if (lastScroll < heightSoFar &&
-    		scroll >= heightSoFar){
-    			$(window).scrollTop(heightSoFar);
+    	if (lastScroll < heightSoFar - 200 &&
+    		scroll >= heightSoFar - 200){
+    			setTimeout(function(){ $(window).scrollTop(heightSoFar);}, 0);
+
     			scrollJack = 1;
-    			setTimeout(function(){ scrollJack = 0; }, 1000);
+    			setTimeout(function(){ 
+    				scrollJack = 0;
+    			}, 1000);
     			scroll = lastScroll;
+    			break;
     	}
     	heightSoFar += HTMLProjects[i].getHeight();
     }
 }
-
-(function oneWheel(){
-	$(window).one('scroll',function(event, delta) {
-		
-	    
-
-
-		setTimeout(oneWheel,10)
-		return false
-	})
-})()
-
-
-
 
 // left: 37, up: 38, right: 39, down: 40,
 // spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36

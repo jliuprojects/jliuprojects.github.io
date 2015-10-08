@@ -51,13 +51,17 @@ p {
 }
 
 .project-title {
-	padding-top: 10%;
+	position: relative;
+	padding-top: 200px;
+	font-size: 28pt;
 }
 
 .project-client {
+	position: relative;
 }
 
 .project-date {
+	position: relative;
 }
 /*
 ::-webkit-scrollbar { 
