@@ -1,9 +1,9 @@
 function Set(project){
 	this.colour = project.colour;
 	this.html = []
-	this.html["title"] = $("<div class='project-title'>" + project.title + "</div>");
-	this.html["client"] = $("<div class='project-client'>" + project.client + "</div>");
-	this.html["date"] = $("<div class='project-date'>" + project.date + "</div>");
+	this.html["title"] = $("<div class='project-title'>" + "<p>" + project.title + "</p></div>");
+	this.html["client"] = $("<div class='project-client'>" + "<p>" + project.client + "</p></div>");
+	this.html["date"] = $("<div class='project-date'>" + "<p>" + project.date + "</p></div>");
 
 	this.images = [];
 

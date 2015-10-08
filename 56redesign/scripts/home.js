@@ -34,7 +34,6 @@ $( document ).ready(function() {
 	    }
 
 	    sets[index].attach($(".content"));
-	    lockPoint = $(".content").height(); //old
 	    setTimeout(function(){
 
 	    	p1 = $(".content").height(); 
