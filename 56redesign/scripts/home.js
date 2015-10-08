@@ -1,7 +1,7 @@
 var index = 0;
 var sets = [];
-var scrollLock1 = 10;
-var scrollLock2 = 10;
+var scrollLock1 = 30;
+var scrollLock2 = 30;
 
 var p1 = 0;
 var p2 = 0;
@@ -137,15 +137,15 @@ $(window).scroll(function (event) {
 	    	p2 = p3 - tempp1;
 	    	setTimeout(function(){ 
 	    		p3 = $(".content").height(); 
-	    		scrollLock1 = 10;
-	    		scrollLock2 = 10;
+	    		scrollLock1 = 30;
+	    		scrollLock2 = 30;
 	    	}, 0); 
 	    }
    } else if (scroll < lastScrollTop){
     	// upscroll code
     	console.log("UPSCROLL");
-    	scrollLock1 = 10;
-    	scrollLock2 = 10;
+    	scrollLock1 = 30;
+    	scrollLock2 = 30;
     	//add/remove project
 	    if (scroll + $(window).height() <= p2 && scroll > p1){
 	    	sets[index].remove();
