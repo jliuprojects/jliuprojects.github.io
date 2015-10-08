@@ -103,13 +103,13 @@ function handleInfScroll(scroll){
     }
 }
 
-$('body').on({
-    'mousewheel': function(e) {
-        if (e.target.id == 'el') return;
-        e.preventDefault();
-        e.stopPropagation();
-    }
-});
+// $('body').on({
+//     'mousewheel': function(e) {
+//         if (e.target.id == 'el') return;
+//         e.preventDefault();
+//         e.stopPropagation();
+//     }
+// });
 
 var scroll;
 var lastScroll = 0;

@@ -41,6 +41,11 @@ p {
 	position: relative;
 	width: 80%;
 	margin-left: 10%;
+
+	max-height: 30000px;
+	overflow: auto;
+    -webkit-overflow-scrolling: touch;
+
 }
 
 .project-img {
