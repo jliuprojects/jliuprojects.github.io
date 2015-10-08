@@ -47,13 +47,13 @@ $( document ).ready(function() {
 	    			p3 = $(".content").height();
 	    			sets[0].incrOpacity(0.5);
 	    			$("body").css('background-color' , sets[0].getColour());
-	    		}, 0);
-	    	}, 0);
-	    }, 0);
+	    		}, 100);
+	    	}, 100);
+	    }, 100);
 
 
 
-	    
+
 	});
 });
 
