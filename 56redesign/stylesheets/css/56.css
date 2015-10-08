@@ -38,39 +38,26 @@ p {
 }
 
 .project-container {
+	position: relative;
 	font-family: 'Montserrat', sans-serif;
 	font-size: 8pt;
 	line-height: 18px;
-	padding-left: 10%;
 	/*height: 100%;*/
 	width: 80%;
 	/*padding: 10%;*/
 }
 
 .project-img {
-	width: 80%;
-	padding: 10%;
-}
-
-.feature-img {
-	position: absolute;
-	height: 80%;
-	left: 50%;
 }
 
 .project-title {
-	position: relative;
-	top: 40%;
+	padding-top: 10%;
 }
 
 .project-client {
-	position: relative;
-	top: 45%;
 }
 
 .project-date {
-	position: relative;
-	top: 50%;
 }
 /*
 ::-webkit-scrollbar { 

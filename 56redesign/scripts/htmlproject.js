@@ -5,11 +5,12 @@ function HTMLProject (project) {
 	this.html["title"] = $("<div class='project-title'>" + project.title + "</div>");
 	this.html["client"] = $("<div class='project-client'>" + project.client + "</div>");
 	this.html["date"] = $("<div class='project-date'>" + project.date + "</div>");
+	this.focused = false;
 
 	this.images = [];
 
-	this.images.push($("<img class='feature-img' src=" + project.images[0].url + ">"));
-	for (var i = 1; i < project.images.length; i++){
+	// this.images.push($("<img class='feature-img' src=" + project.images[0].url + ">"));
+	for (var i = 0; i < project.images.length; i++){
 		this.images.push($("<img class='project-img slide' src=" + project.images[i].url + ">"));
 	}
 
@@ -17,14 +18,9 @@ function HTMLProject (project) {
 	 	this.html["container"].append(this.html[key]);
 	}
 
-	this.html["container"].append(this.images[0]);
+	this.html["container"].append(this.images);
 
 	$('.full').append(this.html["container"]);
-
-	for (var i = 1; i < project.images.length; i++){
-		$('.full').append(this.images[i]);
-	}
-	
 
 	this.getHeight = function(){
 		return this.html["container"].height();
@@ -32,6 +28,14 @@ function HTMLProject (project) {
 
 	this.getColour = function(){
 		return this.colour;
+	}
+
+	this.isFocused = function(){
+		return this.Focus;
+	}
+
+	this.setFocus = function(focus){
+		this.Focus = focus;
 	}
 
 	var self = this;

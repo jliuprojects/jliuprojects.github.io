@@ -34,3 +34,13 @@ function main(){
 	    bodyContainer: 'pageWrapper', // Tell Alton the body class
 	});
 }
+
+$(window).scroll(function (event) {
+    var scroll = $(window).scrollTop();
+    
+    for (var i = 0; i < HTMLProjects.length; i++){
+    	if (scroll == HTMLProjects[i].html["container"].offset().top){
+    		$("body").css('background-color' , HTMLProjects[i].getColour());
+    	}
+    }
+});

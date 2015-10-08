@@ -1,45 +1,26 @@
-var projects = [];
 var HTMLProjects = [];
 var projectsInited = 0;
-
-function load (project, callback){
-	var imgHTML = "";
-
-	for (var i = 0; i < project.images.length; i++){
-		imgHTML += "<img class='project-img' src=" + project.images[i] + ">";
-	}
-	var div = $("<div class='project-container'>" +
-					"<div class='project-title'>" + "<p>" + project.title + "</p></div>" +
-					"<div class='project-client'>" + "<p>" + project.client + "</p></div>" + 
-					"<div class='project-date'>" + "<p>" + project.date + "</p></div>" +
-					imgHTML +
-				"</div>").css('display','none').appendTo('.content');
-
-	var count = 0;
-	div.children('img').load(function(){
-		count++;
-
-		if (count == project.images.length){
-			div.remove();
-			callback();
-		}
-	});
-}
+var NUM_PROJECTS = 0;
 
 function initHeights(){
 	projectsInited++;
 
-	if (projectsInited == projects.length){
+	if (projectsInited == NUM_PROJECTS){
 		main();
 	}
 }
 
 $( document ).ready(function() {
 	$.getJSON("data/projects.json", function(json) {
+		NUM_PROJECTS = json.projects.length;
+
+		HTMLProjects.push(new HTMLProject(json.projects[NUM_PROJECTS - 1]));
 	    for (var i = 0; i < json.projects.length; i++){
-	    	projects.push(new Project(json.projects[i]));
-	    	load(projects[i], initHeights);
+	    	HTMLProjects.push(new HTMLProject(json.projects[i]));
+	    	HTMLProjects[i].load(initHeights);
 	    }
+	    HTMLProjects.push(new HTMLProject(json.projects[0]));
+
 	});
 });
 
@@ -47,26 +28,8 @@ $( document ).ready(function() {
 //and we know the height of each project
 function main(){
 	console.log('all loaded');
-	var content = $('.content');
-
-	HTMLProjects.push(new HTMLProject(projects[projects.length - 1])); //push last to front
-
-	for (var i = 0; i < projects.length; i++){
-		HTMLProjects.push(new HTMLProject(projects[i]));
-	}
-
-	HTMLProjects.push(new HTMLProject(projects[0])); //push first project on back
 
 	$(window).scrollTop(HTMLProjects[0].getHeight());
-
-	$(document).alton({
-		fullSlideContainer: 'full', // Tell Alton the full height container
-		singleSlideClass: 'slide', // Tell Alton the full height slide class
-		useSlideNumbers: true, // Set to false if you don't want to use pagination
-		slideNumbersBorderColor: '#fff', // Set the outside color of the pagination items (also used for active)
-		slideNumbersColor: 'transparent', // Set the inner color of the pagination items (not active)
-		bodyContainer: 'pageWrapper', // Tell Alton the body class
-	});
 }
 
 function currentFocused (projects){
@@ -112,58 +75,102 @@ function handleInfScroll(scroll){
     }
 }
 
-// $('body').on({
-//     'mousewheel': function(e) {
-//         if (e.target.id == 'el') return;
-//         e.preventDefault();
-//         e.stopPropagation();
-//     }
-// });
-
 var scroll;
 var lastScroll = 0;
-$(window).scroll(function (event) {
+var scrollJack = 0;
 
-	lastScroll = scroll;
-    scroll = $(window).scrollTop();
-    
-    handleInfScroll(scroll);
-    handleBackground(scroll);
-    
-    scrolljack();
+$('body').on({
+    'mousewheel': function(e) {
+    	lastScroll = scroll;
+    	scroll = $(window).scrollTop();
+
+        if (e.target.id == 'el') return;
+
+        if(scrollJack){
+        	e.preventDefault();
+        	e.stopPropagation();
+    		return;
+    	}
+
+    	checkLock();
+    	handleInfScroll(scroll);
+	    handleBackground(scroll);
+
+	    
+    }
 });
 
 
-function scrolljack() {
-	var heightSoFar = 0;
-	var firstScroll = scroll; //test
-    for (var i = 0; i < HTMLProjects.length; i++){
-    	if (lastScroll < heightSoFar && 
-    		firstScroll >= heightSoFar &&
-    		firstScroll < heightSoFar + HTMLProjects[i].getHeight()){
-    			$(window).scrollTop(heightSoFar); //force it to go to top of project
 
-    			lockScroll();
-    			$(window).scrollTop(heightSoFar); //test
-    			setTimeout(function(){ 
-    				unlockScroll(); 
-    				$(window).scrollTop(heightSoFar); //test
-    			}, 1000);
-    			break;
+// $(window).scroll(function (event) {
+
+// 	lastScroll = scroll;
+//     scroll = $(window).scrollTop();
+    
+//     
+
+// });
+
+function checkLock (){
+    var heightSoFar = 0;
+    for (var i = 0; i < HTMLProjects.length; i++){
+    	if (lastScroll < heightSoFar &&
+    		scroll >= heightSoFar){
+    			$(window).scrollTop(heightSoFar);
+    			scrollJack = 1;
+    			setTimeout(function(){ scrollJack = 0; }, 1000);
+    			scroll = lastScroll;
     	}
     	heightSoFar += HTMLProjects[i].getHeight();
     }
 }
 
-function lockScroll(){
-	// lock scroll position, but retain settings for later
-	var html = jQuery('html');
-	html.data('previous-overflow', html.css('overflow'));
-	html.css('overflow', 'hidden');
+(function oneWheel(){
+	$(window).one('scroll',function(event, delta) {
+		
+	    
+
+
+		setTimeout(oneWheel,10)
+		return false
+	})
+})()
+
+
+
+
+// left: 37, up: 38, right: 39, down: 40,
+// spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
+var keys = {37: 1, 38: 1, 39: 1, 40: 1};
+
+function preventDefault(e) {
+  e = e || window.event;
+  if (e.preventDefault)
+      e.preventDefault();
+  e.returnValue = false;  
 }
 
-function unlockScroll(){
-	// un-lock scroll position
-	var html = jQuery('html');
-	html.css('overflow', html.data('previous-overflow'));
+function preventDefaultForScrollKeys(e) {
+    if (keys[e.keyCode]) {
+        preventDefault(e);
+        return false;
+    }
+}
+
+function disableScroll() {
+  if (window.addEventListener) // older FF
+      window.addEventListener('DOMMouseScroll', preventDefault, false);
+  window.onwheel = preventDefault; // modern standard
+  window.onmousewheel = document.onmousewheel = preventDefault; // older browsers, IE
+  window.ontouchmove  = preventDefault; // mobile
+  document.onkeydown  = preventDefaultForScrollKeys;
+}
+
+function enableScroll() {
+    if (window.removeEventListener)
+        window.removeEventListener('DOMMouseScroll', preventDefault, false);
+    window.onmousewheel = document.onmousewheel = null; 
+    window.onwheel = null; 
+    window.ontouchmove = null;  
+    document.onkeydown = null;  
 }
