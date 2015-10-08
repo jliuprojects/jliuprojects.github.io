@@ -7,6 +7,12 @@
             "colour" : "#00FF99",
             "images": [
                 {
+                    "url" : "assets/kid3.png"
+                },
+                {
+                    "url" : "assets/kid.png"
+                },
+                {
                     "url" : "assets/kid.png"
                 }
             ]
@@ -40,7 +46,7 @@
             "colour" : "#0000FF",
             "images": [
                 {
-                    "url" : "assets/kid2.png"
+                    "url" : "assets/kid3.png"
                 }
             ]
         },
@@ -62,7 +68,7 @@
             "colour" : "#CC66FF",
             "images": [
                 {
-                    "url" : "assets/kid2.png"
+                    "url" : "assets/kid3.png"
                 }
             ]
         },
@@ -73,7 +79,7 @@
             "colour" : "#00FF99",
             "images": [
                 {
-                    "url" : "assets/kid3.png"
+                    "url" : "assets/kid2.png"
                 }
             ]
         },
