@@ -1,0 +1,90 @@
+{
+    "projects": [
+        {
+            "title": "project 1",
+            "client": "asdfasdfasdfsadfasdasdfasf glossary",
+            "date": "example glossary",
+            "images": [
+                {
+                    "url" : "assets/kid.png"
+                }
+            ]
+        },
+        {
+            "title": "project 2",
+            "client": "asdfasdfasdfsadfasdasdfasf glossary",
+            "date": "example glossary",
+            "images": [
+                {
+                    "url" : "assets/kid.png"
+                }
+            ]
+        },
+        {
+            "title": "project 3",
+            "client": "asdfasdfasdfsadfasdasdfasf glossary",
+            "date": "example glossary",
+            "images": [
+                {
+                    "url" : "assets/kid.png"
+                }
+            ]
+        },
+        {
+            "title": "project 4",
+            "client": "example glossary",
+            "date": "example glossary",
+            "images": [
+                {
+                    "url" : "assets/kid2.png"
+                }
+            ]
+        },
+        {
+            "title": "project 5",
+            "client": "example glossary",
+            "date": "example glossary",
+            "images": [
+                {
+                    "url" : "assets/kid2.png"
+                }
+            ]
+        },
+        {
+            "title": "project 6",
+            "client": "example glossary",
+            "date": "example glossary",
+            "images": [
+                {
+                    "url" : "assets/kid2.png"
+                }
+            ]
+        },
+        {
+            "title": "project 7",
+            "client": "example glossary",
+            "date": "example glossary",
+            "images": [
+                {
+                    "url" : "assets/kid3.png"
+                }
+            ]
+        },
+        {
+            "title": "project 8",
+            "client": "example glossary",
+            "date": "234234234 glossary",
+            "images": [
+                {
+                    "url" : "assets/kid.png"
+                },
+                {
+                    "url" : "assets/kid.png"
+                },
+                {
+                    "url" : "assets/kid.png"
+                }
+            ]
+        }
+    ]
+}

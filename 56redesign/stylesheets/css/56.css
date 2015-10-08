@@ -1,0 +1,47 @@
+@import "http://webfonts.ru/import/america.css";
+body, html {
+	margin:0;
+}
+
+h1 {
+	font-family: 'America XIX';
+	font-size: 24pt;
+	font-weight: normal;
+}
+
+body {
+	-webkit-transition: background-color 1000ms linear;
+    -moz-transition: background-color 1000ms linear;
+    -o-transition: background-color 1000ms linear;
+    -ms-transition: background-color 1000ms linear;
+    transition: background-color 1000ms linear;
+}
+
+* {
+	/*border: dotted #000000 2px;*/
+}
+
+p {
+	font-family: 'Montserrat', sans-serif;
+	font-size: 8pt;
+	line-height: 18px;
+}
+
+.logo{
+	position: fixed;
+	width: 180px;
+	left: 8%;
+	top: 20px;
+	z-index: 565656;
+}
+
+.content {
+	position: relative;
+	top: 0;
+	width: 80%;
+	margin-left: 10%;
+}
+
+.project-img {
+	width: 100%;
+}
