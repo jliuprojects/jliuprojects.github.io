@@ -1,32 +1,30 @@
 var index = 0;
 var sets = [];
-var scrollLock = 3;
-
-var lockPoint = 0;
-var notScrolled = 1;
+var scrollLock1 = 10;
+var scrollLock2 = 10;
 
 var p1 = 0;
 var p2 = 0;
 var p3 = 0;
 
-function incrIndex (){
-	// for (var i = 0; i < n; i++){
+function incrIndex (n){
+	for (var i = 0; i < n; i++){
 		if (index < sets.length - 1){
 			index++;
 		}else{
 			index = 0;
 		}
-	// }
+	}
 }
 
-function decrIndex (){
-	// for (var i = 0; i < n; i++){
+function decrIndex (n){
+	for (var i = 0; i < n; i++){
 		if (index == 0){
 			index = sets.length - 1;
 		}else{
 			index--;
 		}
-	// }
+	}
 }
 
 $( document ).ready(function() {
@@ -40,40 +38,90 @@ $( document ).ready(function() {
 	    setTimeout(function(){
 
 	    	p1 = $(".content").height(); 
-	    	incrIndex();
+	    	incrIndex(1);
 	    	sets[index].attach($(".content"));
 	    	setTimeout(function(){ 
 	    		p2 = $(".content").height(); 
-	    		incrIndex();
+	    		incrIndex(1);
 	    		sets[index].attach($(".content"));
 	    		setTimeout(function(){ 
-	    			p3 = $(".content").height(); 
+	    			p3 = $(".content").height();
+	    			sets[0].incrOpacity(0.5);
+	    			$("body").css('background-color' , sets[0].getColour());
 	    		}, 0);
 	    	}, 0);
 	    }, 0);
 	});
 });
+
+
 var lastScrollTop = 0;
 $(window).scroll(function (event) {
-	console.log(p1);
-	    console.log(p2);
-	    console.log(p3);
     var scroll = $(window).scrollTop();
+
+    if (scroll > p1 - 500){
+    	if (sets[index].getOpacity() < 1){
+	    	decrIndex(1);
+	    	sets[index].incrOpacity(0.1);
+	    	incrIndex(1);
+    	}
+    }
+
+    if (scroll > p2 - 500){
+    	if (sets[index].getOpacity() < 1){
+	    	sets[index].incrOpacity(0.1);
+    	}
+    }
+
+    if (scroll >= 0 && scroll < 200){
+    	decrIndex(2);
+    	console.log(sets[index].getColour());
+    	$("body").css('background-color' , sets[index].getColour());
+    	incrIndex(2);
+    }
+
+    if (scroll >= p1 && scroll < p1 + 200){
+    	decrIndex(1);
+    	console.log(sets[index].getColour());
+    	$("body").css('background-color' , sets[index].getColour());
+    	incrIndex(1);
+    }
+
+    if (scroll >= p2 && scroll < p2 + 200){
+    	console.log(sets[index].getColour());
+    	$("body").css('background-color' , sets[index].getColour());
+    }
+
+
 
     if (scroll > lastScrollTop){
     	// downscroll code
 
+    	//scroll jacking
+    	if (scroll >= p1 && scroll < p1 + 300){
+	    	if (scrollLock1){
+	    		$(window).scrollTop(p1);
+
+	    		scrollLock1--;
+	    		return;
+	    	}
+	    }
+	    if (scroll >= p2 && scroll < p2 + 300){
+			if (scrollLock2){
+				$(window).scrollTop(p2);
+
+				scrollLock2--;
+				return;
+			}
+		}
+
        	//add/remove project
 	    if (scroll + $(window).height() >= p3){
-	    	decrIndex();
-	    	decrIndex();
+	    	decrIndex(2);
 
-	    	
 	    	sets[index].remove();
 
-	    	incrIndex();
-	    	incrIndex();
-	    	incrIndex();
+	    	incrIndex(3);
 	    	sets[index].attach($(".content"));
 	    	
 	    	$(window).scrollTop(scroll - p1);
@@ -86,6 +134,8 @@ $(window).scroll(function (event) {
 	    	p2 = p3 - tempp1;
 	    	setTimeout(function(){ 
 	    		p3 = $(".content").height(); 
+	    		scrollLock1 = 10;
+	    		scrollLock2 = 10;
 	    	}, 0); 
 	    }
    } else if (scroll < lastScrollTop){
@@ -94,14 +144,11 @@ $(window).scroll(function (event) {
     	//add/remove project
 	    if (scroll + $(window).height() <= p2){
 	    	sets[index].remove();
-	    	decrIndex();
-	    	decrIndex();
-	    	decrIndex();
+	    	decrIndex(3);
 	    	sets[index].prepend($(".content"));
 	    	$(window).scrollTop($(".content").height() - $(window).height());
 	    	lastScrollTop = scroll;
-	    	incrIndex();
-	    	incrIndex();
+	    	incrIndex(2);
 	    	setTimeout(function(){ 
 	    		$(window).scrollTop($(".content").height() - $(window).height());
 	    		lastScrollTop = $(window).scrollTop();
@@ -112,45 +159,16 @@ $(window).scroll(function (event) {
 		    	p1 = $(".content").height() - p2;
 		    	p2 = p1 + tempp1;
 	    		p3 = $(".content").height(); 
+
+	    		scrollLock1 = 10;
+	    		scrollLock2 = 10;
 	    	}, 0); 
 	    }
 
-   }
+	}
+
+
    lastScrollTop = scroll;
 
-
-    // console.log(scroll);
-    // if (scroll > 300){
-    // 	notScrolled = 0;
-    // }
-    
-    
-    // //remove project
-    // if (scroll > lockPoint){
-
-    // 	$(window).scrollTop(scroll - $(".content").height());
-    // 	notScrolled = 1;
-
-    // 	if (index == 0){
-    // 		sets[sets.length - 1].remove();
-    // 	}else{
-    // 		sets[index - 1].remove();
-    // 	}
-
-    // 	lockPoint = $(".content").height();
-    // }
-
-    // if (scroll == 0 && lastScroll == 0){
-    // 	if (index < sets.length - 1){
-    // 		index++;
-    // 	}else{
-    // 		index = 0;
-    // 	}
-
-    // 	sets[index].prepend($(".content"));
-    // }
-    // console.log("scroll height:" + (scroll + $(window).height()));
-    console.log("scroll:" + scroll);
-    console.log("lock point:" + p3);
-
+   console.log("lock point:" + p1);
 });

@@ -1,4 +1,5 @@
 function Set(project){
+	this.colour = project.colour;
 	this.html = []
 	this.html["title"] = $("<div class='project-title'>" + project.title + "</div>");
 	this.html["client"] = $("<div class='project-client'>" + project.client + "</div>");
@@ -10,13 +11,18 @@ function Set(project){
 		this.images.push($("<img class='project-img' src=" + project.images[i].url + ">"));
 	}
 	
+	this.getColour = function (){
+		return this.colour;
+	}
 	this.attach = function (dom){
 		for (var key in this.html) {
 		 	dom.append(this.html[key]);
+		 	this.html[key].css('opacity', '0.5');
 		}
 
 		for (var i = 0; i < this.images.length; i++){
 		 	dom.append(this.images[i]);
+		 	this.images[i].css('opacity', '0.5');
 		}
 	}
 
@@ -45,5 +51,22 @@ function Set(project){
 		for (var i = 0; i < this.images.length; i++){
 		 	this.images[i].remove();
 		}
+	}
+
+	this.incrOpacity = function (incr){
+		var opc;
+		for (var key in this.html) {
+		 	opc = this.html[key].css('opacity');
+		 	this.html[key].css('opacity', parseFloat(opc) + incr);
+		}
+
+		for (var i = 0; i < this.images.length; i++){
+			opc = this.html[key].css('opacity');
+		 	this.images[i].css('opacity', parseFloat(opc) + incr);
+		}
+	}
+
+	this.getOpacity = function(){
+		return this.images[0].css('opacity');
 	}
 }
