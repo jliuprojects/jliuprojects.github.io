@@ -141,8 +141,10 @@ $(window).scroll(function (event) {
    } else if (scroll < lastScrollTop){
     	// upscroll code
     	console.log("UPSCROLL");
+    	scrollLock1 = 10;
+    	scrollLock2 = 10;
     	//add/remove project
-	    if (scroll + $(window).height() <= p2){
+	    if (scroll + $(window).height() <= p2 && scroll > p1){
 	    	sets[index].remove();
 	    	decrIndex(3);
 	    	sets[index].prepend($(".content"));
@@ -160,8 +162,6 @@ $(window).scroll(function (event) {
 		    	p2 = p1 + tempp1;
 	    		p3 = $(".content").height(); 
 
-	    		scrollLock1 = 10;
-	    		scrollLock2 = 10;
 	    	}, 0); 
 	    }
 
