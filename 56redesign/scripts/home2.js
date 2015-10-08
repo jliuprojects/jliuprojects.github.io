@@ -18,7 +18,7 @@ function load (project, callback){
 	var count = 0;
 	div.children('img').load(function(){
 		count++;
-		console.log('imgloaded');
+
 		if (count == project.images.length){
 			div.remove();
 			callback();
@@ -47,29 +47,17 @@ $( document ).ready(function() {
 //and we know the height of each project
 function main(){
 	console.log('all loaded');
-
 	var content = $('.content');
 
 	HTMLProjects.push(new HTMLProject(projects[projects.length - 1])); //push last to front
 
 	for (var i = 0; i < projects.length; i++){
-		console.log(i + ":" + projects[i].getHeight());
 		HTMLProjects.push(new HTMLProject(projects[i]));
 	}
 
 	HTMLProjects.push(new HTMLProject(projects[0])); //push first project on back
 
-	var data = [];
-	var heightSoFar = 0;
-
-	// for (var i = 0; i < HTMLProject.length; i++){
-	// 	data.push({start: 0, end: heightSoFar + HTMLProjects[i].getHeight(), sTransform: "transform: translate(" + 0 + "px, " + 0+ "px)", eTransform: "transform: translate(" + 0 + "px, -" + HTMLProjects[i].getHeight() + "px)"});
-
-	// 	HTMLProjects[i].setData(data);
-	// }
 	$(window).scrollTop(HTMLProjects[0].getHeight());
-
-	console.log(content.height());
 }
 
 function currentFocused (projects){
@@ -81,26 +69,8 @@ function currentFocused (projects){
     return 0;
 }
 
-$(window).scroll(function (event) {
-    var scroll = $(window).scrollTop();
-    var totalHeight = 0;
-
-    for (var i = 0; i < HTMLProjects.length; i++){
-    	totalHeight += HTMLProjects[i].getHeight();
-    }
-
-    var p2 = totalHeight - HTMLProjects[HTMLProjects.length - 1].getHeight();
-    console.log(totalHeight);
-
-    if (scroll > p2){
-    	$(window).scrollTop(HTMLProjects[0].getHeight() + (scroll - p2));
-    }
-
-    if (scroll < HTMLProjects[0].getHeight()) {
-    	$(window).scrollTop( totalHeight - HTMLProjects[HTMLProjects.length - 1].getHeight() - (HTMLProjects[0].getHeight() - scroll));
-    }
-
-    var heightSoFar = 0;
+function handleBackground(scroll){
+	var heightSoFar = 0;
     var focused = currentFocused(HTMLProjects);
     for (var i = 0; i < HTMLProjects.length; i++){
     	if (!HTMLProjects[i].isFocused() && 
@@ -114,4 +84,65 @@ $(window).scroll(function (event) {
 
     	heightSoFar += HTMLProjects[i].getHeight();
     }
+}
+
+function handleInfScroll(scroll){
+	var totalHeight = 0;
+	for (var i = 0; i < HTMLProjects.length; i++){
+    	totalHeight += HTMLProjects[i].getHeight();
+    }
+
+    var p2 = totalHeight - HTMLProjects[HTMLProjects.length - 1].getHeight();
+
+    if (scroll > p2){
+    	$(window).scrollTop(HTMLProjects[0].getHeight() + (scroll - p2));
+    }
+
+    if (scroll < HTMLProjects[0].getHeight()) {
+    	$(window).scrollTop( totalHeight - HTMLProjects[HTMLProjects.length - 1].getHeight() - (HTMLProjects[0].getHeight() - scroll));
+    }
+}
+
+var scroll;
+var lastScroll = 0;
+$(window).scroll(function (event) {
+	lastScroll = scroll;
+    scroll = $(window).scrollTop();
+    
+    handleInfScroll(scroll);
+    handleBackground(scroll);
+    
+    scrolljack();
 });
+
+
+function scrolljack() {
+	var heightSoFar = 0;
+    for (var i = 0; i < HTMLProjects.length; i++){
+    	if (lastScroll < heightSoFar && 
+    		scroll >= heightSoFar &&
+    		scroll < heightSoFar + HTMLProjects[i].getHeight()){
+    			$(window).scrollTop(heightSoFar); //force it to go to top of project
+
+    			lockScroll();
+    			setTimeout(function(){ 
+    				unlockScroll(); 
+    			}, 1000);
+    			break;
+    	}
+    	heightSoFar += HTMLProjects[i].getHeight();
+    }
+}
+
+function lockScroll(){
+	// lock scroll position, but retain settings for later
+	var html = jQuery('html');
+	html.data('previous-overflow', html.css('overflow'));
+	html.css('overflow', 'hidden');
+}
+
+function unlockScroll(){
+	// un-lock scroll position
+	var html = jQuery('html');
+	html.css('overflow', html.data('previous-overflow'));
+}
