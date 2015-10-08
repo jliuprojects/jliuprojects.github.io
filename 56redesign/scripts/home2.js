@@ -118,7 +118,7 @@ $(window).scroll(function (event) {
 
 function scrolljack() {
 	var heightSoFar = 0;
-	var firstScroll = scroll;
+	var firstScroll = scroll; //test
     for (var i = 0; i < HTMLProjects.length; i++){
     	if (lastScroll < heightSoFar && 
     		firstScroll >= heightSoFar &&
@@ -126,8 +126,10 @@ function scrolljack() {
     			$(window).scrollTop(heightSoFar); //force it to go to top of project
 
     			lockScroll();
+    			$(window).scrollTop(heightSoFar); //test
     			setTimeout(function(){ 
     				unlockScroll(); 
+    				$(window).scrollTop(heightSoFar); //test
     			}, 1000);
     			break;
     	}
