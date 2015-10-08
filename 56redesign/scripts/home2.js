@@ -103,8 +103,8 @@ $('body').on({
 function checkLock (){
     var heightSoFar = 0;
     for (var i = 0; i < HTMLProjects.length; i++){
-    	if (lastScroll < heightSoFar - 200 &&
-    		scroll >= heightSoFar - 200){
+    	if (lastScroll < heightSoFar - 150 &&
+    		scroll >= heightSoFar - 150){
     			setTimeout(function(){ $(window).scrollTop(heightSoFar);}, 0);
 
     			scrollJack = 1;
