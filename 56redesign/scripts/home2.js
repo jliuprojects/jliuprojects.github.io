@@ -103,9 +103,18 @@ function handleInfScroll(scroll){
     }
 }
 
+$('body').on({
+    'mousewheel': function(e) {
+        if (e.target.id == 'el') return;
+        e.preventDefault();
+        e.stopPropagation();
+    }
+});
+
 var scroll;
 var lastScroll = 0;
 $(window).scroll(function (event) {
+
 	lastScroll = scroll;
     scroll = $(window).scrollTop();
     
