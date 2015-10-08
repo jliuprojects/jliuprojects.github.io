@@ -1,37 +1,30 @@
 function HTMLProject (project) {
-	this.colour = project.getColour();
+	this.colour = project.colour;
 	this.html = []
-	this.html["container"] = $("<div class='project-container'></div>");
-	this.html["title"] = $("<div class='project-title'>" + "<p>" + project.getTitle() + "</p></div>");
-	this.html["client"] = $("<div class='project-client'>" + "<p>" + project.getClient() + "</p></div>");
-	this.html["date"] = $("<div class='project-date'>" + "<p>" + project.getDate() + "</p></div>");
-	this.height = project.getHeight();
-	this.focused = false;
+	this.html["container"] = $("<div class='project-container slide'></div>");
+	this.html["title"] = $("<div class='project-title'>" + project.title + "</div>");
+	this.html["client"] = $("<div class='project-client'>" + project.client + "</div>");
+	this.html["date"] = $("<div class='project-date'>" + project.date + "</div>");
 
 	this.images = [];
 
-	for (var i = 0; i < project.getImages().length; i++){
-		this.images.push($("<img class='project-img' src=" + project.getImages()[i] + ">"));
+	this.images.push($("<img class='feature-img' src=" + project.images[0].url + ">"));
+	for (var i = 1; i < project.images.length; i++){
+		this.images.push($("<img class='project-img slide' src=" + project.images[i].url + ">"));
 	}
 
 	for (var key in this.html) {
 	 	this.html["container"].append(this.html[key]);
-	 	this.html[key].css('opacity', '0.5');
 	}
 
-	for (var i = 0; i < this.images.length; i++){
-	 	this.html["container"].append(this.images[i]);
-	 	this.images[i].css('opacity', '0.5');
-	}
+	this.html["container"].append(this.images[0]);
 
-	$('.content').append(this.html["container"]);
+	$('.full').append(this.html["container"]);
 
-	this.setData = function (data){
-		for (var i = 0; i < data.length; i++){
-			this.html["container"].attr("data-" + data[i].start, data[i].sTransform);
-			this.html["container"].attr("data-" + data[i].end, data[i].eTransform);
-		}
+	for (var i = 1; i < project.images.length; i++){
+		$('.full').append(this.images[i]);
 	}
+	
 
 	this.getHeight = function(){
 		return this.html["container"].height();
@@ -41,11 +34,18 @@ function HTMLProject (project) {
 		return this.colour;
 	}
 
-	this.setFocus = function(focus){
-		this.focused = focus;
-	}
+	var self = this;
+	this.load = function load (callback){
 
-	this.isFocused = function(){
-		return this.focused;
+		var count = 0;
+		for (var i = 0; i < self.images.length; i++){
+			this.images[i].load(function(){
+				count++;
+
+				if (count == self.images.length){
+					callback();
+				}
+			});
+		}
 	}
 }

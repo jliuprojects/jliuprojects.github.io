@@ -25,6 +25,9 @@
             "images": [
                 {
                     "url" : "assets/kid.png"
+                },
+                {
+                    "url" : "assets/kid.png"
                 }
             ]
         },
@@ -34,6 +37,9 @@
             "date": "example glossary",
             "colour" : "#CC66FF",
             "images": [
+                {
+                    "url" : "assets/kid.png"
+                },
                 {
                     "url" : "assets/kid.png"
                 }
@@ -47,6 +53,9 @@
             "images": [
                 {
                     "url" : "assets/kid3.png"
+                },
+                {
+                    "url" : "assets/kid.png"
                 }
             ]
         },
@@ -58,6 +67,9 @@
             "images": [
                 {
                     "url" : "assets/kid2.png"
+                },
+                {
+                    "url" : "assets/kid.png"
                 }
             ]
         },
@@ -69,6 +81,9 @@
             "images": [
                 {
                     "url" : "assets/kid2.png"
+                },
+                {
+                    "url" : "assets/kid.png"
                 }
             ]
         },
@@ -80,6 +95,9 @@
             "images": [
                 {
                     "url" : "assets/kid2.png"
+                },
+                {
+                    "url" : "assets/kid.png"
                 }
             ]
         },

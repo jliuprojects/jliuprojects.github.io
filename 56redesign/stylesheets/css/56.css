@@ -37,38 +37,42 @@ p {
 	z-index: 565656;
 }
 
-.content {
-	position: relative;
+.project-container {
+	font-family: 'Montserrat', sans-serif;
+	font-size: 8pt;
+	line-height: 18px;
+	padding-left: 10%;
+	/*height: 100%;*/
 	width: 80%;
-	margin-left: 10%;
-
-	max-height: 30000px;
-	overflow: auto;
-    -webkit-overflow-scrolling: touch;
-
+	/*padding: 10%;*/
 }
 
 .project-img {
-	width: 100%;
-	opacity: 0.4;
+	width: 80%;
+	padding: 10%;
+}
+
+.feature-img {
+	position: absolute;
+	height: 80%;
+	left: 50%;
 }
 
 .project-title {
-	padding-top: 100px;
-	margin-left: 10px;
-	opacity: 0.4;
+	position: relative;
+	top: 40%;
 }
 
 .project-client {
-	margin-left: 10px;
-	opacity: 0.4;
+	position: relative;
+	top: 45%;
 }
 
 .project-date {
-	margin-left: 10px;
-	opacity: 0.4;
+	position: relative;
+	top: 50%;
 }
-
+/*
 ::-webkit-scrollbar { 
     display: none; 
-}
+}*/

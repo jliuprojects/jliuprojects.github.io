@@ -4,7 +4,6 @@ function Project(project){
 	this.client = project.client;
 	this.date = project.date;
 	this.images = [];
-	this.height = 0;
 
 	for (var i = 0; i < project.images.length; i++){
 		this.images.push(project.images[i].url);
@@ -28,13 +27,5 @@ function Project(project){
 
 	this.getImages = function (){
 		return this.images;
-	}
-
-	this.getHeight = function (){
-		return this.height;
-	}
-
-	this.setHeight = function (height){
-		this.height = height;
 	}
 }
