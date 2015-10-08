@@ -118,10 +118,11 @@ $(window).scroll(function (event) {
 
 function scrolljack() {
 	var heightSoFar = 0;
+	var firstScroll = scroll;
     for (var i = 0; i < HTMLProjects.length; i++){
     	if (lastScroll < heightSoFar && 
-    		scroll >= heightSoFar &&
-    		scroll < heightSoFar + HTMLProjects[i].getHeight()){
+    		firstScroll >= heightSoFar &&
+    		firstScroll < heightSoFar + HTMLProjects[i].getHeight()){
     			$(window).scrollTop(heightSoFar); //force it to go to top of project
 
     			lockScroll();
