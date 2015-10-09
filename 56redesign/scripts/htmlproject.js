@@ -6,6 +6,7 @@ function HTMLProject (project) {
 	this.html["client"] = $("<div class='project-client'>" + project.client + "</div>");
 	this.html["date"] = $("<div class='project-date'>" + project.date + "</div>");
 	this.focused = false;
+	this.locked = false;
 
 	this.images = [];
 
@@ -36,6 +37,14 @@ function HTMLProject (project) {
 
 	this.setFocus = function(focus){
 		this.focused = focus;
+	}
+
+	this.isLocked = function(){
+		return this.locked;
+	}
+
+	this.setLock = function(lock){
+		this.locked = lock;
 	}
 
 	var self = this;
