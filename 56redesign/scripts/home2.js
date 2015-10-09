@@ -100,15 +100,15 @@ $('body').on({
 
 function checkLock (e){
     var heightSoFar = 0;
-    var scrollDist = 0;
+    // var scrollDist = 0;
 
-    if (e.originalEvent.wheelDeltaY < 0){
-    	scrollDist += Math.abs(e.originalEvent.wheelDeltaY);
-    }
-    
+    // if (e.originalEvent.wheelDeltaY < 0){
+    // 	scrollDist += Math.abs(e.originalEvent.wheelDeltaY);
+    // }
+
     for (var i = 0; i < HTMLProjects.length; i++){
-    	if (lastScroll + scrollDist < heightSoFar &&
-    		scroll + scrollDist >= heightSoFar){
+    	if (lastScroll < heightSoFar - 150 &&
+    		scroll  >= heightSoFar - 150){
     			// setTimeout(function(){ $(window).scrollTop(heightSoFar);}, 0);
 
     			scrollJack = 1;
