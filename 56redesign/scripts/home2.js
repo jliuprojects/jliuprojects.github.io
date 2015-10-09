@@ -2,6 +2,10 @@ var HTMLProjects = [];
 var projectsInited = 0;
 var NUM_PROJECTS = 0;
 
+var scroll;
+var lastScroll = 0;
+var scrollJack = 0;
+
 function initHeights(){
 	projectsInited++;
 
@@ -24,15 +28,6 @@ $( document ).ready(function() {
 	});
 });
 
-//at this point we have all project data loaded
-//and we know the height of each project
-function main(){
-	console.log('all loaded');
-	HTMLProjects[1].setLock(true);
-	$("body").css('background-color' , HTMLProjects[1].getColour());
-	$(window).scrollTop(HTMLProjects[0].getHeight());
-}
-
 function currentFocused (projects){
 	for (var i = 0; i < projects.length; i++){
     	if (projects[i].isFocused()){
@@ -41,34 +36,6 @@ function currentFocused (projects){
     }
     return 0;
 }
-
-function handleBackground(scroll, e){
-	var heightSoFar = 0;
-	var scrollDist = 0;
-
-    if (e.originalEvent.wheelDeltaY < 0){
-    	scrollDist += Math.abs(e.originalEvent.wheelDeltaY);
-    }
-    var focused = currentFocused(HTMLProjects);
-    for (var i = 0; i < HTMLProjects.length; i++){
-    	if (!HTMLProjects[i].isFocused() && 
-    		scroll + scrollDist >= heightSoFar){
-    			$("body").css('background-color' , HTMLProjects[i].getColour());
-    			HTMLProjects[focused].setFocus(false);
-    			HTMLProjects[i].setFocus(true);
-    			break;
-    	}
-
-    	heightSoFar += HTMLProjects[i].getHeight();
-    }
-}
-
-
-var scroll;
-var lastScroll = 0;
-var scrollJack = 0;
-var first = 1;
-
 
 function handleInfScroll(scroll){
 	var totalHeight = 0;
@@ -95,7 +62,94 @@ function handleInfScroll(scroll){
     return 0;
 }
 
+// function handleOpacity (){
+// 	for (var i = 1; i < HTMLProjects.length; i++){
+    	
+//     	if (!HTMLProjects[i].isLocked() && 
+//     		scroll + scrollDist >= heightSoFar &&
+//     		scroll + scrollDist < heightSoFar + HTMLProjects[i].getHeight() &&
+//     		lastScroll + scrollDist < heightSoFar){
+    			
+// 	    		break;
+//     	}
+//     	heightSoFar += HTMLProjects[i].getHeight();
+//     }
+// }
 
+function checkFocus (e){
+    var heightSoFar = HTMLProjects[0].getHeight();
+    var scrollDist = 0;
+
+    if (e.originalEvent.wheelDeltaY < 0){
+    	scrollDist += Math.abs(e.originalEvent.wheelDeltaY);
+    }else{
+    	return;
+    }
+
+    for (var i = 1; i < HTMLProjects.length; i++){
+    	
+    	if (!HTMLProjects[i].isFocused() && 
+    		scroll + scrollDist >= heightSoFar &&
+    		scroll + scrollDist < heightSoFar + HTMLProjects[i].getHeight() &&
+    		lastScroll + scrollDist < heightSoFar){
+    			HTMLProjects[i].setFocus(true);
+    			scrollJack = 1;
+    			// $("body").css('background-color' , HTMLProjects[i].getColour());
+    			setTimeout(function(){ $(window).scrollTop(heightSoFar);}, 0);
+    			setTimeout(function(){ 
+    				scrollJack = 0;
+    			}, 500);
+    			
+	    		for (var k = 0; k < HTMLProjects.length; k++){
+	    			if (i != k){
+	    				HTMLProjects[k].setFocus(false);
+	    			}
+	    		}
+	    		break;
+    	}
+    	heightSoFar += HTMLProjects[i].getHeight();
+    }
+}
+
+function handleBackground (e){
+    var heightSoFar = HTMLProjects[0].getHeight();
+    var scrollDist = 0;
+
+    if (e.originalEvent.wheelDeltaY < 0){
+    	scrollDist += Math.abs(e.originalEvent.wheelDeltaY);
+    }
+
+    for (var i = 1; i < HTMLProjects.length; i++){
+    	
+    	if (scroll + scrollDist >= heightSoFar &&
+    		scroll + scrollDist < heightSoFar + HTMLProjects[i].getHeight()){
+    			$("body").css('background-color' , HTMLProjects[i].getColour());
+	    		break;
+    	}
+    	heightSoFar += HTMLProjects[i].getHeight();
+    }
+}
+
+function handleOpacity (e){
+    var heightSoFar = HTMLProjects[0].getHeight();
+    var scrollDist = 1;
+
+    if (e.originalEvent.wheelDeltaY < 0){
+    	scrollDist = Math.abs(e.originalEvent.wheelDeltaY);
+    }
+
+    for (var i = 1; i < HTMLProjects.length; i++){
+    	
+    	if (scroll + scrollDist >= heightSoFar - 1000 &&
+    		scroll + scrollDist < heightSoFar + HTMLProjects[i].getHeight()){
+    			if (HTMLProjects[i].html["container"].css('opacity') < 1){
+    				HTMLProjects[i].html["container"].css('opacity', parseFloat(HTMLProjects[i].html["container"].css('opacity')) + 0.1*scrollDist);
+    			}
+	    		break;
+    	}
+    	heightSoFar += HTMLProjects[i].getHeight();
+    }
+}
 
 $('body').on({
     'mousewheel': function(e) {
@@ -110,78 +164,18 @@ $('body').on({
     		return;
     	}
     	if (!handleInfScroll(scroll)){
-    		checkLock(e);
+    		checkFocus(e);
     	}
-    	handleBackground(scroll, e);
+
+    	handleBackground(e);
+    	handleOpacity(e);
     }
 });
 
-function checkLock (e){
-    var heightSoFar = HTMLProjects[0].getHeight();
-    var scrollDist = 0;
-
-    if (e.originalEvent.wheelDeltaY < 0){
-    	scrollDist += Math.abs(e.originalEvent.wheelDeltaY);
-    }else{
-    	return;
-    }
-
-    for (var i = 1; i < HTMLProjects.length; i++){
-    	
-    	if (!HTMLProjects[i].isLocked() && 
-    		scroll + scrollDist >= heightSoFar &&
-    		scroll + scrollDist < heightSoFar + HTMLProjects[i].getHeight() &&
-    		lastScroll + scrollDist < heightSoFar){
-    			HTMLProjects[i].setLock(true);
-    			scrollJack = 1;
-    			setTimeout(function(){ $(window).scrollTop(heightSoFar);}, 0);
-    			setTimeout(function(){ 
-    				scrollJack = 0;
-    			}, 500);
-    			
-	    		for (var k = 0; k < HTMLProjects.length; k++){
-	    			if (i != k){
-	    				HTMLProjects[k].setLock(false);
-	    			}
-	    		}
-	    		break;
-    	}
-    	heightSoFar += HTMLProjects[i].getHeight();
-    }
-}
-
-// left: 37, up: 38, right: 39, down: 40,
-// spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
-var keys = {37: 1, 38: 1, 39: 1, 40: 1};
-
-function preventDefault(e) {
-  e = e || window.event;
-  if (e.preventDefault)
-      e.preventDefault();
-  e.returnValue = false;  
-}
-
-function preventDefaultForScrollKeys(e) {
-    if (keys[e.keyCode]) {
-        preventDefault(e);
-        return false;
-    }
-}
-
-function disableScroll() {
-  if (window.addEventListener) // older FF
-      window.addEventListener('DOMMouseScroll', preventDefault, false);
-  window.onwheel = preventDefault; // modern standard
-  window.onmousewheel = document.onmousewheel = preventDefault; // older browsers, IE
-  window.ontouchmove  = preventDefault; // mobile
-  document.onkeydown  = preventDefaultForScrollKeys;
-}
-
-function enableScroll() {
-    if (window.removeEventListener)
-        window.removeEventListener('DOMMouseScroll', preventDefault, false);
-    window.onmousewheel = document.onmousewheel = null; 
-    window.onwheel = null; 
-    window.ontouchmove = null;  
-    document.onkeydown = null;  
+function main(){
+	console.log('all loaded');
+	HTMLProjects[1].setFocus(true);
+	HTMLProjects[1].html["container"].css('opacity', '1');
+	$("body").css('background-color' , HTMLProjects[1].getColour());
+	$(window).scrollTop(HTMLProjects[0].getHeight());
 }

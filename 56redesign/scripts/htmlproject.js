@@ -1,16 +1,17 @@
 function HTMLProject (project) {
+
 	this.colour = project.colour;
+	this.focused = false;
+
 	this.html = []
-	this.html["container"] = $("<div class='project-container slide'></div>");
+	this.html["container"] = $("<div class='project-container'></div>");
 	this.html["title"] = $("<div class='project-title'>" + project.title + "</div>");
 	this.html["client"] = $("<div class='project-client'>" + project.client + "</div>");
 	this.html["date"] = $("<div class='project-date'>" + project.date + "</div>");
-	this.focused = false;
-	this.locked = false;
+	
 
 	this.images = [];
 
-	// this.images.push($("<img class='feature-img' src=" + project.images[0].url + ">"));
 	for (var i = 0; i < project.images.length; i++){
 		this.images.push($("<img class='project-img slide' src=" + project.images[i].url + ">"));
 	}
@@ -39,20 +40,12 @@ function HTMLProject (project) {
 		this.focused = focus;
 	}
 
-	this.isLocked = function(){
-		return this.locked;
-	}
-
-	this.setLock = function(lock){
-		this.locked = lock;
-	}
-
 	var self = this;
 	this.load = function load (callback){
 
 		var count = 0;
 		for (var i = 0; i < self.images.length; i++){
-			this.images[i].load(function(){
+			self.images[i].load(function(){
 				count++;
 
 				if (count == self.images.length){
