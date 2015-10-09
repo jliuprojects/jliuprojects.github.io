@@ -109,9 +109,9 @@ function checkLock (e){
     for (var i = 1; i < HTMLProjects.length; i++){
     	if (!HTMLProjects[i].isLocked() && 
     		scroll + scrollDist >= heightSoFar){
-    			// setTimeout(function(){ $(window).scrollTop(heightSoFar);}, 0);
     			HTMLProjects[i].setLock(true);
     			scrollJack = 1;
+    			setTimeout(function(){ $(window).scrollTop(heightSoFar);}, 0);
     			setTimeout(function(){ 
     				scrollJack = 0;
     			}, 500);
