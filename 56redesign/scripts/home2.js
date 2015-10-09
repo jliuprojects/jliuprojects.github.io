@@ -132,18 +132,13 @@ function handleBackground (e){
 
 function handleOpacity (e){
     var heightSoFar = HTMLProjects[0].getHeight();
-    var scrollDist = 1;
-
-    if (e.originalEvent.wheelDeltaY < 0){
-    	scrollDist = Math.abs(e.originalEvent.wheelDeltaY);
-    }
 
     for (var i = 1; i < HTMLProjects.length; i++){
     	
-    	if (scroll + scrollDist >= heightSoFar - 1000 &&
-    		scroll + scrollDist < heightSoFar + HTMLProjects[i].getHeight()){
+    	if (scroll + $(window).height() >= heightSoFar - 1000 &&
+    		scroll + $(window).height() < heightSoFar + HTMLProjects[i].getHeight()){
     			if (HTMLProjects[i].html["container"].css('opacity') < 1){
-    				HTMLProjects[i].html["container"].css('opacity', parseFloat(HTMLProjects[i].html["container"].css('opacity')) + 0.1*scrollDist);
+    				HTMLProjects[i].html["container"].css('opacity', parseFloat(HTMLProjects[i].html["container"].css('opacity')) + 0.1);
     			}
 	    		break;
     	}

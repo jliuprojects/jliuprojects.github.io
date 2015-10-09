@@ -22,7 +22,7 @@ function HTMLProject (project) {
 
 	this.html["container"].append(this.images);
 
-	$('.full').append(this.html["container"]);
+	$('.scrolling-content').append(this.html["container"]);
 
 	this.getHeight = function(){
 		return this.html["container"].height();
