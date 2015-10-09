@@ -28,7 +28,8 @@ $( document ).ready(function() {
 //and we know the height of each project
 function main(){
 	console.log('all loaded');
-
+	HTMLProjects[1].setLock(true);
+	$("body").css('background-color' , HTMLProjects[1].getColour());
 	$(window).scrollTop(HTMLProjects[0].getHeight());
 }
 
@@ -41,13 +42,17 @@ function currentFocused (projects){
     return 0;
 }
 
-function handleBackground(scroll){
+function handleBackground(scroll, e){
 	var heightSoFar = 0;
+	var scrollDist = 0;
+
+    if (e.originalEvent.wheelDeltaY < 0){
+    	scrollDist += Math.abs(e.originalEvent.wheelDeltaY);
+    }
     var focused = currentFocused(HTMLProjects);
     for (var i = 0; i < HTMLProjects.length; i++){
     	if (!HTMLProjects[i].isFocused() && 
-    		scroll >= heightSoFar &&
-    		scroll < heightSoFar + HTMLProjects[i].getHeight()){
+    		scroll + scrollDist >= heightSoFar){
     			$("body").css('background-color' , HTMLProjects[i].getColour());
     			HTMLProjects[focused].setFocus(false);
     			HTMLProjects[i].setFocus(true);
@@ -78,6 +83,7 @@ function handleInfScroll(scroll){
 var scroll;
 var lastScroll = 0;
 var scrollJack = 0;
+var first = 1;
 
 $('body').on({
     'mousewheel': function(e) {
@@ -91,10 +97,11 @@ $('body').on({
         	e.stopPropagation();
     		return;
     	}
-
+    	handleBackground(scroll, e);
     	checkLock(e);
+    	
     	handleInfScroll(scroll);
-	    handleBackground(scroll);	    
+	    	    
     }
 });
 
