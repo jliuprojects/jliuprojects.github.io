@@ -48,6 +48,18 @@ p {
 	/*padding: 10%;*/
 }
 
+.project-container:nth-of-type(2) .project-img:first-of-type{
+	width: 100%;
+	padding-bottom: 100px;
+	opacity: 1;
+}
+
+.project-container:last-of-type .project-img:first-of-type{
+	width: 100%;
+	padding-bottom: 100px;
+	opacity: 1;
+}
+
 .project-img {
 	width: 100%;
 	padding-bottom: 100px;
@@ -69,5 +81,5 @@ p {
 }
 
 ::-webkit-scrollbar { 
-    display: none; 
+    /*display: none; */
 }

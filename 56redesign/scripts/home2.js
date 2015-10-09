@@ -2,7 +2,7 @@ var HTMLProjects = [];
 var projectsInited = 0;
 var NUM_PROJECTS = 0;
 
-var scroll;
+var scroll = 0;
 var lastScroll = 0;
 var scrollJack = 0;
 
@@ -136,7 +136,7 @@ function handleOpacity (e){
     for (var i = 1; i < HTMLProjects.length; i++){
     	for (var j = 0; j < HTMLProjects[i].getImages().length; j++){
     		if (lastScroll <  HTMLProjects[i].getImages()[j].offset().top - HTMLProjects[i].getImages()[j].height() &&
-    			scroll >= HTMLProjects[i].getImages()[j].offset().top - HTMLProjects[i].getImages()[j].height()) {
+    			scroll > HTMLProjects[i].getImages()[j].offset().top - HTMLProjects[i].getImages()[j].height()) {
     				HTMLProjects[i].getImages()[j].animate({opacity: 1}, 1000);
     				return;
 			}
@@ -176,7 +176,6 @@ $('body').on({
 function main(){
 	console.log('all loaded');
 	HTMLProjects[1].setFocus(true);
-	HTMLProjects[1].html["container"].css('opacity', '1');
 	$("body").css('background-color' , HTMLProjects[1].getColour());
 	$(window).scrollTop(HTMLProjects[0].getHeight());
 }
