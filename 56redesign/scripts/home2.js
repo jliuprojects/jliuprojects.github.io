@@ -92,17 +92,22 @@ $('body').on({
     		return;
     	}
 
-    	checkLock();
+    	checkLock(e);
     	handleInfScroll(scroll);
 	    handleBackground(scroll);	    
     }
 });
 
-function checkLock (){
+function checkLock (e){
     var heightSoFar = 0;
+    var scrollDist = 10;
+
+    if (Math.abs(e.originalEvent.deltaY)){
+    	scrollDist += Math.abs(e.originalEvent.deltaY);
+    }
     for (var i = 0; i < HTMLProjects.length; i++){
-    	if (lastScroll < heightSoFar - 150 &&
-    		scroll >= heightSoFar - 150){
+    	if (lastScroll < heightSoFar - scrollDist &&
+    		scroll >= heightSoFar - scrollDist){
     			// setTimeout(function(){ $(window).scrollTop(heightSoFar);}, 0);
 
     			scrollJack = 1;
