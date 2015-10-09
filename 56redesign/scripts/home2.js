@@ -63,6 +63,13 @@ function handleBackground(scroll, e){
     }
 }
 
+
+var scroll;
+var lastScroll = 0;
+var scrollJack = 0;
+var first = 1;
+
+
 function handleInfScroll(scroll){
 	var totalHeight = 0;
 	for (var i = 0; i < HTMLProjects.length; i++){
@@ -71,19 +78,24 @@ function handleInfScroll(scroll){
 
     var p2 = totalHeight - HTMLProjects[HTMLProjects.length - 1].getHeight();
 
-    if (scroll > p2){
+    if (scroll >= p2){
     	$(window).scrollTop(HTMLProjects[0].getHeight() + (scroll - p2));
+    	scroll = HTMLProjects[0].getHeight() + (scroll - p2);
+    	lastScroll = HTMLProjects[0].getHeight() + (scroll - p2);
+    	return 1;
     }
 
-    if (scroll < HTMLProjects[0].getHeight()) {
+    if (scroll <= HTMLProjects[0].getHeight()) {
     	$(window).scrollTop( totalHeight - HTMLProjects[HTMLProjects.length - 1].getHeight() - (HTMLProjects[0].getHeight() - scroll));
+    	scroll =  totalHeight - HTMLProjects[HTMLProjects.length - 1].getHeight() - (HTMLProjects[0].getHeight() - scroll);
+    	lastScroll =  totalHeight - HTMLProjects[HTMLProjects.length - 1].getHeight() - (HTMLProjects[0].getHeight() - scroll);
+
+    	return 1;
     }
+    return 0;
 }
 
-var scroll;
-var lastScroll = 0;
-var scrollJack = 0;
-var first = 1;
+
 
 $('body').on({
     'mousewheel': function(e) {
@@ -97,11 +109,10 @@ $('body').on({
         	e.stopPropagation();
     		return;
     	}
+    	if (!handleInfScroll(scroll)){
+    		checkLock(e);
+    	}
     	handleBackground(scroll, e);
-    	checkLock(e);
-    	
-    	handleInfScroll(scroll);
-	    	    
     }
 });
 
@@ -111,18 +122,29 @@ function checkLock (e){
 
     if (e.originalEvent.wheelDeltaY < 0){
     	scrollDist += Math.abs(e.originalEvent.wheelDeltaY);
+    }else{
+    	return;
     }
 
     for (var i = 1; i < HTMLProjects.length; i++){
+    	
     	if (!HTMLProjects[i].isLocked() && 
-    		scroll + scrollDist >= heightSoFar){
+    		scroll + scrollDist >= heightSoFar &&
+    		scroll + scrollDist < heightSoFar + HTMLProjects[i].getHeight() &&
+    		lastScroll + scrollDist < heightSoFar){
     			HTMLProjects[i].setLock(true);
     			scrollJack = 1;
     			setTimeout(function(){ $(window).scrollTop(heightSoFar);}, 0);
     			setTimeout(function(){ 
     				scrollJack = 0;
     			}, 500);
-    			break;
+    			
+	    		for (var k = 0; k < HTMLProjects.length; k++){
+	    			if (i != k){
+	    				HTMLProjects[k].setLock(false);
+	    			}
+	    		}
+	    		break;
     	}
     	heightSoFar += HTMLProjects[i].getHeight();
     }
