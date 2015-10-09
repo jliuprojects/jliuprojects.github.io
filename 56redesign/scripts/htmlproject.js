@@ -13,7 +13,7 @@ function HTMLProject (project) {
 	this.images = [];
 
 	for (var i = 0; i < project.images.length; i++){
-		this.images.push($("<img class='project-img slide' src=" + project.images[i].url + ">"));
+		this.images.push($("<img class='project-img' src=" + project.images[i].url + ">"));
 	}
 
 	for (var key in this.html) {
@@ -30,6 +30,10 @@ function HTMLProject (project) {
 
 	this.getColour = function(){
 		return this.colour;
+	}
+
+	this.getImages = function(){
+		return this.images;
 	}
 
 	this.isFocused = function(){

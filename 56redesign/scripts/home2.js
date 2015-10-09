@@ -131,18 +131,24 @@ function handleBackground (e){
 }
 
 function handleOpacity (e){
-    var heightSoFar = HTMLProjects[0].getHeight();
+    // var heightSoFar = HTMLProjects[0].getHeight();
 
     for (var i = 1; i < HTMLProjects.length; i++){
-    	
-    	if (scroll + $(window).height() >= heightSoFar - 1000 &&
-    		scroll + $(window).height() < heightSoFar + HTMLProjects[i].getHeight()){
-    			if (HTMLProjects[i].html["container"].css('opacity') < 1){
-    				HTMLProjects[i].html["container"].css('opacity', parseFloat(HTMLProjects[i].html["container"].css('opacity')) + 0.1);
-    			}
-	    		break;
+    	for (var j = 0; j < HTMLProjects[i].getImages().length; j++){
+    		if (lastScroll <  HTMLProjects[i].getImages()[j].offset().top - HTMLProjects[i].getImages()[j].height() &&
+    			scroll >= HTMLProjects[i].getImages()[j].offset().top - HTMLProjects[i].getImages()[j].height()) {
+    				HTMLProjects[i].getImages()[j].animate({opacity: 1}, 1000);
+    				return;
+			}
     	}
-    	heightSoFar += HTMLProjects[i].getHeight();
+    	// if (scroll + $(window).height() >= heightSoFar - 1000 &&
+    	// 	scroll + $(window).height() < heightSoFar + HTMLProjects[i].getHeight()){
+    	// 		if (HTMLProjects[i].html["container"].css('opacity') < 1){
+    	// 			HTMLProjects[i].html["container"].css('opacity', parseFloat(HTMLProjects[i].html["container"].css('opacity')) + 0.1);
+    	// 		}
+	    // 		break;
+    	// }
+    	// heightSoFar += HTMLProjects[i].getHeight();
     }
 }
 

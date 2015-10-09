@@ -46,12 +46,12 @@ p {
 	width: 70%;
 	margin-left: 15%;
 	/*padding: 10%;*/
-	opacity: 0.3;
 }
 
 .project-img {
 	width: 100%;
 	padding-bottom: 100px;
+	opacity: 0;
 }
 
 .project-title {
