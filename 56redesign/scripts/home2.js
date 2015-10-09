@@ -104,9 +104,8 @@ function checkLock (e){
 
     if (e.originalEvent.wheelDeltaY < 0){
     	scrollDist += Math.abs(e.originalEvent.wheelDeltaY);
-    }else{
-    	return;
     }
+    
     for (var i = 0; i < HTMLProjects.length; i++){
     	if (lastScroll + scrollDist < heightSoFar &&
     		scroll + scrollDist >= heightSoFar){
