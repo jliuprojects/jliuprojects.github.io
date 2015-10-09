@@ -94,9 +94,7 @@ $('body').on({
 
     	checkLock();
     	handleInfScroll(scroll);
-	    handleBackground(scroll);
-
-	    
+	    handleBackground(scroll);	    
     }
 });
 
@@ -105,12 +103,12 @@ function checkLock (){
     for (var i = 0; i < HTMLProjects.length; i++){
     	if (lastScroll < heightSoFar - 150 &&
     		scroll >= heightSoFar - 150){
-    			setTimeout(function(){ $(window).scrollTop(heightSoFar);}, 0);
+    			// setTimeout(function(){ $(window).scrollTop(heightSoFar);}, 0);
 
     			scrollJack = 1;
     			setTimeout(function(){ 
     				scrollJack = 0;
-    			}, 1000);
+    			}, 500);
     			scroll = lastScroll;
     			break;
     	}
