@@ -35,7 +35,7 @@ function HTMLProject (project) {
 	}
 
 	this.setFocus = function(focus){
-		this.focused = focused;
+		this.focused = focus;
 	}
 
 	var self = this;
