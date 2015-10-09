@@ -31,11 +31,11 @@ function HTMLProject (project) {
 	}
 
 	this.isFocused = function(){
-		return this.Focus;
+		return this.focused;
 	}
 
 	this.setFocus = function(focus){
-		this.Focus = focus;
+		this.Focus = focused;
 	}
 
 	var self = this;

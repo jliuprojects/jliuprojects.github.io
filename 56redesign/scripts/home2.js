@@ -100,21 +100,22 @@ $('body').on({
 
 function checkLock (e){
     var heightSoFar = 0;
-    var scrollDist = 10;
+    var scrollDist = 0;
 
-    if (Math.abs(e.originalEvent.deltaY)){
-    	scrollDist += Math.abs(e.originalEvent.deltaY);
+    if (e.originalEvent.wheelDeltaY < 0){
+    	scrollDist += Math.abs(e.originalEvent.wheelDeltaY);
+    }else{
+    	return;
     }
     for (var i = 0; i < HTMLProjects.length; i++){
-    	if (lastScroll < heightSoFar - scrollDist &&
-    		scroll >= heightSoFar - scrollDist){
+    	if (lastScroll + scrollDist < heightSoFar &&
+    		scroll + scrollDist >= heightSoFar){
     			// setTimeout(function(){ $(window).scrollTop(heightSoFar);}, 0);
 
     			scrollJack = 1;
     			setTimeout(function(){ 
     				scrollJack = 0;
     			}, 500);
-    			scroll = lastScroll;
     			break;
     	}
     	heightSoFar += HTMLProjects[i].getHeight();
