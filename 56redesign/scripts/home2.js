@@ -62,20 +62,6 @@ function handleInfScroll(scroll){
     return 0;
 }
 
-// function handleOpacity (){
-// 	for (var i = 1; i < HTMLProjects.length; i++){
-    	
-//     	if (!HTMLProjects[i].isLocked() && 
-//     		scroll + scrollDist >= heightSoFar &&
-//     		scroll + scrollDist < heightSoFar + HTMLProjects[i].getHeight() &&
-//     		lastScroll + scrollDist < heightSoFar){
-    			
-// 	    		break;
-//     	}
-//     	heightSoFar += HTMLProjects[i].getHeight();
-//     }
-// }
-
 function checkFocus (e){
     var heightSoFar = HTMLProjects[0].getHeight();
     var scrollDist = 0;
@@ -94,7 +80,6 @@ function checkFocus (e){
     		lastScroll + scrollDist < heightSoFar){
     			HTMLProjects[i].setFocus(true);
     			scrollJack = 1;
-    			// $("body").css('background-color' , HTMLProjects[i].getColour());
     			setTimeout(function(){ $(window).scrollTop(heightSoFar);}, 0);
     			setTimeout(function(){ 
     				scrollJack = 0;
@@ -143,6 +128,13 @@ function handleOpacity (e){
     }
 }
 
+$( window ).resize(function() {
+	console.log("RESIZE");
+	setTimeout(function(){ 
+		$(window).scrollTop(scroll);
+	}, 0);
+});
+
 $('body').on({
     'mousewheel': function(e) {
     	lastScroll = scroll;
@@ -166,7 +158,11 @@ $('body').on({
 
 function main(){
 	console.log('all loaded');
+	scroll = HTMLProjects[0].getHeight();
 	HTMLProjects[1].setFocus(true);
 	$("body").css('background-color' , HTMLProjects[1].getColour());
 	$(window).scrollTop(HTMLProjects[0].getHeight());
+
+	$(".work").html('Work');
+	$(".info").html('Info');
 }

@@ -20,6 +20,7 @@
         {
             "title": "project 2",
             "subtitle": "Revamped portfolio site built for Toronto-based film and design stupid Kid.",
+            "description": "<a href='http://new.kidstudio.co'>new.kidstudio.co</a>",
             "colour" : "#C9D3F2",
             "images": [
                 {
@@ -33,6 +34,7 @@
         {
             "title": "project 3",
             "subtitle": "Revamped portfolio site built for Toronto-based film and design stupid Kid.",
+            "description": "<a href='http://new.kidstudio.co'>new.kidstudio.co</a>",
             "date": "example glossary",
             "colour" : "#F2CCC9",
             "images": [
@@ -47,6 +49,7 @@
         {
             "title": "project 4",
             "subtitle": "Revamped portfolio site built for Toronto-based film and design stupid Kid.",
+            "description": "<a href='http://new.kidstudio.co'>new.kidstudio.co</a>",
             "colour" : "#D2F2C9",
             "images": [
                 {
@@ -60,6 +63,7 @@
         {
             "title": "project 5",
             "subtitle": "Revamped portfolio site built for Toronto-based film and design stupid Kid.",
+            "description": "<a href='http://new.kidstudio.co'>new.kidstudio.co</a>",
             "colour" : "#F2CCC9",
             "images": [
                 {
@@ -73,6 +77,7 @@
         {
             "title": "project 6",
             "subtitle": "Revamped portfolio site built for Toronto-based film and design stupid Kid.",
+            "description": "<a href='http://new.kidstudio.co'>new.kidstudio.co</a>",
             "colour" : "#C9D3F2",
             "images": [
                 {
@@ -86,6 +91,7 @@
         {
             "title": "project 7",
             "subtitle": "Revamped portfolio site built for Toronto-based film and design stupid Kid.",
+            "description": "<a href='http://new.kidstudio.co'>new.kidstudio.co</a>",
             "colour" : "#EBEAC0",
             "images": [
                 {
@@ -99,6 +105,7 @@
         {
             "title": "project 8",
             "subtitle": "Revamped portfolio site built for Toronto-based film and design stupid Kid.",
+            "description": "<a href='http://new.kidstudio.co'>new.kidstudio.co</a>",
             "colour" : "#D2F2C9",
             "images": [
                 {
