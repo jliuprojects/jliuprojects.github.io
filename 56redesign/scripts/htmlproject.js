@@ -5,10 +5,8 @@ function HTMLProject (project) {
 
 	this.html = []
 	this.html["container"] = $("<div class='project-container'></div>");
-	this.html["title"] = $("<div class='project-title'>" + project.title + "</div>");
-	this.html["client"] = $("<div class='project-client'>" + project.client + "</div>");
-	this.html["date"] = $("<div class='project-date'>" + project.date + "</div>");
-	
+	this.html["title"] = $("<div class='project-title'><span class='title'>" + project.title + " &#8213 </span><span class='subtitle'>" + project.subtitle + "</span></div>");
+	this.html["description"] = $("<div class='project-description'><span>" + project.description + "</span></div>");
 
 	this.images = [];
 

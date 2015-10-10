@@ -1,10 +1,10 @@
 {
     "projects": [
         {
-            "title": "project 1",
-            "client": "asdfasdfasdfsadfasdasdfasf glossary",
-            "date": "example glossary",
-            "colour" : "#00FF99",
+            "title": "Kid. Studio",
+            "subtitle": "Revamped portfolio site built for Toronto-based film and design stupid Kid.",
+            "description": "<a href='http://new.kidstudio.co'>new.kidstudio.co</a>",
+            "colour" : "#EBEAC0",
             "images": [
                 {
                     "url" : "assets/kid3.png"
@@ -19,9 +19,8 @@
         },
         {
             "title": "project 2",
-            "client": "asdfasdfasdfsadfasdasdfasf glossary",
-            "date": "example glossary",
-            "colour" : "#FF5050",
+            "subtitle": "Revamped portfolio site built for Toronto-based film and design stupid Kid.",
+            "colour" : "#C9D3F2",
             "images": [
                 {
                     "url" : "assets/kid.png"
@@ -33,9 +32,9 @@
         },
         {
             "title": "project 3",
-            "client": "asdfasdfasdfsadfasdasdfasf glossary",
+            "subtitle": "Revamped portfolio site built for Toronto-based film and design stupid Kid.",
             "date": "example glossary",
-            "colour" : "#CC66FF",
+            "colour" : "#F2CCC9",
             "images": [
                 {
                     "url" : "assets/kid.png"
@@ -47,9 +46,8 @@
         },
         {
             "title": "project 4",
-            "client": "example glossary",
-            "date": "example glossary",
-            "colour" : "#0000FF",
+            "subtitle": "Revamped portfolio site built for Toronto-based film and design stupid Kid.",
+            "colour" : "#D2F2C9",
             "images": [
                 {
                     "url" : "assets/kid3.png"
@@ -61,9 +59,8 @@
         },
         {
             "title": "project 5",
-            "client": "example glossary",
-            "date": "example glossary",
-            "colour" : "#66FF99",
+            "subtitle": "Revamped portfolio site built for Toronto-based film and design stupid Kid.",
+            "colour" : "#F2CCC9",
             "images": [
                 {
                     "url" : "assets/kid2.png"
@@ -75,9 +72,8 @@
         },
         {
             "title": "project 6",
-            "client": "example glossary",
-            "date": "example glossary",
-            "colour" : "#CC66FF",
+            "subtitle": "Revamped portfolio site built for Toronto-based film and design stupid Kid.",
+            "colour" : "#C9D3F2",
             "images": [
                 {
                     "url" : "assets/kid2.png"
@@ -89,9 +85,8 @@
         },
         {
             "title": "project 7",
-            "client": "example glossary",
-            "date": "example glossary",
-            "colour" : "#00FF99",
+            "subtitle": "Revamped portfolio site built for Toronto-based film and design stupid Kid.",
+            "colour" : "#EBEAC0",
             "images": [
                 {
                     "url" : "assets/kid2.png"
@@ -103,9 +98,8 @@
         },
         {
             "title": "project 8",
-            "client": "example glossary",
-            "date": "234234234 glossary",
-            "colour" : "#FFFF66",
+            "subtitle": "Revamped portfolio site built for Toronto-based film and design stupid Kid.",
+            "colour" : "#D2F2C9",
             "images": [
                 {
                     "url" : "assets/kid.png"
