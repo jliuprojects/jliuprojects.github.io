@@ -34,7 +34,7 @@ function init() {
 
   background = new THREE.Mesh(new THREE.PlaneGeometry( PLANESIZE, PLANESIZE, COLUMNS - 1, ROWS - 1), new THREE.MeshBasicMaterial({opacity: 0,transparent: true, wireframe: true}));
   background.rotation.x = Math.PI / -2;
-
+  // background.position.y += 100;
   scene.add(plane);
   scene.add(background);
   console.log(plane.geometry);
@@ -163,7 +163,7 @@ function animate() {
 }
 
 var count = 0;
-var factorConst = 2;
+var factorConst = 1.5;
 
 function render() {
 
