@@ -9,7 +9,7 @@ var plane, clicked = 0;
 
 var SEPARATION = 100, AMOUNTX = 50, AMOUNTY = 50;
 
-var COLUMNS = 60, ROWS = 60, PLANESIZE = 10000;
+var COLUMNS = 100, ROWS = 100, PLANESIZE = 10000;
 
 init();
 animate();
@@ -187,25 +187,21 @@ function render() {
         if (dist > 2000){
           factor = 1;
         }else if(dist > 1500){
-          factor = 2;
-        }else if(dist > 1000){
           factor = 5;
-        }else if(dist > 500){
-          factor = 8;
-        }else{
+        }else if(dist > 1000){
           factor = 10;
+        }else if(dist > 500){
+          factor = 15;
+        }else{
+          factor = 20;
         }
-        // console.log(dist);
 
-        // if ((clickedPoint.x - 300 <= plane.geometry.vertices[i].x && plane.geometry.vertices[i].x < clickedPoint.x + 300)){
-          // console.log(plane.geometry.vertices[i]);
         if (clicked > clickTimer/2){
           plane.geometry.vertices[i].z = plane.geometry.vertices[i].z + plane.geometry.vertices[i].z*factor*(clickTimer - clicked)/clickTimer;
         }else{
           plane.geometry.vertices[i].z = plane.geometry.vertices[i].z + plane.geometry.vertices[i].z*factor*(clicked/clickTimer);
         }
-          
-        // }
+
       }
 
       i++
