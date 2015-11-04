@@ -9,7 +9,7 @@ var plane, clicked = 0;
 
 var SEPARATION = 100, AMOUNTX = 50, AMOUNTY = 50;
 
-var COLUMNS = 60, ROWS = 60, PLANESIZE = 7000;
+var COLUMNS = 60, ROWS = 60, PLANESIZE = 10000;
 
 init();
 animate();
@@ -175,22 +175,37 @@ function render() {
 
     for ( var iy = 0; iy < ROWS; iy ++ ) {
 
-      if (!clicked){
+      plane.geometry.vertices[i].z = ( Math.sin( ( ix + count ) * 0.3 ) * 75 ) + ( Math.sin( ( iy + count ) * 0.5 ) * 75 );
 
-        plane.geometry.vertices[i].z = ( Math.sin( ( ix + count ) * 0.3 ) * 75 ) + ( Math.sin( ( iy + count ) * 0.5 ) * 75 );
-      }else{
+      
 
-        plane.geometry.vertices[i].z = ( Math.sin( ( ix + count ) * 0.3 ) * 75 ) + ( Math.sin( ( iy + count ) * 0.5 ) * 75 );
+      if (clicked){
 
-        if ((clickedPoint.x - 300 <= plane.geometry.vertices[i].x && plane.geometry.vertices[i].x < clickedPoint.x + 300)){
-          // console.log(plane.geometry.vertices[i]);
-          if (clicked > clickTimer/2){
-            plane.geometry.vertices[i].z = plane.geometry.vertices[i].z + plane.geometry.vertices[i].z*5*(clickTimer - clicked)/clickTimer;
-          }else{
-            plane.geometry.vertices[i].z = plane.geometry.vertices[i].z + plane.geometry.vertices[i].z*5*(clicked/clickTimer);
-          }
-          
+        var dist = Math.abs(clickedPoint.x - plane.geometry.vertices[i].x);
+        var factor;
+
+        if (dist > 2000){
+          factor = 1;
+        }else if(dist > 1500){
+          factor = 2;
+        }else if(dist > 1000){
+          factor = 5;
+        }else if(dist > 500){
+          factor = 8;
+        }else{
+          factor = 10;
         }
+        // console.log(dist);
+
+        // if ((clickedPoint.x - 300 <= plane.geometry.vertices[i].x && plane.geometry.vertices[i].x < clickedPoint.x + 300)){
+          // console.log(plane.geometry.vertices[i]);
+        if (clicked > clickTimer/2){
+          plane.geometry.vertices[i].z = plane.geometry.vertices[i].z + plane.geometry.vertices[i].z*factor*(clickTimer - clicked)/clickTimer;
+        }else{
+          plane.geometry.vertices[i].z = plane.geometry.vertices[i].z + plane.geometry.vertices[i].z*factor*(clicked/clickTimer);
+        }
+          
+        // }
       }
 
       i++
