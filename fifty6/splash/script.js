@@ -163,6 +163,8 @@ function animate() {
 }
 
 var count = 0;
+var factorConst = 2;
+
 function render() {
 
   camera.position.x += ( mouseX - camera.position.x ) * .05;
@@ -185,15 +187,15 @@ function render() {
         var factor;
 
         if (dist > 2000){
-          factor = 1;
+          factor = Math.pow(factorConst, 0);
         }else if(dist > 1500){
-          factor = 5;
+          factor = Math.pow(factorConst, 1);
         }else if(dist > 1000){
-          factor = 10;
+          factor = Math.pow(factorConst, 2);
         }else if(dist > 500){
-          factor = 15;
+          factor = Math.pow(factorConst, 3);
         }else{
-          factor = 20;
+          factor = Math.pow(factorConst, 4);
         }
 
         if (clicked > clickTimer/2){
