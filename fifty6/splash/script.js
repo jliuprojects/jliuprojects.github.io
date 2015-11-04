@@ -9,7 +9,7 @@ var plane, clicked = 0;
 
 var SEPARATION = 100, AMOUNTX = 50, AMOUNTY = 50;
 
-var COLUMNS = 40, ROWS = 40, PLANESIZE = 7000;
+var COLUMNS = 60, ROWS = 60, PLANESIZE = 7000;
 
 init();
 animate();
@@ -114,7 +114,8 @@ function onDocumentTouchMove( event ) {
 }
 
 var clickedPoint;
-var clickTimer = 120;
+var clickTimer = 121;
+
 function onDocumentMouseDown( event ) {
   clicked = clickTimer;
   event.preventDefault();
@@ -178,19 +179,18 @@ function render() {
 
         plane.geometry.vertices[i].z = ( Math.sin( ( ix + count ) * 0.3 ) * 75 ) + ( Math.sin( ( iy + count ) * 0.5 ) * 75 );
       }else{
+
+        plane.geometry.vertices[i].z = ( Math.sin( ( ix + count ) * 0.3 ) * 75 ) + ( Math.sin( ( iy + count ) * 0.5 ) * 75 );
+
         if ((clickedPoint.x - 300 <= plane.geometry.vertices[i].x && plane.geometry.vertices[i].x < clickedPoint.x + 300)){
           // console.log(plane.geometry.vertices[i]);
-          if (clicked >= clickTimer/2){
-            plane.geometry.vertices[i].z = ( Math.sin( ( ix + count ) * 0.3 ) * 75 ) + ( Math.sin( ( iy + count ) * 0.5 ) * 75 ) + 800*(clickTimer - clicked)/clickTimer;
+          if (clicked > clickTimer/2){
+            plane.geometry.vertices[i].z = plane.geometry.vertices[i].z + plane.geometry.vertices[i].z*5*(clickTimer - clicked)/clickTimer;
           }else{
-            plane.geometry.vertices[i].z = ( Math.sin( ( ix + count ) * 0.3 ) * 75 ) + ( Math.sin( ( iy + count ) * 0.5 ) * 75 ) + 800*(clicked/clickTimer);
+            plane.geometry.vertices[i].z = plane.geometry.vertices[i].z + plane.geometry.vertices[i].z*5*(clicked/clickTimer);
           }
           
-          plane.geometry.verticesNeedUpdate = true;
-        }else{
-          plane.geometry.vertices[i].z = ( Math.sin( ( ix + count ) * 0.3 ) * 75 ) + ( Math.sin( ( iy + count ) * 0.5 ) * 75 );
         }
-
       }
 
       i++
