@@ -27,7 +27,7 @@ function init() {
 
 
 
-  plane = new THREE.Mesh(new THREE.PlaneGeometry( PLANESIZE, PLANESIZE, COLUMNS - 1, ROWS - 1), new THREE.MeshBasicMaterial({opacity: 1, color: 0xffffff, wireframe: true}));
+  plane = new THREE.Mesh(new THREE.PlaneGeometry( PLANESIZE, PLANESIZE, COLUMNS - 1, ROWS - 1), new THREE.MeshBasicMaterial({opacity: 1, color: 0x000000, wireframe: true}));
   plane.geometry.verticesNeedUpdate = true;
   plane.rotation.x = Math.PI / -2;
   // plane.geometry.vertices[0].z = 100; 
@@ -44,6 +44,7 @@ function init() {
   renderer = new THREE.WebGLRenderer();
   renderer.setPixelRatio( window.devicePixelRatio );
   renderer.setSize( window.innerWidth, window.innerHeight );
+  renderer.setClearColor( 0xffffff, 1);  
   container.appendChild( renderer.domElement );
 
   // stats = new Stats();
