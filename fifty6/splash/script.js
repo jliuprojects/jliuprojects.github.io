@@ -24,7 +24,7 @@ function init() {
   camera.position.y = 80;
 
   scene = new THREE.Scene();
-
+  scene.fog = new THREE.FogExp2( 0xffffff, 0.0004 );
 
 
   plane = new THREE.Mesh(new THREE.PlaneGeometry( PLANESIZE, PLANESIZE, COLUMNS - 1, ROWS - 1), new THREE.MeshBasicMaterial({opacity: 1, color: 0x000000, wireframe: true}));
