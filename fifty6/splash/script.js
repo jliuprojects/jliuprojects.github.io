@@ -21,13 +21,13 @@ function init() {
 
   camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
   camera.position.z = 1000;
-  camera.position.y = 100;
+  camera.position.y = 80;
 
   scene = new THREE.Scene();
+  scene.fog = new THREE.Fog( 0xffffff, 1, 4500 );
 
 
-
-  plane = new THREE.Mesh(new THREE.PlaneGeometry( PLANESIZE, PLANESIZE, COLUMNS - 1, ROWS - 1), new THREE.MeshBasicMaterial({opacity: 1, color: 0xffffff, wireframe: true}));
+  plane = new THREE.Mesh(new THREE.PlaneGeometry( PLANESIZE, PLANESIZE, COLUMNS - 1, ROWS - 1), new THREE.MeshBasicMaterial({opacity: 1, color: 0x000000, wireframe: true}));
   plane.geometry.verticesNeedUpdate = true;
   plane.rotation.x = Math.PI / -2;
   // plane.geometry.vertices[0].z = 100; 
@@ -37,8 +37,6 @@ function init() {
   // background.position.y += 100;
   scene.add(plane);
   scene.add(background);
-  console.log(plane.geometry);
-
 
   raycaster = new THREE.Raycaster();
   mouse = new THREE.Vector2();
@@ -46,12 +44,13 @@ function init() {
   renderer = new THREE.WebGLRenderer();
   renderer.setPixelRatio( window.devicePixelRatio );
   renderer.setSize( window.innerWidth, window.innerHeight );
+  renderer.setClearColor( 0xffffff, 1);  
   container.appendChild( renderer.domElement );
 
-  stats = new Stats();
-  stats.domElement.style.position = 'absolute';
-  stats.domElement.style.top = '0px';
-  container.appendChild( stats.domElement );
+  // stats = new Stats();
+  // stats.domElement.style.position = 'absolute';
+  // stats.domElement.style.top = '0px';
+  // container.appendChild( stats.domElement );
 
   document.addEventListener( 'mousemove', onDocumentMouseMove, false );
   document.addEventListener( 'touchstart', onDocumentTouchStart, false );
@@ -131,7 +130,7 @@ function onDocumentMouseDown( event ) {
     var mousepoint = intersects[0].point;
     clickedPoint = intersects[0].point;
 
-    console.log(intersects[0].point);
+    // console.log(intersects[0].point);
 
     // for (var i = 0; i < plane.geometry.vertices.length; i++){
     //   if ((intersects[0].point.x - 50 <= plane.geometry.vertices[i].x && plane.geometry.vertices[i].x < intersects[0].point.x + 50)){
@@ -143,10 +142,10 @@ function onDocumentMouseDown( event ) {
     // console.log(plane.geometry.vertices[i]);
     // intersects[ 0 ].object.material.color.setHex( Math.random() * 0xffffff );
 
-    var particle = new THREE.Sprite();
-    particle.position.copy( intersects[ 0 ].point );
-    particle.scale.x = particle.scale.y = 16;
-    scene.add( particle );
+    // var particle = new THREE.Sprite();
+    // particle.position.copy( intersects[ 0 ].point );
+    // particle.scale.x = particle.scale.y = 16;
+    // scene.add( particle );
 
   }
 }
@@ -158,12 +157,12 @@ function animate() {
   requestAnimationFrame( animate );
 
   render();
-  stats.update();
+  // stats.update();
 
 }
 
 var count = 0;
-var factorConst = 1.5;
+var factorConst = 1.4;
 
 function render() {
 
