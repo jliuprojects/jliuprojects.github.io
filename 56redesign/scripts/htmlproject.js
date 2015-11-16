@@ -1,14 +1,18 @@
 function HTMLProject (project) {
 
-	this.colour = project.colour;
+	this.bgcolour = project.bgcolour;
+	this.textcolour = project.textcolour;
 	this.focused = false;
 
 	this.html = []
 	this.html["container"] = $("<div class='project-container'></div>");
+	this.html["img-wrap"] = $("<div id='img-wrap'></div>");
 	this.html["title"] = $("<div class='project-title'><span class='title'>" + project.title + " &#8213 </span><span class='subtitle'>" + project.subtitle + "</span></div>");
 	this.html["description"] = $("<div class='project-description'><span>" + project.description + "</span></div>");
 
 	this.images = [];
+
+
 
 	for (var i = 0; i < project.images.length; i++){
 		this.images.push($("<img class='project-img' src=" + project.images[i].url + ">"));
@@ -18,7 +22,8 @@ function HTMLProject (project) {
 	 	this.html["container"].append(this.html[key]);
 	}
 
-	this.html["container"].append(this.images);
+	this.html["img-wrap"].append(this.images);
+	this.html["container"].append(this.html["img-wrap"]);
 
 	$('.scrolling-content').append(this.html["container"]);
 
@@ -26,8 +31,12 @@ function HTMLProject (project) {
 		return this.html["container"].height();
 	}
 
-	this.getColour = function(){
-		return this.colour;
+	this.getBg = function(){
+		return this.bgcolour;
+	}
+
+	this.getTextColour = function(){
+		return this.textcolour;
 	}
 
 	this.getImages = function(){

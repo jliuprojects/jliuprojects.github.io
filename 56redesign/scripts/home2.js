@@ -108,7 +108,19 @@ function handleBackground (e){
     	
     	if (scroll + scrollDist >= heightSoFar &&
     		scroll + scrollDist < heightSoFar + HTMLProjects[i].getHeight()){
-    			$("body").css('background-color' , HTMLProjects[i].getColour());
+                $("body").css('background-color' , HTMLProjects[i].getBg());
+                $(".project-title").css('color' , HTMLProjects[i].getTextColour());
+                $("aside").css('color' , HTMLProjects[i].getTextColour());
+                $(".logo svg").css('fill' , HTMLProjects[i].getTextColour());
+                $(".info").css('color' , HTMLProjects[i].getTextColour());
+                $("#about-wrap").css('color' , HTMLProjects[i].getTextColour());
+                $("#about-close div").css('background-color' , HTMLProjects[i].getTextColour());
+                $("#about-wrap p a").css('color' , HTMLProjects[i].getTextColour());
+                $("#about-wrap p a").css('border-bottom-color' , HTMLProjects[i].getTextColour());
+                $("#about-overlay").css('background-color' , HTMLProjects[i].getBg());
+                $(".project-description a").css({
+                    'color' : HTMLProjects[i].getTextColour(),
+                    'border-bottom-color' : HTMLProjects[i].getTextColour()});
 	    		break;
     	}
     	heightSoFar += HTMLProjects[i].getHeight();
@@ -119,9 +131,9 @@ function handleOpacity (e){
 
     for (var i = 1; i < HTMLProjects.length; i++){
     	for (var j = 0; j < HTMLProjects[i].getImages().length; j++){
-    		if (lastScroll <  HTMLProjects[i].getImages()[j].offset().top - HTMLProjects[i].getImages()[j].height() &&
-    			scroll > HTMLProjects[i].getImages()[j].offset().top - HTMLProjects[i].getImages()[j].height()) {
-    				HTMLProjects[i].getImages()[j].animate({opacity: 1}, 1500);
+    		if (lastScroll <  HTMLProjects[i].getImages()[j].offset().top - 100 - HTMLProjects[i].getImages()[j].height() &&
+    			scroll > HTMLProjects[i].getImages()[j].offset().top - 100 - HTMLProjects[i].getImages()[j].height()) {
+    				HTMLProjects[i].getImages()[j].animate({opacity: 1}, 750);
     				return;
 			}
     	}
@@ -148,7 +160,7 @@ $('body').on({
     		return;
     	}
     	if (!handleInfScroll(scroll)){
-    		checkFocus(e);
+    		// checkFocus(e);
     	}
 
     	handleBackground(e);
@@ -160,9 +172,37 @@ function main(){
 	console.log('all loaded');
 	scroll = HTMLProjects[0].getHeight();
 	HTMLProjects[1].setFocus(true);
-	$("body").css('background-color' , HTMLProjects[1].getColour());
+	$("body").css('background-color' , HTMLProjects[1].getBg());
+    $(".project-title").css('color' , HTMLProjects[1].getTextColour());
+    $("aside").css('color' , HTMLProjects[1].getTextColour());
+    $(".logo svg").css('fill' , HTMLProjects[1].getTextColour());
+    $(".info").css('color' , HTMLProjects[1].getTextColour());
+    $("#about-wrap").css('color' , HTMLProjects[1].getTextColour());
+    $("#about-close div").css('background-color' , HTMLProjects[1].getTextColour());
+    $("#about-wrap p a").css('color' , HTMLProjects[1].getTextColour());
+    $("#about-wrap p a").css('border-bottom-color' , HTMLProjects[1].getTextColour());
+    $("#about-overlay").css('background-color' , HTMLProjects[1].getBg());
+    $(".project-description a").css({
+        'color' : HTMLProjects[1].getTextColour(),
+        'border-bottom-color' : HTMLProjects[1].getTextColour()});;
+
 	$(window).scrollTop(HTMLProjects[0].getHeight());
 
-	$(".work").html('Work');
-	$(".info").html('Info');
+    var aboutOverlay = $('#about-overlay'),
+        aboutClose = $('#about-close'),
+        scrollBody = $('.scrolling-content'),
+        info = $('.info');
+
+    info.click(function(){
+        aboutOverlay.fadeIn(200);
+        scrollBody.addClass('stop-scroll');
+        $('body').css('overflow', 'hidden');
+    });
+
+    aboutClose.click(function(){
+        aboutOverlay.fadeOut(200);
+        scrollBody.removeClass('stop-scroll');
+        $('body').css('overflow', 'auto');
+    });
 }
+
