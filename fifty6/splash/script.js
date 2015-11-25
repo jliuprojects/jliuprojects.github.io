@@ -24,10 +24,10 @@ function init() {
   camera.position.y = 80;
 
   scene = new THREE.Scene();
-  scene.fog = new THREE.Fog( 0xffffff, 1, 4500 );
+  scene.fog = new THREE.Fog( 0xeabeb7, 1, 4500 );
 
 
-  plane = new THREE.Mesh(new THREE.PlaneGeometry( PLANESIZE, PLANESIZE, COLUMNS - 1, ROWS - 1), new THREE.MeshBasicMaterial({opacity: 1, color: 0x000000, wireframe: true}));
+  plane = new THREE.Mesh(new THREE.PlaneGeometry( PLANESIZE, PLANESIZE, COLUMNS - 1, ROWS - 1), new THREE.MeshBasicMaterial({opacity: 1, color: 0xf7ede5, wireframe: true}));
   plane.geometry.verticesNeedUpdate = true;
   plane.rotation.x = Math.PI / -2;
   // plane.geometry.vertices[0].z = 100; 
@@ -44,7 +44,7 @@ function init() {
   renderer = new THREE.WebGLRenderer();
   renderer.setPixelRatio( window.devicePixelRatio );
   renderer.setSize( window.innerWidth, window.innerHeight );
-  renderer.setClearColor( 0xffffff, 1);  
+  renderer.setClearColor( 0xeabeb7, 1);  
   container.appendChild( renderer.domElement );
 
   // stats = new Stats();
