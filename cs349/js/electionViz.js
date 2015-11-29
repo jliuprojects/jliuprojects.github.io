@@ -25,6 +25,7 @@ _.extend(AbstractView.prototype, {
     }
 });
 
+// NOTE : THERE CAN ONLY BE ONE OF THIS VIEW
 var MenuView = function (attachToElement, model) {
     this._instantiateInterface('menu_template', attachToElement);
 
@@ -113,18 +114,10 @@ var MenuView = function (attachToElement, model) {
 		return false;
 	});
 
-	this.hostElement.css({"position":"relative", "width":"100%", "margin": "0", "left" : "20px"});
+	this.hostElement.css({"position":"relative", "margin": "0", "left" : "20px"});
 
 }
 _.extend(MenuView.prototype, AbstractView.prototype);
-
-// var CandidateInputView = function (attachToElement, model) {
-//     this._instantiateInterface('candidate_input_template', attachToElement);
-
-    
-
-// }
-// _.extend(CandidateInputView.prototype, AbstractView.prototype);
 
 var PlotView = function (attachToElement, model, type) {
     this._instantiateInterface('plot_template', attachToElement);
@@ -214,5 +207,5 @@ $(function() {
 	var bordaPlot = new PlotView($("#app"), model, "Borda");
 	var IRVPlot = new PlotView($("#app"), model, "IRV");
 
-	var menuView = new MenuView($("#app"), model);
+	var menuView = new MenuView($("#app"), model); 
 });
