@@ -1,4 +1,3 @@
-#element { margin:0; padding:0; font-size:100%; line-height:1; }
 
 * {
 	font-family: Tahoma, Helvetica, Arial, sans-serif;
@@ -65,12 +64,11 @@ label[for=ypos]
 .plot_x_label {
 	position: relative;
 	text-align: center;
-	top: -30px;
+	top: -40px;
 }
 
 #settings_container {
 	position: relative;
-	margin-top: 50px;
 }
 
 .settings_steps {
