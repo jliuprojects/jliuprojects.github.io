@@ -148,8 +148,8 @@ var PlotView = function (attachToElement, model, type) {
 				   "#b300b2"]; //pink
 
 	canvas.click(function(e) {
-		var x = e.clientX;
-		var y = e.clientY;
+		var x = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+		var y = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
 
 		x -= canvas.offset().left;
 		y -= canvas.offset().top;
