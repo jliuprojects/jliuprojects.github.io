@@ -18,7 +18,7 @@ sets.push(new Set(sets.length,["assets/elie.png","assets/elie2.png","assets/elie
 								"<div class='tags'>Fifty6<div class='date'>05.15 - Present</div></div> <div class='tags'>Javascript, Shopify, jQuery, HTML, CSS </div>Mobile website built for photographer Visionelie. Used accelerometer technology to create a spatially interactive landing page feature."));
 sets.push(new Set(sets.length, ["assets/kid.png","assets/kid2.png","assets/kid3.png","assets/kid4.png","assets/kid5.png","assets/kid6.png"], 
 								(710+200)*6 + 300,
-								"<div class='project-launch'><a href='http://new.kidstudio.co/'>Launch Site</a></div>",
+								"<div class='project-launch'><a href='http://kidstudio.co/'>Launch Site</a></div>",
 								"Kid Studio", 
 								"<div class='tags'>Fifty6<div class='date'>05.15 - Present</div></div> <div class='tags'>ThreeJS, Javascript, KirbyCMS, PHP, jQuery, HTML, CSS </div>Responsive website made for film & design studio, Kid. Interactive 3D carousel feature with custom Kirby backend."));
 sets.push(new Set(sets.length,["assets/fifty6.png","assets/fifty62.png","assets/fifty63.png","assets/fifty64.png"], 
