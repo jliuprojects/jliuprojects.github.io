@@ -35,7 +35,7 @@ function init() {
 	controls = new THREE.OrbitControls( camera );
     controls.minDistance = 10;
     controls.maxDistance = 10;
-    controls.enabled = false;
+    // controls.enabled = false;
 	
 	// axes
 	// scene.add( new THREE.AxisHelper( 20 ) );
