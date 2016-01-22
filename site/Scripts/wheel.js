@@ -16,7 +16,7 @@ function init() {
 	info.style.backgroundColor = 'transparent';
 	info.style.zIndex = '1';
 	info.style.fontFamily = 'Monospace';
-	// info.innerHTML = 'Drag mouse to rotate camera; Scroll to zoom';
+	info.innerHTML = 'Drag mouse to rotate camera; Scroll to zoom';
 	document.body.appendChild( info );
 
 	// renderer
@@ -34,7 +34,7 @@ function init() {
 	// controls
 	controls = new THREE.OrbitControls( camera );
     controls.minDistance = 10;
-    controls.maxDistance = 10;
+    controls.maxDistance = 500;
     // controls.enabled = false;
 	
 	// axes
