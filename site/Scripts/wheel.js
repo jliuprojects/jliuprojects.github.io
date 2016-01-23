@@ -49,7 +49,7 @@ function init() {
 	var geometry = new THREE.BoxGeometry( 100, 0, 71 );
 
 	// texture
-	var texture = THREE.ImageUtils.loadTexture( 'assets/kid.png' );
+	var texture = THREE.ImageUtils.loadTexture( 'assets/fifty64.png' );
 	
 	// material
 	var material = new THREE.MeshBasicMaterial( {
@@ -97,38 +97,38 @@ function init() {
 	pivot5.add( mesh5 );
 
 	// pivots
-	var dpivot1 = new THREE.Object3D();
-	var dpivot2 = new THREE.Object3D();
-	var dpivot3 = new THREE.Object3D();
-	var dpivot4 = new THREE.Object3D();
-	var dpivot5 = new THREE.Object3D();
-	dpivot1.rotation.x = 2 * Math.PI * 1 / 5;
-	dpivot2.rotation.x = 2 * Math.PI * 2 / 5;
-	dpivot3.rotation.x = 2 * Math.PI * 3 / 5;
-	dpivot4.rotation.x = 2 * Math.PI * 4 / 5;
-	dpivot5.rotation.x = 2 * Math.PI * 5 / 5;
-	parent.add( dpivot1 );
-	parent.add( dpivot2 );
-	parent.add( dpivot3 );
-	parent.add( dpivot4 );
-	parent.add( dpivot5 );
+	// var dpivot1 = new THREE.Object3D();
+	// var dpivot2 = new THREE.Object3D();
+	// var dpivot3 = new THREE.Object3D();
+	// var dpivot4 = new THREE.Object3D();
+	// var dpivot5 = new THREE.Object3D();
+	// dpivot1.rotation.x = 2 * Math.PI * 1 / 5;
+	// dpivot2.rotation.x = 2 * Math.PI * 2 / 5;
+	// dpivot3.rotation.x = 2 * Math.PI * 3 / 5;
+	// dpivot4.rotation.x = 2 * Math.PI * 4 / 5;
+	// dpivot5.rotation.x = 2 * Math.PI * 5 / 5;
+	// parent.add( dpivot1 );
+	// parent.add( dpivot2 );
+	// parent.add( dpivot3 );
+	// parent.add( dpivot4 );
+	// parent.add( dpivot5 );
 
-	// mesh
-	var dmesh1 = new THREE.Mesh( geometry, material );
-	var dmesh2 = new THREE.Mesh( geometry, material );
-	var dmesh3 = new THREE.Mesh( geometry, material );
-	var dmesh4 = new THREE.Mesh( geometry, material );
-	var dmesh5 = new THREE.Mesh( geometry, material );
-	dmesh1.position.y = 100;
-	dmesh2.position.y = 100;
-	dmesh3.position.y = 100;
-	dmesh4.position.y = 100;
-	dmesh5.position.y = 100;
-	dpivot1.add( dmesh1 );
-	dpivot2.add( dmesh2 );
-	dpivot3.add( dmesh3 );
-	dpivot4.add( dmesh4 );
-	dpivot5.add( dmesh5 );
+	// // mesh
+	// var dmesh1 = new THREE.Mesh( geometry, material );
+	// var dmesh2 = new THREE.Mesh( geometry, material );
+	// var dmesh3 = new THREE.Mesh( geometry, material );
+	// var dmesh4 = new THREE.Mesh( geometry, material );
+	// var dmesh5 = new THREE.Mesh( geometry, material );
+	// dmesh1.position.y = 100;
+	// dmesh2.position.y = 100;
+	// dmesh3.position.y = 100;
+	// dmesh4.position.y = 100;
+	// dmesh5.position.y = 100;
+	// dpivot1.add( dmesh1 );
+	// dpivot2.add( dmesh2 );
+	// dpivot3.add( dmesh3 );
+	// dpivot4.add( dmesh4 );
+	// dpivot5.add( dmesh5 );
 
 	parent.rotation.x += Math.PI;
 }
@@ -137,7 +137,7 @@ function animate() {
 
 	requestAnimationFrame( animate );
 
-	parent.rotation.z += 0.005;
+	parent.rotation.z += 0.0025;
     
 	controls.update();
 
