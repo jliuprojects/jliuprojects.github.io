@@ -42,7 +42,7 @@ function init() {
 	// scene.add( new THREE.AxisHelper( 20 ) );
 
 	// geometry
-	var geometry = new THREE.BoxGeometry( 1000, 0, 1000 );
+	var geometry = new THREE.BoxGeometry( 50, 0, 25 );
 
 	// texture
 	var texture = THREE.ImageUtils.loadTexture( 'assets/kid.png' );
@@ -74,6 +74,8 @@ function init() {
 	parent.add( pivot3 );
 	parent.add( pivot4 );
 	parent.add( pivot5 );
+
+	parent.rotation.x += Math.PI;
 
 	// mesh
 	var mesh1 = new THREE.Mesh( geometry, material );
