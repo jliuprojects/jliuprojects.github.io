@@ -36,13 +36,17 @@ function init() {
 	controls = new THREE.OrbitControls( camera );
     controls.minDistance = 10;
     controls.maxDistance = 500;
+    controls.minPolarAngle = -Math.PI/2; // radians
+	controls.maxPolarAngle = Math.PI/4; // radians
+	controls.minAzimuthAngle = -Math.PI/2; // radians
+	controls.maxAzimuthAngle = Math.PI/2; // radians
     // controls.enabled = false;
 	
 	// axes
 	// scene.add( new THREE.AxisHelper( 20 ) );
 
 	// geometry
-	var geometry = new THREE.BoxGeometry( 50, 0, 25 );
+	var geometry = new THREE.BoxGeometry( 100, 0, 71 );
 
 	// texture
 	var texture = THREE.ImageUtils.loadTexture( 'assets/kid.png' );
