@@ -50,8 +50,8 @@ function init() {
 	// material
 	var material = new THREE.MeshBasicMaterial( {
 		map: texture,
-		color: 0x000000, 
-		wireframe: true
+		// color: 0x000000, 
+		// wireframe: true
 	} );
 	
 	// parent
