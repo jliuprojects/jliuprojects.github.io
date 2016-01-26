@@ -68,7 +68,7 @@ function render() {
 					var top = projects[focusedProject].html["title"].offset().top - $(window).scrollTop();
 					projects[focusedProject].fixTitle(top);
 					focusedTitleFixed = true;
-				} else if (topOfNext < $(window).scrollTop()) {
+				} else if (topOfNext < $(window).scrollTop() + window.innerHeight*0.1) {
 					focusedProject++;
 					var top = projects[focusedProject].html["title"].offset().top - $(window).scrollTop();
 					projects[focusedProject].fixTitle(top);
@@ -76,7 +76,7 @@ function render() {
 				}
 				break;
 			case "prev":
-				if (topOfFocused < $(window).scrollTop()) {
+				if (topOfFocused < $(window).scrollTop() + window.innerHeight*0.1) {
 					var top = projects[focusedProject].html["title"].offset().top - $(window).scrollTop();
 					projects[focusedProject].fixTitle(top);
 					focusedTitleFixed = true;
@@ -91,8 +91,6 @@ function render() {
 	}
  
 	console.log(focusedProject);
-
-
 	window.requestAnimationFrame(render);
 }
 

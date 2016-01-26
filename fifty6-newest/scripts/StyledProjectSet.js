@@ -27,7 +27,7 @@ function StyledProjectSet(title, description, metadata, link, imageSrc) {
 
 // fix title position on screen
 StyledProjectSet.prototype.fixTitle = function() {
-	this.html["title"].css({"top" : 0, 
+	this.html["title"].css({"top" : window.innerHeight*0.1, 
 							"position" : "fixed"});
 };
 
@@ -39,4 +39,14 @@ StyledProjectSet.prototype.unfixTitle = function() {
 StyledProjectSet.prototype.alignTitle = function() {
 	this.html["title"].css({"height" : window.innerHeight - window.innerHeight*0.1});
 	this.html["title"].find("h1").css({"top" : window.innerHeight/2 - this.html["title"].find("h1").height()/2});
+	this.html["title"].css({"top" : window.innerHeight*0.1});
 };
+
+StyledProjectSet.prototype.populateLinks = function() {
+	this.html["title"].append("<p class='hidden'>" +
+		"Kid. Studio <br>" +
+		"Project 2 <br>" +
+		"Project 3 <br>" +
+		"Project 4 <br>" +
+	"</p>");
+}
