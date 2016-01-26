@@ -27,7 +27,7 @@ function StyledProjectSet(title, description, metadata, link, imageSrc) {
 
 // fix title position on screen
 StyledProjectSet.prototype.fixTitle = function() {
-	this.html["title"].css({"top" : this.html["title"].offset().top - $(window).scrollTop(), 
+	this.html["title"].css({"top" : 0, 
 							"position" : "fixed"});
 };
 
@@ -37,6 +37,6 @@ StyledProjectSet.prototype.unfixTitle = function() {
 };
 
 StyledProjectSet.prototype.alignTitle = function() {
-	this.html["title"].css({"height" : window.innerHeight - window.innerHeight*0.1})
+	this.html["title"].css({"height" : window.innerHeight - window.innerHeight*0.1});
 	this.html["title"].find("h1").css({"top" : window.innerHeight/2 - this.html["title"].find("h1").height()/2});
 };
