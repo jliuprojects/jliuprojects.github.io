@@ -137,6 +137,8 @@ header {
 	float: right;
 }
 
-
+.hidden {
+	display: none;
+}
 
 

@@ -14,6 +14,16 @@ function init () {
     							json.projects[i].link));
 
     		projects[i].alignTitle();
+    		projects[i].populateLinks();
+    		projects[i].html["title"].hover(
+				function() {
+					$(".hidden").css({"display" : "block"});
+					$(this).find("h1").css({"display" : "none"});
+				}, function() {
+					$(".hidden").css({"display" : "none"});
+					$(this).find("h1").css({"display" : "inline-block"});
+				}
+			);
     	}
 
     	projects[focusedProject].html["title"].css({"top" : projects[focusedProject].html["title"].offset().top - $(window).scrollTop(), 
