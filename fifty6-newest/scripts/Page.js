@@ -1,5 +1,6 @@
 var projects = [];
 var focusedProject = 0;
+var inbetweenProjects = false;
 
 function init () {
     $.getJSON("assets/projects.json", function(json) {
@@ -24,13 +25,27 @@ function init () {
 function render() {
 
 	var bottomOfFocused = projects[focusedProject].html["title"].offset().top + projects[focusedProject].html["title"].height();
-	var topOfNext = projects[focusedProject + 1].html["title"].offset().top;
-	// debugger;
-	if (topOfNext < bottomOfFocused) {
-		console.log (topOfNext + "," + bottomOfFocused);
-		projects[focusedProject].unfixTitle();
+	
+	if (focusedProject == projects.length - 1) {
+		var topOfNext = Infinity;
+	} else {
+		var topOfNext = projects[focusedProject + 1].html["title"].offset().top;
 	}
 	
+	// debugger;
+	if (topOfNext < bottomOfFocused && !inbetweenProjects) {
+		console.log (topOfNext + "," + bottomOfFocused);
+		projects[focusedProject].unfixTitle();
+		inbetweenProjects = true;
+	}
+	
+	if (inbetweenProjects && topOfNext < $(window).scrollTop() + window.innerHeight*0.1) {
+
+		focusedProject++;
+		projects[focusedProject].fixTitle();
+		inbetweenProjects = false;
+	}
+
 	window.requestAnimationFrame(render);
 }
 
