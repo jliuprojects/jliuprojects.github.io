@@ -3,6 +3,9 @@ function StyledProjectSet(title, description, metadata, link, imageSrc) {
 	this.description = description;
 	this.metadata = metadata;
 	this.link = link;
+	this.topPosition = Infinity;
+	this.bottomPosition = -Infinity;
+
 	this.imageSrc = imageSrc || "assets/defaultImage.png";
 
 	this.html = [];
@@ -27,26 +30,34 @@ function StyledProjectSet(title, description, metadata, link, imageSrc) {
 
 // fix title position on screen
 StyledProjectSet.prototype.fixTitle = function() {
-	this.html["title"].css({"top" : window.innerHeight*0.1, 
-							"position" : "fixed"});
+	this.html["title"].css({"top" : 0, "position" : "fixed"});
 };
 
-StyledProjectSet.prototype.unfixTitle = function() {
-	this.html["title"].css({"top" : this.html["title"].offset().top - this.html["container"].offset().top, 
-							"position" : "absolute"});
+StyledProjectSet.prototype.unfixTitle = function(side) { // stop doing calculations and fix upper and lower points
+	var top = null;
+
+	switch(side){
+		case "upper":
+			top = 0;
+			break;
+		case "lower":
+			top = this.html["container"].height() - window.innerHeight;
+			break;
+	}
+
+	this.html["title"].css({"top" : top, "position" : "absolute"});
 };
 
 StyledProjectSet.prototype.alignTitle = function() {
-	this.html["title"].css({"height" : window.innerHeight - window.innerHeight*0.1});
 	this.html["title"].find("h1").css({"top" : window.innerHeight/2 - this.html["title"].find("h1").height()/2});
-	this.html["title"].css({"top" : window.innerHeight*0.1});
+	this.topPosition = this.html["container"].offset().top;
+	this.bottomPosition = this.html["container"].offset().top + this.html["container"].height();
 };
 
-StyledProjectSet.prototype.populateLinks = function() {
-	this.html["title"].append("<p class='hidden'>" +
-		"Kid. Studio <br>" +
-		"Project 2 <br>" +
-		"Project 3 <br>" +
-		"Project 4 <br>" +
-	"</p>");
-}
+StyledProjectSet.prototype.getTopPosition = function() {
+	return this.topPosition;
+};
+
+StyledProjectSet.prototype.getBottomPosition = function() {
+	return this.bottomPosition;
+};

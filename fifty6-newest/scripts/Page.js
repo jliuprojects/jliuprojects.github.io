@@ -1,7 +1,6 @@
 var projects = [];
 var focusedProject = 0;
 var focusedTitleFixed = true;
-var direction = null;
 
 function init () {
     $.getJSON("assets/projects.json", function(json) {
@@ -12,88 +11,77 @@ function init () {
     							json.projects[i].description, 
     							json.projects[i].metadata, 
     							json.projects[i].link));
-
-    		projects[i].alignTitle();
-    		projects[i].populateLinks();
-    		projects[i].html["title"].hover(
-				function() {
-					$(".hidden").css({"display" : "block"});
-					$(this).find("h1").css({"display" : "none"});
-				}, function() {
-					$(".hidden").css({"display" : "none"});
-					$(this).find("h1").css({"display" : "inline-block"});
-				}
-			);
     	}
 
-    	projects[focusedProject].html["title"].css({"top" : projects[focusedProject].html["title"].offset().top - $(window).scrollTop(), 
-							"position" : "fixed"});
-
     	// FIX THIS AFTER, need to load shit but set timeout for now
-    	window.setTimeout(render, 500);
+    	window.setTimeout(run, 500);
 	});
+}
+
+function run() {
+	for (var i = 0; i < projects.length; i++){
+		projects[i].alignTitle();
+	}
+
+	projects[focusedProject].fixTitle();
+
+	render();
 }
 	
 function render() {
 
-	var topOfFocused = projects[focusedProject].html["title"].offset().top;
-	var bottomOfFocused = projects[focusedProject].html["title"].offset().top + projects[focusedProject].html["title"].height();
+	var topOfFocused = projects[focusedProject].getTopPosition();
+	var bottomOfFocused = projects[focusedProject].getBottomPosition();
 	
 	if (focusedProject == projects.length - 1) {
 		var topOfNext = Infinity;
 		var bottomOfNext = -Infinity;
 	} else {
-		var topOfNext = projects[focusedProject + 1].html["title"].offset().top;
-		var bottomOfNext = projects[focusedProject + 1].html["title"].offset().top + projects[focusedProject + 1].html["title"].height();
+		var topOfNext = projects[focusedProject + 1].getTopPosition();
+		var bottomOfNext = projects[focusedProject + 1].getBottomPosition();
 	}
 
 	if (focusedProject == 0) {
 		var topOfPrev = Infinity;
 		var bottomOfPrev = -Infinity;
 	} else {
-		var topOfPrev = projects[focusedProject - 1].html["title"].offset().top;
-		var bottomOfPrev = projects[focusedProject - 1].html["title"].offset().top + projects[focusedProject - 1].html["title"].height();
+		var topOfPrev = projects[focusedProject - 1].getTopPosition();
+		var bottomOfPrev = projects[focusedProject - 1].getBottomPosition();
 	}
 	
 	// debugger;
 
 	if (focusedTitleFixed) {
-		if (topOfNext < bottomOfFocused) {
+		if (topOfNext < window.pageYOffset + window.innerHeight) {
 		// the next project title hit the bottom of the focused fixed title
-			var top = projects[focusedProject].html["title"].offset().top - projects[focusedProject].html["container"].offset().top;
-			projects[focusedProject].unfixTitle(top);
+			projects[focusedProject].unfixTitle("lower");
 			direction = "next";
 			focusedTitleFixed = false;
-		} else if (bottomOfPrev > topOfFocused) {
+		} else if (bottomOfPrev > window.pageYOffset) {
 			// the prev project title hit the top of the focused fixed title
-			var top = projects[focusedProject].html["title"].offset().top - projects[focusedProject].html["container"].offset().top;
 			direction = "prev";
-			projects[focusedProject].unfixTitle(top);
+			projects[focusedProject].unfixTitle("upper");
 			focusedTitleFixed = false;
 		}
 	} else {
 		switch (direction) {
 			case "next":
-				if (bottomOfFocused > $(window).scrollTop() + window.innerHeight) {
-					var top = projects[focusedProject].html["title"].offset().top - $(window).scrollTop();
-					projects[focusedProject].fixTitle(top);
+				if (bottomOfFocused > window.pageYOffset + window.innerHeight) {
+					projects[focusedProject].fixTitle();
 					focusedTitleFixed = true;
-				} else if (topOfNext < $(window).scrollTop() + window.innerHeight*0.1) {
+				} else if (topOfNext < window.pageYOffset) {
 					focusedProject++;
-					var top = projects[focusedProject].html["title"].offset().top - $(window).scrollTop();
-					projects[focusedProject].fixTitle(top);
+					projects[focusedProject].fixTitle();
 					focusedTitleFixed = true;
 				}
 				break;
 			case "prev":
-				if (topOfFocused < $(window).scrollTop() + window.innerHeight*0.1) {
-					var top = projects[focusedProject].html["title"].offset().top - $(window).scrollTop();
-					projects[focusedProject].fixTitle(top);
+				if (topOfFocused < window.pageYOffset) {
+					projects[focusedProject].fixTitle();
 					focusedTitleFixed = true;
-				} else if (bottomOfPrev > $(window).scrollTop() + window.innerHeight) {
+				} else if (bottomOfPrev > window.pageYOffset + window.innerHeight) {
 					focusedProject--;
-					var top = projects[focusedProject].html["title"].offset().top - $(window).scrollTop();
-					projects[focusedProject].fixTitle(top);
+					projects[focusedProject].fixTitle();
 					focusedTitleFixed = true;
 				}
 				break;
