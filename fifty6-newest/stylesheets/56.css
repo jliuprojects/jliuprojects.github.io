@@ -49,7 +49,7 @@ table {
 
 /*END OF CSS-RESET*/
 
-/** {
+* {
 	border: 1px dashed black !important;
 }
 
@@ -59,7 +59,7 @@ table {
 
 * * * {
 	border: 1px dashed red !important;
-}*/
+}
 
 header {
 	position: fixed;
@@ -84,7 +84,7 @@ header {
   	float: left;
 
   	height: 100%;
-  	width: 30%;
+  	width: 25%;
   	top: 0;
   	left: 0;
 
@@ -113,7 +113,7 @@ header {
 	display: inline-block;
 	float: right;
 	width: 70%;
-	padding: 50px 0;
+	margin-top: 100px;
 }
 
 .project_description {
@@ -121,8 +121,8 @@ header {
 	font-size: 1em;
 	display: inline-block;
 	float: right;
-	width: 35%;
-	padding: 20px 0;
+	width: 30%;
+	margin: 5% 5%;
 }
 
 .project_metadata {
@@ -130,18 +130,18 @@ header {
 	font-size: 1em;
 	display: inline-block;
 	float: right;
-	width: 30%;
-	padding: 20px 0;
-	margin-left: 5%;
+	width: 25%;
+	margin: 5% 5%;
 }
 
 .project_image {
 	position: relative;
-	width: 70%;
+	width: 65%;
 	display: inline-block;
 	float: right;
 	top: 0;
 	opacity: 0;
+	margin: 5% 5%;
 }
 
 .hidden {
