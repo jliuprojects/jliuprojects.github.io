@@ -74,13 +74,23 @@ function animateBackgrounds() {
 
 function picturesFadeUp() {
 	var scroll = window.pageYOffset;
-	var middleOfScreen = scroll + window.innerHeight*0.6;
+	var middleOfScreen = scroll + window.innerHeight*0.7;
+
 	var images = projects[focusedProject].getImagePositions();
 	var opcs = projects[focusedProject].getImageOpacities();
 
 	for (var i = 0; i < images.length; i++) {
 		if (images[i] < middleOfScreen && opcs[i] != 1) {
 			projects[focusedProject].fadeInUp(i);
+		}
+	}
+
+	if (focusedProject + 1 != projects.length) {
+		images = projects[focusedProject + 1].getImagePositions();
+		opcs = projects[focusedProject + 1].getImageOpacities();
+
+		if (images[0] < middleOfScreen && opcs[0] != 1) {
+			projects[focusedProject + 1].fadeInUp(0);
 		}
 	}
 }
