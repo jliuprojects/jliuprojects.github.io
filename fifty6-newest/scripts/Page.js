@@ -25,6 +25,7 @@ function run() {
 
 	
 	projects[focusedProject].fixTitle();
+	projects[focusedProject].fadeInUpInfo();
 	render();
 }
 
@@ -97,6 +98,9 @@ function animateTitles() {
 					// the top of the next project container hit the top of the screen
 					focusedProject++;
 					projects[focusedProject].fixTitle();
+					if (projects[focusedProject].getInfoOpacity() == 0) {
+						projects[focusedProject].fadeInUpInfo();
+					}
 					focusedTitleFixed = true;
 				}
 				break;
@@ -109,6 +113,9 @@ function animateTitles() {
 					// the bottom of the prev project container hit the bottom of the screen
 					focusedProject--;
 					projects[focusedProject].fixTitle();
+					if (projects[focusedProject].getInfoOpacity() == 0) {
+						projects[focusedProject].fadeInUpInfo();
+					}
 					focusedTitleFixed = true;
 				}
 				break;

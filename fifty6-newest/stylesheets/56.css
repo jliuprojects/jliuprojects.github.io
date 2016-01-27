@@ -48,7 +48,7 @@ table {
 }
 
 /*END OF CSS-RESET*/
-
+/*
 * {
 	border: 1px dashed black !important;
 }
@@ -59,7 +59,7 @@ table {
 
 * * * {
 	border: 1px dashed red !important;
-}
+}*/
 
 header {
 	position: fixed;
@@ -114,6 +114,8 @@ header {
 	float: right;
 	width: 70%;
 	margin-top: 100px;
+	top: 0;
+	opacity: 0;
 }
 
 .project_description {
@@ -123,6 +125,8 @@ header {
 	float: right;
 	width: 30%;
 	margin: 5% 5%;
+	top: 0;
+	opacity: 0;
 }
 
 .project_metadata {
@@ -132,6 +136,8 @@ header {
 	float: right;
 	width: 25%;
 	margin: 5% 5%;
+	top: 0;
+	opacity: 0;
 }
 
 .project_image {

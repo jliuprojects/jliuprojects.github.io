@@ -8,6 +8,7 @@ function StyledProjectSet(title, description, metadata, link, imageSrc) {
 	this.imagePositions = [];
 	this.imageCount = 5;
 	this.imageOpacities = [];
+	this.infoOpacity = 0;
 
 	this.imageSrc = imageSrc || "assets/defaultImage.png";
 
@@ -65,6 +66,10 @@ StyledProjectSet.prototype.getImageOpacities = function() {
 	return this.imageOpacities;
 };
 
+StyledProjectSet.prototype.getInfoOpacity = function() {
+	return this.infoOpacity;
+};
+
 StyledProjectSet.prototype.getTopPosition = function() {
 	return this.topPosition;
 };
@@ -82,6 +87,21 @@ StyledProjectSet.prototype.fadeInUp = function(index) {
 	this.imageOpacities[index] = 1;
 };
 
+StyledProjectSet.prototype.fadeInUpInfo = function() {
+	var linkOldTop = this.html["link"].css("top");
+	var descriptionOldTop = this.html["description"].css("top");
+	var metadataOldTop = this.html["metadata"].css("top");
+
+	this.html["link"].css({"top" : "+=100px"});
+	this.html["link"].animate({opacity : 1, top : linkOldTop}, 1000);
+
+	this.html["description"].css({"top" : "+=100px"});
+	this.html["description"].animate({opacity : 1, top : descriptionOldTop}, 1000);
+
+	this.html["metadata"].css({"top" : "+=100px"});
+	this.html["metadata"].animate({opacity : 1, top : metadataOldTop}, 1000);
+	this.infoOpacity = 1;
+}
 
 
 
