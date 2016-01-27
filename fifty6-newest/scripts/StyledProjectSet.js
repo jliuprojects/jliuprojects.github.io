@@ -5,6 +5,9 @@ function StyledProjectSet(title, description, metadata, link, imageSrc) {
 	this.link = link;
 	this.topPosition = Infinity;
 	this.bottomPosition = -Infinity;
+	this.imagePositions = [];
+	this.imageCount = 5;
+	this.imageOpacities = [];
 
 	this.imageSrc = imageSrc || "assets/defaultImage.png";
 
@@ -19,9 +22,12 @@ function StyledProjectSet(title, description, metadata, link, imageSrc) {
 	this.html["container"].append(this.html["link"]);
 	this.html["container"].append(this.html["metadata"]);
 	this.html["container"].append(this.html["description"]);
-	for (var i = 0; i < 5; i++){
+	for (var i = 0; i < this.imageCount; i++){
 		this.html["images"].push($("<img class='project_image' src='assets/defaultImage.png'>"));
 	 	this.html["container"].append(this.html["images"][i]);
+	}
+	for (var i = 0; i < this.imageCount; i++){
+		this.imageOpacities.push(0);
 	}
 	
 	this.html["container"].append(this.html["title"]);
@@ -33,25 +39,30 @@ StyledProjectSet.prototype.fixTitle = function() {
 	this.html["title"].css({"top" : 0, "position" : "fixed"});
 };
 
-StyledProjectSet.prototype.unfixTitle = function(side) { // stop doing calculations and fix upper and lower points
-	var top = null;
+StyledProjectSet.prototype.unfixTitle = function(side) { 
+	var top = [];
+	top["upper"] = 0
+	top["lower"] = this.html["container"].height() - window.innerHeight;
 
-	switch(side){
-		case "upper":
-			top = 0;
-			break;
-		case "lower":
-			top = this.html["container"].height() - window.innerHeight;
-			break;
-	}
-
-	this.html["title"].css({"top" : top, "position" : "absolute"});
+	this.html["title"].css({"top" : top[side], "position" : "absolute"});
 };
 
-StyledProjectSet.prototype.alignTitle = function() {
+StyledProjectSet.prototype.setPositions = function() {
 	this.html["title"].find("h1").css({"top" : window.innerHeight/2 - this.html["title"].find("h1").height()/2});
 	this.topPosition = this.html["container"].offset().top;
 	this.bottomPosition = this.html["container"].offset().top + this.html["container"].height();
+
+	for (var i = 0; i < this.html["images"].length; i++) {
+		this.imagePositions.push(this.html["images"][i].offset().top);
+	}
+};
+
+StyledProjectSet.prototype.getImagePositions = function() {
+	return this.imagePositions;
+};
+
+StyledProjectSet.prototype.getImageOpacities = function() {
+	return this.imageOpacities;
 };
 
 StyledProjectSet.prototype.getTopPosition = function() {
@@ -61,3 +72,18 @@ StyledProjectSet.prototype.getTopPosition = function() {
 StyledProjectSet.prototype.getBottomPosition = function() {
 	return this.bottomPosition;
 };
+
+StyledProjectSet.prototype.fadeInUp = function(index) {
+	var oldTop = this.html["images"][index].css("top");
+
+	this.html["images"][index].css({"top" : "+=100px"});
+	this.html["images"][index].animate({opacity : 1, top : oldTop}, 1000);
+
+	this.imageOpacities[index] = 1;
+};
+
+
+
+
+
+
