@@ -37,14 +37,15 @@ function render() {
 
 	animateTitles();
 	picturesFadeUp();
+	animateInfo();
  
-	console.log(focusedProject);
+	// console.log(focusedProject);
 	window.requestAnimationFrame(render);
 }
 
 function picturesFadeUp() {
 	var scroll = window.pageYOffset;
-	var middleOfScreen = scroll + window.innerHeight/2;
+	var middleOfScreen = scroll + window.innerHeight*0.6;
 	var images = projects[focusedProject].getImagePositions();
 	var opcs = projects[focusedProject].getImageOpacities();
 
@@ -53,6 +54,21 @@ function picturesFadeUp() {
 			projects[focusedProject].fadeInUp(i);
 		}
 	}
+}
+
+function animateInfo() {
+	var scroll = window.pageYOffset;
+	var middleOfScreen = scroll + window.innerHeight/2;
+
+	for (var i = 0; i < projects.length; i++) {
+		var topOfFocused = projects[i].getTopPosition();
+		var bottomOfFocused = projects[i].getBottomPosition();
+
+		if ((topOfFocused < middleOfScreen) && (projects[i].getInfoOpacity() == 0)) {
+			projects[i].fadeInUpInfo();
+		}
+	}
+	
 }
 
 function animateTitles() {
@@ -98,9 +114,6 @@ function animateTitles() {
 					// the top of the next project container hit the top of the screen
 					focusedProject++;
 					projects[focusedProject].fixTitle();
-					if (projects[focusedProject].getInfoOpacity() == 0) {
-						projects[focusedProject].fadeInUpInfo();
-					}
 					focusedTitleFixed = true;
 				}
 				break;
@@ -113,9 +126,6 @@ function animateTitles() {
 					// the bottom of the prev project container hit the bottom of the screen
 					focusedProject--;
 					projects[focusedProject].fixTitle();
-					if (projects[focusedProject].getInfoOpacity() == 0) {
-						projects[focusedProject].fadeInUpInfo();
-					}
 					focusedTitleFixed = true;
 				}
 				break;
