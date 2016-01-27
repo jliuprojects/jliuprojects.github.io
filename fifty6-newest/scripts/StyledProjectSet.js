@@ -1,8 +1,10 @@
-function StyledProjectSet(title, description, metadata, link, imageSrc) {
-	this.title = title;
-	this.description = description;
-	this.metadata = metadata;
-	this.link = link;
+function StyledProjectSet(json) {
+	this.title = json.title;
+	this.description = json.description;
+	this.metadata = json.metadata;
+	this.link = json.link;
+	this.textColour = json.textcolour;
+	this.bgColour = json.bgcolour;
 	this.topPosition = Infinity;
 	this.bottomPosition = -Infinity;
 	this.imagePositions = [];
@@ -10,7 +12,7 @@ function StyledProjectSet(title, description, metadata, link, imageSrc) {
 	this.imageOpacities = [];
 	this.infoOpacity = 0;
 
-	this.imageSrc = imageSrc || "assets/defaultImage.png";
+	// this.imageSrc = imageSrc || "assets/defaultImage.png";
 
 	this.html = [];
 	this.html["container"] = $("<div class='project_container'></div>");
@@ -101,9 +103,28 @@ StyledProjectSet.prototype.fadeInUpInfo = function() {
 	this.html["metadata"].css({"top" : "+=100px"});
 	this.html["metadata"].animate({opacity : 1, top : metadataOldTop}, 1000);
 	this.infoOpacity = 1;
+};
+
+StyledProjectSet.prototype.setTheme = function() {
+	console.log("animating" + ":" + this.bgColour);
+	$('body').css({backgroundColor : this.bgColour, color : this.textColour});
+};
+
+StyledProjectSet.prototype.getBgColour = function() {
+	return this.bgColour;
+};
+
+StyledProjectSet.prototype.getTextColour = function() {
+	return this.textColour
+};
+
+
+
+function rgb2hex(rgb){
+ rgb = rgb.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
+ return (rgb && rgb.length === 4) ? "#" +
+  ("0" + parseInt(rgb[1],10).toString(16)).slice(-2) +
+  ("0" + parseInt(rgb[2],10).toString(16)).slice(-2) +
+  ("0" + parseInt(rgb[3],10).toString(16)).slice(-2) : '';
 }
-
-
-
-
 

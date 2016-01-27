@@ -1,16 +1,14 @@
 var projects = [];
 var focusedProject = 0;
 var focusedTitleFixed = true;
+var bgColour = null;
+var textColour = null;
 
 function init () {
     $.getJSON("assets/projects.json", function(json) {
 	    
 	    for (var i = 0; i < json.projects.length; i++){
-    		projects.push(new StyledProjectSet(
-    							json.projects[i].title, 
-    							json.projects[i].description, 
-    							json.projects[i].metadata, 
-    							json.projects[i].link));
+    		projects.push(new StyledProjectSet(json.projects[i]));
     	}
 
     	// FIX THIS AFTER, need to load shit but set timeout for now
@@ -38,9 +36,40 @@ function render() {
 	animateTitles();
 	picturesFadeUp();
 	animateInfo();
+	animateBackgrounds();
  
 	// console.log(focusedProject);
 	window.requestAnimationFrame(render);
+}
+
+function animateBackgrounds() {
+	var scroll = window.pageYOffset;
+	var middleOfScreen = scroll + window.innerHeight/2;
+
+	for (var i = 0; i < projects.length; i++) {
+		var topOfFocused = projects[i].getTopPosition();
+		var bottomOfFocused = projects[i].getBottomPosition();
+
+		if (i + 1 == projects.length) {
+			var topOfNext = Infinity;
+		} else {
+			var topOfNext = projects[i + 1].getTopPosition();
+		}
+
+		if (bgColour == projects[i].getBgColour() ||
+			textColour == projects[i].getTextColour()) {
+				continue;
+		}
+
+		if (topOfFocused < middleOfScreen 
+			&& topOfNext > middleOfScreen) {
+
+			console.log("asdf");
+			projects[i].setTheme();
+			bgColour = projects[i].getBgColour();
+			textColour = projects[i].getTextColour();
+		}
+	}
 }
 
 function picturesFadeUp() {
