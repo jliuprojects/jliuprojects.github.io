@@ -34,9 +34,11 @@ var lastScroll;
 function render() {
 	var scroll = window.pageYOffset;
 
+	if (scroll < window.innerHeight) {
+		projects[0].unfixTitle();
+	}
 
 	if (scroll < window.innerHeight/2) {
-		projects[0].unfixTitle();
 		$('body').css({"background-color" : "white", "color" : "black"});
 			focusedProject = 0;
 			focusedTitleFixed = false;
