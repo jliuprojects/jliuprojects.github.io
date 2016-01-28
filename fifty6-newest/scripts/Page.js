@@ -1,6 +1,7 @@
 var projects = [];
 var focusedProject = 0;
-var focusedTitleFixed = true;
+var focusedTitleFixed = false;
+var direction = "prev";
 var bgColour = null;
 var textColour = null;
 
@@ -22,23 +23,45 @@ function run() {
 	}
 
 	
-	projects[focusedProject].fixTitle();
-	projects[focusedProject].fadeInUpInfo();
+	// projects[focusedProject].fixTitle();
+	// projects[focusedProject].fadeInUpInfo();
 	render();
 }
 
-function start() {
+// var init = false;
+var lastScroll;
 
-}
-	
 function render() {
+	var scroll = window.pageYOffset;
 
-	animateTitles();
-	picturesFadeUp();
-	animateInfo();
-	animateBackgrounds();
+
+	if (scroll < window.innerHeight/2) {
+		projects[0].unfixTitle();
+		$('body').css({"background-color" : "white", "color" : "black"});
+			focusedProject = 0;
+			focusedTitleFixed = false;
+			direction = "prev";
+			bgColour = null;
+			textColour = null;
+	}
+
+	// if (scroll > window.innerHeight && lastScroll < window.innerHeight) {
+	// 	if (bgColour != projects[0].getBgColour() ||
+	// 		textColour != projects[0].getTextColour()) {
+	// 		console.log("12321312");
+	// 		projects[0].setTheme();		
+	// 	}
+	// }
+	 // else {
+		animateTitles();
+		picturesFadeUp();
+		animateInfo();
+		animateBackgrounds();
+	// }
+	
  
 	// console.log(focusedProject);
+	lastScroll = window.pageYOffset;
 	window.requestAnimationFrame(render);
 }
 
@@ -56,7 +79,7 @@ function animateBackgrounds() {
 			var topOfNext = projects[i + 1].getTopPosition();
 		}
 
-		if (bgColour == projects[i].getBgColour() ||
+		if (bgColour == projects[i].getBgColour() &&
 			textColour == projects[i].getTextColour()) {
 				continue;
 		}
@@ -113,6 +136,8 @@ function animateInfo() {
 function animateTitles() {
 	var topOfFocused = projects[focusedProject].getTopPosition();
 	var bottomOfFocused = projects[focusedProject].getBottomPosition();
+
+	// if (window.pageYOffset < )
 	
 	if (focusedProject == projects.length - 1) {
 		var topOfNext = Infinity;

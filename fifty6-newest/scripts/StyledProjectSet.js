@@ -8,7 +8,6 @@ function StyledProjectSet(json) {
 	this.topPosition = Infinity;
 	this.bottomPosition = -Infinity;
 	this.imagePositions = [];
-	this.imageCount = 5;
 	this.imageOpacities = [];
 	this.infoOpacity = 0;
 
@@ -25,11 +24,12 @@ function StyledProjectSet(json) {
 	this.html["container"].append(this.html["link"]);
 	this.html["container"].append(this.html["metadata"]);
 	this.html["container"].append(this.html["description"]);
-	for (var i = 0; i < this.imageCount; i++){
-		this.html["images"].push($("<img class='project_image' src='assets/defaultImage.png'>"));
+	// debugger;
+	for (var i = 0; i < json.images.length; i++){
+		this.html["images"].push($("<img class='project_image' src='" + json.images[i].url + "'>"));
 	 	this.html["container"].append(this.html["images"][i]);
 	}
-	for (var i = 0; i < this.imageCount; i++){
+	for (var i = 0; i < json.images.length; i++){
 		this.imageOpacities.push(0);
 	}
 	
@@ -106,7 +106,7 @@ StyledProjectSet.prototype.fadeInUpInfo = function() {
 };
 
 StyledProjectSet.prototype.setTheme = function() {
-	$('body').css({backgroundColor : this.bgColour, color : this.textColour});
+	$('body').css({"background-color" : this.bgColour, "color" : this.textColour});
 };
 
 StyledProjectSet.prototype.getBgColour = function() {

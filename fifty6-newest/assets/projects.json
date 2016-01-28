@@ -9,10 +9,10 @@
             "bgcolour" : "#fc6cb3",
             "images": [
                 {
-                    "url" : "assets/kid/kid1.png"
+                    "url" : "assets/kid1.png"
                 },
                 {
-                    "url" : "assets/kid/kid2.png"
+                    "url" : "assets/kid2.png"
                 }
             ]
         },
@@ -26,10 +26,10 @@
             "bgcolour" : "black",
             "images": [
                 {
-                    "url" : "assets/knp/knp1.png"
+                    "url" : "assets/knp1.png"
                 },
                 {
-                    "url" : "assets/knp/knp2.png"
+                    "url" : "assets/knp2.png"
                 }
             ]
         },
@@ -42,10 +42,10 @@
             "bgcolour" : "white",
             "images": [
                 {
-                    "url" : "assets/vejas/vejas1.png"
+                    "url" : "assets/vejas1.png"
                 },
                 {
-                    "url" : "assets/vejas/vejas2.png"
+                    "url" : "assets/vejas2.png"
                 }
             ]
         },
@@ -58,16 +58,16 @@
             "bgcolour" : "black",
             "images": [
                 {
-                    "url" : "assets/drew/drew1.gif"
+                    "url" : "assets/drew1.gif"
                 },
                 {
-                    "url" : "assets/drew/drew2.png"
+                    "url" : "assets/drew2.png"
                 },
                 {
-                    "url" : "assets/drew/drew4.png"
+                    "url" : "assets/drew4.png"
                 },
                 {
-                    "url" : "assets/drew/drew3.png"
+                    "url" : "assets/drew3.png"
                 }
             ]
         },
@@ -80,7 +80,7 @@
             "bgcolour" : "#f3ec7d",
             "images": [
                 {
-                    "url" : "assets/elie/elie1.png"
+                    "url" : "assets/elie1.png"
                 }
             ]
         },
@@ -93,7 +93,7 @@
             "bgcolour" : "#f3ec7d",
             "images": [
                 {
-                    "url" : "assets/ambig/ambig1.png"
+                    "url" : "assets/ambig1.png"
                 }
             ]
         },
@@ -106,16 +106,16 @@
             "bgcolour" : "#f3ec7d",
             "images": [
                 {
-                    "url" : "assets/thots/thot1.jpg"
+                    "url" : "assets/thot1.jpg"
                 },
                 {
-                    "url" : "assets/thots/thot2.jpg"
+                    "url" : "assets/thot2.jpg"
                 },
                 {
-                    "url" : "assets/thots/thot3.jpg"
+                    "url" : "assets/thot3.jpg"
                 },
                 {
-                    "url" : "assets/thots/thot4.jpg"
+                    "url" : "assets/thot4.jpg"
                 }
             ]
         }

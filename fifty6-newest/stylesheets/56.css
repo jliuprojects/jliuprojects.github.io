@@ -158,4 +158,77 @@ header {
 	display: none;
 }
 
+#about {
+	height: 100%;
+	width: 100%;
+	position: relative;
+}
 
+#main_title {
+	position: absolute;
+	display: block;
+	font-size: 48pt;
+	width: 65%; 
+	left: 17.5%;
+	padding-top: 10%;
+}
+
+#services {
+	font-size: 32pt;
+	position: absolute;
+	width: 33%;
+	left: 33%;
+	text-align: center;
+	top: 60%;
+}
+
+#clients {
+	font-size: 32pt;
+	position: absolute;
+	width: 33%;
+	left: 66%;
+	text-align: center;
+	top: 60%;
+}
+
+#contact {
+	position: absolute;
+	width: 20%;
+	text-align: center;
+	top: 70%;
+	line-height: 150%;
+	/*bottom: 0;*/
+	/*top: 50%;*/
+	/*left: 50%;*/
+
+	-webkit-transform: rotate(-90deg);
+  	-moz-transform: rotate(-90deg);
+ 	-ms-transform: rotate(-90deg);
+  	-o-transform: rotate(-90deg);
+  	transform: rotate(-90deg);
+}
+
+.col_title {
+	width: 100%;
+	margin-bottom: 30px;
+	text-align: left;
+}
+
+.left_col {
+	font-size: 14pt;
+	width: 50%;
+	display: inline-block;
+	float: left;
+	text-align: left;
+
+}
+
+.right_col {
+	font-size: 14pt;
+	width: 50%;
+	display: inline-block;
+	position: relative;
+	text-align: left;
+	/*left: 0;*/
+	/*float: left;*/
+}
