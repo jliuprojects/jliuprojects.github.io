@@ -36,27 +36,27 @@ function render() {
 function animateAbout() {
 	var oldTop = $("#header_text").css("top");
 	$("#header_text").css({"top" : "-=100px"});
-	$("#header_text").animate({opacity : 1, top : oldTop}, 1000);
+	$("#header_text").animate({opacity : 1, top : oldTop}, 750);
 
 	oldTop = $("#logo").css("top");
 	$("#logo").css({"top" : "-=100px"});
-	$("#logo").animate({opacity : 1, top : oldTop}, 1000, function() {
+	$("#logo").animate({opacity : 1, top : oldTop}, 750, function() {
 
 		oldTop = $("#main_title").css("top");
 		$("#main_title").css({"top" : "+=100px"});
-		$("#main_title").animate({opacity : 1, top : oldTop}, 1000, function() {
+		$("#main_title").animate({opacity : 1, top : oldTop}, 750, function() {
 			oldTop = $("#services").css("top");
 			$("#services").css({"top" : "+=100px"});
-			$("#services").animate({opacity : 1, top : oldTop}, 1000, function() {
+			$("#services").animate({opacity : 1, top : oldTop}, 750, function() {
 				oldTop = $("#clients").css("top");
 				$("#clients").css({"top" : "+=100px"});
-				$("#clients").animate({opacity : 1, top : oldTop}, 1000, function() {
+				$("#clients").animate({opacity : 1, top : oldTop}, 750, function() {
 					oldTop = $("#contact").css("top");
 					$("#contact").css({"top" : "+=100px"});
-					$("#contact").animate({opacity : 1, top : oldTop}, 1000, function() {
+					$("#contact").animate({opacity : 1, top : oldTop}, 750, function() {
 						oldTop = $("#black_line").css("bottom");
 						$("#black_line").css({"bottom" : "-=100px"});
-						$("#black_line").animate({opacity : 1, bottom : oldTop}, 1000, function() {
+						$("#black_line").animate({opacity : 1, bottom : oldTop}, 750, function() {
 							
 						});
 					});

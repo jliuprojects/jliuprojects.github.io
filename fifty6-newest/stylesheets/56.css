@@ -30,10 +30,10 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
-	-webkit-transition:background 1s;
-	-moz-transition:background 1s;
-	-o-transition:background 1s;
-	transition:background 1s
+	-webkit-transition:background 1s, color 1s, fill 1s;
+	-moz-transition:background 1s, color 1s, fill 1s;
+	-o-transition:background 1s, color 1s, fill 1s;
+	transition:background 1s, color 1s, fill 1s;
 }
 ol, ul {
 	list-style: none;
@@ -129,10 +129,6 @@ header {
   	width: 25%;
   	top: 0px;
   	left: 0;
-
-
-
-  	/*top: 50%;*/
 }
 
 .project_title {
