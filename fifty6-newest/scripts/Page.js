@@ -21,55 +21,51 @@ function run() {
 	for (var i = 0; i < projects.length; i++){
 		projects[i].setPositions();
 	}
-
-	
-	// projects[focusedProject].fixTitle();
-	// projects[focusedProject].fadeInUpInfo();
+	animateAbout();
 	render();
 }
 
-// var init = false;
-var lastScroll;
-
 function render() {
-	var scroll = window.pageYOffset;
-
-	if (scroll < window.innerHeight) {
-		projects[0].unfixTitle();
-	}
-
-	if (scroll < window.innerHeight/2) {
-		$('body').css({"background-color" : "white", "color" : "black"});
-			focusedProject = 0;
-			focusedTitleFixed = false;
-			direction = "prev";
-			bgColour = null;
-			textColour = null;
-	}
-
-	// if (scroll > window.innerHeight && lastScroll < window.innerHeight) {
-	// 	if (bgColour != projects[0].getBgColour() ||
-	// 		textColour != projects[0].getTextColour()) {
-	// 		console.log("12321312");
-	// 		projects[0].setTheme();		
-	// 	}
-	// }
-	 // else {
-		animateTitles();
-		picturesFadeUp();
-		animateInfo();
-		animateBackgrounds();
-	// }
-	
- 
-	// console.log(focusedProject);
-	lastScroll = window.pageYOffset;
+	animateTitles();
+	picturesFadeUp();
+	animateInfo();
+	animateBackgrounds();
 	window.requestAnimationFrame(render);
+}
+
+function animateAbout() {
+	var oldTop = $("#main_title").css("top");
+
+	$("#main_title").css({"top" : "+=100px"});
+	$("#main_title").animate({opacity : 1, top : oldTop}, 1000, function() {
+		oldTop = $("#services").css("top");
+
+		$("#services").css({"top" : "+=100px"});
+		$("#services").animate({opacity : 1, top : oldTop}, 1000, function() {
+			oldTop = $("#clients").css("top");
+
+			$("#clients").css({"top" : "+=100px"});
+			$("#clients").animate({opacity : 1, top : oldTop}, 1000, function() {
+				oldTop = $("#contact").css("top");
+
+				$("#contact").css({"top" : "+=100px"});
+				$("#contact").animate({opacity : 1, top : oldTop}, 1000, function() {
+					
+				});
+			});
+		});
+	});
 }
 
 function animateBackgrounds() {
 	var scroll = window.pageYOffset;
 	var middleOfScreen = scroll + window.innerHeight/2;
+
+	if (scroll < window.innerHeight/2) {
+		$('body').css({"background-color" : "#ffffff", "color" : "#000000"});
+			bgColour = "#ffffff";
+			textColour = "#000000";
+	}
 
 	for (var i = 0; i < projects.length; i++) {
 		var topOfFocused = projects[i].getTopPosition();
@@ -140,7 +136,16 @@ function animateTitles() {
 	var bottomOfFocused = projects[focusedProject].getBottomPosition();
 
 	// if (window.pageYOffset < )
+
+	if (window.pageYOffset < window.innerHeight) {
+		projects[0].unfixTitle();
+	}
 	
+	if (window.pageYOffset < window.innerHeight/2) {
+			focusedTitleFixed = false;
+			direction = "prev";
+	}
+
 	if (focusedProject == projects.length - 1) {
 		var topOfNext = Infinity;
 		var bottomOfNext = -Infinity;
