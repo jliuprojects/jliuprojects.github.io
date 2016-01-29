@@ -5,8 +5,8 @@
             "description": "Portfolio site built for film and design studio Kid. With customizable content management made on top of Kirby. ",
             "link": "new.kidstudio.co",
             "metadata" : "some shit <br> about ting tongs",
-            "textcolour" : "#f3ec7d",
-            "bgcolour" : "#fc6cb3",
+            "bgcolour" : "#E2e2e2",
+            "textcolour" : "#2e2e2e",
             "images": [
                 {
                     "url" : "assets/kid1.png"
@@ -22,8 +22,8 @@
             "link": "'http://kastorandpollux.com/'>kastorandpollux.com",
             "date": "example glossary",
             "metadata" : "#f3ec7d",
-            "textcolour" : "white",
-            "bgcolour" : "black",
+            "bgcolour" : "#f3ec7d",
+            "textcolour" : "#061351",
             "images": [
                 {
                     "url" : "assets/knp1.png"
@@ -38,8 +38,8 @@
             "description": "Designed and built online store for toronto-based fashion designer Vejas Kruszewski for his Fall / Winter 2015 collection. ",
             "link": "<a href='http://shop.vejaskruszewski.com'>shop.vejaskruszewski.com</a>",
             "metadata" : "#ffffff",
-            "textcolour" : "blue",
-            "bgcolour" : "white",
+            "bgcolour" : "#fff",
+            "textcolour" : "red",
             "images": [
                 {
                     "url" : "assets/vejas1.png"
@@ -54,8 +54,8 @@
             "description": "Interactive microsite made for rapper Drew Howard, featuring a custom built pseudo-3d racing game.",
             "link": "88camino.com",
             "metadata" : "black",
-            "textcolour" : "purple",
             "bgcolour" : "black",
+            "textcolour" : "#FC447A",
             "images": [
                 {
                     "url" : "assets/drew1.gif"
@@ -76,8 +76,8 @@
             "description": "Mobile site designed and built for photographer and mixed-media artist Visionelie, featuring an interactive landing page using the accelerometer.",
             "link": "<a href='http://visionelie.co/'>visionelie.co</a>",
             "metadata" : "#ffffff",
-            "textcolour" : "#000000",
-            "bgcolour" : "#f3ec7d",
+            "bgcolour" : "#fff",
+            "textcolour" : "black",
             "images": [
                 {
                     "url" : "assets/elie1.png"
@@ -89,8 +89,8 @@
             "description": "Temporary microsite made for creative agency Common Base to promote their gallery event.",
             "link": "<a href='http://www.ambiguousardor.gallery/'>ambiguousardor.gallery</a>",
             "metadata" : "#f7ede5", 
+            "bgcolour" : "#f7ede5 ", 
             "textcolour" : "#eabeb7",
-            "bgcolour" : "#f3ec7d",
             "images": [
                 {
                     "url" : "assets/ambig1.png"
@@ -102,8 +102,8 @@
             "description": "Strategy and content creation for instagram-centered campaign promoting creative collective CMDWN's Party, Museum of Contemporary Thots.",
             "link": " ",
             "metadata" : "#ffffff",
+            "bgcolour" : "#fff",
             "textcolour" : "#fc6cb3",
-            "bgcolour" : "#f3ec7d",
             "images": [
                 {
                     "url" : "assets/thot1.jpg"
