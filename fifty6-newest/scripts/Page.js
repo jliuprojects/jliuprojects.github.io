@@ -25,8 +25,10 @@ function init () {
 function loadedCb() {
 	numProjectsLoaded++;
 	if (numProjectsLoaded == numProjects) {
-		$("#loading_screen").remove();
 		console.log("all projects loaded");
+		window.scrollTo(0, 0);
+		$("#loading_screen").remove();
+		$(".project_title_container").css({"opacity" : 1});
 		run();
 	}
 }
