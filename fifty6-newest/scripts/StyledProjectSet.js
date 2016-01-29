@@ -51,7 +51,7 @@ StyledProjectSet.prototype.unfixTitle = function(side) {
 };
 
 StyledProjectSet.prototype.setPositions = function() {
-	this.html["title"].find("h1").css({"top" : window.innerHeight/2 - this.html["title"].find("h1").height()/2});
+	this.html["title"].find("h1").css({"top" : window.innerHeight/2});
 	this.topPosition = this.html["container"].offset().top;
 	this.bottomPosition = this.html["container"].offset().top + this.html["container"].height();
 
