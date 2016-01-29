@@ -67,7 +67,45 @@ table {
 
 header {
 	position: fixed;
-	height: 10%;
+	height: 15%;
+	width: 100%;
+}
+
+#black_line {
+	position: relative;
+	width: 50%;
+	height: 100%;
+	left: 12%;
+	bottom: 60px;
+	border-bottom: 2px solid black;
+	opacity: 0;
+}
+
+#header_text {
+	position: fixed;
+	float: right;
+	font-size: 14pt;
+	right: 50px;
+	top: 50px;
+	opacity: 0;
+}
+
+#logo {
+	position: relative;
+	height: 80%;
+	left: 20px;
+	top: 10px;
+	opacity: 0;
+	/*fill: red;*/
+}
+
+#logo_wrap {
+	position: fixed;
+	display: inline-block;
+	/*left: 15%;*/
+	/*top: 15%;*/
+	height: 15%;
+	width: 100%;
 }
 
 .main {

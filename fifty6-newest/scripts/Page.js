@@ -34,23 +34,32 @@ function render() {
 }
 
 function animateAbout() {
-	var oldTop = $("#main_title").css("top");
+	var oldTop = $("#header_text").css("top");
+	$("#header_text").css({"top" : "-=100px"});
+	$("#header_text").animate({opacity : 1, top : oldTop}, 1000);
 
-	$("#main_title").css({"top" : "+=100px"});
-	$("#main_title").animate({opacity : 1, top : oldTop}, 1000, function() {
-		oldTop = $("#services").css("top");
+	oldTop = $("#logo").css("top");
+	$("#logo").css({"top" : "-=100px"});
+	$("#logo").animate({opacity : 1, top : oldTop}, 1000, function() {
 
-		$("#services").css({"top" : "+=100px"});
-		$("#services").animate({opacity : 1, top : oldTop}, 1000, function() {
-			oldTop = $("#clients").css("top");
-
-			$("#clients").css({"top" : "+=100px"});
-			$("#clients").animate({opacity : 1, top : oldTop}, 1000, function() {
-				oldTop = $("#contact").css("top");
-
-				$("#contact").css({"top" : "+=100px"});
-				$("#contact").animate({opacity : 1, top : oldTop}, 1000, function() {
-					
+		oldTop = $("#main_title").css("top");
+		$("#main_title").css({"top" : "+=100px"});
+		$("#main_title").animate({opacity : 1, top : oldTop}, 1000, function() {
+			oldTop = $("#services").css("top");
+			$("#services").css({"top" : "+=100px"});
+			$("#services").animate({opacity : 1, top : oldTop}, 1000, function() {
+				oldTop = $("#clients").css("top");
+				$("#clients").css({"top" : "+=100px"});
+				$("#clients").animate({opacity : 1, top : oldTop}, 1000, function() {
+					oldTop = $("#contact").css("top");
+					$("#contact").css({"top" : "+=100px"});
+					$("#contact").animate({opacity : 1, top : oldTop}, 1000, function() {
+						oldTop = $("#black_line").css("bottom");
+						$("#black_line").css({"bottom" : "-=100px"});
+						$("#black_line").animate({opacity : 1, bottom : oldTop}, 1000, function() {
+							
+						});
+					});
 				});
 			});
 		});
@@ -63,6 +72,8 @@ function animateBackgrounds() {
 
 	if (scroll < window.innerHeight/2) {
 		$('body').css({"background-color" : "#ffffff", "color" : "#000000"});
+		$('#black_line').css({"border-bottom" : "2px solid " + "#000000"});
+		$('#logo').css({"fill" : "#000000"});
 			bgColour = "#ffffff";
 			textColour = "#000000";
 	}
