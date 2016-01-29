@@ -24,6 +24,8 @@ function init () {
 
 function loadedCb() {
 	numProjectsLoaded++;
+	$("#loading_screen_text").html(numProjectsLoaded/numProjects*100 + "%");
+
 	if (numProjectsLoaded == numProjects) {
 		console.log("all projects loaded");
 		window.scrollTo(0, 0);
