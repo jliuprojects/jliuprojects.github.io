@@ -24,7 +24,9 @@ function init () {
 
 function loadedCb() {
 	numProjectsLoaded++;
-	$("#loading_screen_text").html(numProjectsLoaded/numProjects*100 + "%");
+	var perc = Math.round(numProjectsLoaded/numProjects*100) + "%";
+
+	$("#loading_screen_text").html("LOADING SCREEN BITCH" + perc + "%");
 
 	if (numProjectsLoaded == numProjects) {
 		console.log("all projects loaded");
