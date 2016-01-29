@@ -13,7 +13,8 @@ function init () {
     	}
 
     	// FIX THIS AFTER, need to load shit but set timeout for now
-    	window.setTimeout(run, 500);
+    	animateAbout();
+    	// window.setTimeout(run, 500);
 	});
 }
 
@@ -21,7 +22,7 @@ function run() {
 	for (var i = 0; i < projects.length; i++){
 		projects[i].setPositions();
 	}
-	animateAbout();
+	// animateAbout();
 	render();
 }
 
@@ -57,7 +58,7 @@ function animateAbout() {
 						oldTop = $("#black_line").css("bottom");
 						$("#black_line").css({"bottom" : "-=100px"});
 						$("#black_line").animate({opacity : 1, bottom : oldTop}, 750, function() {
-							
+							run(); //TODO: PROPERLY DO CALLBACKS
 						});
 					});
 				});
