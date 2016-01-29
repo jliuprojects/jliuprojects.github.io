@@ -1,4 +1,5 @@
 function StyledProjectSet(json) {
+	var self = this;
 	this.title = json.title;
 	this.description = json.description;
 	this.metadata = json.metadata;
@@ -10,6 +11,8 @@ function StyledProjectSet(json) {
 	this.imagePositions = [];
 	this.imageOpacities = [];
 	this.infoOpacity = 0;
+	this.numImagesLoaded = 0;
+	this.numImages = json.images.length;
 
 	// this.imageSrc = imageSrc || "assets/defaultImage.png";
 
@@ -28,6 +31,14 @@ function StyledProjectSet(json) {
 	for (var i = 0; i < json.images.length; i++){
 		this.html["images"].push($("<img class='project_image' src='" + json.images[i].url + "'>"));
 	 	this.html["container"].append(this.html["images"][i]);
+	 	this.html["images"][i].load(function() {
+	 		self.numImagesLoaded++;
+	 		if (self.numImagesLoaded == self.numImages) {
+	 			json.cb();
+	 		}
+
+	 		console.log("img loaded");
+	 	});
 	}
 	for (var i = 0; i < json.images.length; i++){
 		this.imageOpacities.push(0);

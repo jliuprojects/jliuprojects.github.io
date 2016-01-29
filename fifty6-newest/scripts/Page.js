@@ -4,25 +4,38 @@ var focusedTitleFixed = false;
 var direction = "prev";
 var bgColour = null;
 var textColour = null;
+var numProjects = 0;
+var numProjectsLoaded = 0;
 
 function init () {
     $.getJSON("assets/projects.json", function(json) {
-	    
+    	// debugger;
+	    numProjects = json.projects.length;
 	    for (var i = 0; i < json.projects.length; i++){
+	    	json.projects[i].cb = loadedCb;
     		projects.push(new StyledProjectSet(json.projects[i]));
     	}
 
     	// FIX THIS AFTER, need to load shit but set timeout for now
-    	animateAbout();
+    	// animateAbout();
     	// window.setTimeout(run, 500);
 	});
+}
+
+function loadedCb() {
+	numProjectsLoaded++;
+	if (numProjectsLoaded == numProjects) {
+		$("#loading_screen").remove();
+		console.log("all projects loaded");
+		run();
+	}
 }
 
 function run() {
 	for (var i = 0; i < projects.length; i++){
 		projects[i].setPositions();
 	}
-	// animateAbout();
+	animateAbout();
 	render();
 }
 
@@ -58,7 +71,7 @@ function animateAbout() {
 						oldTop = $("#black_line").css("bottom");
 						$("#black_line").css({"bottom" : "-=100px"});
 						$("#black_line").animate({opacity : 1, bottom : oldTop}, 750, function() {
-							run(); //TODO: PROPERLY DO CALLBACKS
+						
 						});
 					});
 				});
