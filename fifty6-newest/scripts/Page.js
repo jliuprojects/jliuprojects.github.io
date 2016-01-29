@@ -74,8 +74,8 @@ function animateBackgrounds() {
 		$('body').css({"background-color" : "#ffffff", "color" : "#000000"});
 		$('#black_line').css({"border-bottom" : "2px solid " + "#000000"});
 		$('#logo').css({"fill" : "#000000"});
-			bgColour = "#ffffff";
-			textColour = "#000000";
+		bgColour = "#ffffff";
+		textColour = "#000000";
 	}
 
 	for (var i = 0; i < projects.length; i++) {
@@ -150,11 +150,8 @@ function animateTitles() {
 
 	if (window.pageYOffset < window.innerHeight) {
 		projects[0].unfixTitle();
-	}
-	
-	if (window.pageYOffset < window.innerHeight/2) {
-			focusedTitleFixed = false;
-			direction = "prev";
+		focusedTitleFixed = false;
+		direction = "prev";
 	}
 
 	if (focusedProject == projects.length - 1) {
