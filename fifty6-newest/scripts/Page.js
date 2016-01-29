@@ -110,7 +110,6 @@ function animateBackgrounds() {
 		if (topOfFocused < middleOfScreen 
 			&& topOfNext > middleOfScreen) {
 
-			console.log("asdf");
 			projects[i].setTheme();
 			bgColour = projects[i].getBgColour();
 			textColour = projects[i].getTextColour();

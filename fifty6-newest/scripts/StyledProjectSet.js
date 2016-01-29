@@ -33,11 +33,10 @@ function StyledProjectSet(json) {
 	 	this.html["container"].append(this.html["images"][i]);
 	 	this.html["images"][i].load(function() {
 	 		self.numImagesLoaded++;
+	 		console.log(this.src + " loaded");
 	 		if (self.numImagesLoaded == self.numImages) {
 	 			json.cb();
 	 		}
-
-	 		console.log("img loaded");
 	 	});
 	}
 	for (var i = 0; i < json.images.length; i++){
