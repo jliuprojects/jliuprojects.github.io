@@ -129,7 +129,7 @@ function picturesFadeUp() {
 
 function animateInfo() {
 	var scroll = window.pageYOffset;
-	var middleOfScreen = scroll + window.innerHeight/2;
+	var middleOfScreen = scroll + window.innerHeight*0.8;
 
 	for (var i = 0; i < projects.length; i++) {
 		var topOfFocused = projects[i].getTopPosition();
