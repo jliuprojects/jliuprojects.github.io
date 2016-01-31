@@ -66,8 +66,8 @@ function lockBlackBar() {
 	// debugger;
 	var scroll = window.pageYOffset;
 	var bottomOfBar = window.innerHeight - window.innerHeight*0.1;
-	if (scroll + 58 > bottomOfBar) {
-		var fixAt = -(window.innerHeight - 58);
+	if (scroll + 57 > bottomOfBar) {
+		var fixAt = -(window.innerHeight - 57);
 		$("#black_line").css({"position" : "fixed", "top" : fixAt + "px"});
 	} else {
 		$("#black_line").css({"position" : "relative", "top" : "auto"});
@@ -169,7 +169,7 @@ function picturesFadeUp() {
 
 function animateInfo() {
 	var scroll = window.pageYOffset;
-	var middleOfScreen = scroll + window.innerHeight*0.8;
+	var middleOfScreen = scroll + window.innerHeight*0.7;
 
 	for (var i = 0; i < projects.length; i++) {
 		var topOfFocused = projects[i].getTopPosition();
