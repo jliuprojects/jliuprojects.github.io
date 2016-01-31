@@ -17,7 +17,7 @@
             ]
         },
         {
-            "title": "Kastor & Pollux",
+            "title": "Kastor & <br> Pollux",
             "description": "Website designed and developed for creative collective Kastor and Pollux to showcase their work. ",
             "link": "'http://kastorandpollux.com/'>kastorandpollux.com",
             "date": "example glossary",
@@ -85,7 +85,7 @@
             ]
         },
         {
-            "title": "Ambiguous Ardor",
+            "title": "Ambiguous <br> Ardor",
             "description": "Temporary microsite made for creative agency Common Base to promote their gallery event.",
             "link": "<a href='http://www.ambiguousardor.gallery/'>ambiguousardor.gallery</a>",
             "metadata" : "Client: Common Base <br> Year: 2015 <br> eb Design, 3D, Interactive",
