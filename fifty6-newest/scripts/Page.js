@@ -56,9 +56,9 @@ function render() {
 		animateTitles();
 		picturesFadeUp();
 		animateInfo();
-		lockBlackBar();
 	}
 	animateBackgrounds();
+	lockBlackBar();
 	window.requestAnimationFrame(render);
 }
 
@@ -66,8 +66,8 @@ function lockBlackBar() {
 	// debugger;
 	var scroll = window.pageYOffset;
 	var bottomOfBar = window.innerHeight - window.innerHeight*0.1;
-	if (scroll + 60 > bottomOfBar) {
-		var fixAt = -(window.innerHeight - 60);
+	if (scroll + 58 > bottomOfBar) {
+		var fixAt = -(window.innerHeight - 58);
 		$("#black_line").css({"position" : "fixed", "top" : fixAt + "px"});
 	} else {
 		$("#black_line").css({"position" : "relative", "top" : "auto"});

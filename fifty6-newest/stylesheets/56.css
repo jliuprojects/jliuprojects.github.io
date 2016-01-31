@@ -100,7 +100,7 @@ header {
 
 #black_line {
 	position: relative;
-	width: 50%;
+	width: 41%;
 	height: 100%;
 	left: 12%;
 	bottom: 60px;
@@ -113,17 +113,21 @@ header {
 	position: fixed;
 	float: right;
 	font-size: 14pt;
-	right: 50px;
+	width: 40%;
+	right: 5%;
 	top: 50px;
 	opacity: 0;
 	z-index: 100;
+	text-align: right;
 }
 
 #logo {
 	position: relative;
-	height: 80%;
-	left: 20px;
-	top: 10px;
+	/*height: 80%;*/
+	width: 10%;
+	height: 116px;
+	left: 10px;
+	/*top: 10px;*/
 	opacity: 0;
 	z-index: 100;
 	/*fill: red;*/
@@ -334,9 +338,8 @@ header {
 	}
 
 	#black_line {
-		display: none;
 		position: relative;
-		width: 50%;
+		width: 41%;
 		height: 100%;
 		left: 12%;
 		bottom: 60px;
@@ -349,17 +352,21 @@ header {
 		position: fixed;
 		float: right;
 		font-size: 14pt;
-		right: 50px;
+		width: 40%;
+		right: 5%;
 		top: 50px;
 		opacity: 1;
 		z-index: 100;
+		text-align: right;
 	}
 
 	#logo {
 		position: relative;
-		height: 80%;
-		left: 20px;
-		top: 10px;
+		/*height: 80%;*/
+		width: 10%;
+		height: 116px;
+		left: 10px;
+		/*top: 10px;*/
 		opacity: 1;
 		z-index: 100;
 		/*fill: red;*/
