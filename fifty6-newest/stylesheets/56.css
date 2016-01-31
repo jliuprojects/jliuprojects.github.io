@@ -173,8 +173,6 @@ header {
  	-ms-transform: translateX(-50%) translateY(-50%) rotate(-90deg);
   	-o-transform: translateX(-50%) translateY(-50%) rotate(-90deg);
   	transform: translateX(-50%) translateY(-50%) rotate(-90deg);
-
-  	display: inline-block;
 }
 
 .project_link {
