@@ -194,8 +194,10 @@ header {
 	display: inline-block;
 	/*float: right;*/
 	width: 30%;
-	margin: 5% 5%;
-	padding-left: 25%;
+	margin-left: 30%;
+	margin-right: 5%;
+	margin-top: 50px;
+	margin-bottom: 50px;
 	top: 0px;
 	opacity: 0;
 	line-height: 150%;
@@ -207,7 +209,9 @@ header {
 	display: inline-block;
 	float: right;
 	width: 25%;
-	margin: 5% 5%;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	margin-right: 10%;
 	top: 0px;
 	opacity: 0;
 	line-height: 150%;
@@ -239,7 +243,7 @@ header {
 	font-size: 32pt;
 	width: 65%; 
 	left: 17.5%;
-	margin-top: 12%;
+	margin-top: 10%;
 	top: 0px;
 	opacity: 0;
 
