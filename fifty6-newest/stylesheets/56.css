@@ -225,10 +225,6 @@ header {
 	margin: 5% 5%;
 }
 
-.hidden {
-	display: none;
-}
-
 #about {
 	height: 100%;
 	width: 100%;
@@ -345,11 +341,12 @@ header {
 		/*margin-top: 0px;*/
 	}
 
+
 	#black_line {
 		position: relative;
-		width: 41%;
+		width: 55%;
 		height: 100%;
-		left: 12%;
+		left: 120px;
 		bottom: 60px;
 		border-bottom: 2px solid black;
 		opacity: 1;
@@ -359,22 +356,22 @@ header {
 	#header_text {
 		position: fixed;
 		float: right;
-		font-size: 14pt;
-		width: 40%;
-		right: 5%;
+		font-size: 10pt;
+		width: 30%;
+		right: 0px;
 		top: 50px;
 		opacity: 1;
 		z-index: 100;
-		text-align: right;
+		text-align: left;
 	}
 
 	#logo {
 		position: relative;
 		/*height: 80%;*/
-		width: 10%;
-		height: 116px;
-		left: 10px;
-		/*top: 10px;*/
+		width: 80px;
+		height: 80px;
+		left: 16px;
+		top: 16px;
 		opacity: 1;
 		z-index: 100;
 		/*fill: red;*/
@@ -420,8 +417,6 @@ header {
 	 	-ms-transform: translateX(0) translateY(0) rotate(0);
 	  	-o-transform: translateX(0) translateY(0) rotate(0);
 	  	transform: translateX(0) translateY(0) rotate(0);
-
-	  	display: inline;
 	}
 
 	.project_link {
@@ -430,7 +425,7 @@ header {
 		display: inline-block;
 		float: initial;
 		width: 100%;
-		margin-top: 100px;
+		margin-top: 150px;
 		top: 0px;
 		opacity: 1;
 
@@ -473,10 +468,6 @@ header {
 		margin: 5% 5%;
 	}
 
-	.hidden {
-		display: none;
-	}
-
 	#about {
 		height: 100%;
 		width: 100%;
@@ -486,32 +477,31 @@ header {
 	#main_title {
 		position: absolute;
 		display: block;
-		font-size: 42pt;
+		font-size: 32pt;
 		width: 65%; 
 		left: 17.5%;
-		padding-top: 10%;
-		top: 15%;
+		margin-top: 30%;
+		top: 0px;
 		opacity: 1;
-		text-align: justify;
+
+		line-height: 150%;
 	}
 
 	#services {
-		font-size: 32pt;
 		position: absolute;
-		width: 66%;
+		width: 50%;
 		left: 33%;
 		text-align: center;
-		top: 45%;
+		top: 50%;
 		opacity: 1;
 	}
 
 	#clients {
-		font-size: 32pt;
 		position: absolute;
-		width: 66%;
+		width: 50%;
 		left: 33%;
 		text-align: center;
-		top: 60%;
+		top: 70%;
 		opacity: 1;
 	}
 
@@ -533,26 +523,28 @@ header {
 	}
 
 	.col_title {
+		font-size: 24pt;
 		width: 100%;
-		margin-bottom: 30px;
+		margin-bottom: 25px;
 		text-align: left;
 	}
 
 	.left_col {
-		font-size: 16pt;
+		font-size: 10pt;
 		width: 50%;
 		display: inline-block;
 		float: left;
 		text-align: left;
-
+		line-height: 150%;
 	}
 
 	.right_col {
-		font-size: 16pt;
+		font-size: 10pt;
 		width: 50%;
 		display: inline-block;
 		position: relative;
 		text-align: left;
+		line-height: 150%;
 		/*left: 0;*/
 		/*float: left;*/
 	}
