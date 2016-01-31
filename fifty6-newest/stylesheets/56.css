@@ -102,9 +102,9 @@ header {
 	position: relative;
 	width: 60%;
 	height: 100%;
-	left: 120px;
-	bottom: 60px;
-	border-bottom: 2px solid black;
+	left: 100px;
+	bottom: 15%;
+	border-bottom: 1px solid black;
 	opacity: 0;
 	z-index: 100;
 }
@@ -112,22 +112,23 @@ header {
 #header_text {
 	position: fixed;
 	float: right;
-	font-size: 10pt;
-	width: 25%;
-	right: 0px;
-	top: 50px;
+	font-size: 11pt;
+	/*width: 30%;*/
+	right: 5%;
+	top: 30px;
 	opacity: 0;
 	z-index: 100;
 	text-align: left;
+	font-family: 'Work Sans', sans-serif;
 }
 
 #logo {
 	position: relative;
 	/*height: 80%;*/
-	width: 80px;
-	height: 80px;
-	left: 16px;
-	top: 16px;
+	width: 56px;
+	height: 56px;
+	left: 20px;
+	top: 10px;
 	opacity: 0;
 	z-index: 100;
 	/*fill: red;*/
@@ -151,7 +152,7 @@ header {
 	position: absolute;
 	display: inline-block;
   	white-space: nowrap;
-  	font-size: 48pt;
+  	font-size: 56pt;
   	float: left;
 
   	height: 100%;
@@ -168,6 +169,11 @@ header {
 	top: 50%;
 	left: 50%;
 
+	font-family: SabonLTPro-Roman;
+	font-weight: normal;
+	font-style: normal;
+	display: inline-block;
+
 	-webkit-transform: translateX(-50%) translateY(-50%) rotate(-90deg);
   	-moz-transform: translateX(-50%) translateY(-50%) rotate(-90deg);
  	-ms-transform: translateX(-50%) translateY(-50%) rotate(-90deg);
@@ -177,18 +183,19 @@ header {
 
 .project_link {
 	position: relative;
-	font-size: 12pt;
+	font-size: 11pt;
 	display: inline-block;
 	float: right;
 	width: 70%;
 	margin-top: 200px;
 	top: 0px;
 	opacity: 0;
+	font-family: 'Work Sans', sans-serif;
 }
 
 .project_description {
 	position: relative;
-	font-size: 12pt;
+	font-size: 11pt;
 	display: inline-block;
 	/*float: right;*/
 	width: 30%;
@@ -199,11 +206,12 @@ header {
 	top: 0px;
 	opacity: 0;
 	line-height: 150%;
+	font-family: 'Work Sans', sans-serif;
 }
 
 .project_metadata {
 	position: relative;
-	font-size: 12pt;
+	font-size: 11pt;
 	display: inline-block;
 	float: right;
 	width: 25%;
@@ -213,6 +221,7 @@ header {
 	top: 0px;
 	opacity: 0;
 	line-height: 150%;
+	font-family: 'Work Sans', sans-serif;
 }
 
 .project_image {
@@ -223,6 +232,7 @@ header {
 	top: 0px;
 	opacity: 0;
 	margin: 5% 5%;
+	box-shadow: 10px 10px 30px #C0C0C0;
 }
 
 #about {
@@ -234,31 +244,36 @@ header {
 #main_title {
 	position: absolute;
 	display: block;
-	font-size: 32pt;
-	width: 65%; 
-	left: 17.5%;
-	margin-top: 10%;
+	font-size: 36pt;
+	width: 840px; 
+	left: 50%;
+	margin-left: -420px;
+	margin-top: 8%;
 	top: 0px;
 	opacity: 0;
 
 	line-height: 150%;
+
+	font-family: SabonLTPro-Roman;
+	font-weight: normal;
+	font-style: normal;
 }
 
 #services {
 	position: absolute;
-	width: 33%;
+	width: 350px;
 	left: 33%;
 	text-align: center;
-	top: 60%;
+	top: 50%;
 	opacity: 0;
 }
 
 #clients {
 	position: absolute;
-	width: 33%;
+	width: 350px;
 	left: 66%;
 	text-align: center;
-	top: 60%;
+	top: 50%;
 	opacity: 0;
 }
 
@@ -266,8 +281,8 @@ header {
 	position: absolute;
 	display: inline-block;
 	text-align: left;
-	line-height: 150%;
-	font-size: 10pt;
+	line-height: 175%;
+	font-size: 11pt;
 	left: 100px;
 	top: 70%;
   	opacity: 0;
@@ -277,6 +292,7 @@ header {
  	-ms-transform: translateY(-50%) rotate(-90deg);
   	-o-transform: translateY(-50%) rotate(-90deg);
   	transform: translateY(-50%) rotate(-90deg);
+  	font-family: 'Work Sans', sans-serif;
 }
 
 .col_title {
@@ -284,24 +300,30 @@ header {
 	width: 100%;
 	margin-bottom: 25px;
 	text-align: left;
+
+	font-family: SabonLTPro-Roman;
+	font-weight: normal;
+	font-style: normal;
 }
 
 .left_col {
-	font-size: 10pt;
+	font-size: 11pt;
 	width: 50%;
 	display: inline-block;
 	float: left;
 	text-align: left;
-	line-height: 150%;
+	line-height: 175%;
+	font-family: 'Work Sans', sans-serif;
 }
 
 .right_col {
-	font-size: 10pt;
+	font-size: 11pt;
 	width: 50%;
 	display: inline-block;
 	position: relative;
 	text-align: left;
-	line-height: 150%;
+	line-height: 175%;
+	font-family: 'Work Sans', sans-serif;
 	/*left: 0;*/
 	/*float: left;*/
 }
@@ -356,7 +378,7 @@ header {
 	#header_text {
 		position: fixed;
 		float: right;
-		font-size: 10pt;
+		font-size: 11pt;
 		width: 30%;
 		right: 0px;
 		top: 50px;
@@ -421,7 +443,7 @@ header {
 
 	.project_link {
 		position: relative;
-		font-size: 12pt;
+		font-size: 11pt;
 		display: inline-block;
 		float: initial;
 		width: 100%;
@@ -434,7 +456,7 @@ header {
 
 	.project_description {
 		position: relative;
-		font-size: 12pt;
+		font-size: 11pt;
 		display: inline-block;
 		width: 90%;
 		margin: 5% 5%;
@@ -447,7 +469,7 @@ header {
 
 	.project_metadata {
 		position: relative;
-		font-size: 12pt;
+		font-size: 11pt;
 		display: inline-block;
 		float: initial;
 		width: 90%;
@@ -510,7 +532,7 @@ header {
 		display: inline-block;
 		text-align: left;
 		line-height: 150%;
-		font-size: 10pt;
+		font-size: 11pt;
 		left: 100px;
 		top: 70%;
 	  	opacity: 1;
@@ -530,7 +552,7 @@ header {
 	}
 
 	.left_col {
-		font-size: 10pt;
+		font-size: 11pt;
 		width: 50%;
 		display: inline-block;
 		float: left;
@@ -539,7 +561,7 @@ header {
 	}
 
 	.right_col {
-		font-size: 10pt;
+		font-size: 11pt;
 		width: 50%;
 		display: inline-block;
 		position: relative;

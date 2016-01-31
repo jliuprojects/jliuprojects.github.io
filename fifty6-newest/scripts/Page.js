@@ -8,6 +8,7 @@ var numProjects = 0;
 var numProjectsLoaded = 0;
 
 function init () {
+	$("#black_line").css({"width" : window.innerWidth - $("#logo").width() - 20 - $("#header_text").width() - window.innerWidth*0.05 - 60});
     $.getJSON("assets/projects.json", function(json) {
 	    numProjects = json.projects.length;
 	    for (var i = 0; i < json.projects.length; i++){
@@ -65,9 +66,9 @@ function render() {
 function lockBlackBar() {
 	// debugger;
 	var scroll = window.pageYOffset;
-	var bottomOfBar = window.innerHeight - window.innerHeight*0.1;
-	if (scroll + 57 > bottomOfBar) {
-		var fixAt = -(window.innerHeight - 57);
+	var bottomOfBar = window.innerHeight - window.innerHeight*0.15;
+	if (scroll + 37 > bottomOfBar) {
+		var fixAt = -(window.innerHeight - 37);
 		$("#black_line").css({"position" : "fixed", "top" : fixAt + "px"});
 	} else {
 		$("#black_line").css({"position" : "relative", "top" : "auto"});
@@ -113,7 +114,7 @@ function animateBackgrounds() {
 
 	if (scroll < window.innerHeight/2) {
 		$('body').css({"background-color" : "#ffffff", "color" : "#000000"});
-		$('#black_line').css({"border-bottom" : "2px solid " + "#000000"});
+		$('#black_line').css({"border-bottom" : "1px solid " + "#000000"});
 		$('#logo').css({"fill" : "#000000"});
 		bgColour = "#ffffff";
 		textColour = "#000000";
@@ -258,6 +259,7 @@ $( document ).ready(function() {
 			for (var i = 0; i < projects.length; i++){
 				projects[i].setPositions();
 			}
+			$("#black_line").css({"width" : window.innerWidth - $("#logo").width() - 20 - $("#header_text").width() - window.innerWidth*0.05 - 60});
 		});
 	}
 	init();
