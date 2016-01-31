@@ -29,7 +29,7 @@ function loadedCb() {
 		$("#loading_screen").remove();
 		$(".project_title_container").css({"opacity" : 1});
 		if (mobilecheck()){
-			render();
+			runMobile();
 		} else {
 			run();
 		}
@@ -44,14 +44,21 @@ function run() {
 	render();
 }
 
+function runMobile() {
+	for (var i = 0; i < projects.length; i++){
+		projects[i].setPositionsMobile();
+	}
+	render();
+}
+
 function render() {
 	if (!mobilecheck()) {
 		animateTitles();
 		picturesFadeUp();
 		animateInfo();
-		animateBackgrounds();
 		lockBlackBar();
 	}
+	animateBackgrounds();
 	window.requestAnimationFrame(render);
 }
 
