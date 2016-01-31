@@ -245,5 +245,10 @@ function animateTitles() {
 }
 
 $( document ).ready(function() {
+	$( window ).resize(function() {
+		for (var i = 0; i < projects.length; i++){
+			projects[i].setPositions();
+		}
+	});
 	init();
 });

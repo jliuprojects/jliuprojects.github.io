@@ -65,6 +65,7 @@ StyledProjectSet.prototype.setPositions = function() {
 	this.topPosition = this.html["container"].offset().top;
 	this.bottomPosition = this.html["container"].offset().top + this.html["container"].height();
 
+	this.imagePositions = [];
 	for (var i = 0; i < this.html["images"].length; i++) {
 		this.imagePositions.push(this.html["images"][i].offset().top);
 	}
