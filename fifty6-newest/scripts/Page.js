@@ -50,33 +50,46 @@ function render() {
 	picturesFadeUp();
 	animateInfo();
 	animateBackgrounds();
+	lockBlackBar();
 	window.requestAnimationFrame(render);
+}
+
+function lockBlackBar() {
+	// debugger;
+	var scroll = window.pageYOffset;
+	var bottomOfBar = window.innerHeight - window.innerHeight*0.1;
+	if (scroll + 60 > bottomOfBar) {
+		var fixAt = -(window.innerHeight - 60);
+		$("#black_line").css({"position" : "fixed", "top" : fixAt + "px"});
+	} else {
+		$("#black_line").css({"position" : "relative", "top" : "auto"});
+	}
 }
 
 function animateAbout() {
 	var oldTop = $("#header_text").css("top");
 	$("#header_text").css({"top" : "-=100px"});
-	$("#header_text").animate({opacity : 1, top : oldTop}, 750);
+	$("#header_text").animate({opacity : 1, top : oldTop}, 500);
 
 	oldTop = $("#logo").css("top");
 	$("#logo").css({"top" : "-=100px"});
-	$("#logo").animate({opacity : 1, top : oldTop}, 750, function() {
+	$("#logo").animate({opacity : 1, top : oldTop}, 500, function() {
 
 		oldTop = $("#main_title").css("top");
 		$("#main_title").css({"top" : "+=100px"});
-		$("#main_title").animate({opacity : 1, top : oldTop}, 750, function() {
+		$("#main_title").animate({opacity : 1, top : oldTop}, 500, function() {
 			oldTop = $("#services").css("top");
 			$("#services").css({"top" : "+=100px"});
-			$("#services").animate({opacity : 1, top : oldTop}, 750, function() {
+			$("#services").animate({opacity : 1, top : oldTop}, 500, function() {
 				oldTop = $("#clients").css("top");
 				$("#clients").css({"top" : "+=100px"});
-				$("#clients").animate({opacity : 1, top : oldTop}, 750, function() {
+				$("#clients").animate({opacity : 1, top : oldTop}, 500, function() {
 					oldTop = $("#contact").css("top");
 					$("#contact").css({"top" : "+=100px"});
-					$("#contact").animate({opacity : 1, top : oldTop}, 750, function() {
+					$("#contact").animate({opacity : 1, top : oldTop}, 500, function() {
 						oldTop = $("#black_line").css("bottom");
 						$("#black_line").css({"bottom" : "-=100px"});
-						$("#black_line").animate({opacity : 1, bottom : oldTop}, 750, function() {
+						$("#black_line").animate({opacity : 1, bottom : oldTop}, 500, function() {
 						
 						});
 					});
