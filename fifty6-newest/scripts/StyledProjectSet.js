@@ -25,8 +25,9 @@ function StyledProjectSet(json) {
 	this.html["images"] = [];
 	
 	this.html["container"].append(this.html["link"]);
-	this.html["container"].append(this.html["metadata"]);
 	this.html["container"].append(this.html["description"]);
+	this.html["container"].append(this.html["metadata"]);
+	
 	// debugger;
 	for (var i = 0; i < json.images.length; i++){
 		this.html["images"].push($("<img class='project_image' src='" + json.images[i].url + "'>"));
