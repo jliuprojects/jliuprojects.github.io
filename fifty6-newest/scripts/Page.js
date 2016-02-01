@@ -266,7 +266,7 @@ function animateTitles() {
 }
 
 // THREEJS
-var SEPARATION = 100, AMOUNTX = 50, AMOUNTY = 50;
+var SEPARATION = 200, AMOUNTX = 25, AMOUNTY = 25;
 var container;
 var camera, scene, renderer;
 var particles, particle, count = 0;
