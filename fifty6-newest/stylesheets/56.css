@@ -283,7 +283,7 @@ header {
 	text-align: left;
 	line-height: 175%;
 	font-size: 11pt;
-	left: 10%;
+	left: 64px;
 	top: 70%;
   	opacity: 0;
 
@@ -374,7 +374,7 @@ header {
 		text-align: left;
 		line-height: 175%;
 		font-size: 11pt;
-		left: 5%;
+		left: 64px;
 		top: 70%;
 	  	opacity: 0;
 
@@ -631,7 +631,7 @@ header {
 		text-align: left;
 		line-height: 175%;
 		font-size: 11pt;
-		left: 5%;
+		left: 64px;
 		top: 70%;
 	  	opacity: 0;
 
