@@ -374,7 +374,7 @@ header {
 		text-align: left;
 		line-height: 175%;
 		font-size: 11pt;
-		left: 64px;
+		left: 0px;
 		top: 70%;
 	  	opacity: 0;
 
@@ -631,7 +631,7 @@ header {
 		text-align: left;
 		line-height: 175%;
 		font-size: 11pt;
-		left: 64px;
+		left: 40px;
 		top: 70%;
 	  	opacity: 0;
 
