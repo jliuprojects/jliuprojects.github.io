@@ -466,23 +466,11 @@ header {
 		/*margin-top: 0px;*/
 	}
 
-
-	#black_line {
-		position: relative;
-		width: 55%;
-		height: 100%;
-		left: 120px;
-		bottom: 60px;
-		border-bottom: 2px solid black;
-		opacity: 1;
-		z-index: 100;
-	}
-
 	#header_text {
 		position: fixed;
 		float: right;
 		font-size: 11pt;
-		width: 30%;
+		width: 400px;
 		right: 0px;
 		top: 50px;
 		opacity: 1;
@@ -692,8 +680,8 @@ header {
 		position: relative;
 		width: 60%;
 		height: 100%;
-		left: 100px;
-		bottom: 10%;
+		left: 150px;
+		bottom: 15%;
 		border-bottom: 1px solid black;
 		opacity: 0;
 		z-index: 100;

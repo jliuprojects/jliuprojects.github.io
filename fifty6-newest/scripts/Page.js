@@ -30,7 +30,7 @@ function loadedCb() {
 		$("#loading_screen").remove();
 		$(".project_title_container").css({"opacity" : 1});
 		if (mobilecheck()){
-			run();
+			runMobile();
 		} else {
 			run();
 		}
@@ -49,6 +49,7 @@ function runMobile() {
 	for (var i = 0; i < projects.length; i++){
 		projects[i].setPositionsMobile();
 	}
+	animateAbout();
 	render();
 }
 
@@ -67,8 +68,14 @@ function lockBlackBar() {
 	// debugger;
 	var scroll = window.pageYOffset;
 	var bottomOfBar = window.innerHeight - window.innerHeight*0.15;
-	if (scroll + 37 > bottomOfBar) {
-		var fixAt = -(window.innerHeight - 37);
+
+	if (mobilecheck()) {
+		var dist = 58;
+	} else {
+		var dist = 37;
+	}
+	if (scroll + dist > bottomOfBar) {
+		var fixAt = -(window.innerHeight - dist);
 		$("#black_line").css({"position" : "fixed", "top" : fixAt + "px"});
 	} else {
 		$("#black_line").css({"position" : "relative", "top" : "auto"});
@@ -258,6 +265,7 @@ function animateTitles() {
 $( document ).ready(function() {
 	if (!mobilecheck()) {
 		$( window ).resize(function() {
+			console.log("reize");
 			for (var i = 0; i < projects.length; i++){
 				projects[i].setPositions();
 			}
