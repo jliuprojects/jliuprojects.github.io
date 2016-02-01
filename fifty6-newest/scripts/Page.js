@@ -320,6 +320,8 @@ function initThree() {
 
 }
 
+
+
 function onWindowResize() {
 	windowHalfX = window.innerWidth / 2;
 	windowHalfY = window.innerHeight / 2;
@@ -331,7 +333,7 @@ function onWindowResize() {
 function onDocumentMouseMove( event ) {
 
 	mouseX = event.clientX - windowHalfX;
-	mouseY = event.clientY - windowHalfY + window.pageYOffset;
+	mouseY = event.clientY - windowHalfY;
 
 }
 
@@ -353,7 +355,7 @@ function onDocumentTouchMove( event ) {
 
 function renderThree() {
 	camera.position.x += ( mouseX - camera.position.x ) * .05;
-	camera.position.y += ( - mouseY - camera.position.y ) * .05;
+	camera.position.y += ( - (mouseY + window.pageYOffset) - camera.position.y ) * .05;
 	camera.lookAt( scene.position );
 
 	var i = 0;
