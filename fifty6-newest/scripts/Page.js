@@ -96,13 +96,13 @@ function animateAbout() {
 		// }, 200);
 		window.setTimeout(function (){
 			// oldTop = $("#services")[0].style.top;
-			$("#services").css({"top" : "60%"});
-			$("#services").animate({opacity : 1, top : "50%"}, 700);
+			$("#services").css({"top" : "65%"});
+			$("#services").animate({opacity : 1, top : "55%"}, 700);
 		}, 200);
 		window.setTimeout(function (){
 			// oldTop = $("#clients")[0].style.top;
-			$("#clients").css({"top" : "60%"});
-			$("#clients").animate({opacity : 1, top : "50%"}, 700);
+			$("#clients").css({"top" : "65%"});
+			$("#clients").animate({opacity : 1, top : "55%"}, 700);
 		}, 400);
 		window.setTimeout(function (){
 			// oldTop = $("#contact")[0].style.top;
