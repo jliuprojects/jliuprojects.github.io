@@ -112,7 +112,7 @@ header {
 #header_text {
 	position: fixed;
 	float: right;
-	font-size: 11pt;
+	font-size: 10pt;
 	/*width: 30%;*/
 	right: 5%;
 	top: 30px;
@@ -183,7 +183,7 @@ header {
 
 .project_link {
 	position: relative;
-	font-size: 11pt;
+	font-size: 10pt;
 	display: inline-block;
 	float: right;
 	width: 70%;
@@ -195,7 +195,7 @@ header {
 
 .project_description {
 	position: relative;
-	font-size: 11pt;
+	font-size: 10pt;
 	display: inline-block;
 	/*float: right;*/
 	width: 30%;
@@ -211,7 +211,7 @@ header {
 
 .project_metadata {
 	position: relative;
-	font-size: 11pt;
+	font-size: 10pt;
 	display: inline-block;
 	float: right;
 	width: 25%;
@@ -282,7 +282,7 @@ header {
 	display: inline-block;
 	text-align: left;
 	line-height: 175%;
-	font-size: 11pt;
+	font-size: 10pt;
 	left: 64px;
 	top: 70%;
   	opacity: 0;
@@ -307,7 +307,7 @@ header {
 }
 
 .left_col {
-	font-size: 11pt;
+	font-size: 10pt;
 	width: 50%;
 	display: inline-block;
 	float: left;
@@ -317,7 +317,7 @@ header {
 }
 
 .right_col {
-	font-size: 11pt;
+	font-size: 10pt;
 	width: 50%;
 	display: inline-block;
 	position: relative;
@@ -373,7 +373,7 @@ header {
 		display: inline-block;
 		text-align: left;
 		line-height: 175%;
-		font-size: 11pt;
+		font-size: 10pt;
 		left: 0px;
 		top: 70%;
 	  	opacity: 0;
@@ -398,7 +398,7 @@ header {
 	}
 
 	.left_col {
-		font-size: 11pt;
+		font-size: 10pt;
 		width: 50%;
 		display: inline-block;
 		float: left;
@@ -408,7 +408,7 @@ header {
 	}
 
 	.right_col {
-		font-size: 11pt;
+		font-size: 10pt;
 		width: 50%;
 		display: inline-block;
 		position: relative;
@@ -469,7 +469,7 @@ header {
 	#header_text {
 		position: fixed;
 		float: right;
-		font-size: 11pt;
+		font-size: 10pt;
 		width: 400px;
 		right: 0px;
 		top: 50px;
@@ -534,7 +534,7 @@ header {
 
 	.project_link {
 		position: relative;
-		font-size: 11pt;
+		font-size: 10pt;
 		display: inline-block;
 		float: initial;
 		width: 100%;
@@ -547,7 +547,7 @@ header {
 
 	.project_description {
 		position: relative;
-		font-size: 11pt;
+		font-size: 10pt;
 		display: inline-block;
 		width: 90%;
 		margin: 5% 5%;
@@ -560,7 +560,7 @@ header {
 
 	.project_metadata {
 		position: relative;
-		font-size: 11pt;
+		font-size: 10pt;
 		display: inline-block;
 		float: initial;
 		width: 90%;
@@ -630,7 +630,7 @@ header {
 		display: inline-block;
 		text-align: left;
 		line-height: 175%;
-		font-size: 11pt;
+		font-size: 10pt;
 		left: 40px;
 		top: 70%;
 	  	opacity: 0;
@@ -655,7 +655,7 @@ header {
 	}
 
 	.left_col {
-		font-size: 11pt;
+		font-size: 10pt;
 		width: 50%;
 		display: inline-block;
 		float: left;
@@ -665,7 +665,7 @@ header {
 	}
 
 	.right_col {
-		font-size: 11pt;
+		font-size: 10pt;
 		width: 50%;
 		display: inline-block;
 		position: relative;
