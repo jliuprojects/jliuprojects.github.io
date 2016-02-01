@@ -283,7 +283,7 @@ header {
 	text-align: left;
 	line-height: 175%;
 	font-size: 11pt;
-	left: 100px;
+	left: 10%;
 	top: 70%;
   	opacity: 0;
 
@@ -326,6 +326,109 @@ header {
 	font-family: 'Work Sans', sans-serif;
 	/*left: 0;*/
 	/*float: left;*/
+}
+
+
+@media (max-width: 900px) {
+	#main_title {
+		position: absolute;
+		display: block;
+		font-size: 36pt;
+		width: 616px; 
+		left: 50%;
+		margin-left: -308px;
+		margin-top: 8%;
+		top: 0px;
+		opacity: 0;
+
+		line-height: 150%;
+
+		font-family: SabonLTPro-Roman;
+		font-weight: normal;
+		font-style: normal;
+	}
+
+	#services {
+		position: absolute;
+		width: 280px;
+		left: 20%;
+		text-align: center;
+		top: 50%;
+		opacity: 0;
+		margin-top: 50px;
+	}
+
+	#clients {
+		position: absolute;
+		width: 280px;
+		left: 60%;
+		text-align: center;
+		top: 50%;
+		opacity: 0;
+		margin-top: 50px;
+	}
+
+	#contact {
+		position: absolute;
+		display: inline-block;
+		text-align: left;
+		line-height: 175%;
+		font-size: 11pt;
+		left: 5%;
+		top: 70%;
+	  	opacity: 0;
+
+		-webkit-transform: translateY(-50%) rotate(-90deg);
+	  	-moz-transform: translateY(-50%) rotate(-90deg);
+	 	-ms-transform: translateY(-50%) rotate(-90deg);
+	  	-o-transform: translateY(-50%) rotate(-90deg);
+	  	transform: translateY(-50%) rotate(-90deg);
+	  	font-family: 'Work Sans', sans-serif;
+	}
+
+	.col_title {
+		font-size: 24pt;
+		width: 100%;
+		margin-bottom: 25px;
+		text-align: left;
+
+		font-family: SabonLTPro-Roman;
+		font-weight: normal;
+		font-style: normal;
+	}
+
+	.left_col {
+		font-size: 11pt;
+		width: 50%;
+		display: inline-block;
+		float: left;
+		text-align: left;
+		line-height: 175%;
+		font-family: 'Work Sans', sans-serif;
+	}
+
+	.right_col {
+		font-size: 11pt;
+		width: 50%;
+		display: inline-block;
+		position: relative;
+		text-align: left;
+		line-height: 175%;
+		font-family: 'Work Sans', sans-serif;
+		/*left: 0;*/
+		/*float: left;*/
+	}
+
+	#black_line {
+		position: relative;
+		width: 60%;
+		height: 100%;
+		left: 100px;
+		bottom: 10%;
+		border-bottom: 1px solid black;
+		opacity: 0;
+		z-index: 100;
+	}
 }
 
 @media only screen and (max-device-width: 480px) {
@@ -499,49 +602,57 @@ header {
 	#main_title {
 		position: absolute;
 		display: block;
-		font-size: 32pt;
-		width: 65%; 
-		left: 17.5%;
-		margin-top: 30%;
+		font-size: 36pt;
+		width: 616px; 
+		left: 50%;
+		margin-left: -308px;
+		margin-top: 20%;
 		top: 0px;
-		opacity: 1;
+		opacity: 0;
 
 		line-height: 150%;
+
+		font-family: SabonLTPro-Roman;
+		font-weight: normal;
+		font-style: normal;
 	}
 
 	#services {
 		position: absolute;
-		width: 50%;
-		left: 33%;
+		width: 280px;
+		left: 20%;
 		text-align: center;
 		top: 50%;
-		opacity: 1;
+		opacity: 0;
+		margin-top: 50px;
 	}
 
 	#clients {
 		position: absolute;
-		width: 50%;
-		left: 33%;
+		width: 280px;
+		left: 60%;
 		text-align: center;
-		top: 70%;
-		opacity: 1;
+		top: 50%;
+		opacity: 0;
+		margin-top: 50px;
 	}
 
 	#contact {
 		position: absolute;
 		display: inline-block;
 		text-align: left;
-		line-height: 150%;
+		line-height: 175%;
 		font-size: 11pt;
-		left: 100px;
+		left: 5%;
 		top: 70%;
-	  	opacity: 1;
+	  	opacity: 0;
 
 		-webkit-transform: translateY(-50%) rotate(-90deg);
 	  	-moz-transform: translateY(-50%) rotate(-90deg);
 	 	-ms-transform: translateY(-50%) rotate(-90deg);
 	  	-o-transform: translateY(-50%) rotate(-90deg);
 	  	transform: translateY(-50%) rotate(-90deg);
+	  	font-family: 'Work Sans', sans-serif;
 	}
 
 	.col_title {
@@ -549,6 +660,10 @@ header {
 		width: 100%;
 		margin-bottom: 25px;
 		text-align: left;
+
+		font-family: SabonLTPro-Roman;
+		font-weight: normal;
+		font-style: normal;
 	}
 
 	.left_col {
@@ -557,7 +672,8 @@ header {
 		display: inline-block;
 		float: left;
 		text-align: left;
-		line-height: 150%;
+		line-height: 175%;
+		font-family: 'Work Sans', sans-serif;
 	}
 
 	.right_col {
@@ -566,8 +682,20 @@ header {
 		display: inline-block;
 		position: relative;
 		text-align: left;
-		line-height: 150%;
+		line-height: 175%;
+		font-family: 'Work Sans', sans-serif;
 		/*left: 0;*/
 		/*float: left;*/
+	}
+
+	#black_line {
+		position: relative;
+		width: 60%;
+		height: 100%;
+		left: 100px;
+		bottom: 10%;
+		border-bottom: 1px solid black;
+		opacity: 0;
+		z-index: 100;
 	}
 }

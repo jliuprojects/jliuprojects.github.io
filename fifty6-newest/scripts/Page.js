@@ -30,7 +30,7 @@ function loadedCb() {
 		$("#loading_screen").remove();
 		$(".project_title_container").css({"opacity" : 1});
 		if (mobilecheck()){
-			runMobile();
+			run();
 		} else {
 			run();
 		}
@@ -78,33 +78,35 @@ function lockBlackBar() {
 function animateAbout() {
 	var oldTop = $("#header_text").css("top");
 	$("#header_text").css({"top" : "-=100px"});
-	$("#header_text").animate({opacity : 1, top : oldTop}, 500);
+	$("#header_text").animate({opacity : 1, top : oldTop}, 700);
 
 	oldTop = $("#logo").css("top");
 	$("#logo").css({"top" : "-=100px"});
-	$("#logo").animate({opacity : 1, top : oldTop}, 500, function() {
-
-		oldTop = $("#main_title").css("top");
-		$("#main_title").css({"top" : "+=100px"});
-		$("#main_title").animate({opacity : 1, top : oldTop}, 500, function() {
-			oldTop = $("#services").css("top");
-			$("#services").css({"top" : "+=100px"});
-			$("#services").animate({opacity : 1, top : oldTop}, 500, function() {
-				oldTop = $("#clients").css("top");
-				$("#clients").css({"top" : "+=100px"});
-				$("#clients").animate({opacity : 1, top : oldTop}, 500, function() {
-					oldTop = $("#contact").css("top");
-					$("#contact").css({"top" : "+=100px"});
-					$("#contact").animate({opacity : 1, top : oldTop}, 500, function() {
-						oldTop = $("#black_line").css("bottom");
-						$("#black_line").css({"bottom" : "-=100px"});
-						$("#black_line").animate({opacity : 1, bottom : oldTop}, 500, function() {
-						
-						});
-					});
-				});
-			});
-		});
+	$("#logo").animate({opacity : 1, top : oldTop}, 700, function() {
+		// window.setTimeout(function (){
+		$("#main_title").css({"top" : "10%"});
+		$("#main_title").animate({opacity : 1, top : 0}, 700);
+		// }, 200);
+		window.setTimeout(function (){
+			// oldTop = $("#services")[0].style.top;
+			$("#services").css({"top" : "60%"});
+			$("#services").animate({opacity : 1, top : "50%"}, 700);
+		}, 200);
+		window.setTimeout(function (){
+			// oldTop = $("#clients")[0].style.top;
+			$("#clients").css({"top" : "60%"});
+			$("#clients").animate({opacity : 1, top : "50%"}, 700);
+		}, 400);
+		window.setTimeout(function (){
+			// oldTop = $("#contact")[0].style.top;
+			$("#contact").css({"top" : "80%"});
+			$("#contact").animate({opacity : 1, top : "70%"}, 700);
+		}, 600);
+		window.setTimeout(function (){
+			oldTop = $("#black_line").css("bottom");
+			$("#black_line").css({"bottom" : "-=100px"});
+			$("#black_line").animate({opacity : 1, bottom : oldTop}, 700);
+		}, 800);
 	});
 }
 
