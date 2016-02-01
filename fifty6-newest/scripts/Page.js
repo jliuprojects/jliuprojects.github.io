@@ -202,7 +202,9 @@ function animateTitles() {
 	// if (window.pageYOffset < )
 
 	if (window.pageYOffset < window.innerHeight) {
-		projects[0].unfixTitle("upper");
+		for (var i = 0; i < projects.length; i++) {
+			projects[i].unfixTitle("upper");
+		}
 		focusedTitleFixed = false;
 		direction = "prev";
 	}
