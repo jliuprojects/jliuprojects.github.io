@@ -261,7 +261,7 @@ header {
 
 #services {
 	position: absolute;
-	width: 350px;
+	width: 300px;
 	left: 33%;
 	text-align: center;
 	top: 55%;
@@ -270,7 +270,7 @@ header {
 
 #clients {
 	position: absolute;
-	width: 350px;
+	width: 300px;
 	left: 66%;
 	text-align: center;
 	top: 55%;
@@ -350,7 +350,7 @@ header {
 
 	#services {
 		position: absolute;
-		width: 280px;
+		width: 200px;
 		left: 20%;
 		text-align: center;
 		top: 50%;
@@ -360,7 +360,7 @@ header {
 
 	#clients {
 		position: absolute;
-		width: 280px;
+		width: 200px;
 		left: 60%;
 		text-align: center;
 		top: 50%;
