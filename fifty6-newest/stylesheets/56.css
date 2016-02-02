@@ -34,6 +34,7 @@ body {
 	-moz-transition:background 1s, color 1s, fill 1s;
 	-o-transition:background 1s, color 1s, fill 1s;
 	transition:background 1s, color 1s, fill 1s;
+	display: inline-block;
 }
 ol, ul {
 	list-style: none;
