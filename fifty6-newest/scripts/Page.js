@@ -19,9 +19,9 @@ function init () {
 
 	$("#pointer").click(function() {
 		if (scroll >= window.innerHeight) {
-			$('body').animate({scrollTop:0}, 600, 'swing');
+			$('body').animate({scrollTop:0}, 750, 'swing');
 		} else if (scroll < window.innerHeight) {
-			$('body').animate({scrollTop:window.innerHeight}, 600, 'swing');
+			$('body').animate({scrollTop:window.innerHeight}, 750, 'swing');
 		}
 	});
 
@@ -274,7 +274,7 @@ function animateTitles() {
 	}
 
 	if (focusedTitleFixed) { // check if the focused title is fixed, extra rc prevention
-		if (topOfNext < window.pageYOffset + window.innerHeight) {
+		if (topOfNext <= window.pageYOffset + window.innerHeight) {
 			// the top of the next project container hit the bottom of the screen
 			projects[focusedProject].unfixTitle("lower");
 			direction = "next";
@@ -288,11 +288,11 @@ function animateTitles() {
 	} else {
 		switch (direction) {
 			case "next":
-				if (bottomOfFocused > window.pageYOffset + window.innerHeight) {
+				if (bottomOfFocused >= window.pageYOffset + window.innerHeight) {
 					// the bottom of the focused project container hit the bottom of the screen
 					projects[focusedProject].fixTitle();
 					focusedTitleFixed = true;
-				} else if (topOfNext < window.pageYOffset) {
+				} else if (topOfNext <= window.pageYOffset) {
 					// the top of the next project container hit the top of the screen
 					focusedProject++;
 					projects[focusedProject].fixTitle();
@@ -300,11 +300,11 @@ function animateTitles() {
 				}
 				break;
 			case "prev":
-				if (topOfFocused < window.pageYOffset) {
+				if (topOfFocused <= window.pageYOffset) {
 					// the top of the focused project container hit the top of the screen
 					projects[focusedProject].fixTitle();
 					focusedTitleFixed = true;
-				} else if (bottomOfPrev > window.pageYOffset + window.innerHeight) {
+				} else if (bottomOfPrev >= window.pageYOffset + window.innerHeight) {
 					// the bottom of the prev project container hit the bottom of the screen
 					focusedProject--;
 					projects[focusedProject].fixTitle();
