@@ -78,6 +78,14 @@ canvas {
 	top: 0px;
 }
 
+#pointer {
+	position: fixed;
+	width: 50px;
+	bottom: 50px;
+	left: 50px;
+	z-index: 1000;
+}
+
 #loading_screen {
 	position: fixed;
 	width: 100%;

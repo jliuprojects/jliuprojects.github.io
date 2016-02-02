@@ -17,6 +17,14 @@ function init () {
     	}
 	});
 
+	$("#pointer").click(function() {
+		if (scroll >= window.innerHeight) {
+			$('body').animate({scrollTop:0}, 400);
+		} else if (scroll < window.innerHeight) {
+			$('body').animate({scrollTop:window.innerHeight}, 400);
+		}
+	});
+
 	initThree();
 }
 
@@ -63,8 +71,31 @@ function render() {
 	}
 	animateBackgrounds();
 	lockBlackBar();
+	animatePointer();
 	renderThree();
 	window.requestAnimationFrame(render);
+}
+
+function animatePointer() {
+	scroll = window.pageYOffset;
+
+	if (scroll >= window.innerHeight) {
+		$("#pointer").css({"-webkit-transform" : "rotate(-180deg)",
+						   "-moz-transform" : "rotate(-180deg)",
+						 	"-ms-transform" : "rotate(-180deg)",
+						  	"-o-transform" : "rotate(-180deg)",
+						  	"transform" : "rotate(-180deg)"
+		});
+	}
+
+	if (scroll < window.innerHeight) {
+		$("#pointer").css({"-webkit-transform" : "rotate(0deg)",
+						   "-moz-transform" : "rotate(0deg)",
+						 	"-ms-transform" : "rotate(0deg)",
+						  	"-o-transform" : "rotate(0deg)",
+						  	"transform" : "rotate(0deg)"
+		});
+	}
 }
 
 function lockBlackBar() {
