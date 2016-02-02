@@ -159,6 +159,7 @@ function animateBackgrounds() {
 		$('body').css({"background-color" : "#ffffff", "color" : "#000000"});
 		$('#black_line').css({"border-bottom" : "1px solid " + "#000000"});
 		$('#logo').css({"fill" : "#000000"});
+		$('#pointer').css({"fill" : "#000000"});
 		bgColour = "#ffffff";
 		textColour = "#000000";
 	}
