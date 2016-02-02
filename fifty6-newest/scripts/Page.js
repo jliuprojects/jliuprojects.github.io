@@ -19,9 +19,9 @@ function init () {
 
 	$("#pointer").click(function() {
 		if (scroll >= window.innerHeight) {
-			$('body').animate({scrollTop:0}, 400);
+			$('body').animate({scrollTop:0}, 600, 'swing');
 		} else if (scroll < window.innerHeight) {
-			$('body').animate({scrollTop:window.innerHeight}, 400);
+			$('body').animate({scrollTop:window.innerHeight}, 600, 'swing');
 		}
 	});
 
