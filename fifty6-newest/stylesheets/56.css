@@ -162,24 +162,8 @@ canvas {
 	display: inline-block;
 }
 
-/*.project_title_container {
-	position: absolute;
-	display: inline-block;
-  	white-space: nowrap;
-  	font-size: 56pt;
-  	float: left;
-
-  	height: 100%;
-  	width: 25%;
-  	top: 0px;
-  	left: 0;
-  	opacity: 0;
-
-  	text-align: center;
-}*/
-
 .project_title_container {
-	position: fixed;
+	position: absolute;
 	display: inline-block;
   	white-space: nowrap;
   	font-size: 56pt;
