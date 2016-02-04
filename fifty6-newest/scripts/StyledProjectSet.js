@@ -50,15 +50,30 @@ function StyledProjectSet(json) {
 
 // fix title position on screen
 StyledProjectSet.prototype.fixTitle = function() {
-	this.html["title"].css({"top" : 0, "position" : "fixed"});
+	// this.html["title"].css({"top" : 0, "position" : "fixed"});
+	this.html["title"][0].style.top = "0px";
+	this.html["title"][0].style.position = "fixed";
 };
+
+// StyledProjectSet.prototype.unfixTitle = function(side) { 
+// 	var top = [];
+// 	top["upper"] = 0
+// 	top["lower"] = this.html["container"].height() - window.innerHeight;
+
+// 	this.html["title"].css({"top" : top[side], "position" : "absolute"});
+// };
 
 StyledProjectSet.prototype.unfixTitle = function(side) { 
 	var top = [];
-	top["upper"] = 0
-	top["lower"] = this.html["container"].height() - window.innerHeight;
+	
+	
+	var scroll = window.pageYOffset;
+	var windowHeight = window.innerHeight;
+	var projectHeight = this.bottomPosition - this.topPosition;
 
-	this.html["title"].css({"top" : top[side], "position" : "absolute"});
+	top["upper"] = (this.topPosition - scroll)/windowHeight*100;
+	top["lower"] = -(scroll + windowHeight - this.bottomPosition)/windowHeight*100;
+	this.html["title"][0].style.top = top[side] + "%";
 };
 
 StyledProjectSet.prototype.setPositions = function() {

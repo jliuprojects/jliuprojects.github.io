@@ -65,10 +65,12 @@ function runMobile() {
 
 function render() {
 	if (!mobilecheck()) {
-		animateTitles();
+		// animateTitles();
+		animateTitlesBetter();
 		picturesFadeUp();
 		animateInfo();
 	}
+	// projects[0].unfixTitle("upper");
 	animateBackgrounds();
 	lockBlackBar();
 	animatePointer();
@@ -226,24 +228,27 @@ function animateInfo() {
 	}
 }
 
-// function animateTitlesBetter() {
-// 	for (var i = 0; i < projects.length; i++) {
-// 		var scroll = window.pageYOffset;
-// 		var bottomOfPage = scroll + window.innerHeight;
+function animateTitlesBetter() {
+	for (var i = 0; i < projects.length; i++) {
+		var scroll = window.pageYOffset;
+		var bottomOfPage = scroll + window.innerHeight;
 
-// 		var topOfProject = projects[i].getTopPosition();
-// 		var bottomOfProject = projects[i].getBottomPosition();
+		var topOfProject = projects[i].getTopPosition();
+		var bottomOfProject = projects[i].getBottomPosition();
+		
 
-// 		if (topOfProject <= scroll && bottomOfProject >= bottomOfPage) {
-// 			projects[i].fixTitle();
-// 			focusedProject = i;
-// 		} else if (topOfProject > scroll) {
-// 			projects[i].unfixTitle("upper");
-// 		} else if (bottomOfProject < bottomOfPage) {
-// 			projects[i].unfixTitle("lower");
-// 		}
-// 	}
-// }
+		if (topOfProject <= scroll && bottomOfProject >= bottomOfPage) {
+			// console.log(scrollSoFar);
+			// projects[i].html["title"][0].style.top = scrollSoFar + "%";
+			projects[i].fixTitle();
+			focusedProject = i;
+		} else if (topOfProject > scroll) {
+			projects[i].unfixTitle("upper");
+		} else if (bottomOfProject < bottomOfPage) {
+			projects[i].unfixTitle("lower");
+		}
+	}
+}
 
 function animateTitles() {
 	var topOfFocused = projects[focusedProject].getTopPosition();
