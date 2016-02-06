@@ -324,6 +324,7 @@ function initThree() {
 			particle = particles[ i ++ ] = new THREE.Sprite( material );
 			particle.position.x = ix * SEPARATION - ( ( AMOUNTX * SEPARATION ) / 2 );
 			particle.position.z = iy * SEPARATION - ( ( AMOUNTY * SEPARATION ) / 2 );
+			// particle.position.y = 2000;
 			scene.add( particle );
 		}
 	}
@@ -341,7 +342,6 @@ function initThree() {
 	//
 
 	window.addEventListener( 'resize', onWindowResize, false );
-
 }
 
 
@@ -379,7 +379,7 @@ function onDocumentTouchMove( event ) {
 
 function renderThree() {
 	camera.position.x += ( mouseX - camera.position.x ) * .05;
-	camera.position.y += ( - (mouseY + window.pageYOffset) - camera.position.y ) * .05;
+	camera.position.y += ( - (mouseY + 400) - camera.position.y ) * .05;
 	camera.lookAt( scene.position );
 
 	var i = 0;
@@ -387,7 +387,7 @@ function renderThree() {
 		for ( var iy = 0; iy < AMOUNTY; iy ++ ) {
 			particle = particles[ i++ ];
 			particle.position.y = ( Math.sin( ( ix + count ) * 0.3 ) * 50 ) +
-				( Math.sin( ( iy + count ) * 0.5 ) * 50 );
+				( Math.sin( ( iy+ count ) * 0.5 ) * 50 ) - 400;
 			particle.scale.x = particle.scale.y = ( Math.sin( ( ix + count ) * 0.3 ) + 1 ) * 4 +
 				( Math.sin( ( iy + count ) * 0.5 ) + 1 ) * 4;
 		}
