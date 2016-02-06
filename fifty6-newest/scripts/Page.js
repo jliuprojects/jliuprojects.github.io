@@ -8,7 +8,6 @@ var numProjects = 0;
 var numProjectsLoaded = 0;
 
 function init () {
-	$("#black_line").css({"width" : window.innerWidth - $("#logo").width() - 20 - $("#header_text").width() - window.innerWidth*0.05 - 60});
     $.getJSON("assets/projects.json", function(json) {
 	    numProjects = json.projects.length;
 	    for (var i = 0; i < json.projects.length; i++){
@@ -70,7 +69,6 @@ function render() {
 		animateInfo();
 	}
 	animateBackgrounds();
-	lockBlackBar();
 	animatePointer();
 	renderThree();
 	window.requestAnimationFrame(render);
@@ -98,24 +96,6 @@ function animatePointer() {
 	}
 }
 
-function lockBlackBar() {
-	// debugger;
-	var scroll = window.pageYOffset;
-	var bottomOfBar = window.innerHeight - window.innerHeight*0.15;
-
-	if (mobilecheck()) {
-		var dist = 58;
-	} else {
-		var dist = 37;
-	}
-	if (scroll + dist > bottomOfBar) {
-		var fixAt = -(window.innerHeight - dist);
-		$("#black_line").css({"position" : "fixed", "top" : fixAt + "px"});
-	} else {
-		$("#black_line").css({"position" : "relative", "top" : "auto"});
-	}
-}
-
 function animateAbout() {
 	var oldTop = $("#header_text").css("top");
 	$("#header_text").css({"top" : "-=100px"});
@@ -125,29 +105,24 @@ function animateAbout() {
 	$("#logo").css({"top" : "-=100px"});
 	$("#logo").animate({opacity : 1, top : oldTop}, 700, function() {
 		// window.setTimeout(function (){
-		$("#main_title").css({"top" : "10%"});
-		$("#main_title").animate({opacity : 1, top : 0}, 700);
+		$("#main_title").css({"top" : "25%"});
+		$("#main_title").animate({opacity : 1, top : "15%"}, 700);
 		// }, 200);
 		window.setTimeout(function (){
 			// oldTop = $("#services")[0].style.top;
-			$("#services").css({"top" : "65%"});
-			$("#services").animate({opacity : 1, top : "55%"}, 700);
+			$("#services").css({"top" : "30%"});
+			$("#services").animate({opacity : 1, top : "20%"}, 700);
 		}, 200);
 		window.setTimeout(function (){
 			// oldTop = $("#clients")[0].style.top;
-			$("#clients").css({"top" : "65%"});
-			$("#clients").animate({opacity : 1, top : "55%"}, 700);
+			$("#clients").css({"top" : "30%"});
+			$("#clients").animate({opacity : 1, top : "20%"}, 700);
 		}, 400);
 		window.setTimeout(function (){
 			// oldTop = $("#contact")[0].style.top;
 			$("#contact").css({"top" : "80%"});
 			$("#contact").animate({opacity : 1, top : "70%"}, 700);
 		}, 600);
-		window.setTimeout(function (){
-			oldTop = $("#black_line").css("bottom");
-			$("#black_line").css({"bottom" : "-=100px"});
-			$("#black_line").animate({opacity : 1, bottom : oldTop}, 700);
-		}, 800);
 	});
 }
 
@@ -157,7 +132,6 @@ function animateBackgrounds() {
 
 	if (scroll < window.innerHeight/2) {
 		$('body').css({"background-color" : "#ffffff", "color" : "#000000"});
-		$('#black_line').css({"border-bottom" : "1px solid " + "#000000"});
 		$('#logo').css({"fill" : "#000000"});
 		$('#pointer').css({"fill" : "#000000"});
 		bgColour = "#ffffff";
@@ -431,7 +405,6 @@ $( document ).ready(function() {
 			for (var i = 0; i < projects.length; i++){
 				projects[i].setPositions();
 			}
-			$("#black_line").css({"width" : window.innerWidth - $("#logo").width() - 20 - $("#header_text").width() - window.innerWidth*0.05 - 60});
 		});
 	}
 	init();

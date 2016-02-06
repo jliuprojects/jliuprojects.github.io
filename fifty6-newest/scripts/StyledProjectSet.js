@@ -132,7 +132,6 @@ StyledProjectSet.prototype.fadeInUpInfo = function() {
 
 StyledProjectSet.prototype.setTheme = function() {
 	$('body').css({"background-color" : this.bgColour, "color" : this.textColour});
-	$('#black_line').css({"border-bottom" : "1px solid " + this.textColour});
 	$('#logo').css({"fill" : this.textColour});
 	$('#pointer').css({"fill" : this.textColour});
 };
