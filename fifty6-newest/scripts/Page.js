@@ -66,13 +66,13 @@ function runMobile() {
 function render() {
 	if (!mobilecheck()) {
 		animateTitles();
-		picturesFadeUp();
-		animateInfo();
+		// picturesFadeUp();
+		// animateInfo();
 	}
-	animateBackgrounds();
-	lockBlackBar();
-	animatePointer();
-	renderThree();
+	// animateBackgrounds();
+	// lockBlackBar();
+	// animatePointer();
+	// renderThree();
 	window.requestAnimationFrame(render);
 }
 
