@@ -379,7 +379,7 @@ function onDocumentTouchMove( event ) {
 
 function renderThree() {
 	camera.position.x += ( mouseX - camera.position.x ) * .05;
-	camera.position.y += ( - (mouseY + 400) - camera.position.y ) * .05;
+	camera.position.y += ( - (mouseY + 400 + window.pageYOffset) - camera.position.y ) * .05;
 	camera.lookAt( scene.position );
 
 	var i = 0;
