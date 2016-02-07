@@ -258,6 +258,8 @@ canvas {
   	opacity: 0;
 
   	text-align: center;
+  	-webkit-perspective: 1000;
+	-webkit-backface-visibility: hidden;
 }
 
 .project_title {
@@ -275,6 +277,8 @@ canvas {
  	-ms-transform: translateX(-50%) translateY(-50%) rotate(-90deg);
   	-o-transform: translateX(-50%) translateY(-50%) rotate(-90deg);
   	transform: translateX(-50%) translateY(-50%) rotate(-90deg);
+  	-webkit-perspective: 1000;
+	-webkit-backface-visibility: hidden;
 }
 
 .project_link {

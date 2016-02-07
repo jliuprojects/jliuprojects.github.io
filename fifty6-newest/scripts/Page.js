@@ -24,7 +24,7 @@ function init () {
 		}
 	});
 
-	// initThree();
+	initThree();
 }
 
 function loadedCb() {
@@ -74,14 +74,14 @@ window.requestAnimFrame = (function(){
 function render() {
 	window.requestAnimationFrame(render);
 
-	// if (!mobilecheck()) {
+	if (!mobilecheck()) {
 		animateTitles();
-		// picturesFadeUp();
-		// animateInfo();
-	// }
-	// animateBackgrounds();
-	// animatePointer();
-	// renderThree();
+		picturesFadeUp();
+		animateInfo();
+	}
+	animateBackgrounds();
+	animatePointer();
+	renderThree();
 }
 
 function animatePointer() {
