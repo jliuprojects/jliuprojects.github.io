@@ -68,7 +68,7 @@ function run() {
 	window.scrollTo(0, 0);
 	animateAbout();
 	render();
-	// window.setInterval(intervalLoop, 250);
+	window.setInterval(intervalLoop, 250);
 }
 
 window.requestAnimFrame = (function(){
@@ -91,8 +91,8 @@ function render() {
 }
 
 function intervalLoop() {
-	animateBackgroundsAndInfo();
-	picturesFadeUp();
+	// animateBackgroundsAndInfo();
+	// picturesFadeUp();
 	animatePointer();
 }
 
