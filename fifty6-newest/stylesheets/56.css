@@ -77,7 +77,7 @@ canvas {
 	position: absolute;
 	top: 0px;
 	left: 0px;
-	height: 180%;
+	height: 170%;
 }
 
 #pointer {
@@ -169,7 +169,7 @@ canvas {
 	position: relative;
 	width: 25%;
 	left: 30%;
-	top: 15%;
+	top: 20%;
 	text-align: center;
 	display: inline-block;
 	opacity: 0;
@@ -180,7 +180,7 @@ canvas {
 	position: relative;
 	width: 25%;
 	right: 15%;
-	top: 15%;
+	top: 20%;
 	text-align: center;
 	display: inline-block;
 	opacity: 0;
