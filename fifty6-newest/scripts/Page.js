@@ -91,8 +91,7 @@ function render() {
 }
 
 function intervalLoop() {
-	animateBackgrounds();
-	animateInfo();
+	animateBackgroundsAndInfo();
 	picturesFadeUp();
 	animatePointer();
 }
@@ -154,8 +153,9 @@ function animateAbout() {
 	});
 }
 
-function animateBackgrounds() {
+function animateBackgroundsAndInfo() {
 	var middleOfScreen = scroll + window.innerHeight/2;
+	var infoFadeInPoint = scroll + window.innerHeight*0.7;
 
 	if ((bgColour != "#ffffff" || textColour != "#000000") && scroll < window.innerHeight/2) {
 		$('body').css({"background-color" : "#ffffff", "color" : "#000000"});
@@ -166,6 +166,10 @@ function animateBackgrounds() {
 	}
 
 	for (var i = 0; i < projects.length; i++) {
+		if ((projects[i].getTopPosition() < infoFadeInPoint) && (projects[i].getInfoOpacity() == 0)) {
+			projects[i].fadeInUpInfo();
+		}
+
 		if (i + 1 == projects.length) {
 			var topOfNext = Infinity;
 		} else {
@@ -202,16 +206,6 @@ function picturesFadeUp() {
 
 		if (images[0] < pictureFadeInPoint && opcs[0] != 1) {
 			projects[focusedProject + 1].fadeInUpPicture(0);
-		}
-	}
-}
-
-function animateInfo() {
-	var infoFadeInPoint = scroll + window.innerHeight*0.7;
-
-	for (var i = 0; i < projects.length; i++) {
-		if ((projects[i].getTopPosition() < infoFadeInPoint) && (projects[i].getInfoOpacity() == 0)) {
-			projects[i].fadeInUpInfo();
 		}
 	}
 }
