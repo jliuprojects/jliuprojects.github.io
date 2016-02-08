@@ -80,6 +80,20 @@ canvas {
 	height: 170%;
 }
 
+@-moz-keyframes rotateToUp /*--for firefox--*/{
+    from {-moz-transform:rotate(0deg);} to {-moz-transform:rotate(-180deg);} 
+}
+@-webkit-keyframes rotateToUp /*--for webkit--*/{
+    from {-webkit-transform:rotate(0deg);} to {-webkit-transform:rotate(-180deg);}                       
+}
+
+@-moz-keyframes rotateToDown /*--for firefox--*/{
+    from {-moz-transform:rotate(-180deg);} to {-moz-transform:rotate(0deg);} 
+}
+@-webkit-keyframes rotateToDown /*--for webkit--*/{
+    from {-webkit-transform:rotate(-180deg);} to {-webkit-transform:rotate(0deg);}                       
+}
+
 #pointer {
 	position: fixed;
 	width: 30px;

@@ -89,26 +89,40 @@ function render() {
 		animateInfo();
 	}
 	window.setTimeout(animateBackgrounds(), 0);
-	// animatePointer();
+	animatePointer();
 	renderThree();
 }
 
 function animatePointer() {
 	if (scroll >= window.innerHeight) {
-		$("#pointer").css({"-webkit-transform" : "rotate(-180deg)",
-						   "-moz-transform" : "rotate(-180deg)",
-						 	"-ms-transform" : "rotate(-180deg)",
-						  	"-o-transform" : "rotate(-180deg)",
-						  	"transform" : "rotate(-180deg)"
+		$("#pointer").css({
+			//for firefox
+	        "-moz-animation-name":"rotateToUp",
+	        "-moz-animation-duration":"0.8s",
+	        "-moz-animation-iteration-count":"1",
+	        "-moz-animation-fill-mode":"forwards",
+
+	        //for safari & chrome
+	        "-webkit-animation-name":"rotateToUp",
+	        "-webkit-animation-duration":"0.8s",
+	        "-webkit-animation-iteration-count":"1",
+	        "-webkit-animation-fill-mode" : "forwards",
 		});
 	}
 
 	if (scroll < window.innerHeight) {
-		$("#pointer").css({"-webkit-transform" : "rotate(0deg)",
-						   "-moz-transform" : "rotate(0deg)",
-						 	"-ms-transform" : "rotate(0deg)",
-						  	"-o-transform" : "rotate(0deg)",
-						  	"transform" : "rotate(0deg)"
+		$("#pointer").css({
+			//for firefox
+	        "-moz-animation-name":"rotateToDown",
+	        "-moz-animation-duration":"0.8s",
+	        "-moz-animation-iteration-count":"1",
+	        "-moz-animation-fill-mode":"forwards",
+
+	        //for safari & chrome
+	        "-webkit-animation-name":"rotateToDown",
+	        "-webkit-animation-duration":"0.8s",
+	        "-webkit-animation-iteration-count":"1",
+	        "-webkit-animation-fill-mode" : "forwards",
 		});
 	}
 }
