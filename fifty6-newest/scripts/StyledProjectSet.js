@@ -13,8 +13,7 @@ function StyledProjectSet(json) {
 	this.infoOpacity = 0;
 	this.numImagesLoaded = 0;
 	this.numImages = json.images.length;
-
-	// this.imageSrc = imageSrc || "assets/defaultImage.png";
+	this.containerHeight = 0;
 
 	this.html = [];
 	this.html["container"] = $("<div class='project_container'></div>");
@@ -28,13 +27,12 @@ function StyledProjectSet(json) {
 	this.html["container"].append(this.html["description"]);
 	this.html["container"].append(this.html["metadata"]);
 	
-	// debugger;
 	for (var i = 0; i < json.images.length; i++){
 		this.html["images"].push($("<img class='project_image' src='" + json.images[i].url + "'>"));
 	 	this.html["container"].append(this.html["images"][i]);
 	 	this.html["images"][i].load(function() {
 	 		self.numImagesLoaded++;
-	 		console.log(this.src + " loaded");
+	 		// console.log(this.src + " loaded");
 	 		if (self.numImagesLoaded == self.numImages) {
 	 			json.cb();
 	 		}
@@ -54,9 +52,10 @@ StyledProjectSet.prototype.fixTitle = function() {
 };
 
 StyledProjectSet.prototype.unfixTitle = function(side) {
+	var scroll = window.pageYOffset;
 	var top = [];
-	top["upper"] = this.html["container"].offset().top - window.pageYOffset;
-	top["lower"] = -(window.pageYOffset + window.innerHeight - this.html["container"].offset().top - this.html["container"].height());
+	top["upper"] = this.topPosition - scroll;
+	top["lower"] = -(scroll + window.innerHeight - this.topPosition - this.containerHeight);
 
 	this.html["title"].css({"top" : top[side]});
 };
@@ -65,6 +64,7 @@ StyledProjectSet.prototype.setPositions = function() {
 	this.html["title"].find("h1").css({"top" : window.innerHeight/2});
 	this.topPosition = this.html["container"].offset().top;
 	this.bottomPosition = this.html["container"].offset().top + this.html["container"].height();
+	this.containerHeight = this.html["container"].height();
 
 	this.imagePositions = [];
 	for (var i = 0; i < this.html["images"].length; i++) {
@@ -106,27 +106,21 @@ StyledProjectSet.prototype.getBottomPosition = function() {
 };
 
 StyledProjectSet.prototype.fadeInUp = function(index) {
-	var oldTop = this.html["images"][index].css("top");
-
 	this.html["images"][index].css({"top" : "+=100px"});
-	this.html["images"][index].animate({opacity : 1, top : oldTop}, 1000);
+	this.html["images"][index].animate({opacity : 1, top : "-=100px"}, 1000);
 
 	this.imageOpacities[index] = 1;
 };
 
 StyledProjectSet.prototype.fadeInUpInfo = function() {
-	var linkOldTop = this.html["link"].css("top");
-	var descriptionOldTop = this.html["description"].css("top");
-	var metadataOldTop = this.html["metadata"].css("top");
-
 	this.html["link"].css({"top" : "+=100px"});
-	this.html["link"].animate({opacity : 1, top : linkOldTop}, 1000);
+	this.html["link"].animate({opacity : 1, top : "-=100px"}, 1000);
 
 	this.html["description"].css({"top" : "+=100px"});
-	this.html["description"].animate({opacity : 1, top : descriptionOldTop}, 1000);
+	this.html["description"].animate({opacity : 1, top : "-=100px"}, 1000);
 
 	this.html["metadata"].css({"top" : "+=100px"});
-	this.html["metadata"].animate({opacity : 1, top : metadataOldTop}, 1000);
+	this.html["metadata"].animate({opacity : 1, top : "-=100px"}, 1000);
 	this.infoOpacity = 1;
 };
 
