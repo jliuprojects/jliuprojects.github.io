@@ -37,7 +37,7 @@ function init () {
 		}
 	});
 
-	// initThree();
+	initThree();
 }
 
 function loadedCb() {
@@ -85,12 +85,12 @@ function render() {
 
 	if (!isMobile) {
 		animateTitles();
-		picturesFadeUp();
-		animateInfo();
+		// picturesFadeUp();
+		// animateInfo();
 	}
-	window.setTimeout(animateBackgrounds(), 0);
-	animatePointer();
-	// renderThree();
+	// window.setTimeout(animateBackgrounds(), 0);
+	// animatePointer();
+	renderThree();
 }
 
 function animatePointer() {
