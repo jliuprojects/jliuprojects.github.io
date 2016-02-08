@@ -92,7 +92,7 @@ function render() {
 
 function intervalLoop() {
 	// animateBackgroundsAndInfo();
-	// picturesFadeUp();
+	picturesFadeUp();
 	animatePointer();
 }
 
