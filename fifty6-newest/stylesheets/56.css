@@ -266,7 +266,7 @@ canvas {
   	float: left;
 
   	height: 100%;
-  	width: 25%;
+  	width: 30%;
   	top: 0px;
   	left: 0;
   	opacity: 0;
@@ -279,18 +279,17 @@ canvas {
 .project_title {
 	position: relative;
 	top: 50%;
-	left: 50%;
 
 	font-family: SabonLTPro-Roman;
 	font-weight: normal;
 	font-style: normal;
 	display: inline-block;
 
-	-webkit-transform: translateX(-50%) translateY(-50%) rotate(-90deg);
-  	-moz-transform: translateX(-50%) translateY(-50%) rotate(-90deg);
- 	-ms-transform: translateX(-50%) translateY(-50%) rotate(-90deg);
-  	-o-transform: translateX(-50%) translateY(-50%) rotate(-90deg);
-  	transform: translateX(-50%) translateY(-50%) rotate(-90deg);
+	-webkit-transform: translateY(-50%) rotate(-90deg);
+  	-moz-transform: translateY(-50%) rotate(-90deg);
+ 	-ms-transform: translateY(-50%) rotate(-90deg);
+  	-o-transform: translateY(-50%) rotate(-90deg);
+  	transform: translateY(-50%) rotate(-90deg);
   	-webkit-perspective: 1000;
 	-webkit-backface-visibility: hidden;
 }
