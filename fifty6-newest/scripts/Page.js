@@ -85,11 +85,11 @@ function render() {
 
 	if (!isMobile) {
 		animateTitles();
-		// picturesFadeUp();
-		// animateInfo();
+		picturesFadeUp();
+		animateInfo();
 	}
 	// window.setTimeout(animateBackgrounds(), 0);
-	// animatePointer();
+	animatePointer();
 	renderThree();
 }
 
@@ -151,33 +151,7 @@ function animateAbout() {
 }
 
 function animateBackgrounds() {
-	var middleOfScreen = scroll + window.innerHeight/2;
 
-	if ((bgColour != "#ffffff" || textColour != "#000000") && scroll < window.innerHeight/2) {
-		$('body').css({"background-color" : "#ffffff", "color" : "#000000"});
-		$('#logo').css({"fill" : "#000000"});
-		$('#pointer').css({"fill" : "#000000"});
-		bgColour = "#ffffff";
-		textColour = "#000000";
-	}
-
-	for (var i = 0; i < projects.length; i++) {
-		if (i + 1 == projects.length) {
-			var topOfNext = Infinity;
-		} else {
-			var topOfNext = projects[i + 1].getTopPosition();
-		}
-
-		if (bgColour == projects[i].getBgColour() && textColour == projects[i].getTextColour()) {
-			continue;
-		}
-
-		if (projects[i].getTopPosition() < middleOfScreen && topOfNext > middleOfScreen) {
-			projects[i].setTheme();
-			bgColour = projects[i].getBgColour();
-			textColour = projects[i].getTextColour();
-		}
-	}
 }
 
 function picturesFadeUp() {
@@ -214,6 +188,15 @@ function animateInfo() {
 
 function animateTitles() {
 	var bottomOfPage = scroll + window.innerHeight;
+	// for backgrounds
+	var middleOfScreen = scroll + window.innerHeight/2;
+	if ((bgColour != "#ffffff" || textColour != "#000000") && scroll < window.innerHeight/2) {
+		$('body').css({"background-color" : "#ffffff", "color" : "#000000"});
+		$('#logo').css({"fill" : "#000000"});
+		$('#pointer').css({"fill" : "#000000"});
+		bgColour = "#ffffff";
+		textColour = "#000000";
+	}
 
 	for (var i = 0; i < projects.length; i++) {
 		var topOfProject = projects[i].getTopPosition();
@@ -226,6 +209,23 @@ function animateTitles() {
 			projects[i].unfixTitle("upper");
 		} else if (bottomOfProject < bottomOfPage) {
 			projects[i].unfixTitle("lower");
+		}
+
+		// for backgrounds
+		if (i + 1 == projects.length) {
+			var topOfNext = Infinity;
+		} else {
+			var topOfNext = projects[i + 1].getTopPosition();
+		}
+
+		if (bgColour == projects[i].getBgColour() && textColour == projects[i].getTextColour()) {
+			continue;
+		}
+
+		if (projects[i].getTopPosition() < middleOfScreen && topOfNext > middleOfScreen) {
+			projects[i].setTheme();
+			bgColour = projects[i].getBgColour();
+			textColour = projects[i].getTextColour();
 		}
 	}
 }

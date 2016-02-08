@@ -48,7 +48,7 @@ function StyledProjectSet(json) {
 
 // fix title position on screen
 StyledProjectSet.prototype.fixTitle = function() {
-	this.html["title"].css({"top" : 0});
+	this.html["title"][0].style.top = 0 + "px";
 };
 
 StyledProjectSet.prototype.unfixTitle = function(side) {
@@ -57,11 +57,10 @@ StyledProjectSet.prototype.unfixTitle = function(side) {
 	top["upper"] = this.topPosition - scroll;
 	top["lower"] = -(scroll + window.innerHeight - this.topPosition - this.containerHeight);
 
-	this.html["title"].css({"top" : top[side]});
+	this.html["title"][0].style.top = top[side] + "px";
 };
 
 StyledProjectSet.prototype.setPositions = function() {
-	this.html["title"].find("h1").css({"top" : window.innerHeight/2});
 	this.topPosition = this.html["container"].offset().top;
 	this.bottomPosition = this.html["container"].offset().top + this.html["container"].height();
 	this.containerHeight = this.html["container"].height();
@@ -125,9 +124,10 @@ StyledProjectSet.prototype.fadeInUpInfo = function() {
 };
 
 StyledProjectSet.prototype.setTheme = function() {
-	$('body').css({"background-color" : this.bgColour, "color" : this.textColour});
-	$('#logo').css({"fill" : this.textColour});
-	$('#pointer').css({"fill" : this.textColour});
+	$('body')[0].style.backgroundColor = this.bgColour;
+	$('body')[0].style.color = this.textColour;
+	$('#logo')[0].style.fill = this.textColour;
+	$('#pointer')[0].style.fill = this.textColour;
 };
 
 StyledProjectSet.prototype.getBgColour = function() {
