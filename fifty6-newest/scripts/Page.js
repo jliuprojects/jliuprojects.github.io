@@ -153,7 +153,7 @@ function animateBackgrounds() {
 			continue;
 		}
 
-		if (projects[i].getTopPosition( < middleOfScreen && topOfNext > middleOfScreen) {
+		if (projects[i].getTopPosition < middleOfScreen && topOfNext > middleOfScreen) {
 			projects[i].setTheme();
 			bgColour = projects[i].getBgColour();
 			textColour = projects[i].getTextColour();
