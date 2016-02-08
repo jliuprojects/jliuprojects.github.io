@@ -94,6 +94,38 @@ canvas {
     from {-webkit-transform:rotate(-180deg);} to {-webkit-transform:rotate(0deg);}                       
 }
 
+@-moz-keyframes fadeInUp /*--for firefox--*/{
+    from {
+    	opacity : 0;
+    	top : 100px;
+    } to {
+    	opacity : 1;
+    	top : 0px;
+    }
+}
+@-webkit-keyframes fadeInUp /*--for webkit--*/{
+    from {
+    	opacity : 0;
+    	top : 100px;
+    } to {
+    	opacity : 1;
+    	top : 0px;
+    }            
+}
+
+.fadeInUpClass {
+	top: 100px;
+	-moz-animation-name : fadeInUp;
+    -moz-animation-duration : 1s;
+    -moz-animation-iteration-count : 1;
+    -moz-animation-fill-mode : forwards;
+
+    -webkit-animation-name : fadeInUp;
+    -webkit-animation-duration : 1s;
+    -webkit-animation-iteration-count : 1;
+    -webkit-animation-fill-mode : forwards;
+}
+
 #pointer {
 	position: fixed;
 	width: 30px;

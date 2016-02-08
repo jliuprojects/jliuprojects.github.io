@@ -106,21 +106,14 @@ StyledProjectSet.prototype.getBottomPosition = function() {
 };
 
 StyledProjectSet.prototype.fadeInUpPicture = function(index) {
-	this.html["images"][index].css({"top" : "+=100px"});
-	this.html["images"][index].animate({opacity : 1, top : "-=100px"}, 1000);
-
+	this.html["images"][index][0].className += " fadeInUpClass";
 	this.imageOpacities[index] = 1;
 };
 
 StyledProjectSet.prototype.fadeInUpInfo = function() {
-	this.html["link"].css({"top" : "+=100px"});
-	this.html["link"].animate({opacity : 1, top : "-=100px"}, 1000);
-
-	this.html["description"].css({"top" : "+=100px"});
-	this.html["description"].animate({opacity : 1, top : "-=100px"}, 1000);
-
-	this.html["metadata"].css({"top" : "+=100px"});
-	this.html["metadata"].animate({opacity : 1, top : "-=100px"}, 1000);
+	this.html["link"][0].className += " fadeInUpClass";
+	this.html["description"][0].className += " fadeInUpClass";
+	this.html["metadata"][0].className += " fadeInUpClass";
 	this.infoOpacity = 1;
 };
 
