@@ -85,11 +85,11 @@ function render() {
 
 	if (!isMobile) {
 		animateTitles();
-		// picturesFadeUp();
-		// animateInfo();
+		picturesFadeUp();
+		animateInfo();
 	}
-	// window.setTimeout(animateBackgrounds(), 0);
-	// animatePointer();
+	window.setTimeout(animateBackgrounds(), 0);
+	animatePointer();
 	// renderThree();
 }
 
