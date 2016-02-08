@@ -74,10 +74,10 @@ header {
 }
 
 canvas {
-	position: fixed;
+	position: absolute;
 	top: 0px;
 	left: 0px;
-	height: 150%;
+	height: 180%;
 }
 
 #pointer {

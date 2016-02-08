@@ -219,12 +219,12 @@ var particles, particle, count = 0;
 var mouseX = 0, mouseY = 0;
 var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
+var canvasHeight = 1.7;
 
 function initThree() {
 	container = $("#about")[0];
-	document.body.appendChild( container );
 
-	camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
+	camera = new THREE.PerspectiveCamera( 75, window.innerWidth / (window.innerHeight*canvasHeight), 1, 10000 );
 	camera.position.z = 1000;
 
 	scene = new THREE.Scene();
@@ -253,7 +253,7 @@ function initThree() {
 
 	renderer = new THREE.CanvasRenderer({ alpha: true });
 	renderer.setPixelRatio( window.devicePixelRatio );
-	renderer.setSize( window.innerWidth, window.innerHeight );
+	renderer.setSize( window.innerWidth, window.innerHeight*canvasHeight);
 	renderer.setClearColor( 0x000000, 0 );
 	container.appendChild( renderer.domElement );
 
@@ -266,14 +266,12 @@ function initThree() {
 	window.addEventListener( 'resize', onWindowResize, false );
 }
 
-
-
 function onWindowResize() {
 	windowHalfX = window.innerWidth / 2;
 	windowHalfY = window.innerHeight / 2;
-	camera.aspect = window.innerWidth / window.innerHeight;
+	camera.aspect = window.innerWidth / (window.innerHeight*canvasHeight);
 	camera.updateProjectionMatrix();
-	renderer.setSize( window.innerWidth, window.innerHeight );
+	renderer.setSize( window.innerWidth, window.innerHeight*canvasHeight);
 }
 
 function onDocumentMouseMove( event ) {
@@ -301,7 +299,7 @@ function onDocumentTouchMove( event ) {
 
 function renderThree() {
 	camera.position.x += ( mouseX - camera.position.x ) * .05;
-	camera.position.y += ( - (mouseY + 400 + window.pageYOffset) - camera.position.y ) * .05;
+	camera.position.y += ( - (mouseY + scroll) - camera.position.y ) * .05;
 	camera.lookAt( scene.position );
 
 	var i = 0;
@@ -309,7 +307,7 @@ function renderThree() {
 		for ( var iy = 0; iy < AMOUNTY; iy ++ ) {
 			particle = particles[ i++ ];
 			particle.position.y = ( Math.sin( ( ix + count ) * 0.3 ) * 50 ) +
-				( Math.sin( ( iy+ count ) * 0.5 ) * 50 ) - 400;
+				( Math.sin( ( iy+ count ) * 0.5 ) * 50 );
 			particle.scale.x = particle.scale.y = ( Math.sin( ( ix + count ) * 0.3 ) + 1 ) * 4 +
 				( Math.sin( ( iy + count ) * 0.5 ) + 1 ) * 4;
 		}
@@ -317,7 +315,6 @@ function renderThree() {
 	renderer.render( scene, camera );
 	count += 0.1;
 }
-
 //threejs end
 
 $( document ).ready(function() {
