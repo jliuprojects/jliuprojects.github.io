@@ -58,16 +58,16 @@
             "textcolour" : "#FC447A",
             "images": [
                 {
-                    "url" : "assets/drew1.gif"
+                    "url" : "assets/kid1.png"
                 },
                 {
-                    "url" : "assets/drew2.png"
+                    "url" : "assets/kid1.png"
                 },
                 {
-                    "url" : "assets/drew4.png"
+                    "url" : "assets/kid1.png"
                 },
                 {
-                    "url" : "assets/drew3.png"
+                    "url" : "assets/kid1.png"
                 }
             ]
         },
