@@ -157,34 +157,35 @@ function animateBackgroundsAndInfo() {
 	var middleOfScreen = scroll + window.innerHeight/2;
 	var infoFadeInPoint = scroll + window.innerHeight*0.7;
 
-	// if ((bgColour != "#ffffff" || textColour != "#000000") && scroll < window.innerHeight/2) {
-	// 	$('body').css({"background-color" : "#ffffff", "color" : "#000000"});
-	// 	$('#logo').css({"fill" : "#000000"});
-	// 	$('#pointer').css({"fill" : "#000000"});
-	// 	bgColour = "#ffffff";
-	// 	textColour = "#000000";
-	// }
+	if ((bgColour != "#ffffff" || textColour != "#000000") && scroll < window.innerHeight/2) {
+		$('body')[0].style.backgroundColor = "#ffffff";
+		$('body')[0].style.color = "#000000";
+		$('#logo')[0].style.fill = "#000000";
+		$('#pointer')[0].style.fill = "#000000";
+		bgColour = "#ffffff";
+		textColour = "#000000";
+	}
 
 	for (var i = 0; i < projects.length; i++) {
 		if ((projects[i].getTopPosition() < infoFadeInPoint) && (projects[i].getInfoOpacity() == 0)) {
 			projects[i].fadeInUpInfo();
 		}
 
-		// if (i + 1 == projects.length) {
-		// 	var topOfNext = Infinity;
-		// } else {
-		// 	var topOfNext = projects[i + 1].getTopPosition();
-		// }
+		if (i + 1 == projects.length) {
+			var topOfNext = Infinity;
+		} else {
+			var topOfNext = projects[i + 1].getTopPosition();
+		}
 
-		// if (bgColour == projects[i].getBgColour() && textColour == projects[i].getTextColour()) {
-		// 	continue;
-		// }
+		if (bgColour == projects[i].getBgColour() && textColour == projects[i].getTextColour()) {
+			continue;
+		}
 
-		// if (projects[i].getTopPosition() < middleOfScreen && topOfNext > middleOfScreen) {
-		// 	projects[i].setTheme();
-		// 	bgColour = projects[i].getBgColour();
-		// 	textColour = projects[i].getTextColour();
-		// }
+		if (projects[i].getTopPosition() < middleOfScreen && topOfNext > middleOfScreen) {
+			projects[i].setTheme();
+			bgColour = projects[i].getBgColour();
+			textColour = projects[i].getTextColour();
+		}
 	}
 }
 

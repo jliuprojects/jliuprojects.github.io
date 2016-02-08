@@ -30,10 +30,10 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
-	-webkit-transition:background 0.5s, color 0.5s, fill 0.5s;
-	-moz-transition:background 0.5s, color 0.5s, fill 0.5s;
-	-o-transition:background 0.5s, color 0.5s, fill 0.5s;
-	transition:background 0.5s, color 0.5s, fill 0.5s;
+	-webkit-transition:background-color 0.5s linear, color 0.5s linear;
+	-moz-transition:background-color 0.5s linear, color 0.5s linear;
+	-o-transition:background-color 0.5s linear, color 0.5s linear;
+	transition:background-color 0.5s linear, color 0.5s linear;
 	display: inline-block;
 }
 ol, ul {
@@ -94,7 +94,7 @@ canvas {
     from {-webkit-transform:rotate(-180deg);} to {-webkit-transform:rotate(0deg);}                       
 }
 
-@-moz-keyframes fadeInUp /*--for firefox--*/{
+@-moz-keyframes projectFadeInUp /*--for firefox--*/{
     from {
     	opacity : 0;
     	top : 100px;
@@ -103,7 +103,7 @@ canvas {
     	top : 0px;
     }
 }
-@-webkit-keyframes fadeInUp /*--for webkit--*/{
+@-webkit-keyframes projectFadeInUp /*--for webkit--*/{
     from {
     	opacity : 0;
     	top : 100px;
@@ -113,14 +113,14 @@ canvas {
     }            
 }
 
-.fadeInUpClass {
+.projectFadeInUpClass {
 	top: 100px;
-	-moz-animation-name : fadeInUp;
+	-moz-animation-name : projectFadeInUp;
     -moz-animation-duration : 1s;
     -moz-animation-iteration-count : 1;
     -moz-animation-fill-mode : forwards;
 
-    -webkit-animation-name : fadeInUp;
+    -webkit-animation-name : projectFadeInUp;
     -webkit-animation-duration : 1s;
     -webkit-animation-iteration-count : 1;
     -webkit-animation-fill-mode : forwards;
@@ -132,6 +132,11 @@ canvas {
 	bottom: 50px;
 	left: 40px;
 	z-index: 1000;
+
+	-webkit-transition : fill 0.5s linear;
+	-moz-transition : fill 0.5s linear;
+	-o-transition : fill 0.5s linear;
+	transition : fill 0.5s linear;
 }
 
 #loading_screen {
@@ -179,6 +184,11 @@ canvas {
 	top: 10px;
 	opacity: 0;
 	z-index: 100;
+
+	-webkit-transition : fill 0.5s linear;
+	-moz-transition : fill 0.5s linear;
+	-o-transition : fill 0.5s linear;
+	transition : fill 0.5s linear;
 }
 
 #logo_wrap {

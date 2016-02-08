@@ -106,14 +106,14 @@ StyledProjectSet.prototype.getBottomPosition = function() {
 };
 
 StyledProjectSet.prototype.fadeInUpPicture = function(index) {
-	this.html["images"][index][0].className += " fadeInUpClass";
+	this.html["images"][index][0].className += " projectFadeInUpClass";
 	this.imageOpacities[index] = 1;
 };
 
 StyledProjectSet.prototype.fadeInUpInfo = function() {
-	this.html["link"][0].className += " fadeInUpClass";
-	this.html["description"][0].className += " fadeInUpClass";
-	this.html["metadata"][0].className += " fadeInUpClass";
+	this.html["link"][0].className += " projectFadeInUpClass";
+	this.html["description"][0].className += " projectFadeInUpClass";
+	this.html["metadata"][0].className += " projectFadeInUpClass";
 	this.infoOpacity = 1;
 };
 
