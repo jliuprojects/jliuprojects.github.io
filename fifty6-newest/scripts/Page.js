@@ -1,7 +1,5 @@
 var projects = [];
 var focusedProject = 0;
-var focusedTitleFixed = false;
-var direction = "prev";
 var bgColour = null;
 var textColour = null;
 var numProjects = 0;
@@ -86,7 +84,7 @@ function render() {
 		animateInfo();
 	}
 	animateBackgrounds();
-	animatePointer();
+	// animatePointer();
 	renderThree();
 }
 
@@ -111,13 +109,11 @@ function animatePointer() {
 }
 
 function animateAbout() {
-	var oldTop = $("#header_text").css("top");
 	$("#header_text").css({"top" : "-=100px"});
-	$("#header_text").animate({opacity : 1, top : oldTop}, 700);
+	$("#header_text").animate({opacity : 1, top : "+=100px"}, 700);
 
-	oldTop = $("#logo").css("top");
 	$("#logo").css({"top" : "-=100px"});
-	$("#logo").animate({opacity : 1, top : oldTop}, 700, function() {
+	$("#logo").animate({opacity : 1, top : "+=100px"}, 700, function() {
 		$("#main_title").css({"top" : "25%"});
 		$("#main_title").animate({opacity : 1, top : "15%"}, 700);
 		window.setTimeout(function (){
@@ -138,7 +134,7 @@ function animateAbout() {
 function animateBackgrounds() {
 	var middleOfScreen = scroll + window.innerHeight/2;
 
-	if (scroll < window.innerHeight/2) {
+	if ((bgColour != "#ffffff" || textColour != "#000000") && scroll < window.innerHeight/2) {
 		$('body').css({"background-color" : "#ffffff", "color" : "#000000"});
 		$('#logo').css({"fill" : "#000000"});
 		$('#pointer').css({"fill" : "#000000"});
@@ -147,9 +143,6 @@ function animateBackgrounds() {
 	}
 
 	for (var i = 0; i < projects.length; i++) {
-		var topOfFocused = projects[i].getTopPosition();
-		var bottomOfFocused = projects[i].getBottomPosition();
-
 		if (i + 1 == projects.length) {
 			var topOfNext = Infinity;
 		} else {
@@ -160,7 +153,7 @@ function animateBackgrounds() {
 			continue;
 		}
 
-		if (topOfFocused < middleOfScreen && topOfNext > middleOfScreen) {
+		if (projects[i].getTopPosition( < middleOfScreen && topOfNext > middleOfScreen) {
 			projects[i].setTheme();
 			bgColour = projects[i].getBgColour();
 			textColour = projects[i].getTextColour();
@@ -169,14 +162,14 @@ function animateBackgrounds() {
 }
 
 function picturesFadeUp() {
-	var middleOfScreen = scroll + window.innerHeight*0.7;
+	var pictureFadeInPoint = scroll + window.innerHeight*0.7;
 
 	var images = projects[focusedProject].getImagePositions();
 	var opcs = projects[focusedProject].getImageOpacities();
 
 	for (var i = 0; i < images.length; i++) {
-		if (images[i] < middleOfScreen && opcs[i] != 1) {
-			projects[focusedProject].fadeInUp(i);
+		if (images[i] < pictureFadeInPoint && opcs[i] != 1) {
+			projects[focusedProject].fadeInUpPicture(i);
 		}
 	}
 
@@ -184,29 +177,26 @@ function picturesFadeUp() {
 		images = projects[focusedProject + 1].getImagePositions();
 		opcs = projects[focusedProject + 1].getImageOpacities();
 
-		if (images[0] < middleOfScreen && opcs[0] != 1) {
-			projects[focusedProject + 1].fadeInUp(0);
+		if (images[0] < pictureFadeInPoint && opcs[0] != 1) {
+			projects[focusedProject + 1].fadeInUpPicture(0);
 		}
 	}
 }
 
 function animateInfo() {
-	var middleOfScreen = scroll + window.innerHeight*0.7;
+	var infoFadeInPoint = scroll + window.innerHeight*0.7;
 
 	for (var i = 0; i < projects.length; i++) {
-		var topOfFocused = projects[i].getTopPosition();
-		var bottomOfFocused = projects[i].getBottomPosition();
-
-		if ((topOfFocused < middleOfScreen) && (projects[i].getInfoOpacity() == 0)) {
+		if ((projects[i].getTopPosition() < infoFadeInPoint) && (projects[i].getInfoOpacity() == 0)) {
 			projects[i].fadeInUpInfo();
 		}
 	}
 }
 
 function animateTitles() {
-	for (var i = 0; i < projects.length; i++) {
-		var bottomOfPage = scroll + window.innerHeight;
+	var bottomOfPage = scroll + window.innerHeight;
 
+	for (var i = 0; i < projects.length; i++) {
 		var topOfProject = projects[i].getTopPosition();
 		var bottomOfProject = projects[i].getBottomPosition();
 

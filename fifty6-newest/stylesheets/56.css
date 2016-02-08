@@ -30,10 +30,10 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
-	-webkit-transition:background 1s, color 1s, fill 1s;
-	-moz-transition:background 1s, color 1s, fill 1s;
-	-o-transition:background 1s, color 1s, fill 1s;
-	transition:background 1s, color 1s, fill 1s;
+	-webkit-transition:background 0.5s, color 0.5s, fill 0.5s;
+	-moz-transition:background 0.5s, color 0.5s, fill 0.5s;
+	-o-transition:background 0.5s, color 0.5s, fill 0.5s;
+	transition:background 0.5s, color 0.5s, fill 0.5s;
 	display: inline-block;
 }
 ol, ul {

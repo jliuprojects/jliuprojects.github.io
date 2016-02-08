@@ -105,7 +105,7 @@ StyledProjectSet.prototype.getBottomPosition = function() {
 	return this.bottomPosition;
 };
 
-StyledProjectSet.prototype.fadeInUp = function(index) {
+StyledProjectSet.prototype.fadeInUpPicture = function(index) {
 	this.html["images"][index].css({"top" : "+=100px"});
 	this.html["images"][index].animate({opacity : 1, top : "-=100px"}, 1000);
 
@@ -137,5 +137,3 @@ StyledProjectSet.prototype.getBgColour = function() {
 StyledProjectSet.prototype.getTextColour = function() {
 	return this.textColour;
 };
-
-
