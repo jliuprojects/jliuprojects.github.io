@@ -245,7 +245,7 @@ canvas {
 }
 
 .project_title_container {
-	position: absolute;
+	position: fixed;
 	display: inline-block;
   	white-space: nowrap;
   	font-size: 56pt;

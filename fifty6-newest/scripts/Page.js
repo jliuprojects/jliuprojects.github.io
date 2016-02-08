@@ -210,92 +210,21 @@ function animateInfo() {
 	}
 }
 
-// function animateTitlesBetter() {
-// 	for (var i = 0; i < projects.length; i++) {
-// 		var scroll = window.pageYOffset;
-// 		var bottomOfPage = scroll + window.innerHeight;
-
-// 		var topOfProject = projects[i].getTopPosition();
-// 		var bottomOfProject = projects[i].getBottomPosition();
-
-// 		if (topOfProject <= scroll && bottomOfProject >= bottomOfPage) {
-// 			projects[i].fixTitle();
-// 			focusedProject = i;
-// 		} else if (topOfProject > scroll) {
-// 			projects[i].unfixTitle("upper");
-// 		} else if (bottomOfProject < bottomOfPage) {
-// 			projects[i].unfixTitle("lower");
-// 		}
-// 	}
-// }
-
 function animateTitles() {
-	var topOfFocused = projects[focusedProject].getTopPosition();
-	var bottomOfFocused = projects[focusedProject].getBottomPosition();
-	var titleScroll = window.pageYOffset;
+	for (var i = 0; i < projects.length; i++) {
+		var scroll = window.pageYOffset;
+		var bottomOfPage = scroll + window.innerHeight;
 
-	if (titleScroll <= window.innerHeight) {
-		for (var i = 0; i < projects.length; i++) {
+		var topOfProject = projects[i].getTopPosition();
+		var bottomOfProject = projects[i].getBottomPosition();
+
+		if (topOfProject <= scroll && bottomOfProject >= bottomOfPage) {
+			projects[i].fixTitle();
+			focusedProject = i;
+		} else if (topOfProject > scroll) {
 			projects[i].unfixTitle("upper");
-		}
-		focusedTitleFixed = false;
-		direction = "prev";
-	}
-
-	if (focusedProject == projects.length - 1) {
-		var topOfNext = Infinity;
-		var bottomOfNext = -Infinity;
-	} else {
-		var topOfNext = projects[focusedProject + 1].getTopPosition();
-		var bottomOfNext = projects[focusedProject + 1].getBottomPosition();
-	}
-
-	if (focusedProject == 0) {
-		var topOfPrev = Infinity;
-		var bottomOfPrev = -Infinity;
-	} else {
-		var topOfPrev = projects[focusedProject - 1].getTopPosition();
-		var bottomOfPrev = projects[focusedProject - 1].getBottomPosition();
-	}
-
-	if (focusedTitleFixed) { // check if the focused title is fixed, extra rc prevention
-		if (topOfNext <= titleScroll + window.innerHeight) {
-			// the top of the next project container hit the bottom of the screen
-			projects[focusedProject].unfixTitle("lower");
-			direction = "next";
-			focusedTitleFixed = false;
-		} else if (bottomOfPrev >= titleScroll) {
-			// the bottom of the prev project container hit the top of the screen
-			direction = "prev";
-			projects[focusedProject].unfixTitle("upper");
-			focusedTitleFixed = false;
-		}
-	} else {
-		switch (direction) {
-			case "next":
-				if (bottomOfFocused >= titleScroll + window.innerHeight) {
-					// the bottom of the focused project container hit the bottom of the screen
-					projects[focusedProject].fixTitle();
-					focusedTitleFixed = true;
-				} else if (topOfNext <= titleScroll) {
-					// the top of the next project container hit the top of the screen
-					focusedProject++;
-					projects[focusedProject].fixTitle();
-					focusedTitleFixed = true;
-				}
-				break;
-			case "prev":
-				if (topOfFocused <= titleScroll) {
-					// the top of the focused project container hit the top of the screen
-					projects[focusedProject].fixTitle();
-					focusedTitleFixed = true;
-				} else if (bottomOfPrev >= titleScroll + window.innerHeight) {
-					// the bottom of the prev project container hit the bottom of the screen
-					focusedProject--;
-					projects[focusedProject].fixTitle();
-					focusedTitleFixed = true;
-				}
-				break;
+		} else if (bottomOfProject < bottomOfPage) {
+			projects[i].unfixTitle("lower");
 		}
 	}
 }
