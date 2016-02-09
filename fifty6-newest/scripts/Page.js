@@ -158,8 +158,8 @@ function animateBackgroundsAndInfo() {
 	var infoFadeInPoint = scroll + window.innerHeight*0.7;
 
 	if ((bgColour != "#ffffff" || textColour != "#000000") && scroll < window.innerHeight/2) {
-		$('body')[0].style.backgroundColor = "#ffffff";
-		$('body')[0].style.color = "#000000";
+		$('#background')[0].style.backgroundColor = "#ffffff";
+		$("#header_text")[0].style.color = "#000000";
 		$('#logo')[0].style.fill = "#000000";
 		$('#pointer')[0].style.fill = "#000000";
 		bgColour = "#ffffff";

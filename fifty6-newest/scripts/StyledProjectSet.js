@@ -118,8 +118,13 @@ StyledProjectSet.prototype.fadeInUpInfo = function() {
 };
 
 StyledProjectSet.prototype.setTheme = function() {
-	$('body')[0].style.backgroundColor = this.bgColour;
-	$('body')[0].style.color = this.textColour;
+	$('#background')[0].style.backgroundColor = this.bgColour;
+	this.html["title"][0].style.color = this.textColour;
+	this.html["link"][0].style.color = this.textColour;
+	this.html["description"][0].style.color = this.textColour;
+	this.html["metadata"][0].style.color = this.textColour;
+	this.html["metadata"][0].style.color = this.textColour;
+	$("#header_text")[0].style.color = this.textColour;
 	$('#logo')[0].style.fill = this.textColour;
 	$('#pointer')[0].style.fill = this.textColour;
 };
