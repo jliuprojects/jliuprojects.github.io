@@ -13,6 +13,12 @@
                 },
                 {
                     "url" : "assets/kid2.png"
+                },
+                {
+                    "url" : "assets/kid3.png"
+                },
+                {
+                    "url" : "assets/kid4.png"
                 }
             ]
         },
@@ -26,10 +32,13 @@
             "textcolour" : "#061351",
             "images": [
                 {
-                    "url" : "assets/knp1.png"
+                    "url" : "assets/kp1.png"
                 },
                 {
-                    "url" : "assets/knp2.png"
+                    "url" : "assets/kp2.png"
+                },
+                {
+                    "url" : "assets/kp3.jpg"
                 }
             ]
         },
@@ -42,10 +51,10 @@
             "textcolour" : "red",
             "images": [
                 {
-                    "url" : "assets/vejas1.png"
+                    "url" : "assets/v1.png"
                 },
                 {
-                    "url" : "assets/vejas2.png"
+                    "url" : "assets/v2.png"
                 }
             ]
         },
@@ -58,16 +67,19 @@
             "textcolour" : "#FC447A",
             "images": [
                 {
-                    "url" : "assets/kid1.png"
+                    "url" : "assets/d1.gif"
                 },
                 {
-                    "url" : "assets/kid1.png"
+                    "url" : "assets/d1.png"
                 },
                 {
-                    "url" : "assets/kid1.png"
+                    "url" : "assets/d2.png"
                 },
                 {
-                    "url" : "assets/kid1.png"
+                    "url" : "assets/d3.jpg"
+                },
+                {
+                    "url" : "assets/d4.png"
                 }
             ]
         },
