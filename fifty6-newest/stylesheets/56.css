@@ -74,6 +74,7 @@ canvas {
 	top: 0px;
 	left: 0px;
 	height: 170%;
+	width: 100% !important;
 }
 
 @font-face {
