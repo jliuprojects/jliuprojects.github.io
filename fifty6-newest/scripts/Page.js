@@ -22,7 +22,7 @@ function init () {
 		loadingCheck = window.setInterval(function() {
 			loading = true;
 			window.clearInterval(loadingCheck);
-			$("#loading_screen").css({opacity : 1});
+			$("#loading_screen").fadeIn();
 			animateLoading = window.setInterval(function() {
 				var perc = Math.floor(numProjectsLoaded/numProjects*56);
 				var currentPerc = parseInt($("#loading_screen_text").html());
