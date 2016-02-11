@@ -191,7 +191,7 @@ function animateBackgroundsAndInfo() {
 }
 
 function picturesFadeUp() {
-	var pictureFadeInPoint = scroll + window.innerHeight*0.7;
+	var pictureFadeInPoint = scroll + window.innerHeight*0.9;
 
 	var images = projects[focusedProject].getImagePositions();
 	var opcs = projects[focusedProject].getImageOpacities();
