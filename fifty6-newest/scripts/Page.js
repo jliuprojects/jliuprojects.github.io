@@ -56,7 +56,7 @@ function init () {
     				}, 500);
     			}
     		}, 80);
-    	}, 5000);
+    	}, 2000);
 	});
 
 	$("#pointer").click(function() {
