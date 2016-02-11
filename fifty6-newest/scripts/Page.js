@@ -7,6 +7,10 @@ var numProjectsLoaded = 0;
 var scroll = 0;
 var isMobile = false;
 var pointerDirection = "down";
+var startDate = 0;
+var loadingCheck;
+var animateLoading;
+var loading = false;
 
 $( document ).ready(function() {
 	isMobile = mobilecheck();
@@ -15,6 +19,28 @@ $( document ).ready(function() {
 
 function init () {
 	if (!isMobile) {
+		loadingCheck = window.setInterval(function() {
+			window.clearInterval(loadingCheck);
+			$("#loading_screen").fadeIn(500);
+			animateLoading = window.setInterval(function() {
+				var perc = Math.round(numProjectsLoaded/numProjects*56);
+				var currentPerc = parseInt($("#loading_screen_text").html());
+
+				if (currentPerc < perc || currentPerc < 10) {
+					$("#loading_screen_text").html(currentPerc + 1);
+				}
+
+				if (currentPerc == 56) {
+					window.clearInterval(animateLoading);
+					$("#loading_screen_text").fadeOut(500);
+					window.setTimeout(function() {
+						$("#loading_screen").remove();
+						$(".project_title_container").css({"opacity" : 1});
+						run();
+					}, 500);
+				}
+			}, 80);
+		}, 2000);
 		$( window ).resize(function() {
 			for (var i = 0; i < projects.length; i++){
 				projects[i].setPositions();
@@ -43,19 +69,17 @@ function init () {
 
 function loadedCb() {
 	numProjectsLoaded++;
-	var perc = Math.round(numProjectsLoaded/numProjects*56);
-
-	$("#loading_screen_text").html(perc);
-
 	if (numProjectsLoaded == numProjects) {
 		console.log("all projects loaded");
-
+		window.clearInterval(loadingCheck);
 		$("#loading_screen_text").fadeOut(500);
-		window.setTimeout(function() {
-			$("#loading_screen").remove();
-			$(".project_title_container").css({"opacity" : 1});
-			run();
-		}, 500);
+		if (!loading) {
+			window.setTimeout(function() {
+				$("#loading_screen").remove();
+				$(".project_title_container").css({"opacity" : 1});
+				run();
+			}, 500);
+		}
 	}
 }
 

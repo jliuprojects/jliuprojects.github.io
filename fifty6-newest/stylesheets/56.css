@@ -191,6 +191,7 @@ canvas {
 	height: 100%;
 	text-align: center;
 	z-index: 100;
+	display: none;
 }
 
 #loading_gif { 
