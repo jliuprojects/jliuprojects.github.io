@@ -76,15 +76,6 @@ function run() {
 	window.setInterval(intervalLoop, 250);
 }
 
-window.requestAnimFrame = (function(){
-  return  window.requestAnimationFrame       ||
-          window.webkitRequestAnimationFrame ||
-          window.mozRequestAnimationFrame    ||
-          function( callback ){
-            window.setTimeout(callback, 1000 / 60);
-          };
-})();
-
 function render() {
 	window.requestAnimFrame(render);
 	scroll = window.pageYOffset;
@@ -92,7 +83,6 @@ function render() {
 	if (!isMobile) {
 		animateTitles();
 	}
-	// picturesFadeUp();
 
 	if (scroll < window.innerHeight*1.5) {
 		renderThree();
@@ -100,43 +90,20 @@ function render() {
 }
 
 function intervalLoop() {
-	animateBackgroundsAndInfo();
+	animateInfo();
 	picturesFadeUp();
+	animateBackgrounds();
 	animatePointer();
 }
 
 function animatePointer() {
 	if (pointerDirection == "down" && scroll >= window.innerHeight) {
-		$("#pointer").css({
-			//for firefox
-	        "-moz-animation-name":"rotateToUp",
-	        "-moz-animation-duration":"0.8s",
-	        "-moz-animation-iteration-count":"1",
-	        "-moz-animation-fill-mode":"forwards",
-
-	        //for safari & chrome
-	        "-webkit-animation-name":"rotateToUp",
-	        "-webkit-animation-duration":"0.8s",
-	        "-webkit-animation-iteration-count":"1",
-	        "-webkit-animation-fill-mode" : "forwards",
-		});
+		document.getElementById("pointer").setAttribute("class", "pointerPointUp");
 		pointerDirection = "up";
 	}
 
 	if (pointerDirection == "up" && scroll < window.innerHeight) {
-		$("#pointer").css({
-			//for firefox
-	        "-moz-animation-name":"rotateToDown",
-	        "-moz-animation-duration":"0.8s",
-	        "-moz-animation-iteration-count":"1",
-	        "-moz-animation-fill-mode":"forwards",
-
-	        //for safari & chrome
-	        "-webkit-animation-name":"rotateToDown",
-	        "-webkit-animation-duration":"0.8s",
-	        "-webkit-animation-iteration-count":"1",
-	        "-webkit-animation-fill-mode" : "forwards",
-		});
+		document.getElementById("pointer").setAttribute("class", "pointerPointDown");
 		pointerDirection = "down";
 	}
 }
@@ -167,9 +134,53 @@ function animateAbout() {
 	});
 }
 
-function animateBackgroundsAndInfo() {
-	var middleOfScreen = scroll + window.innerHeight/2;
+// function animateBackgroundsAndInfo() {
+// 	var middleOfScreen = scroll + window.innerHeight/2;
+
+// 	if ((bgColour != "#ffffff" || textColour != "#000000") && scroll < window.innerHeight/2) {
+// 		document.getElementById("background").style.backgroundColor = "#ffffff";
+// 		document.getElementById("header_text").style.color = "#000000";
+// 		document.getElementById("logo").style.fill = "#000000";
+// 		document.getElementById("pointer").style.fill = "#000000";
+// 		bgColour = "#ffffff";
+// 		textColour = "#000000";
+// 	}
+
+// 	for (var i = 0; i < projects.length; i++) {
+// 		if (i + 1 == projects.length) {
+// 			var topOfNext = Infinity;
+// 		} else {
+// 			var topOfNext = projects[i + 1].getTopPosition();
+// 		}
+
+// 		if (bgColour == projects[i].getBgColour() && textColour == projects[i].getTextColour()) {
+// 			continue;
+// 		}
+
+// 		if (projects[i].getTopPosition() < middleOfScreen && topOfNext > middleOfScreen) {
+// 			projects[i].setTheme();
+// 			bgColour = projects[i].getBgColour();
+// 			textColour = projects[i].getTextColour();
+// 		}
+// 	}
+// }
+
+function animateInfo() {
 	var infoFadeInPoint = scroll + window.innerHeight*0.7;
+	if ((projects[focusedProject].getTopPosition() < infoFadeInPoint) && (projects[focusedProject].getInfoOpacity() == 0)) {
+		projects[focusedProject].fadeInUpInfo();
+	}
+
+	if ((focusedProject + 1 != projects.length) 
+		&& (projects[focusedProject + 1].getTopPosition() < infoFadeInPoint) 
+		&& (projects[focusedProject + 1].getInfoOpacity() == 0)) {
+
+			projects[focusedProject + 1].fadeInUpInfo();
+	}
+}
+
+function animateBackgrounds() {
+	var middleOfScreen = scroll + window.innerHeight/2;
 
 	if ((bgColour != "#ffffff" || textColour != "#000000") && scroll < window.innerHeight/2) {
 		document.getElementById("background").style.backgroundColor = "#ffffff";
@@ -180,32 +191,29 @@ function animateBackgroundsAndInfo() {
 		textColour = "#000000";
 	}
 
-	for (var i = 0; i < projects.length; i++) {
-		if ((projects[i].getTopPosition() < infoFadeInPoint) && (projects[i].getInfoOpacity() == 0)) {
-			projects[i].fadeInUpInfo();
+	if (focusedProject + 1 != projects.length && projects[focusedProject + 1].getTopPosition() < middleOfScreen) {
+		if (bgColour != projects[focusedProject + 1].getBgColour() || textColour != projects[focusedProject + 1].getTextColour()) {
+			projects[focusedProject + 1].setTheme();
+			bgColour = projects[focusedProject + 1].getBgColour();
+			textColour = projects[focusedProject + 1].getTextColour();
 		}
-
-		if (i + 1 == projects.length) {
-			var topOfNext = Infinity;
-		} else {
-			var topOfNext = projects[i + 1].getTopPosition();
+	} else if (projects[focusedProject].getTopPosition() < middleOfScreen) {
+		if (bgColour != projects[focusedProject].getBgColour() || textColour != projects[focusedProject].getTextColour()) {
+			projects[focusedProject].setTheme();
+			bgColour = projects[focusedProject].getBgColour();
+			textColour = projects[focusedProject].getTextColour();
 		}
-
-		if (bgColour == projects[i].getBgColour() && textColour == projects[i].getTextColour()) {
-			continue;
-		}
-
-		if (projects[i].getTopPosition() < middleOfScreen && topOfNext > middleOfScreen) {
-			projects[i].setTheme();
-			bgColour = projects[i].getBgColour();
-			textColour = projects[i].getTextColour();
+	} else if (focusedProject - 1 >= 0 && projects[focusedProject - 1].getTopPosition() < middleOfScreen) {
+		if (bgColour != projects[focusedProject - 1].getBgColour() || textColour != projects[focusedProject - 1].getTextColour()) {
+			projects[focusedProject - 1].setTheme();
+			bgColour = projects[focusedProject - 1].getBgColour();
+			textColour = projects[focusedProject - 1].getTextColour();
 		}
 	}
 }
 
 function picturesFadeUp() {
-	var pictureFadeInPoint = scroll + window.innerHeight*0.9;
-
+	var pictureFadeInPoint = scroll + window.innerHeight*0.8;
 	var images = projects[focusedProject].getImagePositions();
 	var opcs = projects[focusedProject].getImageOpacities();
 
@@ -353,6 +361,15 @@ function mobilecheck() {
 // requestAnimationFrame polyfill by Erik M�ller. fixes from Paul Irish and Tino Zijdel
  
 // MIT license
+
+window.requestAnimFrame = (function(){
+  return  window.requestAnimationFrame       ||
+          window.webkitRequestAnimationFrame ||
+          window.mozRequestAnimationFrame    ||
+          function( callback ){
+            window.setTimeout(callback, 1000 / 60);
+          };
+})();
  
 (function() {
     var lastTime = 0;

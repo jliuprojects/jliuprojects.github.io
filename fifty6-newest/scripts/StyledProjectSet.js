@@ -21,17 +21,6 @@ function StyledProjectSet(json) {
 	this.html["container"].setAttribute("class", "project_container");
 	/* Done Creating Project Container */
 
-	/* Create Project Text Elements */
-	var projectTextKeys = ["link", "metadata", "description"];
-	var self = this;
-	projectTextKeys.forEach(function(key) {
-		self.html[key] = document.createElement("h3");
-		self.html[key].innerHTML = self.link;
-		self.html[key].setAttribute("class", "project_" + key);
-		self.html[key].style.color = this.textColour;
-	});
-	/* Done Creating Project Text Elements */
-
 	/* Creating Project Title */
 	var tempH1 = document.createElement("h1");
 	tempH1.innerHTML = this.title;
@@ -41,7 +30,17 @@ function StyledProjectSet(json) {
 	this.html["title"].setAttribute("class", "project_title_container");
 	this.html["title"].style.color = this.textColour;
 	/* Done Creating Project Title */
-	
+
+	/* Create Project Text Elements */
+	var projectTextKeys = ["link", "metadata", "description"];
+	projectTextKeys.forEach(function(key) {
+		self.html[key] = document.createElement("h3");
+		self.html[key].innerHTML = self[key];
+		self.html[key].setAttribute("class", "project_" + key);
+		self.html[key].style.color = self.textColour;
+	});
+	/* Done Creating Project Text Elements */
+
 	/* Creating Project Images */
 	this.html["images"] = [];
 	for (var i = 0; i < json.images.length; i++){
@@ -57,7 +56,7 @@ function StyledProjectSet(json) {
 		this.imageOpacities.push(0);
 	 	
 	}
-	/* Dont Creating Project Images */
+	/* Done Creating Project Images */
 
 	/* Add Elements To Container */
 	this.html["container"].appendChild(this.html["link"]);
@@ -69,10 +68,10 @@ function StyledProjectSet(json) {
 	this.html["container"].appendChild(this.html["title"]);
 	/* Done Adding Elements To Container */
 	
+	/* Add Container To Body */
 	$("body").append(this.html["container"]);
 }
 
-// fix title position on screen
 StyledProjectSet.prototype.fixTitle = function() {
 	this.html["title"].style.top = 0 + "px";
 };
@@ -87,7 +86,6 @@ StyledProjectSet.prototype.unfixTitle = function(side) {
 };
 
 StyledProjectSet.prototype.setPositions = function() {
-	// this.html["title"].find("h1")[0].style.left = this.html["title"].width()/2 - this.html["title"].find("h1").height()/2;
 	this.topPosition = $(this.html["container"]).offset().top;
 	this.bottomPosition = $(this.html["container"]).offset().top + $(this.html["container"]).height();
 	this.containerHeight = $(this.html["container"]).height();

@@ -143,6 +143,34 @@ canvas {
     -webkit-animation-fill-mode : forwards;
 }
 
+.pointerPointUp {
+	/*for firefox*/
+    -moz-animation-name : rotateToUp;
+    -moz-animation-duration : 0.8s;
+    -moz-animation-iteration-count : 1;
+    -moz-animation-fill-mode : forwards;
+
+    /*for safari & chrome*/
+    -webkit-animation-name : rotateToUp;
+    -webkit-animation-duration : 0.8s;
+    -webkit-animation-iteration-count : 1;
+    -webkit-animation-fill-mode : forwards;
+}
+
+.pointerPointDown {
+	/*for firefox*/
+    -moz-animation-name : rotateToDown;
+    -moz-animation-duration : 0.8s;
+    -moz-animation-iteration-count : 1;
+    -moz-animation-fill-mode : forwards;
+
+    /*for safari & chrome*/
+    -webkit-animation-name : rotateToDown;
+    -webkit-animation-duration : 0.8s;
+    -webkit-animation-iteration-count : 1;
+    -webkit-animation-fill-mode : forwards;
+}
+
 #pointer {
 	position: fixed;
 	width: 30px;
