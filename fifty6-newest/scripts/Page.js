@@ -20,6 +20,7 @@ $( document ).ready(function() {
 function init () {
 	if (!isMobile) {
 		loadingCheck = window.setInterval(function() {
+			loading = true;
 			window.clearInterval(loadingCheck);
 			$("#loading_screen").fadeIn(500);
 			animateLoading = window.setInterval(function() {
@@ -40,7 +41,7 @@ function init () {
 					}, 500);
 				}
 			}, 80);
-		}, 2000);
+		}, 100);
 		$( window ).resize(function() {
 			for (var i = 0; i < projects.length; i++){
 				projects[i].setPositions();
@@ -71,14 +72,11 @@ function loadedCb() {
 	numProjectsLoaded++;
 	if (numProjectsLoaded == numProjects) {
 		console.log("all projects loaded");
-		window.clearInterval(loadingCheck);
-		$("#loading_screen_text").fadeOut(500);
 		if (!loading) {
-			window.setTimeout(function() {
-				$("#loading_screen").remove();
-				$(".project_title_container").css({"opacity" : 1});
-				run();
-			}, 500);
+			window.clearInterval(loadingCheck);
+			$("#loading_screen").remove();
+			$(".project_title_container").css({"opacity" : 1});
+			run();
 		}
 	}
 }
