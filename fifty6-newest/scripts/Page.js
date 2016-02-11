@@ -42,15 +42,18 @@ function init () {
 
 function loadedCb() {
 	numProjectsLoaded++;
-	var perc = Math.round(numProjectsLoaded/numProjects*100) + "%";
+	var perc = Math.round(numProjectsLoaded/numProjects*56);
 
-	$("#loading_screen_text").html("LOADING(" + perc + ")");
+	$("#loading_screen_text").html(perc + "%");
 
 	if (numProjectsLoaded == numProjects) {
 		console.log("all projects loaded");
-		$("#loading_screen").remove();
-		$(".project_title_container").css({"opacity" : 1});
-		run();
+
+		window.setTimeout(function() {
+			$("#loading_screen").remove();
+			$(".project_title_container").css({"opacity" : 1});
+			run();
+		}, 500);
 	}
 }
 
