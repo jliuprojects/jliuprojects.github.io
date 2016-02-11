@@ -148,6 +148,7 @@ canvas {
 	bottom: 26px;
 	left: 40px;
 	z-index: 1000;
+	opacity: 0;
 
 	-webkit-transition : fill 0.5s linear;
 	-moz-transition : fill 0.5s linear;
