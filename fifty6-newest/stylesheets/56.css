@@ -123,7 +123,7 @@ canvas {
 	z-index: 0;
 	top: 0;
 	left: 0;
-	
+
 	-webkit-transition:background-color 0.5s linear;
 	-moz-transition:background-color 0.5s linear;
 	-o-transition:background-color 0.5s linear;
@@ -237,7 +237,7 @@ canvas {
 	line-height: 150%;
 	text-align: justify;
 
-	font-family: SabonLTPro-Roman;
+	font-family: 'SabonLTPro-Roman';
 	font-weight: normal;
 	font-style: normal;
 	z-index: 100;
@@ -291,7 +291,7 @@ canvas {
 	margin-bottom: 15px;
 	text-align: left;
 
-	font-family: SabonLTPro-Roman;
+	font-family: 'SabonLTPro-Roman';
 	font-weight: normal;
 	font-style: normal;
 }
@@ -345,7 +345,7 @@ canvas {
 	top: 50%;
 	left: 50%;
 
-	font-family: SabonLTPro-Roman;
+	font-family: 'SabonLTPro-Roman';
 	font-weight: normal;
 	font-style: normal;
 	display: inline-block;
