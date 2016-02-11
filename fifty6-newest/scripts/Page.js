@@ -48,12 +48,12 @@ function init () {
 
     			if (currentPerc == 56) {
     				window.clearInterval(animateLoading);
-    				$("#loading_screen_text").fadeOut(3000);
+    				$("#loading_screen_text").fadeOut(2000);
     				window.setTimeout(function() {
     					$("#loading_screen").remove();
     					$(".project_title_container").css({"opacity" : 1});
     					run();
-    				}, 3000);
+    				}, 2000);
     			}
     		}, 80);
     	}, 1000);
