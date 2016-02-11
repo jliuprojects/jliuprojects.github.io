@@ -43,6 +43,11 @@ function StyledProjectSet(json) {
 	}
 	
 	this.html["container"].append(this.html["title"]);
+	this.html["title"][0].style.color = this.textColour;
+	this.html["link"][0].style.color = this.textColour;
+	this.html["description"][0].style.color = this.textColour;
+	this.html["metadata"][0].style.color = this.textColour;
+
 	$("body").append(this.html["container"]);
 }
 
@@ -123,11 +128,6 @@ StyledProjectSet.prototype.fadeInUpInfo = function() {
 
 StyledProjectSet.prototype.setTheme = function() {
 	$('#background')[0].style.backgroundColor = this.bgColour;
-	this.html["title"][0].style.color = this.textColour;
-	this.html["link"][0].style.color = this.textColour;
-	this.html["description"][0].style.color = this.textColour;
-	this.html["metadata"][0].style.color = this.textColour;
-	this.html["metadata"][0].style.color = this.textColour;
 	$("#header_text")[0].style.color = this.textColour;
 	$('#logo')[0].style.fill = this.textColour;
 	$('#pointer')[0].style.fill = this.textColour;

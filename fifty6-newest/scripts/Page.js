@@ -6,6 +6,7 @@ var numProjects = 0;
 var numProjectsLoaded = 0;
 var scroll = 0;
 var isMobile = false;
+var pointerDirection = "down";
 
 $( document ).ready(function() {
 	isMobile = mobilecheck();
@@ -92,7 +93,10 @@ function render() {
 		animateTitles();
 	}
 	// picturesFadeUp();
-	renderThree();
+
+	if (scroll < window.innerHeight*1.5) {
+		renderThree();
+	}
 }
 
 function intervalLoop() {
@@ -102,7 +106,7 @@ function intervalLoop() {
 }
 
 function animatePointer() {
-	if (scroll >= window.innerHeight) {
+	if (pointerDirection == "down" && scroll >= window.innerHeight) {
 		$("#pointer").css({
 			//for firefox
 	        "-moz-animation-name":"rotateToUp",
@@ -116,9 +120,10 @@ function animatePointer() {
 	        "-webkit-animation-iteration-count":"1",
 	        "-webkit-animation-fill-mode" : "forwards",
 		});
+		pointerDirection = "up";
 	}
 
-	if (scroll < window.innerHeight) {
+	if (pointerDirection == "up" && scroll < window.innerHeight) {
 		$("#pointer").css({
 			//for firefox
 	        "-moz-animation-name":"rotateToDown",
@@ -132,6 +137,7 @@ function animatePointer() {
 	        "-webkit-animation-iteration-count":"1",
 	        "-webkit-animation-fill-mode" : "forwards",
 		});
+		pointerDirection = "down";
 	}
 }
 

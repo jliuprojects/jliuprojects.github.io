@@ -123,6 +123,7 @@ canvas {
 	z-index: 0;
 	top: 0;
 	left: 0;
+	
 	-webkit-transition:background-color 0.5s linear;
 	-moz-transition:background-color 0.5s linear;
 	-o-transition:background-color 0.5s linear;
