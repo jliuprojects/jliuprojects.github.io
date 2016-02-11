@@ -133,11 +133,14 @@ function animatePointer() {
 }
 
 function animateAbout() {
+
 	$("#header_text").css({"top" : "-=100px"});
 	$("#header_text").animate({opacity : 1, top : "+=100px"}, 700);
 
 	$("#pointer").css({"bottom" : "-=100px"});
 	$("#pointer").animate({opacity : 1, bottom : "+=100px"}, 700);
+
+	$("canvas").animate({opacity : 1}, 700);
 
 	$("#logo").css({"top" : "-=100px"});
 	$("#logo").animate({opacity : 1, top : "+=100px"}, 700, function() {
