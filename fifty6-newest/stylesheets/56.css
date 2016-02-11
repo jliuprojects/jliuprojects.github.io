@@ -181,6 +181,7 @@ canvas {
 	font-family: 'America XIX';
 	font-weight: normal;
 	font-style: normal;
+	letter-spacing: -12vh;
 }
 
 #header_text {
