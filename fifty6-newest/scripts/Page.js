@@ -22,7 +22,7 @@ function init () {
 		loadingCheck = window.setInterval(function() {
 			loading = true;
 			window.clearInterval(loadingCheck);
-			$("#loading_screen").fadeIn(0);
+			$("#loading_screen").css({opacity : 1});
 			animateLoading = window.setInterval(function() {
 				var perc = Math.floor(numProjectsLoaded/numProjects*56);
 				var currentPerc = parseInt($("#loading_screen_text").html());
@@ -41,7 +41,7 @@ function init () {
 					}, 500);
 				}
 			}, 80);
-		}, 1000);
+		}, 500);
 		$( window ).resize(function() {
 			for (var i = 0; i < projects.length; i++){
 				projects[i].setPositions();
