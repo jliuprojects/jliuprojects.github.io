@@ -314,44 +314,45 @@ canvas {
 	position: fixed;
 	display: inline-block;
   	white-space: nowrap;
-  	font-size: 56pt;
+  	font-size: 65pt;
   	float: left;
 
   	height: 100%;
-  	width: 30%;
+  	width: 25%;
   	top: 0px;
   	left: 0;
   	opacity: 0;
 
   	text-align: center;
-  	-webkit-perspective: 1000;
-	-webkit-backface-visibility: hidden;
+  	/*-webkit-perspective: 1000;*/
+	/*-webkit-backface-visibility: hidden;*/
 }
 
 .project_title {
 	position: relative;
 	top: 50%;
+	left: 50%;
 
 	font-family: SabonLTPro-Roman;
 	font-weight: normal;
 	font-style: normal;
 	display: inline-block;
 
-	-webkit-transform: translateY(-50%) rotate(-90deg);
-  	-moz-transform: translateY(-50%) rotate(-90deg);
- 	-ms-transform: translateY(-50%) rotate(-90deg);
-  	-o-transform: translateY(-50%) rotate(-90deg);
-  	transform: translateY(-50%) rotate(-90deg);
-  	-webkit-perspective: 1000;
-	-webkit-backface-visibility: hidden;
+	-webkit-transform: translateY(-50%) translateX(-50%) rotate(-90deg);
+  	-moz-transform: translateY(-50%) translateX(-50%) rotate(-90deg);
+ 	-ms-transform: translateY(-50%) translateX(-50%) rotate(-90deg);
+  	-o-transform: translateY(-50%) translateX(-50%) rotate(-90deg);
+  	transform: translateY(-50%) translateX(-50%) rotate(-90deg);
+  	/*-webkit-perspective: 1000;*/
+	/*-webkit-backface-visibility: hidden;*/
 }
 
 .project_link {
 	position: relative;
-	font-size: 10pt;
+	font-size: 11pt;
 	display: inline-block;
 	float: right;
-	width: 70%;
+	width: 75%;
 	margin-top: 200px;
 	top: 0px;
 	opacity: 0;
@@ -360,13 +361,13 @@ canvas {
 
 .project_description {
 	position: relative;
-	font-size: 10pt;
+	font-size: 11pt;
 	display: inline-block;
 	width: 30%;
-	margin-left: 30%;
+	margin-left: 25%;
 	margin-right: 5%;
-	margin-top: 50px;
-	margin-bottom: 50px;
+	margin-top: 80px;
+	margin-bottom: 100px;
 	top: 0px;
 	opacity: 0;
 	line-height: 150%;
@@ -375,13 +376,13 @@ canvas {
 
 .project_metadata {
 	position: relative;
-	font-size: 10pt;
+	font-size: 11pt;
 	display: inline-block;
 	float: right;
 	width: 25%;
-	margin-top: 50px;
-	margin-bottom: 50px;
-	margin-right: 10%;
+	margin-top: 80px;
+	margin-bottom: 100px;
+	margin-right: 7%;
 	top: 0px;
 	opacity: 0;
 	line-height: 150%;
@@ -390,12 +391,12 @@ canvas {
 
 .project_image {
 	position: relative;
-	width: 65%;
+	width: 70%;
 	display: inline-block;
 	float: right;
 	top: 0px;
 	opacity: 0;
-	margin: 5% 5%;
+	margin: 5% 5% 5% 0%;
 }
 
 /*

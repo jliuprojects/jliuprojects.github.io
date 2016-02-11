@@ -87,6 +87,7 @@ function render() {
 	if (!isMobile) {
 		animateTitles();
 	}
+	// picturesFadeUp();
 	renderThree();
 }
 

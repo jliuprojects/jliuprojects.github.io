@@ -49,6 +49,7 @@ function StyledProjectSet(json) {
 // fix title position on screen
 StyledProjectSet.prototype.fixTitle = function() {
 	this.html["title"][0].style.top = 0 + "px";
+	// this.html["title"][0].style.position = "fixed";
 };
 
 StyledProjectSet.prototype.unfixTitle = function(side) {
@@ -56,12 +57,15 @@ StyledProjectSet.prototype.unfixTitle = function(side) {
 	var top = [];
 	top["upper"] = this.topPosition - scroll;
 	top["lower"] = -(scroll + window.innerHeight - this.topPosition - this.containerHeight);
+	// top["upper"] = 0;
+	// top["lower"] = this.topPosition + this.containerHeight - window.innerHeight;
 
+	// this.html["title"][0].style.position = "absolute";
 	this.html["title"][0].style.top = top[side] + "px";
 };
 
 StyledProjectSet.prototype.setPositions = function() {
-	this.html["title"].find("h1")[0].style.top = window.innerHeight/2 - this.html["title"].find("h1").height/2;
+	// this.html["title"].find("h1")[0].style.left = this.html["title"].width()/2 - this.html["title"].find("h1").height()/2;
 	this.topPosition = this.html["container"].offset().top;
 	this.bottomPosition = this.html["container"].offset().top + this.html["container"].height();
 	this.containerHeight = this.html["container"].height();
