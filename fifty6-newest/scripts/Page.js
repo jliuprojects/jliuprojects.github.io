@@ -41,7 +41,7 @@ function init () {
 					}, 500);
 				}
 			}, 80);
-		}, 3000);
+		}, 5000);
 		$( window ).resize(function() {
 			for (var i = 0; i < projects.length; i++){
 				projects[i].setPositions();
