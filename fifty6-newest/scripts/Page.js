@@ -81,7 +81,7 @@ window.requestAnimFrame = (function(){
 })();
 
 function render() {
-	window.requestAnimationFrame(render);
+	window.requestAnimFrame(render);
 	scroll = window.pageYOffset;
 
 	if (!isMobile) {
