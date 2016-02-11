@@ -76,6 +76,13 @@ canvas {
 	height: 170%;
 }
 
+@font-face {
+    font-family: 'America XIX';
+    src: local('America XIX'), url('americaxix.woff2') format('woff2'), url('americaxix.woff') format('woff'), url('americaxix.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
 @-moz-keyframes rotateToUp /*--for firefox--*/{
     from {-moz-transform:rotate(0deg);} to {-moz-transform:rotate(-180deg);} 
 }
@@ -173,7 +180,7 @@ canvas {
 	margin-top: -50px;
 	line-height: 100px;
 	font-size: 65pt;
-	font-family: SabonLTPro-Roman;
+	font-family: 'America XIX';
 	font-weight: normal;
 	font-style: normal;
 }

@@ -44,11 +44,12 @@ function loadedCb() {
 	numProjectsLoaded++;
 	var perc = Math.round(numProjectsLoaded/numProjects*56);
 
-	$("#loading_screen_text").html(perc + "%");
+	$("#loading_screen_text").html(perc);
 
 	if (numProjectsLoaded == numProjects) {
 		console.log("all projects loaded");
 
+		$("#loading_screen_text").fadeOut(500);
 		window.setTimeout(function() {
 			$("#loading_screen").remove();
 			$(".project_title_container").css({"opacity" : 1});
