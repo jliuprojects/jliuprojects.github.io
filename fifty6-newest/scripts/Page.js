@@ -62,7 +62,7 @@ function loadedCb() {
 function run() {
 	if (isMobile) {
 		for (var i = 0; i < projects.length; i++){
-			projects[i].setPositionsMobile();
+			// projects[i].setPositionsMobile();
 		}
 	} else {
 		for (var i = 0; i < projects.length; i++){
@@ -172,10 +172,10 @@ function animateBackgroundsAndInfo() {
 	var infoFadeInPoint = scroll + window.innerHeight*0.7;
 
 	if ((bgColour != "#ffffff" || textColour != "#000000") && scroll < window.innerHeight/2) {
-		$('#background')[0].style.backgroundColor = "#ffffff";
-		$("#header_text")[0].style.color = "#000000";
-		$('#logo')[0].style.fill = "#000000";
-		$('#pointer')[0].style.fill = "#000000";
+		document.getElementById("background").style.backgroundColor = "#ffffff";
+		document.getElementById("header_text").style.color = "#000000";
+		document.getElementById("logo").style.fill = "#000000";
+		document.getElementById("pointer").style.fill = "#000000";
 		bgColour = "#ffffff";
 		textColour = "#000000";
 	}
