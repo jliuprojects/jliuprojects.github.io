@@ -47,10 +47,7 @@ function StyledProjectSet(json) {
 		this.html["images"].push(document.createElement('img'));
 		this.html["images"][i].setAttribute("class", "project_image");
 		this.html["images"][i].onload = function() {
-	 		self.numImagesLoaded++;
-	 		if (self.numImagesLoaded == self.numImages) {
-	 			json.cb();
-	 		}
+	 		json.cb();
 	 	};
 		this.html["images"][i].src = json.images[i].url;
 		this.imageOpacities.push(0);

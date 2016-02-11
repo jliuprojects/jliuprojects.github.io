@@ -2,8 +2,8 @@ var projects = [];
 var focusedProject = 0;
 var bgColour = null;
 var textColour = null;
-var numProjects = 0;
-var numProjectsLoaded = 0;
+var numProjectImages = 0;
+var numProjectImagesLoaded = 0;
 var scroll = 0;
 var isMobile = false;
 var pointerDirection = "down";
@@ -19,29 +19,6 @@ $( document ).ready(function() {
 
 function init () {
 	if (!isMobile) {
-		loadingCheck = window.setInterval(function() {
-			loading = true;
-			window.clearInterval(loadingCheck);
-			$("#loading_screen").fadeIn();
-			animateLoading = window.setInterval(function() {
-				var perc = Math.floor(numProjectsLoaded/numProjects*56);
-				var currentPerc = parseInt($("#loading_screen_text").html());
-
-				if (currentPerc < perc || currentPerc < 10) {
-					$("#loading_screen_text").html(currentPerc + 1);
-				}
-
-				if (currentPerc == 56) {
-					window.clearInterval(animateLoading);
-					$("#loading_screen_text").fadeOut(500);
-					window.setTimeout(function() {
-						$("#loading_screen").remove();
-						$(".project_title_container").css({"opacity" : 1});
-						run();
-					}, 500);
-				}
-			}, 80);
-		}, 5000);
 		$( window ).resize(function() {
 			for (var i = 0; i < projects.length; i++){
 				projects[i].setPositions();
@@ -50,11 +27,36 @@ function init () {
 	}
 
     $.getJSON("assets/projects.json", function(json) {
-	    numProjects = json.projects.length;
+	    numProjectImages = 0;
 	    for (var i = 0; i < json.projects.length; i++){
 	    	json.projects[i].cb = loadedCb;
     		projects.push(new StyledProjectSet(json.projects[i]));
+    		numProjectImages += json.projects[i].images.length;
     	}
+
+    	loadingCheck = window.setInterval(function() {
+    		loading = true;
+    		window.clearInterval(loadingCheck);
+    		$("#loading_screen").fadeIn();
+    		animateLoading = window.setInterval(function() {
+    			var perc = Math.floor(numProjectImagesLoaded/numProjectImages*56);
+    			var currentPerc = parseInt($("#loading_screen_text").html());
+
+    			if (currentPerc < perc) {
+    				$("#loading_screen_text").html(currentPerc + 1);
+    			}
+
+    			if (currentPerc == 56) {
+    				window.clearInterval(animateLoading);
+    				$("#loading_screen_text").fadeOut(500);
+    				window.setTimeout(function() {
+    					$("#loading_screen").remove();
+    					$(".project_title_container").css({"opacity" : 1});
+    					run();
+    				}, 500);
+    			}
+    		}, 80);
+    	}, 5000);
 	});
 
 	$("#pointer").click(function() {
@@ -69,8 +71,8 @@ function init () {
 }
 
 function loadedCb() {
-	numProjectsLoaded++;
-	if (numProjectsLoaded == numProjects) {
+	numProjectImagesLoaded++;
+	if (numProjectImagesLoaded == numProjectImages) {
 		console.log("all projects loaded");
 		if (!loading) {
 			window.clearInterval(loadingCheck);
