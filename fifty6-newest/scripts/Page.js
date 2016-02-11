@@ -24,7 +24,7 @@ function init () {
 			window.clearInterval(loadingCheck);
 			$("#loading_screen").fadeIn(500);
 			animateLoading = window.setInterval(function() {
-				var perc = Math.round(numProjectsLoaded/numProjects*56);
+				var perc = Math.floor(numProjectsLoaded/numProjects*56);
 				var currentPerc = parseInt($("#loading_screen_text").html());
 
 				if (currentPerc < perc || currentPerc < 10) {
@@ -41,7 +41,7 @@ function init () {
 					}, 500);
 				}
 			}, 80);
-		}, 100);
+		}, 1000);
 		$( window ).resize(function() {
 			for (var i = 0; i < projects.length; i++){
 				projects[i].setPositions();
