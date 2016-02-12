@@ -97,6 +97,9 @@ function run() {
 	}
 
 	if (isMobile) {
+		for (var i = 0; i < projects.length; i++){
+			projects[i].fixTitleMobile();
+		}
 		return;
 	} else {
 		render();
