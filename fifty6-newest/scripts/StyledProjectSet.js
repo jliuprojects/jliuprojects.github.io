@@ -34,6 +34,9 @@ function StyledProjectSet(json) {
 	this.html["title"].appendChild(tempH1);
 	this.html["title"].setAttribute("class", "project_title_container");
 	this.html["title"].style.color = this.textColour;
+	$(tempH1).bind('click tap',function(){
+		$(self.html["link"]).find("a")[0].click();
+	});
 	/* Done Creating Project Title */
 
 	/* Create Project Text Elements */
