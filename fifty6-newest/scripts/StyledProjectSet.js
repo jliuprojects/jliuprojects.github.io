@@ -111,7 +111,6 @@ StyledProjectSet.prototype.setPositions = function() {
 	$(".project_link a").on({
 	    mouseenter: function () {
 	        $( this ).siblings().css({opacity : 1});
-	        testSvg();
 	    },
 	    mouseleave: function () {
 	        $( this ).siblings().css({opacity : 0});
@@ -178,43 +177,3 @@ StyledProjectSet.prototype.getBgColour = function() {
 StyledProjectSet.prototype.getTextColour = function() {
 	return this.textColour;
 };
-
-function testSvg() {
-	var path = document.querySelector('.link_arrow .line');
-	var length = path.getTotalLength();
-	// Clear any previous transition
-	path.style.transition = path.style.WebkitTransition =
-	  'none';
-	// Set up the starting positions
-	path.style.strokeDasharray = length + ' ' + length;
-	path.style.strokeDashoffset = length;
-	// Trigger a layout so styles are calculated & the browser
-	// picks up the starting position before animating
-	path.getBoundingClientRect();
-	// Define our transition
-	path.style.transition = path.style.WebkitTransition =
-	  'stroke-dashoffset 0.5s ease-in-out';
-	// Go!
-	path.style.strokeDashoffset = '0';
-
-	var path = document.querySelector('.link_arrow .arrow');
-	var length = path.getTotalLength();
-	// Clear any previous transition
-	path.style.transition = path.style.WebkitTransition =
-	  'none';
-	// Set up the starting positions
-	path.style.strokeDasharray = length + ' ' + length;
-	path.style.strokeDashoffset = length;
-	// Trigger a layout so styles are calculated & the browser
-	// picks up the starting position before animating
-	path.getBoundingClientRect();
-	// Define our transition
-	path.style.transition = path.style.WebkitTransition =
-	  'stroke-dashoffset 0.5s ease-in-out';
-	// Go!
-	path.style.strokeDashoffset = '0';
-}
-
-
-
-
