@@ -118,19 +118,6 @@ StyledProjectSet.prototype.setPositions = function() {
 	});
 };
 
-StyledProjectSet.prototype.setPositionsMobile = function() {
-	// this.topPosition = this.html["container"].offset().top;
-	// this.bottomPosition = this.html["container"].offset().top + this.html["container"].height();
-
-	// this.imagePositions = [];
-	// for (var i = 0; i < this.html["images"].length; i++) {
-	// 	this.imagePositions.push(this.html["images"][i].offset().top);
-	// }
-
-	// var titleHeight = this.html["title"].height();
-	// this.html["link"].css({"margin-top" : 60 + titleHeight + "px"});
-};
-
 StyledProjectSet.prototype.getImagePositions = function() {
 	return this.imagePositions;
 };

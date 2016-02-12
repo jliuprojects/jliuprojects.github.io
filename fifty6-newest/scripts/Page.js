@@ -90,41 +90,34 @@ function loadedCb() {
 }
 
 function run() {
-	if (isMobile) {
-		for (var i = 0; i < projects.length; i++){
-			// projects[i].setPositionsMobile();
-		}
-	} else {
-		for (var i = 0; i < projects.length; i++){
-			projects[i].setPositions();
-		}
-	}
-	
 	window.scrollTo(0, 0);
 	animateAbout();
-	render();
-	window.setInterval(intervalLoop, 250);
+	for (var i = 0; i < projects.length; i++){
+		projects[i].setPositions();
+	}
+
+	if (isMobile) {
+		return;
+	} else {
+		render();
+		window.setInterval(intervalLoop, 250);
+	}
 }
 
 function render() {
 	window.requestAnimFrame(render);
 	scroll = window.pageYOffset;
 
-	if (!isMobile) {
-		animateTitles();
-		if (scroll < window.innerHeight*1.5) {
-			renderThree();
-		}
+	animateTitles();
+	if (scroll < window.innerHeight*1.5) {
+		renderThree();
 	}
 }
 
 function intervalLoop() {
 	animateInfo();
 	picturesFadeUp();
-
-	if (!isMobile) {
-		animateBackgrounds();
-	}
+	animateBackgrounds();
 	animatePointer();
 }
 
