@@ -214,6 +214,7 @@ canvas {
 	font-weight: normal;
 	font-style: normal;
 	letter-spacing: -12vh;
+	margin-left: -6vh;
 }
 
 #header_text {
