@@ -1,4 +1,7 @@
-var ARROWSVG = ["<?xml version='1.0' encoding='iso-8859-1'?> <svg version='1.1'", "class='link_arrow' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 227.096 227.096' style='enable-background:new 0 0 227.096 227.096;' xml:space='preserve'> <g> <g> <polygon style='fill:#010002;' points='152.835,39.285 146.933,45.183 211.113,109.373 0,109.373 0,117.723 211.124,117.723 146.933,181.902 152.835,187.811 227.096,113.55 '/> </g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> </svg> "];
+var ARROWSVG = [
+	"<?xml version='1.0' encoding='utf-8'?><svg version='1.1' class='link_arrow' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='-273 365 64 64' enable-background='new -273 365 64 64' xml:space='preserve'><polyline fill='none' stroke='", 
+	"' stroke-width='2' stroke-linejoin='bevel' stroke-miterlimit='10' points='-225,404 -218,397 -225,390 '/><polyline fill='none' stroke='", 
+	"' stroke-width='2' stroke-miterlimit='10' points='-218,397 -230,397 -264,397 '/></svg>"];
 
 function StyledProjectSet(json) {
 	var self = this;
@@ -39,8 +42,8 @@ function StyledProjectSet(json) {
 		switch (key){
 			case "link":
 				self.html[key] = document.createElement("h3");
-				self.html[key].innerHTML = ARROWSVG[0] + "style='fill:" + self.textColour + ";'" + ARROWSVG[1];
-				self.html[key].innerHTML += self[key];
+				self.html[key].innerHTML = self[key];
+				self.html[key].innerHTML += ARROWSVG[0] + self.textColour + ARROWSVG[1] + self.textColour + ARROWSVG[2];
 				self.html[key].setAttribute("class", "project_" + key);
 				self.html[key].style.color = self.textColour;
 				$(self.html[key]).find("svg").css({fill:this.textColour});
