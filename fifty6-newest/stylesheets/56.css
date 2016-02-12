@@ -369,6 +369,7 @@ a {
 	font-weight: normal;
 	font-style: normal;
 	display: inline-block;
+	cursor: pointer;
 
 	-webkit-transform: translateY(-50%) translateX(-50%) rotate(-90deg);
   	-moz-transform: translateY(-50%) translateX(-50%) rotate(-90deg);
@@ -568,5 +569,8 @@ a {
 		opacity: 1;
 		width: 80%;
 		margin: 10%;
+	}
+	#pointer {
+		opacity: 0;
 	}
 }
