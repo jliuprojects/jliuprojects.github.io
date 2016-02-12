@@ -53,6 +53,7 @@ function init () {
     					window.setTimeout(function() {
     						$("#loading_screen").remove();
     						$(".project_title_container").css({"opacity" : 1});
+    						$("body").css({"overflow" : "visible"});
     						run();
     					}, 1000);
     				}, 800);
@@ -80,6 +81,7 @@ function loadedCb() {
 			window.clearInterval(loadingCheck);
 			$("#loading_screen").remove();
 			$(".project_title_container").css({"opacity" : 1});
+			$("body").css({"overflow" : "visible"});
 			run();
 		}
 	}
