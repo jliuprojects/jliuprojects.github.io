@@ -188,33 +188,18 @@ canvas {
 }
 
 #loading_screen {
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	text-align: center;
-	z-index: 100;
 	display: none;
-}
-
-#loading_gif { 
-    position: fixed;
-    width: 200px;
-    top: 50%;
-    left: 50%;
-    margin-top: -150px;
-    margin-left: -100px;
-}
-
-#loading_screen_text {
 	position: fixed;
-	width: 100%;
-	height: 100%;
-	font-size: 125vh;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-40%);
+	z-index: 100;
 	font-family: 'America XIX';
 	font-weight: normal;
 	font-style: normal;
-	letter-spacing: -12vh;
-	margin-left: -6vh;
+	font-size: 100vmin;
+	letter-spacing: -10vmin;
+	margin-left: -5vmin;
 }
 
 #header_text {

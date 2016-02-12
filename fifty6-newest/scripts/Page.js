@@ -40,16 +40,16 @@ function init () {
     		$("#loading_screen").fadeIn();
     		animateLoading = window.setInterval(function() {
     			var perc = Math.floor(numProjectImagesLoaded/numProjectImages*56);
-    			var currentPerc = parseInt($("#loading_screen_text").html());
+    			var currentPerc = parseInt($("#loading_screen").html());
 
     			if (currentPerc < perc) {
-    				$("#loading_screen_text").html(currentPerc + 1);
+    				$("#loading_screen").html(currentPerc + 1);
     			}
 
     			if (currentPerc == 56) {
     				window.clearInterval(animateLoading);
     				window.setTimeout(function() {
-    					$("#loading_screen_text").fadeOut(1000);
+    					$("#loading_screen").fadeOut(1000);
     					window.setTimeout(function() {
     						$("#loading_screen").remove();
     						$(".project_title_container").css({"opacity" : 1});
