@@ -66,7 +66,6 @@ table {
 header {
 	position: fixed;
 	height: 15%;
-	width: 100%;
 	z-index: 101;
 }
 
@@ -79,9 +78,10 @@ canvas {
 	opacity: 0;
 }
 
-a { 
+a {
 	color: inherit;
-} 
+	text-decoration: none;
+}
 
 @font-face {
     font-family: 'America XIX';
@@ -238,8 +238,6 @@ a {
 #logo_wrap {
 	position: fixed;
 	display: inline-block;
-	height: 15%;
-	width: 100%;
 }
 
 #about {
@@ -394,6 +392,16 @@ a {
 	opacity: 0;
 	font-family: 'Work Sans', sans-serif;
 	font-weight: bold;
+	z-index: 102;
+}
+
+.link_arrow {
+	position: absolute;
+	display: inline-block;
+	opacity: 0;
+	width: 30px;
+	left: -40px;
+	top: -7px;
 }
 
 .project_description {

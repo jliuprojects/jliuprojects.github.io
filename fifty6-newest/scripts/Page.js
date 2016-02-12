@@ -98,6 +98,14 @@ function run() {
 		for (var i = 0; i < projects.length; i++){
 			projects[i].setPositions();
 		}
+		$(".project_link a").on({
+		    mouseenter: function () {
+		        $( this ).siblings().css({opacity : 1});
+		    },
+		    mouseleave: function () {
+		        $( this ).siblings().css({opacity : 0});
+		    }
+		});
 	}
 	
 	window.scrollTo(0, 0);

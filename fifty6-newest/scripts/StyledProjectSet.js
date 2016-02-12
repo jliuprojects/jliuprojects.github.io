@@ -1,3 +1,5 @@
+var ARROWSVG = ["<?xml version='1.0' encoding='iso-8859-1'?> <svg version='1.1'", "class='link_arrow' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 227.096 227.096' style='enable-background:new 0 0 227.096 227.096;' xml:space='preserve'> <g> <g> <polygon style='fill:#010002;' points='152.835,39.285 146.933,45.183 211.113,109.373 0,109.373 0,117.723 211.124,117.723 146.933,181.902 152.835,187.811 227.096,113.55 '/> </g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> </svg> "];
+
 function StyledProjectSet(json) {
 	var self = this;
 	this.title = json.title;
@@ -34,10 +36,21 @@ function StyledProjectSet(json) {
 	/* Create Project Text Elements */
 	var projectTextKeys = ["link", "metadata", "description"];
 	projectTextKeys.forEach(function(key) {
-		self.html[key] = document.createElement("h3");
-		self.html[key].innerHTML = self[key];
-		self.html[key].setAttribute("class", "project_" + key);
-		self.html[key].style.color = self.textColour;
+		switch (key){
+			case "link":
+				self.html[key] = document.createElement("h3");
+				self.html[key].innerHTML = ARROWSVG[0] + "style='fill:" + self.textColour + ";'" + ARROWSVG[1];
+				self.html[key].innerHTML += self[key];
+				self.html[key].setAttribute("class", "project_" + key);
+				self.html[key].style.color = self.textColour;
+				$(self.html[key]).find("svg").css({fill:this.textColour});
+				break;
+			default:
+				self.html[key] = document.createElement("h3");
+				self.html[key].innerHTML = self[key];
+				self.html[key].setAttribute("class", "project_" + key);
+				self.html[key].style.color = self.textColour;
+		}
 	});
 	/* Done Creating Project Text Elements */
 
