@@ -3,7 +3,7 @@
         {
             "title": "Kid. Studio",
             "description": "Portfolio site built for film and design studio Kid. With customizable content management made on top of Kirby. ",
-            "link": "new.kidstudio.co",
+            "link": "<a href='http://kidstudio.co'>kidstudio.co</a>",
             "metadata" : "Client: Kid. Studio <br> Year: 2015 <br> web Design, 3D, Interactive",
             "bgcolour" : "#E2e2e2",
             "textcolour" : "#2e2e2e",
@@ -25,7 +25,7 @@
         {
             "title": "Kastor & <br> Pollux",
             "description": "Website designed and developed for creative collective Kastor and Pollux to showcase their work. ",
-            "link": "'http://kastorandpollux.com/'>kastorandpollux.com",
+            "link": "<a href='http://kastorandpollux.com'>kastorandpollux.com</a>",
             "date": "example glossary",
             "metadata" : "Client: Kaster & Pollux <br> Year: 2015 <br> Web Design, 3D, Interactive",
             "bgcolour" : "#f3ec7d",
@@ -61,7 +61,7 @@
         {
             "title": "88 Camino",
             "description": "Interactive microsite made for rapper Drew Howard, featuring a custom built pseudo-3d racing game.",
-            "link": "88camino.com",
+            "link": "<a href='http://88camino.com'>88camino.com</a>",
             "metadata" : "Client: Drew Howard <br> Year: 2015 <br> Web Design, 3D, Interactive",
             "bgcolour" : "black",
             "textcolour" : "#FC447A",
@@ -112,7 +112,7 @@
         {
             "title": "MoCTT",
             "description": "Strategy and content creation for instagram-centered campaign promoting creative collective CMDWN's Party, Museum of Contemporary Thots.",
-            "link": "www.google.ca",
+            "link": "<a href='http://www.google.ca'>www.google.ca</a>",
             "metadata" : "Client: Kid. Studio <br> Year: 2015 <br> Web Design, 3D, Interactive",
             "bgcolour" : "#fff",
             "textcolour" : "#fc6cb3",

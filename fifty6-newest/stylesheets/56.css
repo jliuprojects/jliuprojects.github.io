@@ -79,6 +79,10 @@ canvas {
 	opacity: 0;
 }
 
+a { 
+	color: inherit;
+} 
+
 @font-face {
     font-family: 'America XIX';
     src: local('America XIX'), url('americaxix.woff2') format('woff2'), url('americaxix.woff') format('woff'), url('americaxix.ttf') format('truetype');
@@ -338,6 +342,7 @@ canvas {
 .project_container {
 	position: relative;
 	display: inline-block;
+	z-index: 100;
 }
 
 .project_title_container {
@@ -387,6 +392,7 @@ canvas {
 	top: 0px;
 	opacity: 0;
 	font-family: 'Work Sans', sans-serif;
+	font-weight: bold;
 }
 
 .project_description {

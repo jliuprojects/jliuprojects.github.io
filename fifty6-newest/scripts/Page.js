@@ -70,7 +70,9 @@ function init () {
 		}
 	});
 
-	initThree();
+	if (!isMobile) {
+		initThree();
+	}
 }
 
 function loadedCb() {
@@ -110,17 +112,19 @@ function render() {
 
 	if (!isMobile) {
 		animateTitles();
-	}
-
-	if (scroll < window.innerHeight*1.5) {
-		renderThree();
+		if (scroll < window.innerHeight*1.5) {
+			renderThree();
+		}
 	}
 }
 
 function intervalLoop() {
 	animateInfo();
 	picturesFadeUp();
-	animateBackgrounds();
+
+	if (!isMobile) {
+		animateBackgrounds();
+	}
 	animatePointer();
 }
 
