@@ -27,6 +27,12 @@ function init () {
 	}
 
     $.getJSON("assets/projects.json", function(json) {
+    	if (isMobile) {
+    		for (var i = 0; i < json.projects.length; i++){
+    			json.projects[i].textcolour = "black";
+    		}
+    	}
+
 	    numProjectImages = 0;
 	    for (var i = 0; i < json.projects.length; i++){
 	    	json.projects[i].cb = loadedCb;
