@@ -494,12 +494,59 @@ a {
 		width: 80%;
 		margin: 10%;
 	}
+	header {
+		position: relative;
+		height: auto;
+		width: auto;
+	}
+	#logo_wrap {
+		position: relative;
+		left: 50%;
+	}
+	#logo {
+		position: relative;
+		width: 350px;
+		height: auto;
+		left: 0;
+		margin-left: -175px;
+		top: 100px;
+	}
 	#pointer {
-		display: none;
+		position: absolute;
+		width: 150px;
+		height: auto;
+		left: 50%;
+		margin-left: -75px;
+		bottom: 100px;
 	}
 	#loading_screen {
 		font-size: 80vmin;
 		letter-spacing: -8vmin;
 		margin-left: -4vmin;
+	}
+	#main_title {
+		font-size: 48pt;
+		text-align: center;
+		top: 200px;
+	}
+	#contact {
+		position: relative;
+		top: 300px;
+		left: 50%;
+		font-size: 48pt;
+		font-family: 'SabonLTPro-Roman';
+		font-weight: normal;
+		font-style: normal;
+		-webkit-transform: translateY(0%) translateX(-50%) rotate(0deg);
+	  	-moz-transform: translateY(0%) translateX(-50%) rotate(0deg);
+	 	-ms-transform: translateY(0%) translateX(-50%) rotate(0deg);
+	  	-o-transform: translateY(0%) translateX(-50%) rotate(0deg);
+	  	transform: translateY(0%) translateX(-50%) rotate(0deg);
+	}
+	#services {
+		display: none;
+	}
+	#clients {
+		display: none;
 	}
 }

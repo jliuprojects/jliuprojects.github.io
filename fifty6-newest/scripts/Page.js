@@ -100,7 +100,6 @@ function run() {
 		for (var i = 0; i < projects.length; i++){
 			projects[i].fixTitleMobile();
 		}
-		return;
 	} else {
 		render();
 		window.setInterval(intervalLoop, 250);
@@ -137,32 +136,47 @@ function animatePointer() {
 }
 
 function animateAbout() {
+	if (isMobile) {
+		$("#logo").css({"top" : "-=100px"});
+		$("#logo").animate({opacity : 1, top : "+=100px"}, 700, function() {
+			$("#main_title").css({"top" : "+=100px"});
+			$("#main_title").animate({opacity : 1, top : "-=100px"}, 700);
+			window.setTimeout(function (){
+				$("#contact").css({"top" : "+=100px"});
+				$("#contact").animate({opacity : 1, top : "-=100px"}, 700);
+				window.setTimeout(function (){
+					$("#pointer").css({"bottom" : "-=100px"});
+					$("#pointer").animate({opacity : 1, bottom : "+=100px"}, 700);
+				}, 600);
+			}, 600);
+		});
+	} else {
+		$("#header_text").css({"top" : "-=100px"});
+		$("#header_text").animate({opacity : 1, top : "+=100px"}, 700);
 
-	$("#header_text").css({"top" : "-=100px"});
-	$("#header_text").animate({opacity : 1, top : "+=100px"}, 700);
+		$("#pointer").css({"bottom" : "-=100px"});
+		$("#pointer").animate({opacity : 1, bottom : "+=100px"}, 700);
 
-	$("#pointer").css({"bottom" : "-=100px"});
-	$("#pointer").animate({opacity : 1, bottom : "+=100px"}, 700);
+		$("canvas").animate({opacity : 1}, 700);
 
-	$("canvas").animate({opacity : 1}, 700);
-
-	$("#logo").css({"top" : "-=100px"});
-	$("#logo").animate({opacity : 1, top : "+=100px"}, 700, function() {
-		$("#main_title").css({"top" : "25%"});
-		$("#main_title").animate({opacity : 1, top : "15%"}, 700);
-		window.setTimeout(function (){
-			$("#services").css({"top" : "30%"});
-			$("#services").animate({opacity : 1, top : "20%"}, 700);
-		}, 200);
-		window.setTimeout(function (){
-			$("#clients").css({"top" : "30%"});
-			$("#clients").animate({opacity : 1, top : "20%"}, 700);
-		}, 400);
-		window.setTimeout(function (){
-			$("#contact").css({"top" : "80%"});
-			$("#contact").animate({opacity : 1, top : "70%"}, 700);
-		}, 600);
-	});
+		$("#logo").css({"top" : "-=100px"});
+		$("#logo").animate({opacity : 1, top : "+=100px"}, 700, function() {
+			$("#main_title").css({"top" : "25%"});
+			$("#main_title").animate({opacity : 1, top : "15%"}, 700);
+			window.setTimeout(function (){
+				$("#services").css({"top" : "30%"});
+				$("#services").animate({opacity : 1, top : "20%"}, 700);
+			}, 200);
+			window.setTimeout(function (){
+				$("#clients").css({"top" : "30%"});
+				$("#clients").animate({opacity : 1, top : "20%"}, 700);
+			}, 400);
+			window.setTimeout(function (){
+				$("#contact").css({"top" : "80%"});
+				$("#contact").animate({opacity : 1, top : "70%"}, 700);
+			}, 600);
+		});
+	}
 }
 
 // function animateBackgroundsAndInfo() {
