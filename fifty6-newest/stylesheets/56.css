@@ -464,7 +464,8 @@ a {
 		text-align: center;
 		margin-bottom: 5%;
 		font-size: 32pt;
-		font-weight: normal;
+		font-weight: 100;
+		float: left;
 	}
 	.project_description {
 		opacity: 1;
@@ -474,16 +475,18 @@ a {
 		margin-bottom: 5%;
 		text-align: center;
 		font-size: 32pt;
-		font-weight: normal;
+		line-height: 150%;
+		font-weight: 100;
+		float: left;
 	}
 	.project_metadata {
 		font-size: 32pt;
-		font-weight: normal;
+		font-weight: 100;
 		opacity: 1;
 		width: 80%;
-		left: 10%;
 		float: left;
 		margin: 0;
+		margin-left: 10%;
 		text-align: center;
 	}
 	.project_image {
