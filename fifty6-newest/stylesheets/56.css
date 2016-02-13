@@ -490,6 +490,6 @@ a {
 		margin: 10%;
 	}
 	#pointer {
-		opacity: 0;
+		display: none;
 	}
 }
