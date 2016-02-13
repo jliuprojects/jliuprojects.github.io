@@ -509,7 +509,7 @@ a {
 		left: 0;
 		margin-left: -200px;
 		top: 0;
-		margin-top: 70px;
+		margin-top: 60px;
 	}
 	#pointer {
 		position: absolute;
@@ -517,7 +517,7 @@ a {
 		height: auto;
 		left: 50%;
 		margin-left: -70px;
-		bottom: 8%;
+		bottom: 60px;
 	}
 	#loading_screen {
 		font-size: 80vmin;
