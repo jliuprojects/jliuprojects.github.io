@@ -65,7 +65,7 @@ function init () {
     				}, 800);
     			}
     		}, 80);
-    	}, 1000);
+    	}, 500);
 	});
 
 	$("#pointer").click(function() {
