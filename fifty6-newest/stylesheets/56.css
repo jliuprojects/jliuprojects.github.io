@@ -524,6 +524,9 @@ a {
 		letter-spacing: -8vmin;
 		margin-left: -4vmin;
 	}
+	#about {
+		height: 90%;
+	}
 	#main_title {
 		font-size: 40pt;
 		text-align: center;
