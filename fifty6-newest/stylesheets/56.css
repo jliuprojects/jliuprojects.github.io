@@ -504,19 +504,20 @@ a {
 	}
 	#logo {
 		position: relative;
-		width: 350px;
+		width: 400px;
 		height: auto;
 		left: 0;
-		margin-left: -175px;
-		top: 100px;
+		margin-left: -200px;
+		top: 0;
+		margin-top: 70px;
 	}
 	#pointer {
 		position: absolute;
-		width: 150px;
+		width: 140px;
 		height: auto;
 		left: 50%;
-		margin-left: -75px;
-		bottom: 100px;
+		margin-left: -70px;
+		bottom: 8%;
 	}
 	#loading_screen {
 		font-size: 80vmin;
@@ -524,15 +525,18 @@ a {
 		margin-left: -4vmin;
 	}
 	#main_title {
-		font-size: 48pt;
+		font-size: 40pt;
 		text-align: center;
-		top: 200px;
+		top: 0;
+		margin: 10% 10% 0% 10%;
+		width: 80%;
 	}
 	#contact {
 		position: relative;
-		top: 300px;
+		top: 0;
+		margin-top: 10%;
 		left: 50%;
-		font-size: 48pt;
+		font-size: 40pt;
 		font-family: 'SabonLTPro-Roman';
 		font-weight: normal;
 		font-style: normal;
