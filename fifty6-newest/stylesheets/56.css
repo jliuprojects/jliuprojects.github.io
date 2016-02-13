@@ -440,96 +440,6 @@ a {
 	margin: 5% 5% 5% 0%;
 }
 
-/*
-@media (max-width: 900px) {
-	#main_title {
-		position: absolute;
-		display: block;
-		font-size: 36pt;
-		width: 616px; 
-		left: 50%;
-		margin-left: -308px;
-		margin-top: 120px;
-		top: 0px;
-		opacity: 0;
-
-		line-height: 150%;
-
-		font-family: SabonLTPro-Roman;
-		font-weight: normal;
-		font-style: normal;
-	}
-
-	#services {
-		position: absolute;
-		width: 230px;
-		left: 20%;
-		text-align: center;
-		top: 50%;
-		opacity: 0;
-		margin-top: 50px;
-	}
-
-	#clients {
-		position: absolute;
-		width: 230px;
-		left: 60%;
-		text-align: center;
-		top: 50%;
-		opacity: 0;
-		margin-top: 50px;
-	}
-
-	#contact {
-		position: absolute;
-		display: inline-block;
-		text-align: left;
-		line-height: 175%;
-		font-size: 10pt;
-		left: 0px;
-		top: 70%;
-	  	opacity: 0;
-
-		-webkit-transform: translateY(-50%) rotate(-90deg);
-	  	-moz-transform: translateY(-50%) rotate(-90deg);
-	 	-ms-transform: translateY(-50%) rotate(-90deg);
-	  	-o-transform: translateY(-50%) rotate(-90deg);
-	  	transform: translateY(-50%) rotate(-90deg);
-	  	font-family: 'Work Sans', sans-serif;
-	}
-
-	.col_title {
-		font-size: 24pt;
-		width: 100%;
-		margin-bottom: 15px;
-		text-align: left;
-
-		font-family: SabonLTPro-Roman;
-		font-weight: normal;
-		font-style: normal;
-	}
-
-	.left_col {
-		font-size: 10pt;
-		width: 50%;
-		display: inline-block;
-		float: left;
-		text-align: left;
-		line-height: 175%;
-		font-family: 'Work Sans', sans-serif;
-	}
-
-	.right_col {
-		font-size: 10pt;
-		width: 50%;
-		display: inline-block;
-		position: relative;
-		text-align: left;
-		line-height: 175%;
-		font-family: 'Work Sans', sans-serif;
-	}
-}*/
-
 @media only screen and (max-device-width: 480px) {
 	.project_title_container {
 		position: absolute;
@@ -541,6 +451,7 @@ a {
 	}
 	.project_title {
 		position: absolute;
+		font-size: 100pt;
 		-webkit-transform: translateY(0%) translateX(-50%) rotate(0deg);
 	  	-moz-transform: translateY(0%) translateX(-50%) rotate(0deg);
 	 	-ms-transform: translateY(0%) translateX(-50%) rotate(0deg);
@@ -551,15 +462,23 @@ a {
 		opacity: 1;
 		width: 100%;
 		text-align: center;
-		margin-bottom: 30px;
+		margin-bottom: 5%;
+		font-size: 4vw;
+		font-weight: normal;
 	}
 	.project_description {
 		opacity: 1;
-		width: 100%;
+		width: 80%;
 		margin: 0;
+		margin-left: 10%;
+		margin-bottom: 5%;
 		text-align: center;
+		font-size: 4vw;
+		font-weight: normal;
 	}
 	.project_metadata {
+		font-size: 4vw;
+		font-weight: normal;
 		opacity: 1;
 		width: 100%;
 		margin: 0;
