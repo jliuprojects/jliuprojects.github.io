@@ -513,10 +513,10 @@ a {
 	}
 	#pointer {
 		position: absolute;
-		width: 140px;
+		width: 100px;
 		height: auto;
 		left: 50%;
-		margin-left: -70px;
+		margin-left: -50px;
 		bottom: 60px;
 	}
 	#loading_screen {
