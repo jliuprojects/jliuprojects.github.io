@@ -14,6 +14,7 @@ var loading = false;
 
 $( document ).ready(function() {
 	isMobile = mobilecheck();
+	$(document).bind('touchmove', false);
 	init();
 });
 
@@ -60,6 +61,7 @@ function init () {
     						$("#loading_screen").remove();
     						$(".project_title_container").css({"opacity" : 1});
     						$("body").css({"overflow" : "visible"});
+    						$(document).unbind('touchmove');
     						run();
     					}, 1000);
     				}, 800);
@@ -90,6 +92,7 @@ function loadedCb() {
 			$("#loading_screen").remove();
 			$(".project_title_container").css({"opacity" : 1});
 			$("body").css({"overflow" : "visible"});
+			$(document).unbind('touchmove');
 			run();
 		}
 	}
