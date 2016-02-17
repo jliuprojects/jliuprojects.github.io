@@ -9,16 +9,16 @@
             "textcolour" : "#2e2e2e",
             "images": [
                 {
-                    "url" : "assets/kid1.png"
+                    "url" : "assets/images/kid.png"
                 },
                 {
-                    "url" : "assets/kid2.png"
+                    "url" : "assets/images/kid2.png"
                 },
                 {
-                    "url" : "assets/kid3.png"
+                    "url" : "assets/images/kid3.png"
                 },
                 {
-                    "url" : "assets/kid4.png"
+                    "url" : "assets/images/kid4.png"
                 }
             ]
         },
@@ -32,13 +32,16 @@
             "textcolour" : "#061351",
             "images": [
                 {
-                    "url" : "assets/kp1.png"
+                    "url" : "assets/images/kp.png"
                 },
                 {
-                    "url" : "assets/kp2.png"
+                    "url" : "assets/images/kp1.png"
                 },
                 {
-                    "url" : "assets/kp3.jpg"
+                    "url" : "assets/images/kp2.png"
+                },
+                {
+                    "url" : "assets/images/kp3.jpg"
                 }
             ]
         },
@@ -51,10 +54,10 @@
             "textcolour" : "red",
             "images": [
                 {
-                    "url" : "assets/v1.png"
+                    "url" : "assets/images/v1.png"
                 },
                 {
-                    "url" : "assets/v2.png"
+                    "url" : "assets/images/v2.png"
                 }
             ]
         },
@@ -67,19 +70,19 @@
             "textcolour" : "#FC447A",
             "images": [
                 {
-                    "url" : "assets/d1.gif"
+                    "url" : "assets/images/88.gif"
                 },
                 {
-                    "url" : "assets/d1.png"
+                    "url" : "assets/images/drew.png"
                 },
                 {
-                    "url" : "assets/d2.png"
+                    "url" : "assets/images/drew2.png"
                 },
                 {
-                    "url" : "assets/d3.jpg"
+                    "url" : "assets/images/drew3.png"
                 },
                 {
-                    "url" : "assets/d4.png"
+                    "url" : "assets/images/drew4.png"
                 }
             ]
         },
@@ -92,7 +95,7 @@
             "textcolour" : "black",
             "images": [
                 {
-                    "url" : "assets/elie1.png"
+                    "url" : "assets/images/elie1.png"
                 }
             ]
         },
@@ -105,7 +108,13 @@
             "textcolour" : "#eabeb7",
             "images": [
                 {
-                    "url" : "assets/ambig1.png"
+                    "url" : "assets/images/aa.gif"
+                },
+                {
+                    "url" : "assets/images/aa2.gif"
+                },
+                {
+                    "url" : "assets/images/aa2.png"
                 }
             ]
         },
@@ -118,16 +127,7 @@
             "textcolour" : "#fc6cb3",
             "images": [
                 {
-                    "url" : "assets/thot1.jpg"
-                },
-                {
-                    "url" : "assets/thot2.jpg"
-                },
-                {
-                    "url" : "assets/thot3.jpg"
-                },
-                {
-                    "url" : "assets/thot4.jpg"
+                    "url" : "assets/images/moct.gif"
                 }
             ]
         }
