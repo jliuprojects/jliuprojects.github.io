@@ -5,8 +5,8 @@
             "description": "Film & design portfolio site made for Kid studio. Built with customized Kirby CMS. Creative direction by Kid.",
             "link": "<a href='http://kidstudio.co'>kidstudio.co</a>",
             "metadata" : "Client: Kid. Studio <br> Year: 2015 <br> Interactive, ThreeJS, UX",
-            "bgcolour" : "#E2e2e2",
-            "textcolour" : "#2e2e2e",
+            "bgcolour" : "#d5d5d5",
+            "textcolour" : "#808080",
             "images": [
                 {
                     "url" : "assets/images/k1.png"
@@ -76,7 +76,7 @@
                     "url" : "assets/images/d4.gif"
                 },
                 {
-                    "url" : "assets/images/d4.png"
+                    "url" : "assets/images/d5.png"
                 },
                 {
                     "url" : "assets/images/d6.png"
@@ -84,7 +84,7 @@
                 {
                     "url" : "assets/images/d7.png"
                 },
-                {
+                 {
                     "url" : "assets/images/d8.png"
                 },
                 {
@@ -133,16 +133,16 @@
             "textcolour" : "#fc6cb3",
             "images": [
                 {
-                    "url" : "assets/images/m1.jpg"
+                    "url" : "assets/images/m1.png"
                 },
                  {
-                    "url" : "assets/images/m2.jpg"
+                    "url" : "assets/images/m2.png"
                 },
                 {
-                    "url" : "assets/images/m3.jpg"
+                    "url" : "assets/images/m3.png"
                 },
                  {
-                    "url" : "assets/images/m4.jpg"
+                    "url" : "assets/images/m4.png"
                 },
                 {
                     "url" : "assets/images/m5.gif"
