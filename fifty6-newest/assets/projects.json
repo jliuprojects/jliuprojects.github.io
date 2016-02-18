@@ -2,54 +2,48 @@
     "projects": [
         {
             "title": "Kid. Studio",
-            "description": "Portfolio site built for film and design studio Kid. With customizable content management made on top of Kirby. ",
+            "description": "Film & design portfolio site made for Kid studio. Built with customized Kirby CMS. Creative direction by Kid.",
             "link": "<a href='http://kidstudio.co'>kidstudio.co</a>",
-            "metadata" : "Client: Kid. Studio <br> Year: 2015 <br> web Design, 3D, Interactive",
+            "metadata" : "Client: Kid. Studio <br> Year: 2015 <br> Interactive, ThreeJS, UX",
             "bgcolour" : "#E2e2e2",
             "textcolour" : "#2e2e2e",
             "images": [
                 {
-                    "url" : "assets/images/kid.png"
+                    "url" : "assets/images/k1.png"
                 },
                 {
-                    "url" : "assets/images/kid2.png"
+                    "url" : "assets/images/k2.png"
                 },
                 {
-                    "url" : "assets/images/kid3.png"
+                    "url" : "assets/images/k3.png"
                 },
                 {
-                    "url" : "assets/images/kid4.png"
+                    "url" : "assets/images/k4.png"
                 }
             ]
         },
         {
             "title": "Kastor & <br> Pollux",
-            "description": "Website designed and developed for creative collective Kastor and Pollux to showcase their work. ",
+            "description": "Website designed and developed for creative collective Kastor and Pollux. Featuring a unique scrolling feature on the landing page.",
             "link": "<a href='http://kastorandpollux.com'>kastorandpollux.com</a>",
             "date": "example glossary",
-            "metadata" : "Client: Kaster & Pollux <br> Year: 2015 <br> Web Design, 3D, Interactive",
-            "bgcolour" : "#f3ec7d",
-            "textcolour" : "#061351",
+            "metadata" : "Client: Kaster & Pollux <br> Year: 2015 <br> Web Design,  Interactive, Wordpress",
+            "bgcolour" : "#fcc82e",
+            "textcolour" : "#1f328f",
             "images": [
-                {
-                    "url" : "assets/images/kp.png"
-                },
                 {
                     "url" : "assets/images/kp1.png"
                 },
                 {
                     "url" : "assets/images/kp2.png"
-                },
-                {
-                    "url" : "assets/images/kp3.jpg"
                 }
             ]
         },
         {
             "title": "Vejas Shop",
-            "description": "Designed and built online store for toronto-based fashion designer Vejas Kruszewski for his Fall / Winter 2015 collection. ",
+            "description": "Designed and built online store for fashion designer Vejas Kruszewski.",
             "link": "<a href='http://shop.vejaskruszewski.com'>shop.vejaskruszewski.com</a>",
-            "metadata" : "Client: Vejas <br> Year: 2015 <br> Web Design, 3D, Interactive",
+            "metadata" : "Client: Vejas <br> Year: 2015 <br> Web Design, Ecommerce, Shopify",
             "bgcolour" : "#fff",
             "textcolour" : "red",
             "images": [
@@ -63,71 +57,95 @@
         },
         {
             "title": "88 Camino",
-            "description": "Interactive microsite made for rapper Drew Howard, featuring a custom built pseudo-3d racing game.",
+            "description": "Rebranding Toronto-based artist Drew Howard, AKA 88 Camino. Interactive microsite, album art, logo, brand book, and live projections.",
             "link": "<a href='http://88camino.com'>88camino.com</a>",
-            "metadata" : "Client: Drew Howard <br> Year: 2015 <br> Web Design, 3D, Interactive",
+            "metadata" : "Client: Drew Howard <br> Year: 2015 <br> Web Design, Logo, Identity, Motion Graphics, Print, Album Art.",
             "bgcolour" : "black",
             "textcolour" : "#FC447A",
             "images": [
                 {
-                    "url" : "assets/images/88.gif"
+                    "url" : "assets/images/d1.gif"
                 },
                 {
-                    "url" : "assets/images/drew.png"
+                    "url" : "assets/images/d2.png"
                 },
                 {
-                    "url" : "assets/images/drew2.png"
+                    "url" : "assets/images/d3.png"
                 },
                 {
-                    "url" : "assets/images/drew3.png"
+                    "url" : "assets/images/d4.gif"
                 },
                 {
-                    "url" : "assets/images/drew4.png"
+                    "url" : "assets/images/d4.png"
+                },
+                {
+                    "url" : "assets/images/d6.png"
+                },
+                {
+                    "url" : "assets/images/d7.png"
+                },
+                {
+                    "url" : "assets/images/d8.png"
+                },
+                {
+                    "url" : "assets/images/d9.png"
                 }
             ]
         },
         {
             "title": "Visionelie",
-            "description": "Mobile site designed and built for photographer and mixed-media artist Visionelie, featuring an interactive landing page using the accelerometer.",
+            "description": "Mobile site designed and built for photographer and mixed-media artist Visionelie with an interactive landing feature using the accelerometer.",
             "link": "<a href='http://visionelie.co/'>visionelie.co</a>",
-            "metadata" : "Client: Visionelie <br> Year: 2015 <br> Web Design, 3D, Interactive",
+            "metadata" : "Client: Visionelie <br> Year: 2015 <br> Mobile Design, Interactive, Accelerometer",
             "bgcolour" : "#fff",
             "textcolour" : "black",
             "images": [
                 {
-                    "url" : "assets/images/elie1.png"
+                    "url" : "assets/images/e1.gif"
                 }
             ]
         },
         {
             "title": "Ambiguous <br> Ardor",
-            "description": "Temporary microsite made for creative agency Common Base to promote their gallery event.",
+            "description": "Interactive microsite made for creative agency Common Base to promote their gallery event. Created live-installation and performance artwork for the event.",
             "link": "<a href='http://www.ambiguousardor.gallery/'>ambiguousardor.gallery</a>",
-            "metadata" : "Client: Common Base <br> Year: 2015 <br> eb Design, 3D, Interactive",
+            "metadata" : "Client: Common Base <br> Year: 2015 <br> Web Design, 3D, Interactive, Installation, Motion Graphics",
             "bgcolour" : "#f7ede5 ", 
-            "textcolour" : "#eabeb7",
+            "textcolour" : "#e1928e",
             "images": [
                 {
-                    "url" : "assets/images/aa.gif"
+                    "url" : "assets/images/a1.png"
                 },
                 {
-                    "url" : "assets/images/aa2.gif"
+                    "url" : "assets/images/a2.gif"
                 },
                 {
-                    "url" : "assets/images/aa2.png"
+                    "url" : "assets/images/a3.gif"
                 }
             ]
         },
         {
             "title": "MoCTT",
-            "description": "Strategy and content creation for instagram-centered campaign promoting creative collective CMDWN's Party, Museum of Contemporary Thots.",
-            "link": "<a href='http://www.google.ca'>www.google.ca</a>",
-            "metadata" : "Client: Kid. Studio <br> Year: 2015 <br> Web Design, 3D, Interactive",
+            "description": "Strategy and content for instagram-centered campaign promoting CMDWN's Party, Museum of Contemporary Thots.",
+            "link": "<a href='https://www.facebook.com/events/786059968096741/'>Facebook Page</a>",
+            "metadata" : "Client: CMDWN <br> Year: 2015 <br> Campaign, Instagram Content, Strategy",
             "bgcolour" : "#fff",
             "textcolour" : "#fc6cb3",
             "images": [
                 {
-                    "url" : "assets/images/moct.gif"
+                    "url" : "assets/images/m1.jpg"
+                },
+                 {
+                    "url" : "assets/images/m2.jpg"
+                },
+                {
+                    "url" : "assets/images/m3.jpg"
+                },
+                 {
+                    "url" : "assets/images/m4.jpg"
+                },
+                {
+                    "url" : "assets/images/m5.gif"
                 }
             ]
         }
