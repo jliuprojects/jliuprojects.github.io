@@ -102,19 +102,6 @@
             ]
         },
         {
-            "title": "Visionelie",
-            "description": "Mobile site designed and built for photographer and mixed-media artist Visionelie with an interactive landing feature using the accelerometer.",
-            "link": "<a href='http://visionelie.co/'>visionelie.co</a>",
-            "metadata" : "Client: Visionelie <br> Year: 2015 <br> Mobile Design, Interactive, Accelerometer",
-            "bgcolour" : "#fff",
-            "textcolour" : "black",
-            "images": [
-                {
-                    "url" : "assets/images/e1.gif"
-                }
-            ]
-        },
-        {
             "title": "Ambiguous <br> Ardor",
             "description": "Interactive microsite made for creative agency Common Base to promote their gallery event. Created live-installation and performance artwork for the event.",
             "link": "<a href='http://www.ambiguousardor.gallery/'>ambiguousardor.gallery</a>",
@@ -133,6 +120,19 @@
                 },
                 {
                     "url" : "assets/images/a4.png"
+                }
+            ]
+        },
+        {
+            "title": "Visionelie",
+            "description": "Mobile site designed and built for photographer and mixed-media artist Visionelie with an interactive landing feature using the accelerometer.",
+            "link": "<a href='http://visionelie.co/'>visionelie.co</a>",
+            "metadata" : "Client: Visionelie <br> Year: 2015 <br> Mobile Design, Interactive, Accelerometer",
+            "bgcolour" : "#fff",
+            "textcolour" : "black",
+            "images": [
+                {
+                    "url" : "assets/images/e1.gif"
                 }
             ]
         },
