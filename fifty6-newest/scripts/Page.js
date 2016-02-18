@@ -11,8 +11,41 @@ var startDate = 0;
 var loadingCheck;
 var animateLoading;
 var loading = false;
+var projectImagesCounted = false;
 
 $( document ).ready(function() {
+	loadingCheck = window.setInterval(function() {
+		loading = true;
+		window.clearInterval(loadingCheck);
+		$("#loading_screen").fadeIn();
+		animateLoading = window.setInterval(function() {
+			var currentPerc = parseInt($("#loading_screen").html());
+			var perc = currentPerc;
+
+			if (projectImagesCounted) {
+				perc = Math.floor(numProjectImagesLoaded/numProjectImages*56);
+			}
+
+			if (currentPerc < perc) {
+				$("#loading_screen").html(currentPerc + 1);
+			}
+
+			if (currentPerc == 56) {
+				window.clearInterval(animateLoading);
+				window.setTimeout(function() {
+					$("#loading_screen").fadeOut(1000);
+					window.setTimeout(function() {
+						$("#loading_screen").remove();
+						$(".project_title_container").css({"opacity" : 1});
+						$("body").css({"overflow" : "visible"});
+						$(document).unbind('touchmove');
+						run();
+					}, 1000);
+				}, 800);
+			}
+		}, 80);
+	}, 500);
+
 	isMobile = mobilecheck();
 	$(document).bind('touchmove', false);
 	init();
@@ -40,34 +73,7 @@ function init () {
     		projects.push(new StyledProjectSet(json.projects[i]));
     		numProjectImages += json.projects[i].images.length;
     	}
-
-    	loadingCheck = window.setInterval(function() {
-    		loading = true;
-    		window.clearInterval(loadingCheck);
-    		$("#loading_screen").fadeIn();
-    		animateLoading = window.setInterval(function() {
-    			var perc = Math.floor(numProjectImagesLoaded/numProjectImages*56);
-    			var currentPerc = parseInt($("#loading_screen").html());
-
-    			if (currentPerc < perc) {
-    				$("#loading_screen").html(currentPerc + 1);
-    			}
-
-    			if (currentPerc == 56) {
-    				window.clearInterval(animateLoading);
-    				window.setTimeout(function() {
-    					$("#loading_screen").fadeOut(1000);
-    					window.setTimeout(function() {
-    						$("#loading_screen").remove();
-    						$(".project_title_container").css({"opacity" : 1});
-    						$("body").css({"overflow" : "visible"});
-    						$(document).unbind('touchmove');
-    						run();
-    					}, 1000);
-    				}, 800);
-    			}
-    		}, 80);
-    	}, 500);
+    	projectImagesCounted = true;
 	});
 
 	$("#pointer").click(function() {
