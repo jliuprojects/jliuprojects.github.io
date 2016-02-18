@@ -6,7 +6,7 @@
             "link": "<a href='http://kidstudio.co'>kidstudio.co</a>",
             "metadata" : "Client: Kid. Studio <br> Year: 2015 <br> Interactive, ThreeJS, UX",
             "bgcolour" : "#d5d5d5",
-            "textcolour" : "#808080",
+            "textcolour" : "#363636",
             "images": [
                 {
                     "url" : "assets/images/k1.png"
@@ -19,6 +19,52 @@
                 },
                 {
                     "url" : "assets/images/k4.png"
+                }
+            ]
+        },
+         {
+            "title": "88 Camino",
+            "description": "Rebranding Toronto-based artist Drew Howard, AKA 88 Camino. Interactive microsite, album art, logo, brand book, and live projections.",
+            "link": "<a href='http://88camino.com'>88camino.com</a>",
+            "metadata" : "Client: Drew Howard <br> Year: 2015 <br> Web Design, Logo, Identity, Motion Graphics, Print, Album Art.",
+            "bgcolour" : "black",
+            "textcolour" : "#FC447A",
+            "images": [
+                {
+                    "url" : "assets/images/d1.gif"
+                },
+                {
+                    "url" : "assets/images/d3.png"
+                },
+                {
+                    "url" : "assets/images/d2.png"
+                },
+                 {
+                    "url" : "assets/images/dd7.png"
+                },
+                {
+                    "url" : "assets/images/d4.gif"
+                },
+                 {
+                    "url" : "assets/images/d4.png"
+                },
+                {
+                    "url" : "assets/images/d5.gif"
+                },
+                {
+                    "url" : "assets/images/d6.png"
+                },
+                {
+                    "url" : "assets/images/d7.gif"
+                },
+                 {
+                    "url" : "assets/images/d8.png"
+                },
+                 {
+                    "url" : "assets/images/d9.png"
+                },
+                 {
+                    "url" : "assets/images/d10.png"
                 }
             ]
         },
@@ -56,40 +102,6 @@
             ]
         },
         {
-            "title": "88 Camino",
-            "description": "Rebranding Toronto-based artist Drew Howard, AKA 88 Camino. Interactive microsite, album art, logo, brand book, and live projections.",
-            "link": "<a href='http://88camino.com'>88camino.com</a>",
-            "metadata" : "Client: Drew Howard <br> Year: 2015 <br> Web Design, Logo, Identity, Motion Graphics, Print, Album Art.",
-            "bgcolour" : "black",
-            "textcolour" : "#FC447A",
-            "images": [
-                {
-                    "url" : "assets/images/d1.gif"
-                },
-                {
-                    "url" : "assets/images/d2.png"
-                },
-                {
-                    "url" : "assets/images/d3.png"
-                },
-                {
-                    "url" : "assets/images/d4.gif"
-                },
-                {
-                    "url" : "assets/images/d6.png"
-                },
-                {
-                    "url" : "assets/images/d7.png"
-                },
-                {
-                    "url" : "assets/images/d8.png"
-                },
-                 {
-                    "url" : "assets/images/d9.png"
-                }
-            ]
-        },
-        {
             "title": "Visionelie",
             "description": "Mobile site designed and built for photographer and mixed-media artist Visionelie with an interactive landing feature using the accelerometer.",
             "link": "<a href='http://visionelie.co/'>visionelie.co</a>",
@@ -119,6 +131,9 @@
                 {
                     "url" : "assets/images/a3.gif"
                 }
+                 {
+                    "url" : "assets/images/a4.png"
+                },
             ]
         },
         {
