@@ -77,7 +77,7 @@ function init () {
     	// debugger;
     	window.setInterval(function() {
     		$("#header_text").html(json.headerTexts[getRandomInt(0,json.headerTexts.length)]);
-    	}, 100000);
+    	}, 5000);
 	});
 
 	$("#pointer").click(function() {
