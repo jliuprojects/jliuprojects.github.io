@@ -188,37 +188,6 @@ function animateAbout() {
 	}
 }
 
-// function animateBackgroundsAndInfo() {
-// 	var middleOfScreen = scroll + window.innerHeight/2;
-
-// 	if ((bgColour != "#ffffff" || textColour != "#000000") && scroll < window.innerHeight/2) {
-// 		document.getElementById("background").style.backgroundColor = "#ffffff";
-// 		document.getElementById("header_text").style.color = "#000000";
-// 		document.getElementById("logo").style.fill = "#000000";
-// 		document.getElementById("pointer").style.fill = "#000000";
-// 		bgColour = "#ffffff";
-// 		textColour = "#000000";
-// 	}
-
-// 	for (var i = 0; i < projects.length; i++) {
-// 		if (i + 1 == projects.length) {
-// 			var topOfNext = Infinity;
-// 		} else {
-// 			var topOfNext = projects[i + 1].getTopPosition();
-// 		}
-
-// 		if (bgColour == projects[i].getBgColour() && textColour == projects[i].getTextColour()) {
-// 			continue;
-// 		}
-
-// 		if (projects[i].getTopPosition() < middleOfScreen && topOfNext > middleOfScreen) {
-// 			projects[i].setTheme();
-// 			bgColour = projects[i].getBgColour();
-// 			textColour = projects[i].getTextColour();
-// 		}
-// 	}
-// }
-
 function animateInfo() {
 	var infoFadeInPoint = scroll + window.innerHeight*0.7;
 	if ((projects[focusedProject].getTopPosition() < infoFadeInPoint) && (projects[focusedProject].getInfoOpacity() == 0)) {
