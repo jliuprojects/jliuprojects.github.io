@@ -78,7 +78,7 @@ function init () {
     	$("#header_text").html(json.headerTexts[getRandomInt(0,json.headerTexts.length)]);
     	window.setInterval(function() {
     		$("#header_text").html(json.headerTexts[getRandomInt(0,json.headerTexts.length)]);
-    	}, 10000);
+    	}, 20000);
 	});
 
 	$("#pointer").click(function() {
