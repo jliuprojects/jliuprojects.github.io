@@ -263,7 +263,7 @@ function animateTitles() {
 		var topOfProject = projects[i].getTopPosition();
 		var bottomOfProject = projects[i].getBottomPosition();
 
-		if (topOfProject <= scroll && bottomOfProject >= bottomOfPage) {
+		if (!projects[i].isTitleFixed() && topOfProject <= scroll && bottomOfProject >= bottomOfPage) {
 			projects[i].fixTitle();
 			focusedProject = i;
 		} else if (topOfProject > scroll) {

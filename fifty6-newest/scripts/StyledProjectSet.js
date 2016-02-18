@@ -20,6 +20,7 @@ function StyledProjectSet(json) {
 	this.numImages = json.images.length;
 	this.containerHeight = 0;
 	this.html = [];
+	this.titleFixed = true;
 
 	/* Creating Project Container */
 	this.html["container"] = document.createElement("div");
@@ -90,15 +91,18 @@ function StyledProjectSet(json) {
 
 StyledProjectSet.prototype.fixTitle = function() {
 	this.html["title"].style.top = 0 + "px";
+	this.titleFixed = true;
 };
 
 StyledProjectSet.prototype.unfixTitle = function(side) {
+	console.log("unfix");
 	var scroll = window.pageYOffset;
 	var top = [];
 	top["upper"] = this.topPosition - scroll;
 	top["lower"] = -(scroll + window.innerHeight - this.topPosition - this.containerHeight);
 
 	this.html["title"].style.top = top[side] + "px";
+	this.titleFixed = false;
 };
 
 StyledProjectSet.prototype.setPositions = function() {
@@ -170,4 +174,8 @@ StyledProjectSet.prototype.getBgColour = function() {
 
 StyledProjectSet.prototype.getTextColour = function() {
 	return this.textColour;
+};
+
+StyledProjectSet.prototype.isTitleFixed = function() {
+	return this.titleFixed;
 };
