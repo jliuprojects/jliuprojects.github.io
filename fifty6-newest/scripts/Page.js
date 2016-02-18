@@ -75,6 +75,7 @@ function init () {
     	}
     	projectImagesCounted = true;
     	// debugger;
+    	$("#header_text").html(json.headerTexts[getRandomInt(0,json.headerTexts.length)]);
     	window.setInterval(function() {
     		$("#header_text").html(json.headerTexts[getRandomInt(0,json.headerTexts.length)]);
     	}, 5000);
