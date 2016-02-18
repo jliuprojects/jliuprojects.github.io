@@ -43,8 +43,8 @@ $( document ).ready(function() {
 					}, 1000);
 				}, 800);
 			}
-		}, 80);
-	}, 500);
+		}, 50);
+	}, 5);
 
 	isMobile = mobilecheck();
 	$(document).bind('touchmove', false);
