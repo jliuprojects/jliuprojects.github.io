@@ -1,4 +1,10 @@
-{
+{   
+    "headerTexts" : [
+        "Digital Communications Studio based in Toronto",
+        "only problem is i'm rich!!!",
+        "and i love you like kayne loves kanye",
+        "I feel like me and Taylor might still have sex"
+    ],
     "projects": [
         {
             "title": "Kid. Studio",
@@ -7,7 +13,7 @@
             "metadata" : "Client: Kid. Studio <br> Year: 2015 <br> Interactive, ThreeJS, UX",
             "bgcolour" : "#d5d5d5",
             "textcolour" : "#363636",
-            "images": [
+            "images" : [
                 {
                     "url" : "assets/images/k1.png"
                 },
@@ -30,7 +36,7 @@
             "metadata" : "Client: Kaster & Pollux <br> Year: 2015 <br> Web Design,  Interactive, Wordpress",
             "bgcolour" : "#fcc82e",
             "textcolour" : "#1f328f",
-            "images": [
+            "images" : [
                 {
                     "url" : "assets/images/kp1.png"
                 },
@@ -46,7 +52,7 @@
             "metadata" : "Client: Drew Howard <br> Year: 2015 <br> Web Design, Logo, Identity, Motion Graphics, Print, Album Art.",
             "bgcolour" : "black",
             "textcolour" : "#FC447A",
-            "images": [
+            "images" : [
                 {
                     "url" : "assets/images/d1.gif"
                 },
@@ -92,7 +98,7 @@
             "metadata" : "Client: Vejas <br> Year: 2015 <br> Web Design, Ecommerce, Shopify",
             "bgcolour" : "#fff",
             "textcolour" : "red",
-            "images": [
+            "images" : [
                 {
                     "url" : "assets/images/v1.png"
                 },
@@ -108,7 +114,7 @@
             "metadata" : "Client: Common Base <br> Year: 2015 <br> Web Design, 3D, Interactive, Installation, Motion Graphics",
             "bgcolour" : "#f7ede5 ", 
             "textcolour" : "#e1928e",
-            "images": [
+            "images" : [
                 {
                     "url" : "assets/images/a1.png"
                 },
@@ -130,7 +136,7 @@
             "metadata" : "Client: Visionelie <br> Year: 2015 <br> Mobile Design, Interactive, Accelerometer",
             "bgcolour" : "#fff",
             "textcolour" : "black",
-            "images": [
+            "images" : [
                 {
                     "url" : "assets/images/e1.gif"
                 }
@@ -143,7 +149,7 @@
             "metadata" : "Client: CMDWN <br> Year: 2015 <br> Campaign, Instagram Content, Strategy",
             "bgcolour" : "#fff",
             "textcolour" : "#fc6cb3",
-            "images": [
+            "images" : [
                 {
                     "url" : "assets/images/m1.jpg"
                 },
