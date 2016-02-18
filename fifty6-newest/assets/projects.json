@@ -22,7 +22,24 @@
                 }
             ]
         },
-         {
+        {
+            "title": "Kastor & <br> Pollux",
+            "description": "Website designed and developed for creative collective Kastor and Pollux. Featuring a unique scrolling feature on the landing page.",
+            "link": "<a href='http://kastorandpollux.com'>kastorandpollux.com</a>",
+            "date": "example glossary",
+            "metadata" : "Client: Kaster & Pollux <br> Year: 2015 <br> Web Design,  Interactive, Wordpress",
+            "bgcolour" : "#fcc82e",
+            "textcolour" : "#1f328f",
+            "images": [
+                {
+                    "url" : "assets/images/kp1.png"
+                },
+                {
+                    "url" : "assets/images/kp2.png"
+                }
+            ]
+        },
+        {
             "title": "88 Camino",
             "description": "Rebranding Toronto-based artist Drew Howard, AKA 88 Camino. Interactive microsite, album art, logo, brand book, and live projections.",
             "link": "<a href='http://88camino.com'>88camino.com</a>",
@@ -65,23 +82,6 @@
                 },
                  {
                     "url" : "assets/images/d10.png"
-                }
-            ]
-        },
-        {
-            "title": "Kastor & <br> Pollux",
-            "description": "Website designed and developed for creative collective Kastor and Pollux. Featuring a unique scrolling feature on the landing page.",
-            "link": "<a href='http://kastorandpollux.com'>kastorandpollux.com</a>",
-            "date": "example glossary",
-            "metadata" : "Client: Kaster & Pollux <br> Year: 2015 <br> Web Design,  Interactive, Wordpress",
-            "bgcolour" : "#fcc82e",
-            "textcolour" : "#1f328f",
-            "images": [
-                {
-                    "url" : "assets/images/kp1.png"
-                },
-                {
-                    "url" : "assets/images/kp2.png"
                 }
             ]
         },
