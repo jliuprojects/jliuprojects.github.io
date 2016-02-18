@@ -76,18 +76,15 @@
                     "url" : "assets/images/d4.gif"
                 },
                 {
-                    "url" : "assets/images/d5.png"
-                },
-                {
                     "url" : "assets/images/d6.png"
                 },
                 {
                     "url" : "assets/images/d7.png"
                 },
-                 {
+                {
                     "url" : "assets/images/d8.png"
                 },
-                {
+                 {
                     "url" : "assets/images/d9.png"
                 }
             ]
@@ -133,16 +130,16 @@
             "textcolour" : "#fc6cb3",
             "images": [
                 {
-                    "url" : "assets/images/m1.png"
+                    "url" : "assets/images/m1.jpg"
                 },
                  {
-                    "url" : "assets/images/m2.png"
+                    "url" : "assets/images/m2.jpg"
                 },
                 {
-                    "url" : "assets/images/m3.png"
+                    "url" : "assets/images/m3.jpg"
                 },
                  {
-                    "url" : "assets/images/m4.png"
+                    "url" : "assets/images/m4.jpg"
                 },
                 {
                     "url" : "assets/images/m5.gif"
