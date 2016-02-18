@@ -44,7 +44,7 @@ $( document ).ready(function() {
 				}, 800);
 			}
 		}, 80);
-	}, 500);
+	}, 5);
 
 	isMobile = mobilecheck();
 	$(document).bind('touchmove', false);
