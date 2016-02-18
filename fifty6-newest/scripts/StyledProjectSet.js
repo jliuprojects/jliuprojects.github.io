@@ -95,7 +95,6 @@ StyledProjectSet.prototype.fixTitle = function() {
 };
 
 StyledProjectSet.prototype.unfixTitle = function(side) {
-	console.log("unfix");
 	var scroll = window.pageYOffset;
 	var top = [];
 	top["upper"] = this.topPosition - scroll;
