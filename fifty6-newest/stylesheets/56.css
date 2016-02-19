@@ -364,7 +364,7 @@ a {
 .project_title {
 	position: relative;
 	top: 50%;
-	left: 50%;
+	/*left: 50%;*/
 
 	font-family: 'SabonLTPro-Roman';
 	font-weight: normal;
@@ -372,11 +372,11 @@ a {
 	display: inline-block;
 	cursor: pointer;
 
-	-webkit-transform: translateY(-50%) translateX(-50%) rotate(-90deg);
-  	-moz-transform: translateY(-50%) translateX(-50%) rotate(-90deg);
- 	-ms-transform: translateY(-50%) translateX(-50%) rotate(-90deg);
-  	-o-transform: translateY(-50%) translateX(-50%) rotate(-90deg);
-  	transform: translateY(-50%) translateX(-50%) rotate(-90deg);
+	-webkit-transform: translateY(-50%) translateX(0%) rotate(-90deg);
+  	-moz-transform: translateY(-50%) translateX(0%) rotate(-90deg);
+ 	-ms-transform: translateY(-50%) translateX(0%) rotate(-90deg);
+  	-o-transform: translateY(-50%) translateX(0%) rotate(-90deg);
+  	transform: translateY(-50%) translateX(0%) rotate(-90deg);
 }
 
 .project_link {
