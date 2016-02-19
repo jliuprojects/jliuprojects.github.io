@@ -362,7 +362,7 @@ a {
 }
 
 .project_title {
-	position: relative;
+	position: absolute;
 	top: 50%;
 	left: 50%;
 
