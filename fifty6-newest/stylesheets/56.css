@@ -272,7 +272,7 @@ a {
 #services {
 	position: relative;
 	width: 25%;
-	left: 30%;
+	left: 25%;
 	top: 20%;
 	text-align: center;
 	display: inline-block;
@@ -283,7 +283,7 @@ a {
 #clients {
 	position: relative;
 	width: 25%;
-	right: 15%;
+	right: 25%;
 	top: 20%;
 	text-align: center;
 	display: inline-block;
