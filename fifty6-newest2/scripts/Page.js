@@ -51,12 +51,18 @@ $( document ).ready(function() {
 	init();
 });
 
+function resizeAbout () {
+	var leftover = $("#center_text").height() - $("#main_title").height() - $("#services").height();
+	$("#services, #clients").css({"top" : Math.max(30, leftover) + "px"});
+}
+
 function init () {
 	if (!isMobile) {
 		$( window ).resize(function() {
 			for (var i = 0; i < projects.length; i++){
 				projects[i].setPositions();
 			}
+			resizeAbout();
 		});
 	}
 
@@ -171,6 +177,7 @@ function animateAbout() {
 			}, 600);
 		});
 	} else {
+		resizeAbout();
 		$("#header_text").css({"top" : "-=100px"});
 		$("#header_text").animate({opacity : 1, top : "+=100px"}, 700);
 
@@ -184,12 +191,12 @@ function animateAbout() {
 			$("#main_title").css({top : "+=100px"});
 			$("#main_title").animate({opacity : 1, top : "-=100px"}, 700);
 			window.setTimeout(function (){
-				$("#services").css({"bottom" : "-=100px"});
-				$("#services").animate({opacity : 1, bottom : "+=100px"}, 700);
+				$("#services").css({"top" : "+=100px"});
+				$("#services").animate({opacity : 1, top : "-=100px"}, 700);
 			}, 200);
 			window.setTimeout(function (){
-				$("#clients").css({"bottom" : "-=100px"});
-				$("#clients").animate({opacity : 1, bottom : "+=100px"}, 700);
+				$("#clients").css({"top" : "+=100px"});
+				$("#clients").animate({opacity : 1, top : "-=100px"}, 700);
 			}, 400);
 			window.setTimeout(function (){
 				$("#contact").css({"top" : "80%"});
