@@ -80,7 +80,6 @@ function init () {
     		numProjectImages += json.projects[i].images.length;
     	}
     	projectImagesCounted = true;
-    	// debugger;
     	$("#header_text").html(json.headerTexts[getRandomInt(0,json.headerTexts.length)]);
     	window.setInterval(function() {
     		$("#header_text").html(json.headerTexts[getRandomInt(0,json.headerTexts.length)]);
