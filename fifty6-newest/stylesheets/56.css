@@ -271,8 +271,8 @@ a {
 
 #services {
 	position: relative;
-	width: 25%;
-	left: 25%;
+	width: 20%;
+	left: 27.5%;
 	top: 20%;
 	text-align: center;
 	display: inline-block;
@@ -282,8 +282,8 @@ a {
 
 #clients {
 	position: relative;
-	width: 25%;
-	right: 20%;
+	width: 20%;
+	right: 27.5%;
 	top: 20%;
 	text-align: center;
 	display: inline-block;
@@ -324,7 +324,6 @@ a {
 
 .left_col {
 	font-size: 1vw;
-	width: 50%;
 	display: inline-block;
 	float: left;
 	text-align: left;
@@ -334,12 +333,12 @@ a {
 
 .right_col {
 	font-size: 1vw;
-	width: 50%;
 	display: inline-block;
 	position: relative;
 	text-align: left;
 	line-height: 175%;
 	font-family: 'Work Sans', sans-serif;
+	float: right;
 }
 
 
