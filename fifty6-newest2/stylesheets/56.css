@@ -537,6 +537,13 @@ a {
 	#about {
 		height: 90%;
 	}
+	#center_text {
+		height: auto;
+		width: auto;
+		left: auto;
+		top: auto;
+		display: inline-block;
+	}
 	#main_title {
 		font-size: 40pt;
 		text-align: center;
