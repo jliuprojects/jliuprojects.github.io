@@ -278,8 +278,8 @@ a {
 
 #services {
 	position: relative;
-	width: 30%;
-	left: 35%;
+	width: 25%;
+	left: 42%;
 	bottom: 0px;
 	text-align: center;
 	display: inline-block;
@@ -289,8 +289,8 @@ a {
 
 #clients {
 	position: relative;
-	width: 30%;
-	left: 40%;
+	width: 25%;
+	left: 50%;
 	bottom: 0px;
 	text-align: center;
 	display: inline-block;
