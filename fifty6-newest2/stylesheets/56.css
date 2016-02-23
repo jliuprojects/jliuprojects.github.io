@@ -462,7 +462,7 @@ a {
 	}
 	.project_title {
 		position: absolute;
-		font-size: 24pt;
+		font-size: 70pt;
 		-webkit-transform: translateY(0%) translateX(-50%) rotate(0deg);
 	  	-moz-transform: translateY(0%) translateX(-50%) rotate(0deg);
 	 	-ms-transform: translateY(0%) translateX(-50%) rotate(0deg);
@@ -558,12 +558,12 @@ a {
 		font-size: 24pt;
 		text-align: center;
 		top: 0;
-		margin: 20px 10% 0% 10%;
+		margin: 10% 10% 10% 10%;
 		width: 80%;
 	}
 	#contact {
 		position: relative;
-		top: 20px;
+		top: 0px;
 		margin-top: 0;
 		left: 50%;
 		font-size: 24pt;
