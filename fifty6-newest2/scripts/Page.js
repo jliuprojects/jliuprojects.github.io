@@ -342,6 +342,7 @@ function changeToMobileDesktop() {
 	}
 	$(".project_title_container").css({top : 0});
 	document.getElementById("pointer").setAttribute("class", "pointerPointDown");
+	pointerDirection = "down";
 }
 
 // THREEJS
