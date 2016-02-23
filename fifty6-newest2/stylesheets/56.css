@@ -193,18 +193,6 @@ a {
 	transition : fill 0.5s linear;
 }
 
-#desktop_mobile_pointer {
-	fill: black;
-	position: relative;
-	width: 30px;
-	top: 0;
-	left: 40px;
-	z-index: 1000;
-	opacity: 0;
-	cursor: pointer;
-	display: none;
-}
-
 #loading_screen {
 	display: none;
 	position: fixed;
