@@ -468,7 +468,7 @@ a {
 	 	-ms-transform: translateY(0%) translateX(-50%) rotate(0deg);
 	  	-o-transform: translateY(0%) translateX(-50%) rotate(0deg);
 	  	transform: translateY(0%) translateX(-50%) rotate(0deg);
-	  	top: 10px;
+	  	top: 0;
 	  	color: black !important;
 	}
 	.project_link {
