@@ -125,7 +125,7 @@ StyledProjectSet.prototype.setPositions = function() {
 };
 
 StyledProjectSet.prototype.fixTitleMobile = function () {
-	this.html["link"].style.marginTop = $(this.html["title"]).find("h1").height() + 50;
+	this.html["link"].style.marginTop = $(this.html["title"]).find("h1").height() + 30;
 }
 
 StyledProjectSet.prototype.getImagePositions = function() {
