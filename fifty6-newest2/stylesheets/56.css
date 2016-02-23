@@ -544,7 +544,7 @@ a {
 		margin-left: -4vmin;
 	}
 	#about {
-		height: calc(100% - 150px);
+		height: 100%;
 	}
 	#center_text {
 		height: auto;
