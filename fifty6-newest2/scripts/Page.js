@@ -12,6 +12,8 @@ var loadingCheck;
 var animateLoading;
 var loading = false;
 var projectImagesCounted = false;
+var isMobileDesktop = false;
+var MIN_MOBILE_DESKTOP_WIDTH = 700;
 
 $( document ).ready(function() {
 	loadingCheck = window.setInterval(function() {
@@ -47,6 +49,7 @@ $( document ).ready(function() {
 	}, 500);
 
 	isMobile = mobilecheck();
+	isMobileDesktop = mobileDesktopCheck();
 	$(document).bind('touchmove', false);
 	init();
 });
@@ -56,6 +59,11 @@ function resizeAbout () {
 	$("#services, #clients").css({"top" : Math.max(30, leftover) + "px"});
 }
 
+function resizeDesktopMobilePointer () {
+	var top = $("#contact").offset().top + $("#contact").height() + 30;
+	$("#pointer").css({"top" : top + "px"});
+}
+
 function init () {
 	if (!isMobile) {
 		$( window ).resize(function() {
@@ -63,6 +71,14 @@ function init () {
 				projects[i].setPositions();
 			}
 			resizeAbout();
+
+			isMobileDesktop = mobileDesktopCheck();
+			if (!isMobile && !isMobileDesktop) {
+				changeToDesktop();
+			} else if (isMobileDesktop) {
+				changeToMobileDesktop();
+				resizeDesktopMobilePointer();
+			}
 		});
 	}
 
@@ -133,8 +149,12 @@ function run() {
 
 function render() {
 	window.requestAnimFrame(render);
-	scroll = window.pageYOffset;
+	
+	if (isMobileDesktop) {
+		return;
+	}
 
+	scroll = window.pageYOffset;
 	animateTitles();
 	if (scroll < window.innerHeight*1.5) {
 		renderThree();
@@ -142,6 +162,10 @@ function render() {
 }
 
 function intervalLoop() {
+	if (isMobileDesktop) {
+		return;
+	}
+
 	animateInfo();
 	picturesFadeUp();
 	animateBackgrounds();
@@ -175,6 +199,22 @@ function animateAbout() {
 				}, 600);
 			}, 600);
 		});
+	} else if (isMobileDesktop) {
+		changeToMobileDesktop();
+		resizeDesktopMobilePointer();
+		$("#logo").css({"top" : "-=100px"});
+		$("#logo").animate({opacity : 1, top : "+=100px"}, 700, function() {
+			$("#main_title").css({"top" : "+=100px"});
+			$("#main_title").animate({opacity : 1, top : "-=100px"}, 700);
+			window.setTimeout(function (){
+				$("#contact").css({"margin-top" : "+=100px"});
+				$("#contact").animate({opacity : 1, marginTop : "-=100px"}, 700);
+				window.setTimeout(function (){
+					$("#pointer").css({"top" : "+=100px"});
+					$("#pointer").animate({opacity : 1, top : "-=100px"}, 700);
+				}, 600);
+			}, 600);
+		});
 	} else {
 		resizeAbout();
 		$("#header_text").css({"top" : "-=100px"});
@@ -198,8 +238,8 @@ function animateAbout() {
 				$("#clients").animate({opacity : 1, top : "-=100px"}, 700);
 			}, 400);
 			window.setTimeout(function (){
-				$("#contact").css({"top" : "80%"});
-				$("#contact").animate({opacity : 1, top : "70%"}, 700);
+				$("#contact").css({"margin-top" : "+=100px"});
+				$("#contact").animate({opacity : 1, marginTop : "-=100px"}, 700);
 			}, 600);
 		});
 	}
@@ -289,6 +329,19 @@ function animateTitles() {
 			projects[i].unfixTitle("lower");
 		}
 	}
+}
+
+function changeToDesktop() {
+	$("#services, #clients, #header_text, #pointer, canvas").css({opacity : 1});
+	$("#pointer").css({top : "auto"});
+}
+
+function changeToMobileDesktop() {
+	for (var i = 0; i < projects.length; i++){
+		projects[i].fixTitleMobile();
+	}
+	$(".project_title_container").css({top : 0});
+	document.getElementById("pointer").setAttribute("class", "pointerPointDown");
 }
 
 // THREEJS
@@ -388,6 +441,10 @@ function renderThree() {
 	count += 0.1;
 }
 //threejs end
+
+function mobileDesktopCheck() {
+	return !isMobile && window.innerWidth < MIN_MOBILE_DESKTOP_WIDTH;
+}
 
 function mobilecheck() {
 	var check = false;

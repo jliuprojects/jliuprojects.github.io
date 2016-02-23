@@ -193,6 +193,18 @@ a {
 	transition : fill 0.5s linear;
 }
 
+#desktop_mobile_pointer {
+	fill: black;
+	position: relative;
+	width: 30px;
+	top: 0;
+	left: 40px;
+	z-index: 1000;
+	opacity: 0;
+	cursor: pointer;
+	display: none;
+}
+
 #loading_screen {
 	display: none;
 	position: fixed;
@@ -307,6 +319,7 @@ a {
 	left: 53px;
 	top: 70%;
   	opacity: 0;
+  	margin-top: 0;
 
 	-webkit-transform: translateY(-50%) translateX(-50%) rotate(-90deg);
   	-moz-transform: translateY(-50%) translateX(-50%) rotate(-90deg);
@@ -448,6 +461,145 @@ a {
 	top: 0px;
 	opacity: 0;
 	margin: 5% 5% 5% 0%;
+}
+
+@media screen and (max-width: 700px) {
+	.project_title_container {
+		position: absolute;
+		display: inline-block;
+		opacity: 1;
+		height: auto;
+		width: auto;
+		left: 50%;
+	}
+	.project_title {
+		position: absolute;
+		font-size: 24pt;
+		-webkit-transform: translateY(0%) translateX(-50%) rotate(0deg);
+	  	-moz-transform: translateY(0%) translateX(-50%) rotate(0deg);
+	 	-ms-transform: translateY(0%) translateX(-50%) rotate(0deg);
+	  	-o-transform: translateY(0%) translateX(-50%) rotate(0deg);
+	  	transform: translateY(0%) translateX(-50%) rotate(0deg);
+	  	top: 0;
+	  	color: black !important;
+	}
+	.project_link {
+		opacity: 1;
+		width: 100%;
+		text-align: center;
+		margin-bottom: 5%;
+		font-size: 18pt;
+		font-weight: 600;
+		float: left;
+		color: black !important;
+	}
+	.project_description {
+		opacity: 1;
+		width: 80%;
+		margin: 0;
+		margin-left: 10%;
+		margin-bottom: 5%;
+		text-align: center;
+		font-size: 18pt;
+		line-height: 150%;
+		font-weight: 400;
+		float: left;
+		color: black !important;
+	}
+	.project_metadata {
+		font-size: 18pt;
+		font-weight: 400;
+		opacity: 1;
+		width: 80%;
+		float: left;
+		margin: 0% 0% 15% 10%;
+		text-align: center;
+		color: black !important;
+	}
+	.project_image {
+		opacity: 1;
+		width: 80%;
+		margin: 0% 10% 15% 10%;
+	}
+	header {
+		position: relative;
+		height: auto;
+		width: auto;
+	}
+	#header_text {
+		display: none;
+	}
+	#logo_wrap {
+		position: relative;
+		left: 50%;
+	}
+	#logo {
+		position: relative;
+		width: 200px;
+		height: auto;
+		left: 0;
+		margin-left: -100px;
+		top: 0;
+		margin-top: 10px;
+		fill: black !important;
+	}
+	#pointer {
+		position: absolute;
+		left: 50%;
+		width: 50px;
+		margin-left: -25px;
+		top: 0px;
+		fill: black !important;
+	}
+	#loading_screen {
+		font-size: 80vmin;
+		letter-spacing: -8vmin;
+		margin-left: -4vmin;
+	}
+	#about {
+		height: calc(100% - 150px);
+	}
+	#center_text {
+		height: auto;
+		width: auto;
+		left: auto;
+		top: auto;
+		display: inline-block;
+	}
+	#main_title {
+		font-size: 24pt;
+		text-align: center;
+		top: 0;
+		margin: 20px 10% 0% 10%;
+		width: 80%;
+	}
+	#contact {
+		position: relative;
+		top: 20px;
+		margin-top: 0;
+		left: 50%;
+		font-size: 24pt;
+		font-family: 'SabonLTPro-Roman';
+		font-weight: normal;
+		font-style: normal;
+		-webkit-transform: translateY(0%) translateX(-50%) rotate(0deg);
+	  	-moz-transform: translateY(0%) translateX(-50%) rotate(0deg);
+	 	-ms-transform: translateY(0%) translateX(-50%) rotate(0deg);
+	  	-o-transform: translateY(0%) translateX(-50%) rotate(0deg);
+	  	transform: translateY(0%) translateX(-50%) rotate(0deg);
+	}
+	#services {
+		display: none;
+	}
+	#clients {
+		display: none;
+	}
+	#background {
+		display: none;
+	}
+	#link_arrow {
+		display: none;
+	}
 }
 
 @media only screen and (max-device-width: 480px) {
