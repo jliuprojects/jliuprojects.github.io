@@ -67,6 +67,9 @@ function resizeDesktopMobilePointer () {
 function init () {
 	if (!isMobile) {
 		$( window ).resize(function() {
+			if (loading) {
+				return;
+			}
 			for (var i = 0; i < projects.length; i++){
 				projects[i].setPositions();
 			}
