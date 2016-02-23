@@ -41,6 +41,7 @@ $( document ).ready(function() {
 						$(".project_title_container").css({"opacity" : 1});
 						$("body").css({"overflow" : "visible"});
 						$(document).unbind('touchmove');
+						loading = false;
 						run();
 					}, 1000);
 				}, 800);
