@@ -359,7 +359,6 @@ a {
 	position: fixed;
 	display: inline-block;
   	white-space: nowrap;
-  	font-size: 65pt;
   	float: left;
 
   	height: 100%;
@@ -375,7 +374,7 @@ a {
 	position: absolute;
 	top: 50%;
 	left: 50%;
-
+	font-size: 12vh;
 	font-family: 'SabonLTPro-Roman';
 	font-weight: normal;
 	font-style: normal;
