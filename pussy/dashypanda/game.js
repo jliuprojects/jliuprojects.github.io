@@ -22,7 +22,6 @@ playGame.prototype = {
            game.load.image("ground", "ground.png");
            game.load.image("panda", "panda.png");
            game.load.image("spike", "spike.png");
-           game.load.image("background", "bg.png");
      },
      create: function(){
           // group which will contain all spikes 
@@ -104,8 +103,6 @@ playGame.prototype = {
           game.physics.arcade.collide(this.panda, this.spikeGroup, null, function(s, b){
                game.state.start("PlayGame");     
           }, this);
-
-          game.add.tileSprite(0, 0, 500, 600, "background");
      }
 }
 
