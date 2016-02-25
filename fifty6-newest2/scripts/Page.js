@@ -213,7 +213,9 @@ function animateAbout() {
 				$("#contact").animate({opacity : 1, marginTop : "-=100px"}, 700);
 				window.setTimeout(function (){
 					$("#pointer").css({"top" : "+=100px"});
-					$("#pointer").animate({opacity : 1, top : "-=100px"}, 700);
+					$("#pointer").animate({opacity : 1, top : "-=100px"}, 700, function() {
+						$("#about").css({height : $("#pointer").offset().top + $("#pointer").height() - 100 + "px"});
+					});
 				}, 600);
 			}, 600);
 		});
