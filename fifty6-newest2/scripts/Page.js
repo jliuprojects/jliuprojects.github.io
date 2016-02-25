@@ -348,7 +348,7 @@ function changeToMobileDesktop() {
 	pointerDirection = "down";
 
 	if ($("#pointer").offset().top != 0) {
-		$("#about").css({height : $("#pointer").offset().top + $("#pointer").height() - 20 + "px"});
+		$("#about").css({height : $("#pointer").offset().top + $("#pointer").height() - 100 + "px"});
 	}
 	resizeDesktopMobilePointer();
 }

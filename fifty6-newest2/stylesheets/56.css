@@ -584,7 +584,7 @@ a {
 	#background {
 		display: none;
 	}
-	#link_arrow {
+	.link_arrow {
 		display: none;
 	}
 }
