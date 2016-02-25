@@ -68,6 +68,7 @@ function resizeDesktopMobilePointer () {
 function init () {
 	if (!isMobile) {
 		$( window ).resize(function() {
+			isMobileDesktop = mobileDesktopCheck();
 			if (loading) {
 				return;
 			}
@@ -76,7 +77,6 @@ function init () {
 			}
 			resizeAbout();
 
-			isMobileDesktop = mobileDesktopCheck();
 			if (!isMobile && !isMobileDesktop) {
 				changeToDesktop();
 			} else if (isMobileDesktop) {
