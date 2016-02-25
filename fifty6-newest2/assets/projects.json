@@ -1,18 +1,10 @@
 {   
     "headerTexts" : [
-        "Digital Communications Studio based in Toronto",
-        "I know there's corny bitches you wish you could unfollow.",
-        "I love you like kayne loves kanye.",
-        "I feel like me and Taylor might still have sex.",
-        "If your momma knew how you turned out — you too wild",
-        "Would everybody start fucking? Would everybody start fucking?",
-        "The feelings don't really go away.",
-        "My daughter look just like Sia, you can't see her.",
-        "You get a fur! You get a Jet! Big booty bitch for you!",
-        "21 GRAMMIES — SUPERSTAR FAMILY",
-        "Only problem is im rich (im rich... im rich...)",
-        "I saw a recent picture of her, I guess she was right.",
-        "Steve Jobs mixed with Steve Austin."
+        "Digital communications studio based in Toronto",
+        "Creative design studio for the web",
+        "Challenging the digital status-quo",
+        "Internet illuminati doing magic",
+        "Steve Jobs mixed with Steve Austin"
     ],
     "projects": [
         {
@@ -66,9 +58,6 @@
                     "url" : "assets/images/d1.gif"
                 },
                 {
-                    "url" : "assets/images/d3.png"
-                },
-                {
                     "url" : "assets/images/d2.png"
                 },
                 {
@@ -85,9 +74,6 @@
                 },
                 {
                     "url" : "assets/images/d6.png"
-                },
-                {
-                    "url" : "assets/images/d7.gif"
                 },
                  {
                     "url" : "assets/images/d8.png"
