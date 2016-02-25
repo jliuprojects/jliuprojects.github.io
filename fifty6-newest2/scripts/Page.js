@@ -81,7 +81,6 @@ function init () {
 				changeToDesktop();
 			} else if (isMobileDesktop) {
 				changeToMobileDesktop();
-				resizeDesktopMobilePointer();
 			}
 		});
 	}
@@ -107,9 +106,9 @@ function init () {
 	});
 
 	$("#pointer").click(function() {
-		if (scroll >= window.innerHeight) {
+		if (window.pageYOffset >= window.innerHeight) {
 			$('body').animate({scrollTop : 0}, 600, 'swing');
-		} else if (scroll < window.innerHeight) {
+		} else if (window.pageYOffset < window.innerHeight) {
 			$('body').animate({scrollTop : window.innerHeight}, 600, 'swing');
 		}
 	});
@@ -205,7 +204,6 @@ function animateAbout() {
 		});
 	} else if (isMobileDesktop) {
 		changeToMobileDesktop();
-		resizeDesktopMobilePointer();
 		$("#logo").css({"top" : "-=100px"});
 		$("#logo").animate({opacity : 1, top : "+=100px"}, 700, function() {
 			$("#main_title").css({"top" : "+=100px"});
@@ -338,6 +336,7 @@ function animateTitles() {
 function changeToDesktop() {
 	$("#services, #clients, #header_text, #pointer, canvas").css({opacity : 1});
 	$("#pointer").css({top : "auto"});
+	$("#about").css({height : "100%"});
 }
 
 function changeToMobileDesktop() {
@@ -347,6 +346,11 @@ function changeToMobileDesktop() {
 	$(".project_title_container").css({top : 0});
 	document.getElementById("pointer").setAttribute("class", "pointerPointDown");
 	pointerDirection = "down";
+
+	if ($("#pointer").offset().top != 0) {
+		$("#about").css({height : $("#pointer").offset().top + $("#pointer").height() - 20 + "px"});
+	}
+	resizeDesktopMobilePointer();
 }
 
 // THREEJS
