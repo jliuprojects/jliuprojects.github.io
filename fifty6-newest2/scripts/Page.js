@@ -214,7 +214,8 @@ function animateAbout() {
 				window.setTimeout(function (){
 					$("#pointer").css({"top" : "+=100px"});
 					$("#pointer").animate({opacity : 1, top : "-=100px"}, 700, function() {
-						$("#about").css({height : $("#pointer").offset().top + $("#pointer").height() - 100 + "px"});
+						var bottom = Math.max(window.innerHeight, $("#pointer").offset().top + $("#pointer").height());
+						$("#about").css({height : bottom - $("#about").offset().top + 10 + "px"});
 					});
 				}, 600);
 			}, 600);
@@ -350,7 +351,8 @@ function changeToMobileDesktop() {
 	pointerDirection = "down";
 
 	if ($("#pointer").offset().top != 0) {
-		$("#about").css({height : $("#pointer").offset().top + $("#pointer").height() - 100 + "px"});
+		var bottom = Math.max(window.innerHeight, $("#pointer").offset().top + $("#pointer").height());
+		$("#about").css({height : bottom - $("#about").offset().top + 10 + "px"});
 	}
 	resizeDesktopMobilePointer();
 }
