@@ -456,8 +456,7 @@ function renderThree() {
 //threejs end
 
 function mobileDesktopCheck() {
-	var isiPad = navigator.userAgent.match(/iPad/i) != null;
-	return (!isMobile && window.innerWidth < MIN_MOBILE_DESKTOP_WIDTH) || isiPad;
+	return !isMobile && window.innerWidth < MIN_MOBILE_DESKTOP_WIDTH;
 }
 
 function mobilecheck() {
