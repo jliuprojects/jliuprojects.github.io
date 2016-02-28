@@ -99,9 +99,9 @@ function init () {
     		numProjectImages += json.projects[i].images.length;
     	}
     	projectImagesCounted = true;
-    	$("#header_text").html(json.headerTexts[getRandomInt(0,json.headerTexts.length)]);
+    	$("#header_text").html(json.headerTexts[getRandomInt(0,json.headerTexts.length - 1)]);
     	window.setInterval(function() {
-    		$("#header_text").html(json.headerTexts[getRandomInt(0,json.headerTexts.length)]);
+    		$("#header_text").html(json.headerTexts[getRandomInt(0,json.headerTexts.length - 1)]);
     	}, 20000);
 	});
 
