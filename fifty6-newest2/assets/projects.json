@@ -8,45 +8,6 @@
     ],
     "projects": [
         {
-            "title": "Kid. Studio",
-            "description": "Film & design portfolio site made for Kid studio. Built with customized Kirby CMS. Creative direction by Kid.",
-            "link": "<a target='_blank' href='http://kidstudio.co'>kidstudio.co</a>",
-            "metadata" : "Client: Kid. Studio <br> Year: 2015 <br> Interactive, ThreeJS, UX",
-            "bgcolour" : "#d5d5d5",
-            "textcolour" : "#363636",
-            "images" : [
-                {
-                    "url" : "assets/images/k1.png"
-                },
-                {
-                    "url" : "assets/images/k2.png"
-                },
-                {
-                    "url" : "assets/images/k3.png"
-                },
-                {
-                    "url" : "assets/images/k4.png"
-                }
-            ]
-        },
-        {
-            "title": "Kastor & <br> Pollux",
-            "description": "Website designed and developed for creative collective Kastor and Pollux. Featuring a unique scrolling feature on the landing page.",
-            "link": "<a target='_blank' href='http://kastorandpollux.com'>kastorandpollux.com</a>",
-            "date": "example glossary",
-            "metadata" : "Client: Kaster & Pollux <br> Year: 2015 <br> Web Design,  Interactive, Wordpress",
-            "bgcolour" : "#fcc82e",
-            "textcolour" : "#1f328f",
-            "images" : [
-                {
-                    "url" : "assets/images/kp1.png"
-                },
-                {
-                    "url" : "assets/images/kp2.png"
-                }
-            ]
-        },
-        {
             "title": "88 Camino",
             "description": "Rebranding Toronto-based artist Drew Howard, AKA 88 Camino. Interactive microsite, album art, logo, brand book, and live projections.",
             "link": "<a target='_blank' href='http://88camino.com'>88camino.com</a>",
@@ -87,6 +48,28 @@
             ]
         },
         {
+            "title": "Kid. Studio",
+            "description": "Film & design portfolio site made for Kid studio. Built with customized Kirby CMS. Creative direction by Kid.",
+            "link": "<a target='_blank' href='http://kidstudio.co'>kidstudio.co</a>",
+            "metadata" : "Client: Kid. Studio <br> Year: 2015 <br> Interactive, ThreeJS, UX",
+            "bgcolour" : "#d5d5d5",
+            "textcolour" : "#363636",
+            "images" : [
+                {
+                    "url" : "assets/images/k1.png"
+                },
+                {
+                    "url" : "assets/images/k2.png"
+                },
+                {
+                    "url" : "assets/images/k3.png"
+                },
+                {
+                    "url" : "assets/images/k4.png"
+                }
+            ]
+        },
+        {
             "title": "Vejas Shop",
             "description": "Designed and built online store for fashion designer Vejas Kruszewski.",
             "link": "<a target='_blank' href='http://shop.vejaskruszewski.com'>shop.vejaskruszewski.com</a>",
@@ -99,6 +82,36 @@
                 },
                 {
                     "url" : "assets/images/v2.png"
+                }
+            ]
+        },
+        {
+            "title": "Kastor & <br> Pollux",
+            "description": "Website designed and developed for creative collective Kastor and Pollux. Featuring a unique scrolling feature on the landing page.",
+            "link": "<a target='_blank' href='http://kastorandpollux.com'>kastorandpollux.com</a>",
+            "date": "example glossary",
+            "metadata" : "Client: Kaster & Pollux <br> Year: 2015 <br> Web Design,  Interactive, Wordpress",
+            "bgcolour" : "#fcc82e",
+            "textcolour" : "#1f328f",
+            "images" : [
+                {
+                    "url" : "assets/images/kp1.png"
+                },
+                {
+                    "url" : "assets/images/kp2.png"
+                }
+            ]
+        },
+        {
+            "title": "Visionelie",
+            "description": "Mobile site designed and built for photographer and mixed-media artist Visionelie with an interactive landing feature using the accelerometer.",
+            "link": "<a target='_blank' href='http://visionelie.co/'>visionelie.co</a>",
+            "metadata" : "Client: Visionelie <br> Year: 2015 <br> Mobile Design, Interactive, Accelerometer",
+            "bgcolour" : "#fff",
+            "textcolour" : "black",
+            "images" : [
+                {
+                    "url" : "assets/images/e1.gif"
                 }
             ]
         },
@@ -121,19 +134,6 @@
                 },
                 {
                     "url" : "assets/images/a4.png"
-                }
-            ]
-        },
-        {
-            "title": "Visionelie",
-            "description": "Mobile site designed and built for photographer and mixed-media artist Visionelie with an interactive landing feature using the accelerometer.",
-            "link": "<a target='_blank' href='http://visionelie.co/'>visionelie.co</a>",
-            "metadata" : "Client: Visionelie <br> Year: 2015 <br> Mobile Design, Interactive, Accelerometer",
-            "bgcolour" : "#fff",
-            "textcolour" : "black",
-            "images" : [
-                {
-                    "url" : "assets/images/e1.gif"
                 }
             ]
         },
