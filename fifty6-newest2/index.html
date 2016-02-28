@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title> </title>
+		<title>Digital communications studio based in Toronto</title>
 		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 		<link rel="stylesheet" href="stylesheets/56.css">
 		<script>
@@ -123,5 +123,11 @@
 		<script src="scripts/StyledProjectSet.js"></script>
 		<script src="scripts/Page.js"></script> -->
 		<script src="scripts/build.min.js"></script>
+		<script>
+			var TITLES = ["TEST", "TEST2", "TEST3"];
+			window.setInterval(function() {
+				$("title").html(TITLES[getRandomInt(0,TITLES.length)]);
+			}, 2000);
+		</script>
 	</body>
 </html>
