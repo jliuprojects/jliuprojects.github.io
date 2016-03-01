@@ -8,6 +8,28 @@
     ],
     "projects": [
         {
+            "title": "Kid. Studio",
+            "description": "Film & design portfolio site made for Kid studio. Built with customized Kirby CMS. Creative direction by Kid.",
+            "link": "<a target='_blank' href='http://kidstudio.co'>kidstudio.co</a>",
+            "metadata" : "Client: Kid. Studio <br> Year: 2015 <br> Interactive, ThreeJS, UX",
+            "bgcolour" : "#d5d5d5",
+            "textcolour" : "#363636",
+            "images" : [
+                {
+                    "url" : "assets/images/k1.png"
+                },
+                {
+                    "url" : "assets/images/k2.png"
+                },
+                {
+                    "url" : "assets/images/k3.png"
+                },
+                {
+                    "url" : "assets/images/k4.png"
+                }
+            ]
+        },
+        {
             "title": "88 Camino",
             "description": "Rebranding Toronto-based artist Drew Howard, AKA 88 Camino. Interactive microsite, album art, logo, brand book, and live projections.",
             "link": "<a target='_blank' href='http://88camino.com'>88camino.com</a>",
@@ -44,28 +66,6 @@
                 },
                  {
                     "url" : "assets/images/d10.png"
-                }
-            ]
-        },
-        {
-            "title": "Kid. Studio",
-            "description": "Film & design portfolio site made for Kid studio. Built with customized Kirby CMS. Creative direction by Kid.",
-            "link": "<a target='_blank' href='http://kidstudio.co'>kidstudio.co</a>",
-            "metadata" : "Client: Kid. Studio <br> Year: 2015 <br> Interactive, ThreeJS, UX",
-            "bgcolour" : "#d5d5d5",
-            "textcolour" : "#363636",
-            "images" : [
-                {
-                    "url" : "assets/images/k1.png"
-                },
-                {
-                    "url" : "assets/images/k2.png"
-                },
-                {
-                    "url" : "assets/images/k3.png"
-                },
-                {
-                    "url" : "assets/images/k4.png"
                 }
             ]
         },
