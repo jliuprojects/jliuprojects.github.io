@@ -1,9 +1,11 @@
 {   
     "headerTexts" : [
-        "Digital communications studio based in Toronto",
+        "Digital creative studio based in Toronto",
         "The feelings don't really go away",
-        "Making cool stuff and making stuff cool",
+        "Making cool stuff & making stuff cool",
         "Internet illuminati doing magic",
+        "Creating subversive digital experiences",
+        "We like interactive + experimental",
         "Steve Jobs mixed with Steve Austin"
     ],
     "projects": [
@@ -138,7 +140,7 @@
             ]
         },
         {
-            "title": "MoCTT",
+            "title": "MoCT",
             "description": "Strategy and content for instagram-centered campaign promoting CMDWN's Party, Museum of Contemporary Thots.",
             "link": "<a target='_blank' href='https://www.facebook.com/events/786059968096741/'>Facebook Page</a>",
             "metadata" : "Client: CMDWN <br> Year: 2015 <br> Campaign, Instagram Content, Strategy",
