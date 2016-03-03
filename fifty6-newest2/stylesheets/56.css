@@ -63,6 +63,10 @@ table {
 	border: 1px dashed red !important;
 }*/
 
+/** {
+	opacity: 1 !important;
+}*/
+
 header {
 	position: fixed;
 	height: 15%;
@@ -193,8 +197,35 @@ a {
 	transition : fill 0.5s linear;
 }
 
+#twittersvg {
+	position: fixed;
+	width: 35px;
+	height: 35px;
+	bottom: 26px;
+	right: 40px;
+	z-index: 1000;
+	opacity: 0;
+}
+
+#twitter {
+	fill: black;
+	cursor: pointer;
+	-webkit-transition : fill 0.5s linear;
+	-moz-transition : fill 0.5s linear;
+	-o-transition : fill 0.5s linear;
+	transition : fill 0.5s linear;
+}
+
 #loading_screen {
+	position: fixed;
 	display: none;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(255,255,255,1);
+	z-index: 10000;
+}
+
+#loading_screen_text {
 	position: fixed;
 	top: 50%;
 	left: 50%;
@@ -217,7 +248,7 @@ a {
 	position: fixed;
 	float: right;
 	font-size: 10pt;
-	right: 5%;
+	right: 40px;
 	top: 30px;
 	opacity: 0;
 	z-index: 100;
@@ -249,7 +280,7 @@ a {
 	height: 100%;
 	width: 100%;
 	position: relative;
-	z-index: 100;
+	z-index: 101;
 }
 
 #center_text {
@@ -544,7 +575,17 @@ a {
 		top: 0px;
 		fill: black !important;
 	}
-	#loading_screen {
+	#twittersvg {
+		position: relative;
+		top: 80px;
+		left: 50%;
+		margin-left: -246px;
+		padding: 0;
+	}
+	#twitter {
+		fill: black !important;
+	}
+	#loading_screen_text {
 		font-size: 80vmin;
 		letter-spacing: -8vmin;
 		margin-left: -4vmin;
@@ -570,6 +611,7 @@ a {
 		position: relative;
 		top: 0px;
 		margin-top: 0;
+		margin-bottom: 10%;
 		left: 50%;
 		font-size: 24pt;
 		font-family: 'SabonLTPro-Roman';
@@ -674,7 +716,16 @@ a {
 		margin-left: -50px;
 		bottom: 60px;
 	}
-	#loading_screen {
+	#twittersvg {
+		position: relative;
+		top: 200px;
+		left: 50%;
+		margin-left: -425px;
+		padding: 0;
+		width: 80px;
+		height: 80px;
+	}
+	#loading_screen_text {
 		font-size: 80vmin;
 		letter-spacing: -8vmin;
 		margin-left: -4vmin;

@@ -14,6 +14,7 @@ var loading = false;
 var projectImagesCounted = false;
 var isMobileDesktop = false;
 var MIN_MOBILE_DESKTOP_WIDTH = 700;
+var TITLES = [" = 40 + 16"," = 20 + 36"," = 14 * 4"," = 2 * 28"," = 112 / 2"," = 224 / 4"," = 88 - 32"," = 66 - 10"," = 6 * 9&frac13;"," = 69 - 13"];
 
 $( document ).ready(function() {
 	loadingCheck = window.setInterval(function() {
@@ -21,7 +22,7 @@ $( document ).ready(function() {
 		window.clearInterval(loadingCheck);
 		$("#loading_screen").fadeIn();
 		animateLoading = window.setInterval(function() {
-			var currentPerc = parseInt($("#loading_screen").html());
+			var currentPerc = parseInt($("#loading_screen_text").html());
 			var perc = currentPerc;
 
 			if (projectImagesCounted) {
@@ -29,7 +30,7 @@ $( document ).ready(function() {
 			}
 
 			if (currentPerc < perc) {
-				$("#loading_screen").html(currentPerc + 1);
+				$("#loading_screen_text").html(currentPerc + 1);
 			}
 
 			if (currentPerc == 56) {
@@ -61,7 +62,7 @@ function resizeAbout () {
 }
 
 function resizeDesktopMobilePointer () {
-	var top = $("#contact").offset().top + $("#contact").height() + 30;
+	var top = $("#twittersvg").offset().top + $("#twittersvg").height() + 50;
 	$("#pointer").css({"top" : top + "px"});
 }
 
@@ -103,6 +104,10 @@ function init () {
     	window.setInterval(function() {
     		$("#header_text").html(json.headerTexts[getRandomInt(0,json.headerTexts.length - 1)]);
     	}, 20000);
+    	$("title").html(TITLES[getRandomInt(0,TITLES.length - 1)]);
+    	window.setInterval(function() {
+    		$("title").html(TITLES[getRandomInt(0,TITLES.length-1)]);
+    	}, 10000);
 	});
 
 	$("#pointer").click(function() {
@@ -197,8 +202,12 @@ function animateAbout() {
 				$("#contact").css({"top" : "+=100px"});
 				$("#contact").animate({opacity : 1, top : "-=100px"}, 700);
 				window.setTimeout(function (){
-					$("#pointer").css({"bottom" : "-=100px"});
-					$("#pointer").animate({opacity : 1, bottom : "+=100px"}, 700);
+					$("#twittersvg").css({"top" : "+=100px"});
+					$("#twittersvg").animate({opacity : 1, top : "-=100px"}, 700);
+					window.setTimeout(function (){
+						$("#pointer").css({"bottom" : "-=100px"});
+						$("#pointer").animate({opacity : 1, bottom : "+=100px"}, 700);
+					}, 600);
 				}, 600);
 			}, 600);
 		});
@@ -212,11 +221,15 @@ function animateAbout() {
 				$("#contact").css({"margin-top" : "+=100px"});
 				$("#contact").animate({opacity : 1, marginTop : "-=100px"}, 700);
 				window.setTimeout(function (){
-					$("#pointer").css({"top" : "+=100px"});
-					$("#pointer").animate({opacity : 1, top : "-=100px"}, 700, function() {
-						var bottom = Math.max(window.innerHeight, $("#pointer").offset().top + $("#pointer").height());
-						$("#about").css({height : bottom - $("#about").offset().top + 10 + "px"});
-					});
+					$("#twittersvg").css({"top" : "+=100px"});
+					$("#twittersvg").animate({opacity : 1, top : "-=100px"}, 700);
+					window.setTimeout(function (){
+						$("#pointer").css({"top" : "+=100px"});
+						$("#pointer").animate({opacity : 1, top : "-=100px"}, 700, function() {
+							var bottom = Math.max(window.innerHeight, $("#pointer").offset().top + $("#pointer").height());
+							$("#about").css({height : bottom - $("#about").offset().top + 50 + "px"});
+						});
+					}, 600);
 				}, 600);
 			}, 600);
 		});
@@ -227,6 +240,8 @@ function animateAbout() {
 
 		$("#pointer").css({"bottom" : "-=100px"});
 		$("#pointer").animate({opacity : 1, bottom : "+=100px"}, 700);
+		$("#twittersvg").css({"bottom" : "-=100px"});
+		$("#twittersvg").animate({opacity : 1, bottom : "+=100px"}, 700);
 
 		$("canvas").animate({opacity : 1}, 700);
 
@@ -272,6 +287,7 @@ function animateBackgrounds() {
 		document.getElementById("header_text").style.color = "#000000";
 		document.getElementById("logo").style.fill = "#000000";
 		document.getElementById("pointer").style.fill = "#000000";
+		document.getElementById("twitter").style.fill = "#000000";
 		bgColour = "#ffffff";
 		textColour = "#000000";
 	}
@@ -339,6 +355,7 @@ function animateTitles() {
 function changeToDesktop() {
 	$("#services, #clients, #header_text, #pointer, canvas").css({opacity : 1});
 	$("#pointer").css({top : "auto"});
+	$("#twittersvg").css({top : "auto"});
 	$("#about").css({height : "100%"});
 }
 
@@ -350,9 +367,10 @@ function changeToMobileDesktop() {
 	document.getElementById("pointer").setAttribute("class", "pointerPointDown");
 	pointerDirection = "down";
 
+	$("#twittersvg").css({top : "80px"});
 	if ($("#pointer").offset().top != 0) {
 		var bottom = Math.max(window.innerHeight, $("#pointer").offset().top + $("#pointer").height());
-		$("#about").css({height : bottom - $("#about").offset().top + 10 + "px"});
+		$("#about").css({height : bottom - $("#about").offset().top + 50 + "px"});
 	}
 	resizeDesktopMobilePointer();
 }

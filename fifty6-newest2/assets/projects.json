@@ -11,7 +11,7 @@
     "projects": [
         {
             "title": "Kid. Studio",
-            "description": "Film & design portfolio site made for Kid studio. Built with customized Kirby CMS. Creative direction by Kid.",
+            "description": "Film & design portfolio site made for Kid. Studio. Built with a customized Kirby CMS. Creative direction by Kid.",
             "link": "<a target='_blank' href='http://kidstudio.co'>kidstudio.co</a>",
             "metadata" : "Client: Kid. Studio <br> Year: 2015 <br> Interactive, ThreeJS, UX",
             "bgcolour" : "#d5d5d5",
@@ -70,7 +70,7 @@
         },
         {
             "title": "Vejas Shop",
-            "description": "Designed and built online store for fashion designer Vejas Kruszewski.",
+            "description": "Online store designed and developed for fashion designer Vejas Kruszewski.",
             "link": "<a target='_blank' href='http://shop.vejaskruszewski.com'>shop.vejaskruszewski.com</a>",
             "metadata" : "Client: Vejas <br> Year: 2015 <br> Web Design, Ecommerce, Shopify",
             "bgcolour" : "#fff",
@@ -103,7 +103,7 @@
         },
         {
             "title": "Visionelie",
-            "description": "Mobile site designed and built for photographer and mixed-media artist Visionelie with an interactive landing feature using the accelerometer.",
+            "description": "Mobile site designed and built for photographer and mixed-media artist Visionelie. Features an interactive landing page using the accelerometer.",
             "link": "<a target='_blank' href='http://visionelie.co/'>visionelie.co</a>",
             "metadata" : "Client: Visionelie <br> Year: 2015 <br> Mobile Design, Interactive, Accelerometer",
             "bgcolour" : "#fff",
@@ -138,7 +138,7 @@
         },
         {
             "title": "MoCT",
-            "description": "Strategy and content for instagram-centered campaign promoting CMDWN's Party, Museum of Contemporary Thots.",
+            "description": "Strategy and content for Instagram-centered campaign promoting CMDWN's Party, Museum of Contemporary Thots.",
             "link": "<a target='_blank' href='https://www.facebook.com/events/786059968096741/'>Facebook Page</a>",
             "metadata" : "Client: CMDWN <br> Year: 2015 <br> Campaign, Instagram Content, Strategy",
             "bgcolour" : "#fff",

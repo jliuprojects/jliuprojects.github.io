@@ -165,6 +165,7 @@ StyledProjectSet.prototype.setTheme = function() {
 	document.getElementById("header_text").style.color = this.textColour;
 	document.getElementById("logo").style.fill = this.textColour;
 	document.getElementById("pointer").style.fill = this.textColour;
+	document.getElementById("twitter").style.fill = this.textColour;
 };
 
 StyledProjectSet.prototype.getBgColour = function() {
