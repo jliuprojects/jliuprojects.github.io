@@ -199,8 +199,8 @@ a {
 
 #twittersvg {
 	position: fixed;
-	width: 35px;
-	height: 35px;
+	width: 30px;
+	height: 30px;
 	bottom: 26px;
 	right: 40px;
 	z-index: 1000;
@@ -581,6 +581,8 @@ a {
 		left: 50%;
 		margin-left: -246px;
 		padding: 0;
+		width: 35px;
+		height: 35px;
 	}
 	#twitter {
 		fill: black !important;
