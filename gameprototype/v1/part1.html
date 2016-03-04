@@ -15,7 +15,7 @@
 <script type="text/javascript">
 
 var game = new Phaser.Game(800, 600, Phaser.AUTO, '');
-var grounds, platforms, bullets, player, cursors, stars, scoreText;
+var grounds, platforms, bullets, player, cursors, stars, scoreText, middleGround;
 var score = 0;
 var lastTime = Date.now();
 
@@ -29,12 +29,16 @@ play.prototype = {
         game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
         game.load.image('background', 'assets/clouds-h.png');
         game.load.image('bullet', 'assets/bullet.png');
+        game.load.image('trees', 'assets/trees-h.png');
+        game.load.image('cloud-platform', 'assets/cloud-platform.png');
     },
 
     create: function() {
         score = 0;
         game.physics.startSystem(Phaser.Physics.ARCADE);
-        game.background = game.add.tileSprite(0, 0, 1000, 1000, 'background');
+        game.background = game.add.tileSprite(0, 0, 800, 600, 'background');
+        middleGround = game.add.tileSprite(0, game.world.height - 116 - 64, 800, 116, 'trees');
+        // middleGround.scale.setTo(2,2);
 
         scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
 
@@ -75,7 +79,9 @@ play.prototype = {
     update: function() {
         updateScore();
 
-        game.background.tilePosition.x -= 2;
+        game.background.tilePosition.x -= 1;
+        middleGround.tilePosition.x -= 2;
+
         game.physics.arcade.collide(player, grounds);
         game.physics.arcade.collide(player, platforms);
         game.physics.arcade.collide(player, bullets, function () {
@@ -101,7 +107,7 @@ play.prototype = {
             game.state.start("Play");
         }
 
-        if (platforms.length < 5) {
+        if (platforms.length < 3) {
             var platform = new MovingStationaryObject(game, game.world.width + 10, Math.random() * (game.world.height - 70), 'ground', platforms);
         }
 
@@ -110,7 +116,7 @@ play.prototype = {
             ground.scale.setTo(2, 2);
         }
 
-        if (bullets.length < 3) {
+        if (bullets.length < 2) {
             var ground = new EnemyBullet(game, game.world.width + 10, Math.random() * (game.world.height - 70), 'bullet', bullets);
             ground.scale.setTo(0.5, 0.5);
         }
@@ -120,7 +126,7 @@ play.prototype = {
 game.state.add("Play", play);
 game.state.start("Play");
 
-var speed = 100;
+var speed = 170;
 MovingStationaryObject = function(game, x, y, key, group) {
     if (typeof group === 'undefined') { group = game.world; }
     Phaser.Sprite.call(this, game, x, y, key);
