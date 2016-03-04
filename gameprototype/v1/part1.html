@@ -15,7 +15,7 @@
 <script type="text/javascript">
 
 var game = new Phaser.Game(800, 600, Phaser.AUTO, '');
-var platforms, player, cursors, stars, scoreText;
+var grounds, platforms, player, cursors, stars, scoreText;
 var score = 0;
 
 var play = function () {};
@@ -36,9 +36,9 @@ play.prototype = {
         scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
 
         platforms = game.add.group();
-        // platforms.enableBody = true;
+        grounds = game.add.group();
 
-        var ground = new StationaryObject(game, 0, game.world.height - 64, 'ground', platforms);
+        var ground = new MovingStationaryObject(game, 0, game.world.height - 64, 'ground', grounds);
         ground.scale.setTo(2, 2);
         
         var ledge = new MovingStationaryObject(game, 400, 500, 'ground', platforms);
@@ -48,7 +48,6 @@ play.prototype = {
         game.physics.arcade.enable(player);
         player.body.bounce.y = 0.2;
         player.body.gravity.y = 300;
-        // player.body.collideWorldBounds = true;
         player.animations.add('left', [0, 1, 2, 3], 10, true);
         player.animations.add('right', [5, 6, 7, 8], 10, true);
 
@@ -68,27 +67,19 @@ play.prototype = {
     },
     update: function() {
         game.background.tilePosition.x -= 2;
-
+        game.physics.arcade.collide(player, grounds);
         game.physics.arcade.collide(player, platforms);
-        game.physics.arcade.collide(stars, platforms);
-        game.physics.arcade.overlap(player, stars, collectStar, null, this);
+        game.physics.arcade.collide(stars, platforms, function () {
+        });
+        // game.physics.arcade.overlap(player, stars, collectStar, null, this);
 
         //  Reset the players velocity (movement)
         player.body.velocity.x = 0;
         player.animations.play('right');
-
         if (cursors.left.isDown) {
-            //  Move to the left
-            player.body.velocity.x = -150;
-            // player.animations.play('left');
+            player.body.velocity.x = -250;
         } else if (cursors.right.isDown) {
-            //  Move to the right
-            player.body.velocity.x = 150;
-            // player.animations.play('right');
-        } else {
-            //  Stand still
-            // player.animations.stop();
-            // player.frame = 4;
+            player.body.velocity.x = 250;
         }
         
         //  Allow the player to jump if they are touching the ground.
@@ -96,17 +87,17 @@ play.prototype = {
             player.body.velocity.y = -350;
         }
 
-        // for (var i = 0; i < platforms.children.length; i++) {
-        //     platforms.children[i].body.velocity.x = -150;
-        // }
-
-
-        if (player.x + 32 < 0) {
+        if (player.x + 32 < 0 || player.y > 600) {
             game.state.start("Play");
         }
 
         if (platforms.length < 5) {
-            var platform = new MovingStationaryObject(game, game.width + 10, Math.random() * (game.height - 70), 'ground', platforms);
+            var platform = new MovingStationaryObject(game, game.world.width + 10, Math.random() * (game.world.height - 70), 'ground', platforms);
+        }
+
+        if (grounds.length < 2) {
+            var ground = new MovingStationaryObject(game, game.world.width + Math.random() * 500, game.world.height - 64, 'ground', grounds);
+            ground.scale.setTo(2, 2);
         }
     }
 }
@@ -115,15 +106,6 @@ game.state.add("Play", play);
 game.state.start("Play");
 
 var speed = 100;
-StationaryObject = function(game, x, y, key, group) {
-    if (typeof group === 'undefined') { group = game.world; }
-    Phaser.Sprite.call(this, game, x, y, key);
-    game.physics.arcade.enable(this);
-    this.body.immovable = true;
-    group.add(this);
-};
-StationaryObject.prototype = Object.create(Phaser.Sprite.prototype);
-StationaryObject.prototype.constructor = StationaryObject;
 MovingStationaryObject = function(game, x, y, key, group) {
     if (typeof group === 'undefined') { group = game.world; }
     Phaser.Sprite.call(this, game, x, y, key);
@@ -139,14 +121,6 @@ MovingStationaryObject.prototype.update = function() {
         this.destroy();
     }
 };
-
-function collectStar (player, star) {
-    // Removes the star from the screen
-    star.kill();
-    score += 10;
-    scoreText.text = 'Score: ' + score;
-}
-
 </script>
 
 </body>
