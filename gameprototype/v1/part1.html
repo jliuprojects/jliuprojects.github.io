@@ -57,13 +57,13 @@ play.prototype = {
         abullet.scale.setTo(0.5, 0.5);
 
         var cloud = new MovingCloudPlatform(game, 400, 500, 'cloud-platform', clouds);
-        cloud.addMotionPath([
-            { x: "+100", xSpeed: 2000, xEase: "Linear", y: "-200", ySpeed: 2000, yEase: "Sine.easeIn" },
-            { x: "-100", xSpeed: 2000, xEase: "Linear", y: "-200", ySpeed: 2000, yEase: "Sine.easeOut" },
-            { x: "-100", xSpeed: 2000, xEase: "Linear", y: "+200", ySpeed: 2000, yEase: "Sine.easeIn" },
-            { x: "+100", xSpeed: 2000, xEase: "Linear", y: "+200", ySpeed: 2000, yEase: "Sine.easeOut" }
-        ]);
-        cloud.start();
+        // cloud.addMotionPath([
+        //     { x: "+100", xSpeed: 2000, xEase: "Linear", y: "-200", ySpeed: 2000, yEase: "Sine.easeIn" },
+        //     { x: "-100", xSpeed: 2000, xEase: "Linear", y: "-200", ySpeed: 2000, yEase: "Sine.easeOut" },
+        //     { x: "-100", xSpeed: 2000, xEase: "Linear", y: "+200", ySpeed: 2000, yEase: "Sine.easeIn" },
+        //     { x: "+100", xSpeed: 2000, xEase: "Linear", y: "+200", ySpeed: 2000, yEase: "Sine.easeOut" }
+        // ]);
+        // cloud.start();
 
         player = game.add.sprite(32, game.world.height - 150, 'dude');
         game.physics.arcade.enable(player);
@@ -127,20 +127,20 @@ play.prototype = {
             ground.scale.setTo(2, 2);
         }
 
-        if (bullets.length < 2) {
-            var ground = new EnemyBullet(game, game.world.width + 10, Math.random() * (game.world.height - 70), 'bullet', bullets);
-            ground.scale.setTo(0.5, 0.5);
-        }
+        // if (bullets.length < 2) {
+        //     var ground = new EnemyBullet(game, game.world.width + 10, Math.random() * (game.world.height - 70), 'bullet', bullets);
+        //     ground.scale.setTo(0.5, 0.5);
+        // }
 
         if (clouds.length < 2) {
             var cloud = new MovingCloudPlatform(game, game.world.width + 10, Math.random() * (game.world.height - 70), 'cloud-platform', clouds);
-            cloud.addMotionPath([
-                { x: "+100", xSpeed: 2000, xEase: "Linear", y: "-200", ySpeed: 2000, yEase: "Sine.easeIn" },
-                { x: "-100", xSpeed: 2000, xEase: "Linear", y: "-200", ySpeed: 2000, yEase: "Sine.easeOut" },
-                { x: "-100", xSpeed: 2000, xEase: "Linear", y: "+200", ySpeed: 2000, yEase: "Sine.easeIn" },
-                { x: "+100", xSpeed: 2000, xEase: "Linear", y: "+200", ySpeed: 2000, yEase: "Sine.easeOut" }
-            ]);
-            cloud.start();
+            // cloud.addMotionPath([
+            //     { x: "+100", xSpeed: 2000, xEase: "Linear", y: "-200", ySpeed: 2000, yEase: "Sine.easeIn" },
+            //     { x: "-100", xSpeed: 2000, xEase: "Linear", y: "-200", ySpeed: 2000, yEase: "Sine.easeOut" },
+            //     { x: "-100", xSpeed: 2000, xEase: "Linear", y: "+200", ySpeed: 2000, yEase: "Sine.easeIn" },
+            //     { x: "+100", xSpeed: 2000, xEase: "Linear", y: "+200", ySpeed: 2000, yEase: "Sine.easeOut" }
+            // ]);
+            // cloud.start();
         }
     }
 }
@@ -180,38 +180,48 @@ EnemyBullet.prototype.customUpdate = function() {
 
 MovingCloudPlatform = function(game, x, y, key, group) {
     MovingStationaryObject.call(this, game, x, y, key, group);
+    this.frameCounter = 0;
 };
 MovingCloudPlatform.prototype = Object.create(MovingStationaryObject.prototype);
 MovingCloudPlatform.prototype.constructor = MovingCloudPlatform;
 MovingCloudPlatform.prototype.customUpdate = function() {
-    this.body.velocity.y = -1;
-};
-MovingCloudPlatform.prototype.addMotionPath = function (motionPath) {
-    // this.tweenX = this.game.add.tween(this.body);
-    this.tweenY = this.game.add.tween(this.body);
-
-    //  motionPath is an array containing objects with this structure
-    //  [
-    //   { x: "+200", xSpeed: 2000, xEase: "Linear", y: "-200", ySpeed: 2000, yEase: "Sine.easeIn" }
-    //  ]
-
-    for (var i = 0; i < motionPath.length; i++) {
-        // this.tweenX.to( { x: motionPath[i].x }, motionPath[i].xSpeed, motionPath[i].xEase);
-        this.tweenY.to( { y : motionPath[i].y }, motionPath[i].ySpeed, motionPath[i].yEase);
+    if (this.frameCounter < 120) {
+        this.body.velocity.y = -100;
+    } else {
+        this.body.velocity.y = 100;
     }
-    // this.tweenX.loop();
-    this.tweenY.loop();
 
+    if (this.frameCounter == 240) {
+        this.frameCounter = 0;
+    }
+    this.frameCounter += 1;
 };
-MovingCloudPlatform.prototype.start = function () {
-    // this.tweenX.start();
-    this.tweenY.start();
-};
+// MovingCloudPlatform.prototype.addMotionPath = function (motionPath) {
+//     // this.tweenX = this.game.add.tween(this.body);
+//     this.tweenY = this.game.add.tween(this.body);
 
-MovingCloudPlatform.prototype.stop = function () {
-    // this.tweenX.stop();
-    this.tweenY.stop();
-};
+//     //  motionPath is an array containing objects with this structure
+//     //  [
+//     //   { x: "+200", xSpeed: 2000, xEase: "Linear", y: "-200", ySpeed: 2000, yEase: "Sine.easeIn" }
+//     //  ]
+
+//     for (var i = 0; i < motionPath.length; i++) {
+//         // this.tweenX.to( { x: motionPath[i].x }, motionPath[i].xSpeed, motionPath[i].xEase);
+//         this.tweenY.to( { y : motionPath[i].y }, motionPath[i].ySpeed, motionPath[i].yEase);
+//     }
+//     // this.tweenX.loop();
+//     this.tweenY.loop();
+
+// };
+// MovingCloudPlatform.prototype.start = function () {
+//     // this.tweenX.start();
+//     this.tweenY.start();
+// };
+
+// MovingCloudPlatform.prototype.stop = function () {
+//     // this.tweenX.stop();
+//     this.tweenY.stop();
+// };
 
 function updateScore() {
     if (Date.now() - 1000 > lastTime) {
