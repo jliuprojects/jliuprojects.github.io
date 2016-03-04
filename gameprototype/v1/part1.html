@@ -17,6 +17,7 @@
 var game = new Phaser.Game(800, 600, Phaser.AUTO, '');
 var grounds, platforms, bullets, player, cursors, stars, scoreText;
 var score = 0;
+var lastTime = Date.now();
 
 var play = function () {};
 
@@ -31,6 +32,7 @@ play.prototype = {
     },
 
     create: function() {
+        score = 0;
         game.physics.startSystem(Phaser.Physics.ARCADE);
         game.background = game.add.tileSprite(0, 0, 1000, 1000, 'background');
 
@@ -71,6 +73,8 @@ play.prototype = {
         // }
     },
     update: function() {
+        updateScore();
+
         game.background.tilePosition.x -= 2;
         game.physics.arcade.collide(player, grounds);
         game.physics.arcade.collide(player, platforms);
@@ -144,6 +148,14 @@ EnemyBullet.prototype.constructor = EnemyBullet;
 EnemyBullet.prototype.customUpdate = function() {
     this.body.velocity.x = -3*speed;
 };
+
+function updateScore() {
+    if (Date.now() - 1000 > lastTime) {
+        score += 1;
+        scoreText.text = 'Score: ' + score;
+        lastTime = Date.now();
+    }
+}
 </script>
 
 </body>
