@@ -1,0 +1,62 @@
+<html>
+	<head>
+		<script src="http://cdn.pubnub.com/pubnub-3.14.2.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	</head>
+   	<body>
+    	Enter Chat and press enter
+    	<div>
+    		<input id="input" placeholder="you-chat-here" />
+    	</div>
+    	Chat Output
+    	<div id="box"></div>
+    	<script>
+    		(function publish() {
+    		 
+    		    pubnub = PUBNUB({                          
+    		        publish_key   : 'pub-c-8028947a-380c-420e-be14-cc9216642edd',
+    		        subscribe_key : 'sub-c-78d1252e-e658-11e5-a4f2-0619f8945a4f'
+    		    })
+    		     
+    		    console.log("Subscribing..");
+    		    pubnub.subscribe({                                     
+    		        channel : "hello_world",
+    		        message : function (message, envelope, channelOrGroup, time, channel) {
+    		          console.log(
+    		          "Message Received." + "\n" +
+    		          "Channel or Group: " + JSON.stringify(channelOrGroup) + "\n" +
+    		          "Channel: " + JSON.stringify(channel) + "\n" +
+    		          "Message: " + JSON.stringify(message) + "\n" +
+    		          "Time: " + time + "\n" +
+    		          "Raw Envelope: " + JSON.stringify(envelope)
+    		        )},
+    		        connect : pub,
+    		        callback : function(text) {
+    		        	$("#box")[0].innerHTML += "<br>" + text;
+    		        },
+    		    });
+    		 
+    		    function pub() {
+    		       	console.log("Since we're publishing on subscribe connectEvent, we're sure we'll receive the following publish.");
+    		       	pubnub.publish({                                    
+    		            channel : "hello_world",
+    		            message : "Hello from PubNub Docs!",
+    		            callback: function(m){ console.log(m) }
+    		       	});
+    		    }
+
+    		    $("#input").keypress(function(e) {
+    		    	// debugger;
+					if(e.which == 13) {
+					    pubnub.publish({                                    
+	    		            channel : "hello_world",
+	    		            message : $(this).val(),
+	    		            callback: function(m){ console.log(m) }
+	    		       	});
+	    		       	$(this).val("");
+					}
+				});
+    		})();
+    	</script>
+   	</body>
+</html>

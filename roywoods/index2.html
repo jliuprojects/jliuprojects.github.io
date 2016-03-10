@@ -1,0 +1,77 @@
+<!doctype html> 
+<html lang="en"> 
+    <head> 
+    	<meta charset="UTF-8" />
+    	<title></title>
+        <style type="text/css">
+            body {
+                margin: 0;
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
+        <script src="https://rawgithub.com/drom/fourier/master/fourier.js"></script>
+    </head>
+    <body>
+        <div id="url"></div>
+        <img id="img"/>
+        <div id="example2"></div>
+        <h1>NORMAL</h1>
+        <canvas id="test" width="3600" height="500"></canvas>
+        <h1>HIGH FILTER PASS</h1>
+        <canvas id="high" width="3600" height="500"></canvas>
+        <script>
+            var context = new AudioContext();
+            var request = new XMLHttpRequest();
+            var analyser = context.createAnalyser();
+            var filter = context.createBiquadFilter();
+            var url = "https://api.soundcloud.com/tracks/216772566/stream" +
+                      "?client_id=c664ed3d4833e6856ba726a6207f39d5";
+
+            request.open('GET', url, true);
+            request.responseType = 'arraybuffer';
+            request.onload = function () {
+                var undecodedAudio = request.response;
+                context.decodeAudioData(undecodedAudio, function (buffer) {
+                    var sourceBuffer = context.createBufferSource();
+                    var frequencyData = new Uint8Array(analyser.frequencyBinCount);
+                    sourceBuffer.buffer = buffer;
+                    var ctx = document.getElementById('test').getContext('2d');
+                    var gradient = ctx.createLinearGradient(0,0,0,300);
+                    gradient.addColorStop(1,'#000');
+                    gradient.addColorStop(0.75,'#161144');
+                    gradient.addColorStop(0.25,'#f4e98d');
+                    gradient.addColorStop(0,'#ff0000');
+             
+                    function renderFrame() {
+                        requestAnimationFrame(renderFrame);
+                        // analyser.smoothingTimeConstant = 0.1;
+                        analyser.getByteFrequencyData(frequencyData);
+                        console.log(frequencyData);
+                        ctx.clearRect(0,0,3600,1000);
+                        ctx.fillStyle=gradient;
+                        drawSpectrum(frequencyData);
+                    }
+             
+                    function drawSpectrum(array) {
+                    for ( var i = 0; i < (array.length); i++ ){
+                           var value = array[i];
+                           ctx.fillRect(i*1.00000001,305-value,1,1025);
+                       }
+                   };
+                   sourceBuffer.connect(context.destination);
+             
+                   sourceBuffer.connect(analyser);
+                   // filter.connect(analyser);
+                   analyser.connect(context.destination);
+                   // filter.type = 'highpass';
+                   // filter.frequency.value = 400;
+             
+                   sourceBuffer.start(0);
+                   renderFrame();
+                });
+            }
+            request.send();
+        </script>
+    </body>
+</html>
