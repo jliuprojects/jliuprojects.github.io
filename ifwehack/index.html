@@ -38,12 +38,33 @@
     		 
     		    function pub() {
     		       	console.log("Since we're publishing on subscribe connectEvent, we're sure we'll receive the following publish.");
+                    pubnub.history({
+                        channel: 'hello_world',
+                        callback: function(m){
+                            console.log(m);
+                            for (var i = 0; i < m[0].length; i++) {
+                                $("#box")[0].innerHTML += "<br>" + m[0][i];
+                            }  
+                        },
+                        count: 100, // 100 is the default
+                        reverse: false // false is the default
+                    });
     		       	pubnub.publish({                                    
     		            channel : "hello_world",
     		            message : "NEW USER ENTERED",
     		            callback: function(m){ console.log(m) }
     		       	});
     		    }
+
+                // function pub() {
+                //     for (var i = 0; i < 500; i++)  {
+                //         // publish 500 messages...
+                //         pubnub.publish({
+                //         channel: 'history_channel',
+                //         message: "message: " + i
+                //         });       
+                //     };
+                // };
 
     		    $("#input").keypress(function(e) {
     		    	// debugger;
