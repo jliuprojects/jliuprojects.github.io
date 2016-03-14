@@ -14,9 +14,9 @@ var Branch = function (parent, topWidth, bottomWidth, growthSpeed, colour) {
 Branch.prototype.grow = function () {
 	this.mesh.geometry.verticesNeedUpdate = true;
 	for (var i = 0; i < this.mesh.geometry.vertices.length/2 - 1; i++) {
-		this.mesh.geometry.vertices[i].y += 1;
+		this.mesh.geometry.vertices[i].y += this.growthSpeed;
 	}
-	this.mesh.geometry.vertices[this.mesh.geometry.vertices.length - 2].y += 1;
+	this.mesh.geometry.vertices[this.mesh.geometry.vertices.length - 2].y += this.growthSpeed;
 };
 
 Branch.prototype.setGrowthSpeed = function (growthSpeed) {
@@ -31,7 +31,7 @@ Branch.prototype.getHeight = function () {
 
 var Tree = function (scene) {
 	// trunk is first generation
-	this.generations = [[new Branch(scene, 40, 50, 0.5, 0x53350A)]];
+	this.generations = [[new Branch(scene, 40, 50, 2, 0x53350A)]];
 };
 
 Tree.prototype.grow = function () {
@@ -49,9 +49,9 @@ Tree.prototype.splitBranches = function () {
 	var nextGenBranches = [];
 
 	currGenBranches.forEach(function (branch) {
-		nextGenBranches.push(new Branch(branch.mesh, branch.topWidth - 10, branch.topWidth, 0.5, 0xe0301e));
+		nextGenBranches.push(new Branch(branch.mesh, branch.topWidth - 10, branch.topWidth, 1, 0xe0301e));
 		nextGenBranches[nextGenBranches.length - 1].mesh.position.y = branch.getHeight();
-		nextGenBranches.push(new Branch(branch.mesh, branch.topWidth - 10, branch.topWidth, 0.5, 0xe0301e));
+		nextGenBranches.push(new Branch(branch.mesh, branch.topWidth - 10, branch.topWidth, 1, 0xe0301e));
 		nextGenBranches[nextGenBranches.length - 1].mesh.position.y = branch.getHeight();
 
 		var rotz = -Math.PI/4; //randomIntFromInterval(-Math.PI/4, Math.PI/4);
