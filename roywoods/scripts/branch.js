@@ -28,6 +28,7 @@ Branch.prototype.getHeight = function () {
 };
 
 /////////////////////////////////////////////////////////////////////////////
+var MAX_GENS = 8;
 
 var Tree = function (scene) {
 	// trunk is first generation
@@ -35,18 +36,19 @@ var Tree = function (scene) {
 };
 
 Tree.prototype.grow = function () {
-	// only grow last generation
-	this.generations[this.generations.length - 1].forEach(function (branch) {
-		branch.grow();
-	});
+	// only grow last generation up to MAX_GENS
+	if (this.generations.length < MAX_GENS) {
+		this.generations[this.generations.length - 1].forEach(function (branch) {
+			branch.grow();
+		});
+	}
 	// this.generations[0][0].mesh.rotation.z += 0.01;
 };
-
-var BRANCHINGANGLES
 
 Tree.prototype.splitBranches = function () {
 	var currGenBranches = this.generations[this.generations.length - 1];
 	var nextGenBranches = [];
+	var numGens = this.generations.length;
 
 	currGenBranches.forEach(function (branch) {
 		nextGenBranches.push(new Branch(branch.mesh, branch.topWidth - 10, branch.topWidth, 1, 0xe0301e));
@@ -54,8 +56,8 @@ Tree.prototype.splitBranches = function () {
 		nextGenBranches.push(new Branch(branch.mesh, branch.topWidth - 10, branch.topWidth, 1, 0xe0301e));
 		nextGenBranches[nextGenBranches.length - 1].mesh.position.y = branch.getHeight();
 
-		var rotz = -Math.PI/4 + randomIntFromInterval(-0.35, 0.35); //randomIntFromInterval(-Math.PI/4, Math.PI/4);
-		var rotx = -Math.PI/4 + randomIntFromInterval(-0.35, 0.35); //randomIntFromInterval(-Math.PI/4, Math.PI/4);
+		var rotz = -Math.PI/4 + randomIntFromInterval(-(numGens - 1) * 0.087, (numGens - 1) * 0.087);
+		var rotx = -Math.PI/4 + randomIntFromInterval(-(numGens - 1) * 0.087, (numGens - 1) * 0.087);
 
 		nextGenBranches[nextGenBranches.length - 1].mesh.rotation.z = rotz;
 		nextGenBranches[nextGenBranches.length - 1].mesh.rotation.x = rotx;

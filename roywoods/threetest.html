@@ -24,7 +24,7 @@
 			function init() {
 
 				camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 10000 );
-				camera.position.z = 2000;
+				camera.position.z = 1000;
 
 				scene = new THREE.Scene();
 
@@ -56,7 +56,8 @@
 			function animate() {
 				requestAnimationFrame(animate);
 				camera.position.x += (mouseX - camera.position.x) * .5;
-				camera.position.y += (-mouseY - camera.position.y) * .5 + 500;
+				camera.position.y += (-mouseY - camera.position.y) * .5 + tree.generations.length*10;
+				camera.position.z = 1000 + tree.generations.length*100;
 				camera.lookAt( scene.position );
 
 				tree.grow();
