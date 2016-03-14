@@ -1,0 +1,68 @@
+<html>
+	<head>
+		<title>jliu.projects</title>
+		<!-- <link rel="shortcut icon" href="favicon.ico"> -->
+		<!-- <link rel="stylesheet" href="stylesheets/style.css"> -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r74/three.js"></script>
+		<button type="button" onclick="tree.splitBranches()">split branch</button>
+	</head>
+	<body>
+		<script src="scripts/branch.js"></script>
+		<script>
+			var camera, scene, renderer;
+			var mesh, trunk, branch;
+			var mouseX = 0, mouseY = 0;
+			var windowHalfX = window.innerWidth / 2;
+			var windowHalfY = window.innerHeight / 2;
+
+			var tree;
+
+			init();
+			animate();
+
+			function init() {
+
+				camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 10000 );
+				camera.position.z = 2000;
+
+				scene = new THREE.Scene();
+
+				tree = new Tree(scene);
+				var axisHelper = new THREE.AxisHelper( 500);
+				scene.add( axisHelper );
+
+				renderer = new THREE.WebGLRenderer({alpha : true});
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.setClearColor( 0x000000, 0);
+				document.body.appendChild( renderer.domElement );
+
+				window.addEventListener( 'resize', onWindowResize, false );
+				window.addEventListener( 'mousemove', onDocumentMouseMove, false );
+			}
+
+			function onWindowResize() {
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+				renderer.setSize( window.innerWidth, window.innerHeight );
+			}
+
+			function onDocumentMouseMove(event) {
+				mouseX = event.clientX - windowHalfX;
+				mouseY = event.clientY - windowHalfY;
+			}
+
+			function animate() {
+				requestAnimationFrame(animate);
+				camera.position.x += (mouseX - camera.position.x) * .5;
+				camera.position.y += (-mouseY - camera.position.y) * .5 + 500;
+				camera.lookAt( scene.position );
+
+				tree.grow();
+				
+				renderer.render( scene, camera );
+			}
+		</script>
+	</body>
+</html>
