@@ -54,8 +54,8 @@ Tree.prototype.splitBranches = function () {
 		nextGenBranches.push(new Branch(branch.mesh, branch.topWidth - 10, branch.topWidth, 1, 0xe0301e));
 		nextGenBranches[nextGenBranches.length - 1].mesh.position.y = branch.getHeight();
 
-		var rotz = -Math.PI/4; //randomIntFromInterval(-Math.PI/4, Math.PI/4);
-		var rotx = -Math.PI/4; //randomIntFromInterval(-Math.PI/4, Math.PI/4);
+		var rotz = -Math.PI/4 + randomIntFromInterval(-0.35, 0.35); //randomIntFromInterval(-Math.PI/4, Math.PI/4);
+		var rotx = -Math.PI/4 + randomIntFromInterval(-0.35, 0.35); //randomIntFromInterval(-Math.PI/4, Math.PI/4);
 
 		nextGenBranches[nextGenBranches.length - 1].mesh.rotation.z = rotz;
 		nextGenBranches[nextGenBranches.length - 1].mesh.rotation.x = rotx;
