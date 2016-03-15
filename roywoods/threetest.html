@@ -63,6 +63,10 @@
 				
 				renderer.render( scene, camera );
 			}
+
+			$("body").click(function () {
+				tree.splitBranches();
+			});
 		</script>
 	</body>
 </html>
