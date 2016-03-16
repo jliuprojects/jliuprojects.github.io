@@ -10,6 +10,7 @@ var Branch = function (parent, topWidth, bottomWidth, growthSpeed, colour, dying
 	this.mesh.geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, 0.5, 0));
 	this.mesh.geometry.dynamic = true;
 	this.mesh.geometry.verticesNeedUpdate = true;
+	this.mesh.position.y = -100;
 	parent.add(this.mesh);
 	console.log('branch created');
 };
@@ -104,7 +105,7 @@ Tree.prototype.splitBranches = function () {
 		// if (Math.random() > 0.5) {
 			nextGenBranches.push(new Branch(
 				branch.mesh, 
-				branch.topWidth - GEN_WIDTH_DIFF, 
+				2, 
 				branch.topWidth, branch.growthSpeed, 
 				self.getBranchColour(),
 				true,
