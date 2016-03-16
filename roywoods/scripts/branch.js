@@ -119,14 +119,15 @@ Tree.prototype.splitBranches = function () {
 			nextGenBranches.push(new Branch(
 				branch.mesh, 
 				2, 
-				branch.topWidth, branch.growthSpeed, 
+				branch.topWidth, 
+				branch.growthSpeed, 
 				self.getBranchColour(),
 				true,
 				Math.floor(Math.random() * 60) + 60
 			));
 			nextGenBranches[nextGenBranches.length - 1].mesh.position.y = branch.getHeight();
-			nextGenBranches[nextGenBranches.length - 1].mesh.rotation.z = Math.random() * 0.5;
-			nextGenBranches[nextGenBranches.length - 1].mesh.rotation.x = Math.random() * 0.5;
+			// nextGenBranches[nextGenBranches.length - 1].mesh.rotation.z = Math.random() * 0.5;
+			// nextGenBranches[nextGenBranches.length - 1].mesh.rotation.x = Math.random() * 0.5;
 		// }
 
 		var numChildren = randomIntFromInterval(2, 3);
