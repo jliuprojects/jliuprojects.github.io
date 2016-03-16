@@ -39,8 +39,8 @@ Branch.prototype.getHeight = function () {
 
 /////////////////////////////////////////////////////////////////////////////
 var MAX_GENS = 8;
-var GEN_WIDTH_DIFF = 4;
-var STARTING_WIDTH = 28;
+var GEN_WIDTH_DIFF = 3;
+var STARTING_WIDTH = 21;
 var BASE_SPEED = 1.1;
 var Tree = function (scene) {
 	// trunk is first generation
