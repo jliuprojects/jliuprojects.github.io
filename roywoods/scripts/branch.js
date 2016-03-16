@@ -73,24 +73,19 @@ Tree.prototype.getRandomDirection = function (index) {
 	var x, z;
 	switch (index) {
 		case 0:
-			x = randomFloatFromInterval(0, Math.PI/4);
-			z = randomFloatFromInterval(0, Math.PI/4);
+			x = randomFloatFromInterval(Math.PI/4 - (this.generations.length - 1), Math.PI/4 + (this.generations.length - 1));
+			z = randomFloatFromInterval(Math.PI/4 - (this.generations.length - 1), Math.PI/4 + (this.generations.length - 1));
 			break;
 		case 1:
-			x = randomFloatFromInterval(-Math.PI/4, 0);
-			z = randomFloatFromInterval(-Math.PI/4, 0);
+			x = randomFloatFromInterval(-Math.PI/4 - (this.generations.length - 1), -Math.PI/4 + (this.generations.length - 1));
+			z = randomFloatFromInterval(-Math.PI/4 - (this.generations.length - 1), -Math.PI/4 + (this.generations.length - 1));
 			break;
 		case 2:
-			x = randomFloatFromInterval(-Math.PI/2, Math.PI/2);
-			z = randomFloatFromInterval(-Math.PI/2, Math.PI/2);
+			x = randomFloatFromInterval(-Math.PI/2 - (this.generations.length - 1), Math.PI/2 + (this.generations.length - 1));
+			z = randomFloatFromInterval(-Math.PI/2 - (this.generations.length - 1), Math.PI/2 + (this.generations.length - 1));
 			break;		
 
 	}
-
-	// randomFloatFromInterval(0, );
-	// var x = Math.pow(-1, index % 2) * (Math.PI/4 + Math.random() * (this.generations.length / MAX_GENS) * 2);
-	// console.log(x);
-	// return {x : x, y : y, z : z};
 	return {x : x, z : z};
 };
 
@@ -155,7 +150,7 @@ Tree.prototype.splitBranches = function () {
 };
 
 function randomFloatFromInterval (min, max) {
-    return Math.random()*(max-min+1)+min;
+    return Math.random()*(max-min)+min;
 }
 
 function randomIntFromInterval (min, max) {
