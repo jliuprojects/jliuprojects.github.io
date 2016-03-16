@@ -386,7 +386,7 @@ var windowHalfY = window.innerHeight / 2;
 var canvasHeight = 1.7;
 
 function initThree() {
-	container = $("#about")[0];
+	container = $("#jswave")[0];
 
 	camera = new THREE.PerspectiveCamera( 75, window.innerWidth / (window.innerHeight * canvasHeight), 1, 10000);
 	camera.position.z = 1000;
