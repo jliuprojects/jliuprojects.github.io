@@ -276,6 +276,13 @@ a {
 	display: inline-block;
 }
 
+#jswave {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	z-index: 1;
+}
+
 #about {
 	height: 100%;
 	width: 100%;
