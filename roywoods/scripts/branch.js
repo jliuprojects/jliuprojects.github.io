@@ -45,7 +45,7 @@ Branch.prototype.getHeight = function () {
 /////////////////////////////////////////////////////////////////////////////
 var MAX_GENS = 8;
 var GEN_WIDTH_DIFF = 3;
-var STARTING_WIDTH = 21;
+var STARTING_WIDTH = 17;
 var BASE_SPEED = 1.1;
 var GEN_WIDTH_DIFFS = [7, 4, 2, 1, 1 ,0 ,0 ,0];
 var Tree = function (scene) {
