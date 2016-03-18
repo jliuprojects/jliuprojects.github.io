@@ -88,17 +88,18 @@ Tree.prototype.grow = function () {
 		this.generations[this.generations.length - 1].forEach(function (branch) {
 			branch.grow();
 		});
-	}
-
-	if (this.bending) {
-		// debugger;
-		for (var i = 1; i < this.generations.length; i++) {
-			if (this.generations[this.generations.length-1][i].dying) {
-				continue;
+		if (this.bending) {
+			// debugger;
+			for (var i = 1; i < this.generations.length; i++) {
+				if (this.generations[this.generations.length-1][i].dying) {
+					continue;
+				}
+				this.bendBranch(i);
 			}
-			this.bendBranch(i);
+			this.bending--;
 		}
-		this.bending--;
+	} else {
+		window.clearInterval(this.interval);
 	}
 };
 
