@@ -3,6 +3,7 @@ var Branch = function (parent, topWidth, bottomWidth, growthSpeed, colour, dying
 	this.growthSpeed = growthSpeed;
 	this.dying = dying;
 	this.lifespan = lifespan;
+	this.colour = colour;
 	this.mesh = new THREE.Mesh(
 		new THREE.CylinderGeometry(topWidth, bottomWidth, 1, 10), 
 		new THREE.MeshBasicMaterial({color : colour})
@@ -43,7 +44,7 @@ Branch.prototype.getHeight = function () {
 };
 
 /////////////////////////////////////////////////////////////////////////////
-var MAX_GENS = 4;
+var MAX_GENS = 8;
 var GEN_WIDTH_DIFF = 3;
 var STARTING_WIDTH = 15;
 var BASE_SPEED = 1.1;
@@ -77,8 +78,8 @@ var Tree = function (scene) {
 Tree.prototype.setBendingInterval = function () {
 	var self = this;
 	this.interval = window.setInterval(function (){
-		self.bending = 30;
-	}, 5000);
+		self.bending = 10;
+	}, 100);
 };
 
 Tree.prototype.grow = function () {
@@ -89,11 +90,14 @@ Tree.prototype.grow = function () {
 		});
 	}
 
-	if (this.bending == 30) {
-		this.currentlyBending = randomIntFromInterval(0, this.generations.length - 1);
-		this.bending--;
-	} else if (this.bending) {
-		this.bendBranch(this.currentlyBending);
+	if (this.bending) {
+		// debugger;
+		for (var i = 1; i < this.generations.length; i++) {
+			if (this.generations[this.generations.length-1][i].dying) {
+				continue;
+			}
+			this.bendBranch(i);
+		}
 		this.bending--;
 	}
 };
@@ -190,15 +194,15 @@ Tree.prototype.bendBranch = function (i) {
 	var newBranch = new Branch(
 				oldBranch.mesh, 
 				GEN_WIDTHS[this.generations.length - 1][1], 
-				GEN_WIDTHS[this.generations.length - 1][0], 
+				GEN_WIDTHS[this.generations.length - 1][1], 
 				this.getRandomGrowthSpeed(), 
-				this.getBranchColour(),
+				oldBranch.colour,
 				false,
 				0
 			);
 	newBranch.mesh.position.y = oldBranch.getHeight();
-	newBranch.mesh.rotation.z = Math.random() * 0.2;
-	newBranch.mesh.rotation.x = Math.random() * 0.2;
+	newBranch.mesh.rotation.z = randomFloatFromInterval(-0.1,0.1);
+	newBranch.mesh.rotation.x = randomFloatFromInterval(-0.1,0.1);
 	this.generations[this.generations.length - 1][i] = newBranch;
 }
 function randomFloatFromInterval (min, max) {
