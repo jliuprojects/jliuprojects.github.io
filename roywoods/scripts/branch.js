@@ -47,7 +47,7 @@ var MAX_GENS = 8;
 var GEN_WIDTH_DIFF = 3;
 var STARTING_WIDTH = 15;
 var BASE_SPEED = 1.1;
-var GEN_WIDTH_DIFFS = [7, 4, 2, 0, 0 ,0 ,0 ,0];
+var GEN_WIDTH_DIFFS = [0, 7, 4, 2, 0, 0 ,0 ,0];
 var Tree = function (scene) {
 	// trunk is first generation
 	this.generations = [[new Branch(
