@@ -15,6 +15,10 @@ var Branch = function (parent, topWidth, bottomWidth, growthSpeed, colour, dying
 	console.log('branch created');
 };
 
+Branch.prototype.bend = function () {
+
+};
+
 Branch.prototype.grow = function () {
 	if (this.dying) {
 		if (this.lifespan > 0) {
@@ -43,11 +47,12 @@ var MAX_GENS = 8;
 var GEN_WIDTH_DIFF = 3;
 var STARTING_WIDTH = 21;
 var BASE_SPEED = 1.1;
+var GEN_WIDTH_DIFFS = [7, 4, 2, 1, 1 ,0 ,0 ,0];
 var Tree = function (scene) {
 	// trunk is first generation
 	this.generations = [[new Branch(
 		scene,
-		STARTING_WIDTH - GEN_WIDTH_DIFF, 
+		STARTING_WIDTH - GEN_WIDTH_DIFFS[0], 
 		STARTING_WIDTH, 
 		BASE_SPEED, 
 		"rgb(128, 64, 0)",
@@ -66,7 +71,7 @@ Tree.prototype.grow = function () {
 };
 
 Tree.prototype.getRandomGrowthSpeed = function () {
-	return BASE_SPEED - Math.random() * (this.generations.length / MAX_GENS);
+	return BASE_SPEED - Math.random() * this.generations.length / MAX_GENS;
 };
 
 Tree.prototype.getRandomDirection = function (index) {
@@ -134,7 +139,7 @@ Tree.prototype.splitBranches = function () {
 		for (var i = 0; i < numChildren; i++) {
 			nextGenBranches.push(new Branch(
 				branch.mesh, 
-				branch.topWidth - GEN_WIDTH_DIFF, 
+				branch.topWidth - GEN_WIDTH_DIFFS[numGens], 
 				branch.topWidth, 
 				self.getRandomGrowthSpeed(), 
 				self.getBranchColour(),
