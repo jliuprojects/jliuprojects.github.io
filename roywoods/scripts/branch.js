@@ -43,7 +43,7 @@ Branch.prototype.getHeight = function () {
 };
 
 /////////////////////////////////////////////////////////////////////////////
-var MAX_GENS = 8;
+var MAX_GENS = 4;
 var GEN_WIDTH_DIFF = 3;
 var STARTING_WIDTH = 15;
 var BASE_SPEED = 1.1;
@@ -59,6 +59,7 @@ var GEN_WIDTHS = [
 	[2, 2]
 ];
 var Tree = function (scene) {
+	this.bending = 0;
 	// trunk is first generation
 	this.generations = [[new Branch(
 		scene,
@@ -69,6 +70,15 @@ var Tree = function (scene) {
 		false,
 		0
 	)]];
+
+	this.setBendingInterval();
+};
+
+Tree.prototype.setBendingInterval = function () {
+	var self = this;
+	this.interval = window.setInterval(function (){
+		self.bending = 30;
+	}, 5000);
 };
 
 Tree.prototype.grow = function () {
@@ -77,6 +87,14 @@ Tree.prototype.grow = function () {
 		this.generations[this.generations.length - 1].forEach(function (branch) {
 			branch.grow();
 		});
+	}
+
+	if (this.bending == 30) {
+		this.currentlyBending = randomIntFromInterval(0, this.generations.length - 1);
+		this.bending--;
+	} else if (this.bending) {
+		this.bendBranch(this.currentlyBending);
+		this.bending--;
 	}
 };
 
@@ -110,7 +128,7 @@ Tree.prototype.getBranchColour = function () {
 	var b = 0;
 
 	return "rgb(" + r + "," + g + "," + b + ")";
-}
+};
 
 Tree.prototype.splitBranches = function () {
 	if (this.generations.length == MAX_GENS) {
@@ -165,10 +183,28 @@ Tree.prototype.splitBranches = function () {
 	this.generations.push(nextGenBranches);
 };
 
+
+
+Tree.prototype.bendBranch = function (i) {
+	var oldBranch = this.generations[this.generations.length - 1][i];
+	var newBranch = new Branch(
+				oldBranch.mesh, 
+				GEN_WIDTHS[this.generations.length - 1][1], 
+				GEN_WIDTHS[this.generations.length - 1][0], 
+				this.getRandomGrowthSpeed(), 
+				this.getBranchColour(),
+				false,
+				0
+			);
+	newBranch.mesh.position.y = oldBranch.getHeight();
+	newBranch.mesh.rotation.z = Math.random() * 0.2;
+	newBranch.mesh.rotation.x = Math.random() * 0.2;
+	this.generations[this.generations.length - 1][i] = newBranch;
+}
 function randomFloatFromInterval (min, max) {
     return Math.random()*(max-min)+min;
-}
+};
 
 function randomIntFromInterval (min, max) {
     return Math.floor(Math.random()*(max-min+1)+min);
-}
+};
