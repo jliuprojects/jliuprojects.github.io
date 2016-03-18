@@ -48,12 +48,22 @@ var GEN_WIDTH_DIFF = 3;
 var STARTING_WIDTH = 15;
 var BASE_SPEED = 1.1;
 var GEN_WIDTH_DIFFS = [0, 7, 4, 2, 0, 0 ,0 ,0];
+var GEN_WIDTHS = [
+	[16, 16],
+	[8, 5],
+	[3, 2],
+	[2, 2],
+	[2, 2],
+	[2, 2],
+	[2, 2],
+	[2, 2]
+];
 var Tree = function (scene) {
 	// trunk is first generation
 	this.generations = [[new Branch(
 		scene,
-		STARTING_WIDTH - GEN_WIDTH_DIFFS[0], 
-		STARTING_WIDTH, 
+		GEN_WIDTHS[0][1], 
+		GEN_WIDTHS[0][0], 
 		BASE_SPEED, 
 		"rgb(128, 64, 0)",
 		false,
@@ -139,8 +149,8 @@ Tree.prototype.splitBranches = function () {
 		for (var i = 0; i < numChildren; i++) {
 			nextGenBranches.push(new Branch(
 				branch.mesh, 
-				branch.topWidth - GEN_WIDTH_DIFFS[numGens], 
-				branch.topWidth, 
+				GEN_WIDTHS[numGens][1], 
+				GEN_WIDTHS[numGens][0], 
 				self.getRandomGrowthSpeed(), 
 				self.getBranchColour(),
 				false,
