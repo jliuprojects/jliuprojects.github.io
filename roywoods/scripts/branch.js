@@ -90,7 +90,7 @@ Tree.prototype.grow = function () {
 		});
 		if (this.bending) {
 			// debugger;
-			for (var i = 1; i < this.generations.length; i++) {
+			for (var i = 1; i < this.generations[this.generations.length-1].length; i++) {
 				if (this.generations[this.generations.length-1][i].dying) {
 					continue;
 				}
