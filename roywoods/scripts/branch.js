@@ -11,7 +11,7 @@ var Branch = function (parent, topWidth, bottomWidth, growthSpeed, colour, dying
 	this.mesh.geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, 0.5, 0));
 	this.mesh.geometry.dynamic = true;
 	this.mesh.geometry.verticesNeedUpdate = true;
-	this.mesh.position.y = -100;
+	this.mesh.position.y = -300;
 	parent.add(this.mesh);
 	// console.log('branch created');
 };
