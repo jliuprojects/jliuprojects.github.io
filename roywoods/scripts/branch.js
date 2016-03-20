@@ -50,14 +50,14 @@ var STARTING_WIDTH = 15;
 var BASE_SPEED = 1.1;
 var GEN_WIDTH_DIFFS = [0, 7, 4, 2, 0, 0 ,0 ,0];
 var GEN_WIDTHS = [
-	[16, 16],
-	[8, 5],
+	[4, 4],
+	[4, 3.5],
 	[3, 2],
 	[2, 2],
-	[2, 2],
-	[2, 2],
-	[2, 2],
-	[2, 2]
+	[1, 1],
+	[1, 1],
+	[1, 1],
+	[1, 1]
 ];
 var Tree = function (scene) {
 	this.bending = 0;
@@ -72,7 +72,7 @@ var Tree = function (scene) {
 		0
 	)]];
 
-	this.setBendingInterval();
+	// this.setBendingInterval();
 };
 
 Tree.prototype.setBendingInterval = function () {
@@ -88,18 +88,18 @@ Tree.prototype.grow = function () {
 		this.generations[this.generations.length - 1].forEach(function (branch) {
 			branch.grow();
 		});
-		if (this.bending) {
-			// debugger;
-			for (var i = 1; i < this.generations[this.generations.length-1].length; i++) {
-				if (this.generations[this.generations.length-1][i].dying) {
-					continue;
-				}
-				this.bendBranch(i);
-			}
-			this.bending--;
-		}
+		// if (this.bending) {
+		// 	// debugger;
+		// 	for (var i = 1; i < this.generations[this.generations.length-1].length; i++) {
+		// 		if (this.generations[this.generations.length-1][i].dying) {
+		// 			continue;
+		// 		}
+		// 		this.bendBranch(i);
+		// 	}
+		// 	this.bending--;
+		// }
 	} else {
-		window.clearInterval(this.interval);
+		// window.clearInterval(this.interval);
 	}
 };
 
