@@ -85,7 +85,7 @@ Tree.prototype.grow = function () {
 		this.generations[this.generations.length - 1].forEach(function (branch) {
 			branch.grow();
 		});
-		if (Math.random() < 0.1 * this.generations.length) {
+		if (Math.random() < 0.02 + 0.2 * (this.generations.length - 1)) {
 			var i = randomIntFromInterval(0, this.generations[this.generations.length-1].length - 1);
 			console.log(i);
 			this.bendBranch(i);
