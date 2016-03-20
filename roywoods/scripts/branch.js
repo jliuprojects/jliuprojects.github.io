@@ -109,18 +109,20 @@ Tree.prototype.getRandomGrowthSpeed = function () {
 
 Tree.prototype.getRandomDirection = function (index) {
 	var x, z;
+	var baseAngle = Math.PI/4;
+	var factor = 0.5;
 	switch (index) {
 		case 0:
-			x = randomFloatFromInterval(Math.PI/4 - (this.generations.length - 1), Math.PI/4 + (this.generations.length - 1));
-			z = randomFloatFromInterval(Math.PI/4 - (this.generations.length - 1), Math.PI/4 + (this.generations.length - 1));
+			x = randomFloatFromInterval(baseAngle - (this.generations.length - 1)*factor, baseAngle + (this.generations.length - 1)*factor);
+			z = randomFloatFromInterval(baseAngle - (this.generations.length - 1)*factor, baseAngle + (this.generations.length - 1)*factor);
 			break;
 		case 1:
-			x = randomFloatFromInterval(-Math.PI/4 - (this.generations.length - 1), -Math.PI/4 + (this.generations.length - 1));
-			z = randomFloatFromInterval(-Math.PI/4 - (this.generations.length - 1), -Math.PI/4 + (this.generations.length - 1));
+			x = randomFloatFromInterval(-baseAngle - (this.generations.length - 1)*factor, -baseAngle + (this.generations.length - 1)*factor);
+			z = randomFloatFromInterval(-baseAngle - (this.generations.length - 1)*factor, -baseAngle + (this.generations.length - 1)*factor);
 			break;
 		case 2:
-			x = randomFloatFromInterval(-Math.PI/2 - (this.generations.length - 1), Math.PI/2 + (this.generations.length - 1));
-			z = randomFloatFromInterval(-Math.PI/2 - (this.generations.length - 1), Math.PI/2 + (this.generations.length - 1));
+			x = randomFloatFromInterval(-Math.PI/2 - (this.generations.length - 1)*factor, Math.PI/2 + (this.generations.length - 1)*factor);
+			z = randomFloatFromInterval(-Math.PI/2 - (this.generations.length - 1)*factor, Math.PI/2 + (this.generations.length - 1)*factor);
 			break;		
 
 	}
