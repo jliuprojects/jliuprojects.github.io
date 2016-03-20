@@ -128,8 +128,12 @@ Tree.prototype.getRandomDirection = function (index) {
 };
 
 Tree.prototype.getBranchColour = function () {
-	var r = Math.min(128, 128 - this.generations.length * 8) ;
-	var g = Math.min(255, 64 + this.generations.length * 16);
+	// var r = Math.min(128, 128 - this.generations.length * 8) ;
+	// var g = Math.min(255, 64 + this.generations.length * 16);
+	// var b = 0;
+
+	var r = Math.min(128, 128 + this.generations.length * 8) ;
+	var g = Math.min(255, 64 - this.generations.length * 8);
 	var b = 0;
 
 	return "rgb(" + r + "," + g + "," + b + ")";
