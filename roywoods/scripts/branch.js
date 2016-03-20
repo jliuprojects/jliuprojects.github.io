@@ -13,7 +13,7 @@ var Branch = function (parent, topWidth, bottomWidth, growthSpeed, colour, dying
 	this.mesh.geometry.verticesNeedUpdate = true;
 	this.mesh.position.y = -100;
 	parent.add(this.mesh);
-	console.log('branch created');
+	// console.log('branch created');
 };
 
 Branch.prototype.bend = function () {
@@ -45,10 +45,7 @@ Branch.prototype.getHeight = function () {
 
 /////////////////////////////////////////////////////////////////////////////
 var MAX_GENS = 8;
-var GEN_WIDTH_DIFF = 3;
-var STARTING_WIDTH = 15;
 var BASE_SPEED = 1.1;
-var GEN_WIDTH_DIFFS = [0, 7, 4, 2, 0, 0 ,0 ,0];
 var GEN_WIDTHS = [
 	[5, 5],
 	[4, 4],
@@ -88,6 +85,11 @@ Tree.prototype.grow = function () {
 		this.generations[this.generations.length - 1].forEach(function (branch) {
 			branch.grow();
 		});
+		if (Math.random() < 0.4) {
+			var i = randomIntFromInterval(0, this.generations[this.generations.length-1].length - 1);
+			console.log(i);
+			this.bendBranch(i);
+		}
 		// if (this.bending) {
 		// 	// debugger;
 		// 	for (var i = 1; i < this.generations[this.generations.length-1].length; i++) {
@@ -98,8 +100,6 @@ Tree.prototype.grow = function () {
 		// 	}
 		// 	this.bending--;
 		// }
-	} else {
-		// window.clearInterval(this.interval);
 	}
 };
 
@@ -192,6 +192,9 @@ Tree.prototype.splitBranches = function () {
 
 Tree.prototype.bendBranch = function (i) {
 	var oldBranch = this.generations[this.generations.length - 1][i];
+	if (oldBranch.dying) {
+		return;
+	}
 	var newBranch = new Branch(
 				oldBranch.mesh, 
 				GEN_WIDTHS[this.generations.length - 1][1], 
