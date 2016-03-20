@@ -85,7 +85,7 @@ Tree.prototype.grow = function () {
 		this.generations[this.generations.length - 1].forEach(function (branch) {
 			branch.grow();
 		});
-		if (Math.random() < 0.4) {
+		if (Math.random() < 0.1 * this.generations.length) {
 			var i = randomIntFromInterval(0, this.generations[this.generations.length-1].length - 1);
 			console.log(i);
 			this.bendBranch(i);
@@ -205,8 +205,8 @@ Tree.prototype.bendBranch = function (i) {
 				0
 			);
 	newBranch.mesh.position.y = oldBranch.getHeight();
-	newBranch.mesh.rotation.z = randomFloatFromInterval(-0.1,0.1);
-	newBranch.mesh.rotation.x = randomFloatFromInterval(-0.1,0.1);
+	newBranch.mesh.rotation.z = randomFloatFromInterval(-0.2, 0.2);
+	newBranch.mesh.rotation.x = randomFloatFromInterval(-0.2, 0.2);
 	this.generations[this.generations.length - 1][i] = newBranch;
 }
 function randomFloatFromInterval (min, max) {
