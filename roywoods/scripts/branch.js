@@ -133,7 +133,7 @@ Tree.prototype.getBranchColour = function () {
 	// var b = 0;
 
 	var r = Math.min(128, 128 + this.generations.length * 8) ;
-	var g = Math.min(255, 64 - this.generations.length * 8);
+	var g = Math.min(255, 64 - this.generations.length * 9);
 	var b = 0;
 
 	return "rgb(" + r + "," + g + "," + b + ")";
