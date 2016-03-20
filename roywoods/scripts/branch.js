@@ -50,7 +50,7 @@ var STARTING_WIDTH = 15;
 var BASE_SPEED = 1.1;
 var GEN_WIDTH_DIFFS = [0, 7, 4, 2, 0, 0 ,0 ,0];
 var GEN_WIDTHS = [
-	[4, 4],
+	[6, 6],
 	[4, 3.5],
 	[3, 2],
 	[2, 2],
