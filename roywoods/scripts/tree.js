@@ -47,8 +47,8 @@ Tree.prototype.getRandomDirection = function (index) {
 			z = randomFloatFromInterval(-baseAngle - (this.generations.length - 1)*factor, -baseAngle + (this.generations.length - 1)*factor);
 			break;
 		case 2:
-			x = randomFloatFromInterval(-Math.PI/2 - (this.generations.length - 1)*factor, Math.PI/2 + (this.generations.length - 1)*factor);
-			z = randomFloatFromInterval(-Math.PI/2 - (this.generations.length - 1)*factor, Math.PI/2 + (this.generations.length - 1)*factor);
+			x = randomFloatFromInterval(-baseAngle - (this.generations.length - 1)*factor, -baseAngle + (this.generations.length - 1)*factor);
+			z = randomFloatFromInterval(baseAngle - (this.generations.length - 1)*factor, baseAngle + (this.generations.length - 1)*factor);
 			break;		
 
 	}
