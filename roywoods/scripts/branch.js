@@ -41,4 +41,12 @@ Branch.prototype.getHeight = function () {
 Branch.prototype.kill = function (lifespan) {
 	this.dying = true;
 	this.lifespan = lifespan;
+
+	this.mesh.geometry.verticesNeedUpdate = true;
+	this.mesh.geometry.vertices[this.mesh.geometry.vertices.length - 2].x = 0;
+	this.mesh.geometry.vertices[this.mesh.geometry.vertices.length - 2].z = 0;
+	for (var i = 0; i < this.mesh.geometry.vertices.length/2 - 1; i++) {
+		this.mesh.geometry.vertices[i].x = 0;
+		this.mesh.geometry.vertices[i].z = 0;
+	}
 };
