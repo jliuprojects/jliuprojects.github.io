@@ -1,5 +1,5 @@
 var MAX_GENS = 8;
-var BASE_SPEED = 1.1;
+var BASE_SPEED = 0.6;
 var GEN_WIDTHS = [[5, 5], [4, 4], [4, 3], [3, 2], [2, 2], [2, 1], [1, 1], [1, 1]];
 
 var Tree = function (scene) {
@@ -28,7 +28,7 @@ Tree.prototype.grow = function () {
 };
 
 Tree.prototype.getRandomGrowthSpeed = function () {
-	return BASE_SPEED - Math.random() * this.generations.length / MAX_GENS;
+	return BASE_SPEED - Math.random() * this.generations.length / MAX_GENS / 2;
 };
 
 Tree.prototype.getRandomDirection = function (index) {
