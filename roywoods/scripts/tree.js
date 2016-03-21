@@ -1,6 +1,6 @@
 var MAX_GENS = 8;
 var BASE_SPEED = 1.1;
-var GEN_WIDTHS = [[5, 5], [4, 4], [4, 3], [3, 2], [2, 2], [2, 1], [1, 1], [1, 1]];
+var GEN_WIDTHS = [[5, 5], [4, 4], [4, 3], [3, 2], [2, 2], [2, 1], [1, 1], [1, 0]];
 
 var Tree = function (scene) {
 	this.bending = 0;
@@ -76,8 +76,7 @@ Tree.prototype.splitBranches = function () {
 		if (branch.dying && branch.lifespan > 0) {
 			nextGenBranches.push(branch);
 		} else if (!branch.dying) {
-			branch.kill(Math.floor(Math.random() * 60) + 60);
-			nextGenBranches.push(branch);
+			nextGenBranches.push(self.createDyingBranch(branch));
 
 			var numChildren = randomIntFromInterval(2, 3);
 			for (var i = 0; i < numChildren; i++) {
@@ -119,6 +118,21 @@ Tree.prototype.bendBranch = function (i) {
 	newBranch.mesh.rotation.z = randomFloatFromInterval(-0.2, 0.2);
 	newBranch.mesh.rotation.x = randomFloatFromInterval(-0.2, 0.2);
 	this.generations[currGen][i] = newBranch;
+};
+
+Tree.prototype.createDyingBranch = function (oldBranch) {
+	var newBranch = new Branch(
+		oldBranch.mesh, 
+		0.1, 
+		oldBranch.topWidth, 
+		oldBranch.growthSpeed, 
+		oldBranch.colour, 
+		true, 
+		Math.floor(Math.random() * 60) + 60);
+	newBranch.mesh.position.y = oldBranch.getHeight();
+	newBranch.mesh.rotation.z = randomFloatFromInterval(-0.2, 0.2);
+	newBranch.mesh.rotation.x = randomFloatFromInterval(-0.2, 0.2);
+	return newBranch;
 };
 
 function randomFloatFromInterval(min, max) {
