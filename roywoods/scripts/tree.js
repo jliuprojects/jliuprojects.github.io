@@ -80,7 +80,7 @@ Tree.prototype.splitBranches = function () {
 
 			var numChildren = randomIntFromInterval(2, 3);
 			for (var i = 0; i < numChildren; i++) {
-				nextGenBranches.push(new Branch(
+				var newBranch = new Branch(
 					branch.mesh, 
 					GEN_WIDTHS[numGens][1], 
 					GEN_WIDTHS[numGens][0], 
@@ -88,11 +88,12 @@ Tree.prototype.splitBranches = function () {
 					self.getBranchColour(),
 					false,
 					0
-				));
-				nextGenBranches[nextGenBranches.length - 1].mesh.position.y = branch.getHeight();
+				);
 				var dir = self.getRandomDirection(i);
-				nextGenBranches[nextGenBranches.length - 1].mesh.rotation.z = dir.z;
-				nextGenBranches[nextGenBranches.length - 1].mesh.rotation.x = dir.x;
+				newBranch.mesh.rotation.z = dir.z;
+				newBranch.mesh.rotation.x = dir.x;
+				newBranch.mesh.position.y = branch.getHeight();
+				nextGenBranches.push(newBranch);
 			}
 		}
 	});
@@ -123,7 +124,7 @@ Tree.prototype.bendBranch = function (i) {
 Tree.prototype.createDyingBranch = function (oldBranch) {
 	var newBranch = new Branch(
 		oldBranch.mesh, 
-		0.1, 
+		1, 
 		oldBranch.topWidth, 
 		oldBranch.growthSpeed, 
 		oldBranch.colour, 
