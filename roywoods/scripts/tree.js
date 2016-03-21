@@ -1,6 +1,6 @@
 var MAX_GENS = 8;
 var BASE_SPEED = 1.1;
-var GEN_WIDTHS = [[5, 5], [4, 4], [4, 3], [3, 2], [2, 2], [2, 1], [1, 1], [1, 0]];
+var GEN_WIDTHS = [[5, 5], [4, 4], [4, 3], [3, 2], [2, 2], [2, 1], [1, 1], [1, 1]];
 
 var Tree = function (scene) {
 	this.bending = 0;
