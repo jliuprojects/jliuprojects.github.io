@@ -9,7 +9,7 @@ var Tree = function (scene) {
 		GEN_WIDTHS[0][1], 
 		GEN_WIDTHS[0][0], 
 		BASE_SPEED, 
-		"rgb(128, 64, 0)", 
+		this.getBranchColour(), 
 		false,
 		0
 	)]];
@@ -62,9 +62,13 @@ Tree.prototype.getRandomDirection = function (index) {
 };
 
 Tree.prototype.getBranchColour = function () {
-	var r = Math.min(128, 128 + this.generations.length * 8) ;
-	var g = Math.min(255, 64 - this.generations.length * 9);
-	var b = 0;
+	// var r = Math.min(128, 128 + this.generations.length * 8) ;
+	// var g = Math.min(255, 64 - this.generations.length * 9);
+	// var b = 0;
+
+	var r = this.generations ? Math.min(255, 119 + this.generations.length * 17) : 119;
+	var g = this.generations ? Math.max(0, 37 - this.generations.length * 5) : 37;
+	var b = 18;
 
 	return "rgb(" + r + "," + g + "," + b + ")";
 };
