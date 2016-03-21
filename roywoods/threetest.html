@@ -28,14 +28,14 @@
 
 				scene = new THREE.Scene();
 				scene.fog = new THREE.FogExp2(0x000000, 0.0020);
-				var light = new THREE.PointLight( 0xffffff, 50, 1000 );
-				light.position.set( 300, 300, 300 );
+				var light = new THREE.PointLight( 0xffffff, 30, 1000 );
+				light.position.set( 500, 500, 500 );
 				scene.add( light );
 
 				tree = new Tree(scene);
 				// scene.add(new THREE.AxisHelper(500));
 
-				renderer = new THREE.WebGLRenderer({alpha : true});
+				renderer = new THREE.WebGLRenderer({alpha : true,antialias : true});
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.setClearColor( 0x000000, 0);

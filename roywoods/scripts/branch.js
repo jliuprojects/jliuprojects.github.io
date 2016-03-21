@@ -5,10 +5,10 @@ var Branch = function (parent, topWidth, bottomWidth, growthSpeed, colour, dying
 	this.lifespan = lifespan;
 	this.colour = colour;
 
-	var texture = new THREE.TextureLoader().load( 'textures/bark.png' );
+	var texture = new THREE.TextureLoader().load('textures/bark.png');
 	this.mesh = new THREE.Mesh(
 		new THREE.CylinderGeometry(topWidth, bottomWidth, 1, 10), 
-		new THREE.MeshPhongMaterial({color : colour, map : texture})
+		new THREE.MeshLambertMaterial({color : colour, map : texture})
 	);
 	this.mesh.geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, 0.5, 0));
 	this.mesh.geometry.dynamic = true;
