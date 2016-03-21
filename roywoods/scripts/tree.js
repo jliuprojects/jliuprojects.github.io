@@ -15,6 +15,12 @@ var Tree = function (scene) {
 	)]];
 };
 
+Tree.prototype.growLeaves = function () {
+	this.generations[this.generations.length - 1].forEach(function (leaf) {
+		leaf.grow();
+	});
+};
+
 Tree.prototype.grow = function () {
 	if (this.generations.length < MAX_GENS) {
 		this.generations[this.generations.length - 1].forEach(function (branch) {
@@ -24,6 +30,8 @@ Tree.prototype.grow = function () {
 			var i = randomIntFromInterval(0, this.generations[this.generations.length-1].length - 1);
 			this.bendBranch(i);
 		}
+	} else {
+		this.growLeaves();
 	}
 };
 
@@ -61,9 +69,22 @@ Tree.prototype.getBranchColour = function () {
 	return "rgb(" + r + "," + g + "," + b + ")";
 };
 
+Tree.prototype.createLeaves = function () {
+	var self = this;
+	var currGenBranches = this.generations[this.generations.length - 1];
+	var leaves = [];
+	currGenBranches.forEach(function (branch) {
+		var leaf = new Leaf(branch.mesh);
+		leaf.mesh.position.y = branch.getHeight() - 1;
+		leaves.push(leaf);
+	});
+	this.generations.push(leaves);
+};
+
 Tree.prototype.splitBranches = function () {
 	var numGens = this.generations.length;
 	if (numGens === MAX_GENS) {
+		this.createLeaves();
 		return;
 	}
 
