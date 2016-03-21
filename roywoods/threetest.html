@@ -55,10 +55,11 @@
 			function animate() {
 				requestAnimationFrame(animate);
 				camera.position.x += (mouseX - camera.position.x) * .5;
-				camera.position.y += (-mouseY - camera.position.y) * .5 + tree.generations.length*10;
+				camera.position.y += (-mouseY - camera.position.y) * .5;
 				camera.lookAt( scene.position );
 
 				tree.grow();
+				tree.generations[0][0].mesh.rotation.y += 0.01;
 				
 				renderer.render( scene, camera );
 			}
