@@ -4,20 +4,18 @@ var GEN_WIDTHS = [[5, 5], [4, 4], [4, 3], [3, 2], [2, 2], [2, 1], [1, 1], [1, 0]
 
 var Tree = function (scene) {
 	this.bending = 0;
-	// trunk is first generation
 	this.generations = [[new Branch(
-		scene,
+		scene, 
 		GEN_WIDTHS[0][1], 
 		GEN_WIDTHS[0][0], 
 		BASE_SPEED, 
-		"rgb(128, 64, 0)",
+		"rgb(128, 64, 0)", 
 		false,
 		0
 	)]];
 };
 
 Tree.prototype.grow = function () {
-	// only grow last generation up to MAX_GENS
 	if (this.generations.length < MAX_GENS) {
 		this.generations[this.generations.length - 1].forEach(function (branch) {
 			branch.grow();
@@ -35,7 +33,7 @@ Tree.prototype.getRandomGrowthSpeed = function () {
 
 Tree.prototype.getRandomDirection = function (index) {
 	var x, z;
-	var baseAngle = Math.PI/4;
+	var baseAngle = Math.PI/4.5;
 	var factor = 0.5;
 	switch (index) {
 		case 0:
