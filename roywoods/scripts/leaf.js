@@ -1,7 +1,7 @@
 var Leaf = function (parent) {
 	this.mesh = new THREE.Mesh(
 		new THREE.CylinderGeometry(2, 2, 2, 10), 
-		new THREE.MeshBasicMaterial({color : "green"})
+		new THREE.MeshPhongMaterial({color : "green"})
 	);
 	this.mesh.geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, 1, 0));
 	this.mesh.geometry.dynamic = true;

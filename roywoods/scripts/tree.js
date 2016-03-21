@@ -62,10 +62,6 @@ Tree.prototype.getRandomDirection = function (index) {
 };
 
 Tree.prototype.getBranchColour = function () {
-	// var r = Math.min(128, 128 + this.generations.length * 8) ;
-	// var g = Math.min(255, 64 - this.generations.length * 9);
-	// var b = 0;
-
 	var r = this.generations ? Math.min(255, 119 + this.generations.length * 17) : 119;
 	var g = this.generations ? Math.max(0, 37 - this.generations.length * 5) : 37;
 	var b = 18;
@@ -90,37 +86,37 @@ Tree.prototype.splitBranches = function () {
 	if (numGens === MAX_GENS) {
 		this.createLeaves();
 		return;
-	}
+	} else if (numGens < MAX_GENS) {
+		var self = this;
+		var currGenBranches = this.generations[numGens - 1];
+		var nextGenBranches = [];
+		currGenBranches.forEach(function (branch) {
+			if (branch.dying && branch.lifespan > 0) {
+				nextGenBranches.push(branch);
+			} else if (!branch.dying) {
+				nextGenBranches.push(self.createDyingBranch(branch));
 
-	var self = this;
-	var currGenBranches = this.generations[numGens - 1];
-	var nextGenBranches = [];
-	currGenBranches.forEach(function (branch) {
-		if (branch.dying && branch.lifespan > 0) {
-			nextGenBranches.push(branch);
-		} else if (!branch.dying) {
-			nextGenBranches.push(self.createDyingBranch(branch));
-
-			var numChildren = randomIntFromInterval(2, 3);
-			for (var i = 0; i < numChildren; i++) {
-				var newBranch = new Branch(
-					branch.mesh, 
-					GEN_WIDTHS[numGens][1], 
-					GEN_WIDTHS[numGens][0], 
-					self.getRandomGrowthSpeed(), 
-					self.getBranchColour(),
-					false,
-					0
-				);
-				var dir = self.getRandomDirection(i);
-				newBranch.mesh.rotation.z = dir.z;
-				newBranch.mesh.rotation.x = dir.x;
-				newBranch.mesh.position.y = branch.getHeight();
-				nextGenBranches.push(newBranch);
+				var numChildren = randomIntFromInterval(2, 3);
+				for (var i = 0; i < numChildren; i++) {
+					var newBranch = new Branch(
+						branch.mesh, 
+						GEN_WIDTHS[numGens][1], 
+						GEN_WIDTHS[numGens][0], 
+						self.getRandomGrowthSpeed(), 
+						self.getBranchColour(),
+						false,
+						0
+					);
+					var dir = self.getRandomDirection(i);
+					newBranch.mesh.rotation.z = dir.z;
+					newBranch.mesh.rotation.x = dir.x;
+					newBranch.mesh.position.y = branch.getHeight();
+					nextGenBranches.push(newBranch);
+				}
 			}
-		}
-	});
-	this.generations.push(nextGenBranches);
+		});
+		this.generations.push(nextGenBranches);
+	}
 };
 
 Tree.prototype.bendBranch = function (i) {

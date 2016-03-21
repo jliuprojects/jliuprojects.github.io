@@ -6,7 +6,7 @@ var Branch = function (parent, topWidth, bottomWidth, growthSpeed, colour, dying
 	this.colour = colour;
 	this.mesh = new THREE.Mesh(
 		new THREE.CylinderGeometry(topWidth, bottomWidth, 1, 10), 
-		new THREE.MeshBasicMaterial({color : colour})
+		new THREE.MeshPhongMaterial({color : colour})
 	);
 	this.mesh.geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, 0.5, 0));
 	this.mesh.geometry.dynamic = true;
