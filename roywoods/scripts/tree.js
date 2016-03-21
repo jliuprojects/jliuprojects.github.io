@@ -1,4 +1,4 @@
-var MAX_GENS = 8;
+var MAX_GENS = 6;
 var BASE_SPEED = 1/3 + 0.1;
 var GEN_WIDTHS = [[5, 5], [4, 4], [4, 3], [3, 2], [2, 2], [2, 1], [1, 1], [1, 1]];
 
