@@ -28,8 +28,8 @@
 
 				scene = new THREE.Scene();
 				scene.fog = new THREE.FogExp2(0x000000, 0.0020);
-				var light = new THREE.PointLight( 0xffffff, 30, 1000 );
-				light.position.set( 500, 500, 500 );
+				var light = new THREE.PointLight( 0xffffff, 50, 2000 );
+				light.position.set( 1000, 1000, 1000 );
 				scene.add( light );
 
 				tree = new Tree(scene);
