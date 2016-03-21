@@ -122,7 +122,7 @@ Tree.prototype.bendBranch = function (i) {
 Tree.prototype.createDyingBranch = function (oldBranch) {
 	var newBranch = new Branch(
 		oldBranch.mesh, 
-		1.5, 
+		1.5 - this.generations.length/MAX_GENS, 
 		oldBranch.topWidth, 
 		oldBranch.growthSpeed, 
 		oldBranch.colour, 
