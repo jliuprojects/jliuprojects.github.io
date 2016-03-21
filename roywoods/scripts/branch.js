@@ -12,15 +12,12 @@ var Branch = function (parent, topWidth, bottomWidth, growthSpeed, colour, dying
 	this.mesh.geometry.dynamic = true;
 	this.mesh.geometry.verticesNeedUpdate = true;
 	this.mesh.position.y = -300;
+
 	parent.add(this.mesh);
-	// console.log('branch created');
-};
-
-Branch.prototype.bend = function () {
-
 };
 
 Branch.prototype.grow = function () {
+	var self = this;
 	if (this.dying) {
 		if (this.lifespan > 0) {
 			this.lifespan--;
@@ -41,6 +38,11 @@ Branch.prototype.setGrowthSpeed = function (growthSpeed) {
 
 Branch.prototype.getHeight = function () {
 	return this.mesh.geometry.vertices[0].y;
+};
+
+Branch.prototype.kill = function (lifespan) {
+	this.dying = true;
+	this.lifespan = lifespan;
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -68,15 +70,6 @@ var Tree = function (scene) {
 		false,
 		0
 	)]];
-
-	// this.setBendingInterval();
-};
-
-Tree.prototype.setBendingInterval = function () {
-	var self = this;
-	this.interval = window.setInterval(function (){
-		self.bending = 10;
-	}, 100);
 };
 
 Tree.prototype.grow = function () {
@@ -87,19 +80,8 @@ Tree.prototype.grow = function () {
 		});
 		if (Math.random() < 0.02 + 0.2 * (this.generations.length - 1)) {
 			var i = randomIntFromInterval(0, this.generations[this.generations.length-1].length - 1);
-			console.log(i);
 			this.bendBranch(i);
 		}
-		// if (this.bending) {
-		// 	// debugger;
-		// 	for (var i = 1; i < this.generations[this.generations.length-1].length; i++) {
-		// 		if (this.generations[this.generations.length-1][i].dying) {
-		// 			continue;
-		// 		}
-		// 		this.bendBranch(i);
-		// 	}
-		// 	this.bending--;
-		// }
 	}
 };
 
@@ -130,10 +112,6 @@ Tree.prototype.getRandomDirection = function (index) {
 };
 
 Tree.prototype.getBranchColour = function () {
-	// var r = Math.min(128, 128 - this.generations.length * 8) ;
-	// var g = Math.min(255, 64 + this.generations.length * 16);
-	// var b = 0;
-
 	var r = Math.min(128, 128 + this.generations.length * 8) ;
 	var g = Math.min(255, 64 - this.generations.length * 9);
 	var b = 0;
@@ -142,79 +120,65 @@ Tree.prototype.getBranchColour = function () {
 };
 
 Tree.prototype.splitBranches = function () {
-	if (this.generations.length == MAX_GENS) {
+	var numGens = this.generations.length;
+	if (numGens == MAX_GENS) {
 		return;
 	}
-	var currGenBranches = this.generations[this.generations.length - 1];
-	var nextGenBranches = [];
-	var numGens = this.generations.length;
-	var self = this;
 
+	var self = this;
+	var currGenBranches = this.generations[numGens - 1];
+	var nextGenBranches = [];
 	currGenBranches.forEach(function (branch) {
 		if (branch.dying) {
 			if (branch.lifespan > 0) {
-				branch.lifespan--;
 				nextGenBranches.push(branch);
 			}
-			return;
-		}
-		// branch continues growing
-		// if (Math.random() > 0.5) {
-			nextGenBranches.push(new Branch(
-				branch.mesh, 
-				2, 
-				branch.topWidth, 
-				branch.growthSpeed, 
-				self.getBranchColour(),
-				true,
-				Math.floor(Math.random() * 60) + 60
-			));
-			nextGenBranches[nextGenBranches.length - 1].mesh.position.y = branch.getHeight();
-			// nextGenBranches[nextGenBranches.length - 1].mesh.rotation.z = Math.random() * 0.5;
-			// nextGenBranches[nextGenBranches.length - 1].mesh.rotation.x = Math.random() * 0.5;
-		// }
+		} else {
+			branch.kill(Math.floor(Math.random() * 60) + 60);
+			nextGenBranches.push(branch);
 
-		var numChildren = randomIntFromInterval(2, 3);
-		for (var i = 0; i < numChildren; i++) {
-			nextGenBranches.push(new Branch(
-				branch.mesh, 
-				GEN_WIDTHS[numGens][1], 
-				GEN_WIDTHS[numGens][0], 
-				self.getRandomGrowthSpeed(), 
-				self.getBranchColour(),
-				false,
-				0
-			));
-			nextGenBranches[nextGenBranches.length - 1].mesh.position.y = branch.getHeight();
-			var dir = self.getRandomDirection(i);
-			nextGenBranches[nextGenBranches.length - 1].mesh.rotation.z = dir.z;
-			nextGenBranches[nextGenBranches.length - 1].mesh.rotation.x = dir.x;
+			var numChildren = randomIntFromInterval(2, 3);
+			for (var i = 0; i < numChildren; i++) {
+				nextGenBranches.push(new Branch(
+					branch.mesh, 
+					GEN_WIDTHS[numGens][1], 
+					GEN_WIDTHS[numGens][0], 
+					self.getRandomGrowthSpeed(), 
+					self.getBranchColour(),
+					false,
+					0
+				));
+				nextGenBranches[nextGenBranches.length - 1].mesh.position.y = branch.getHeight();
+				var dir = self.getRandomDirection(i);
+				nextGenBranches[nextGenBranches.length - 1].mesh.rotation.z = dir.z;
+				nextGenBranches[nextGenBranches.length - 1].mesh.rotation.x = dir.x;
+			}
 		}
 	});
 	this.generations.push(nextGenBranches);
 };
 
-
-
 Tree.prototype.bendBranch = function (i) {
-	var oldBranch = this.generations[this.generations.length - 1][i];
+	var currGen = this.generations.length - 1;
+	var oldBranch = this.generations[currGen][i];
 	if (oldBranch.dying) {
 		return;
 	}
+
 	var newBranch = new Branch(
-				oldBranch.mesh, 
-				GEN_WIDTHS[this.generations.length - 1][1], 
-				GEN_WIDTHS[this.generations.length - 1][1], 
-				this.getRandomGrowthSpeed(), 
-				oldBranch.colour,
-				false,
-				0
-			);
+		oldBranch.mesh, 
+		oldBranch.topWidth, 
+		oldBranch.topWidth, 
+		oldBranch.growthSpeed, 
+		oldBranch.colour, 
+		false, 
+		0);
 	newBranch.mesh.position.y = oldBranch.getHeight();
 	newBranch.mesh.rotation.z = randomFloatFromInterval(-0.2, 0.2);
 	newBranch.mesh.rotation.x = randomFloatFromInterval(-0.2, 0.2);
-	this.generations[this.generations.length - 1][i] = newBranch;
-}
+	this.generations[currGen][i] = newBranch;
+};
+
 function randomFloatFromInterval (min, max) {
     return Math.random()*(max-min)+min;
 };
