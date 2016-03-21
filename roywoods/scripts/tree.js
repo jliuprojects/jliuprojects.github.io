@@ -63,7 +63,7 @@ Tree.prototype.getBranchColour = function () {
 
 Tree.prototype.splitBranches = function () {
 	var numGens = this.generations.length;
-	if (numGens == MAX_GENS) {
+	if (numGens === MAX_GENS) {
 		return;
 	}
 
@@ -122,7 +122,7 @@ Tree.prototype.bendBranch = function (i) {
 Tree.prototype.createDyingBranch = function (oldBranch) {
 	var newBranch = new Branch(
 		oldBranch.mesh, 
-		1, 
+		1.5, 
 		oldBranch.topWidth, 
 		oldBranch.growthSpeed, 
 		oldBranch.colour, 
