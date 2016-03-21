@@ -8,6 +8,7 @@
 	</head>
 	<body style="background-color : black; margin : 0;">
 		<script src="scripts/branch.js"></script>
+		<script src="scripts/tree.js"></script>
 		<script>
 			var camera, scene, renderer;
 			var mesh, trunk, branch;
@@ -21,16 +22,14 @@
 			animate();
 
 			function init() {
-				camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 10000 );
+				camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 10000);
 				camera.position.z = 300;
 
 				scene = new THREE.Scene();
-				scene.fog = new THREE.FogExp2( 0x000000, 0.0020 );
+				scene.fog = new THREE.FogExp2(0x000000, 0.0020);
 
 				tree = new Tree(scene);
-				var axisHelper = new THREE.AxisHelper( 500);
-				scene.add( axisHelper );
-
+				scene.add(new THREE.AxisHelper(500));
 
 				renderer = new THREE.WebGLRenderer({alpha : true});
 				renderer.setPixelRatio( window.devicePixelRatio );
@@ -57,7 +56,6 @@
 				requestAnimationFrame(animate);
 				camera.position.x += (mouseX - camera.position.x) * .5;
 				camera.position.y += (-mouseY - camera.position.y) * .5 + tree.generations.length*10;
-				// camera.position.z = 1000 + tree.generations.length*100;
 				camera.lookAt( scene.position );
 
 				tree.grow();
