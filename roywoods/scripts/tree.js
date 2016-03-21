@@ -75,7 +75,7 @@ Tree.prototype.splitBranches = function () {
 	currGenBranches.forEach(function (branch) {
 		if (branch.dying && branch.lifespan > 0) {
 			nextGenBranches.push(branch);
-		} else {
+		} else if (!branch.dying) {
 			branch.kill(Math.floor(Math.random() * 60) + 60);
 			nextGenBranches.push(branch);
 

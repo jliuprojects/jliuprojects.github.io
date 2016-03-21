@@ -17,14 +17,16 @@ var Branch = function (parent, topWidth, bottomWidth, growthSpeed, colour, dying
 };
 
 Branch.prototype.grow = function () {
-	if (this.dying && this.lifespan > 0) {
+	if (this.dying && this.lifespan === 0) {
+		return;
+	} else if (this.dying && this.lifespan > 0) {
 		this.lifespan--;
-	} else {
-		this.mesh.geometry.verticesNeedUpdate = true;
-		this.mesh.geometry.vertices[this.mesh.geometry.vertices.length - 2].y += this.growthSpeed;
-		for (var i = 0; i < this.mesh.geometry.vertices.length/2 - 1; i++) {
-			this.mesh.geometry.vertices[i].y += this.growthSpeed;
-		}
+	}
+
+	this.mesh.geometry.verticesNeedUpdate = true;
+	this.mesh.geometry.vertices[this.mesh.geometry.vertices.length - 2].y += this.growthSpeed;
+	for (var i = 0; i < this.mesh.geometry.vertices.length/2 - 1; i++) {
+		this.mesh.geometry.vertices[i].y += this.growthSpeed;
 	}
 };
 
