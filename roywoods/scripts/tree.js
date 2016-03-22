@@ -13,6 +13,8 @@ var Tree = function (scene) {
 		false,
 		0
 	)]];
+
+	this.generations[0][0].mesh.position.y = -300;
 };
 
 Tree.prototype.growLeaves = function () {
