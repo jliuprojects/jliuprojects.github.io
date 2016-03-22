@@ -1,0 +1,41 @@
+	// var segments = 10;
+	// var geometry = new THREE.Geometry();
+	// var radius = 50;
+
+	// // VERTICES
+	// for (var i = 0; i < segments; i++) {
+	// 	var angle = 2 * Math.PI / segments * i;
+	// 	var z = Math.cos(angle) * (radius);
+	// 	var x = Math.sin(angle) * (radius);
+	// 	geometry.vertices.push(new THREE.Vector3(x, 0.5, z));
+	// }
+	// for (var i = 0; i < segments; i++) {
+	// 	var angle = 2 * Math.PI / segments * i;
+	// 	var z = Math.cos(angle) * (radius);
+	// 	var x = Math.sin(angle) * (radius);
+	// 	geometry.vertices.push(new THREE.Vector3(x, -0.5, z));
+	// }
+	// geometry.vertices.push(new THREE.Vector3(0, 0.5, 0));
+	// geometry.vertices.push(new THREE.Vector3(0, -0.5, 0));
+
+	// // FACES
+	// for (var i = 0; i < segments - 1; i++) {
+	// 	geometry.faces.push(new THREE.Face3( i, i + 1, geometry.vertices.length - 2));
+	// }
+	// geometry.faces.push(new THREE.Face3( segments - 1, 0, geometry.vertices.length - 2));
+	// for (var i = segments; i < segments * 2 - 1; i++) {
+	// 	geometry.faces.push(new THREE.Face3( i, i + 1, geometry.vertices.length - 1));
+	// }
+	// geometry.faces.push(new THREE.Face3( segments * 2 - 1, segments, geometry.vertices.length - 1));
+
+	// for (var i = 0; i < segments - 1; i++) {
+	// 	geometry.faces.push(new THREE.Face3( i, i + 1, segments + i));
+	// }
+	// geometry.faces.push(new THREE.Face3(segments - 1, 0, segments * 2 - 1));
+	// for (var i = segments; i < segments * 2 - 1; i++) {
+	// 	geometry.faces.push(new THREE.Face3( i, i + 1, i - segments + 1));
+	// }
+	// geometry.faces.push(new THREE.Face3(segments * 2 - 1, segments, 1));
+	
+	// geometry.computeBoundingSphere();
+	// geometry.computeFaceNormals();
