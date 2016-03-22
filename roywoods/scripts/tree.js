@@ -43,7 +43,7 @@ Tree.prototype.getRandomGrowthSpeed = function () {
 
 Tree.prototype.getRandomDirection = function (index) {
 	var x, z;
-	var baseAngle = Math.PI/4.5;
+	var baseAngle = Math.PI/5;
 	var factor = 0.5;
 	switch (index) {
 		case 0:
