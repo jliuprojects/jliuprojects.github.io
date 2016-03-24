@@ -124,7 +124,6 @@ play.prototype = {
 
         if (cursors.up.isDown && player.body.touching.down) {
             player.body.velocity.y = -500;
-            // player.animations.play('jump', 10);
         }
 
         if (!player.sliding && cursors.down.isDown && player.body.touching.down) {
