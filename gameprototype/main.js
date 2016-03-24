@@ -99,10 +99,13 @@ play.prototype = {
         });
         // game.physics.arcade.overlap(player, stars, collectStar, null, this);
 
-        //  Reset the players velocity (movement)
+        
+        player.animations.play('run', speed/35);
+
         player.body.velocity.x = 0;
         if (!player.body.touching.down) {
             player.body.velocity.x = 0;
+            player.animations.play('jump', speed/40);
         } else if (player.x < 160) {
             player.body.velocity.x = 300;
         } else if (player.x > 180) {
@@ -111,7 +114,7 @@ play.prototype = {
             player.body.velocity.x = 170;
         }
         
-        player.animations.play('run', speed/40);
+        
         
         if (cursors.left.isDown) {
             player.body.velocity.x = -250;
@@ -148,10 +151,10 @@ play.prototype = {
             ground.scale.setTo(2, 2);
         }
 
-        // if (bullets.length < 1) {
-        //     var bullet = new EnemyBullet(game, game.world.width + 10, Math.random() * (game.world.height - 100), 'bullet', bullets);
-        //     bullet.scale.setTo(0.25, 0.25);
-        // }
+        if (bullets.length < 1) {
+            var bullet = new EnemyBullet(game, game.world.width + 10, Math.random() * (game.world.height - 100), 'bullet', bullets);
+            bullet.scale.setTo(0.25, 0.25);
+        }
 
         // if (clouds.length < 2) {
         //     var cloud = new MovingCloudPlatform(game, game.world.width + 10, Math.random() * (game.world.height - 70), 'cloud-platform', clouds);
