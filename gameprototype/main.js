@@ -38,24 +38,25 @@ play.prototype = {
         var ground = new MovingStationaryObject(game, 0, game.world.height - 64, 'ground', grounds);
         ground.scale.setTo(2, 2);
         
-        var ledge = new MovingStationaryObject(game, 400, 500, 'ground', platforms);
-        ledge = new MovingStationaryObject(game, -150, 250, 'ground', platforms);
+        // var ledge = new MovingStationaryObject(game, 400, 500, 'ground', platforms);
+        // ledge = new MovingStationaryObject(game, -150, 250, 'ground', platforms);
 
-        var abullet = new EnemyBullet(game, 400, 200, 'bullet', bullets);
-        abullet.scale.setTo(0.5, 0.5);
+        var abullet = new EnemyBullet(game, 800, game.world.height - 200, 'bullet', bullets);
+        abullet.scale.setTo(0.25, 0.25);
 
-        var cloud = new MovingCloudPlatform(game, 400, 500, 'cloud-platform', clouds);
+        // var cloud = new MovingCloudPlatform(game, 400, 500, 'cloud-platform', clouds);
 
-        player = game.add.sprite(32, 150, 'harrison');
-        player.scale.setTo(0.30, 0.30);
+        player = game.add.sprite(32, game.world.height - 500, 'harrison');
+        player.scale.setTo(0.50, 0.50);
         game.physics.arcade.enable(player);
-        player.body.bounce.y = 0.2;
+        player.body.bounce.y = 0;
         player.body.gravity.y = 800;
-        // player.animations.add('right', [1, 2, 3, 4], 10, true);
-        // player.animations.add('jump', [5], 10, true);
-        player.animations.add('run', [0, 1, 2, 3, 4, ,5]);
+        player.animations.add('run', [1, 2, 3, 4, ,5]);
+        player.animations.add('stand', [0]);
         player.animations.add('slide', [6]);
-        player.animations.play('run', 10, true);
+        player.animations.play('stand', 10, true);
+        player.body.setSize(player.width*2, player.height*2);
+        // player.anchor.setTo(0.5, 1);
 
         // var playerSlideImg = game.cache.getImage('dudeSlide');
         // player.slideDimensions = {width: playerSlideImg.width, height: playerSlideImg.height};
@@ -79,6 +80,7 @@ play.prototype = {
     },
     update: function() {
         game.debug.spriteInfo(player, 20, 32);
+        // game.debug.body(player);
         updateScore();
 
         game.background.tilePosition.x -= 1;
@@ -94,7 +96,7 @@ play.prototype = {
 
         //  Reset the players velocity (movement)
         player.body.velocity.x = 0;
-        player.animations.play('run');
+        player.animations.play('run', 10);
         
         if (cursors.left.isDown) {
             player.body.velocity.x = -250;
@@ -108,8 +110,19 @@ play.prototype = {
         }
 
         if (cursors.down.isDown && player.body.touching.down) {
-            player.animations.play('slide');
-        } 
+            // debugger;
+            player.animations.play('slide', 10);
+            // player.body.syncBounds = true;
+            // player.sliding = 15;
+            // player.body.velocity.y = -500; 
+            player.body.setSize(player.width*2, player.height*2);
+            player.body.offset.y = 100/2;
+            player.body.offset.x = 0;
+        } else {
+            player.body.setSize(player.width*2, player.height*2);
+            player.body.offset.y = 0;
+            player.body.offset.x = 62/2;
+        }
         // else if (player.sliding) {
         //     player.sliding = false;
         //     player.loadTexture('dude');
@@ -121,19 +134,19 @@ play.prototype = {
             game.state.start("Play");
         }
 
-        if (platforms.length < 3) {
-            var platform = new MovingStationaryObject(game, game.world.width + 10, Math.random() * (game.world.height - 70), 'ground', platforms);
-        }
+        // if (platforms.length < 3) {
+        //     var platform = new MovingStationaryObject(game, game.world.width + 10, Math.random() * (game.world.height - 70), 'ground', platforms);
+        // }
 
         if (grounds.length < 2) {
             var ground = new MovingStationaryObject(game, game.world.width + Math.random() * 500, game.world.height - 64, 'ground', grounds);
             ground.scale.setTo(2, 2);
         }
 
-        if (bullets.length < 1) {
-            var ground = new EnemyBullet(game, game.world.width + 10, Math.random() * (game.world.height - 70), 'bullet', bullets);
-            ground.scale.setTo(0.5, 0.5);
-        }
+        // if (bullets.length < 1) {
+        //     var ground = new EnemyBullet(game, game.world.width + 10, Math.random() * (game.world.height - 70), 'bullet', bullets);
+        //     ground.scale.setTo(0.5, 0.5);
+        // }
 
         // if (clouds.length < 2) {
         //     var cloud = new MovingCloudPlatform(game, game.world.width + 10, Math.random() * (game.world.height - 70), 'cloud-platform', clouds);
