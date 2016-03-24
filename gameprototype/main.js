@@ -11,10 +11,7 @@ play.prototype = {
         game.load.image('sky', 'assets/sky.png');
         game.load.image('ground', 'assets/platform.png');
         game.load.image('star', 'assets/star.png');
-        game.load.spritesheet('dude', 'assets/running.png', 180.80, 278);
-        // game.load.spritesheet('dudeslide', 'assets/sliding.png', 240, 160);
         game.load.atlasJSONHash('harrison', 'assets/run.png', 'assets/run.json');
-        game.load.image('dudeSlide', 'assets/sliding.png');
         game.load.image('background', 'assets/clouds-h.png');
         game.load.image('bullet', 'assets/bullet.png');
         game.load.image('trees', 'assets/trees-h.png');
@@ -54,15 +51,23 @@ play.prototype = {
         player.animations.add('run', [1, 2, 3, 4, ,5]);
         player.animations.add('stand', [0]);
         player.animations.add('slide', [6]);
+        player.animations.add('jump', [3]);
         player.animations.play('stand', 10, true);
         player.body.setSize(player.width*2, player.height*2);
         // player.anchor.setTo(0.5, 1);
-
-        // var playerSlideImg = game.cache.getImage('dudeSlide');
-        // player.slideDimensions = {width: playerSlideImg.width, height: playerSlideImg.height};
-        // player.standDimensions = {width: player.width, height: player.height};
-        // player.anchor.setTo(0.5, 1);
-
+        player.setSliding = function(sliding) {
+            if (sliding) {
+                this.body.setSize(this.width*2, this.height*2);
+                this.body.offset.y = 100/2;
+                this.body.offset.x = 0;
+                this.sliding = 60;
+            } else {
+                this.body.setSize(this.width*2, this.height*2);
+                this.body.offset.y = 0;
+                this.body.offset.x = 62/2;
+            }
+        };
+        player.setSliding(false);
 
         cursors = game.input.keyboard.createCursorKeys();
 
@@ -89,14 +94,24 @@ play.prototype = {
         game.physics.arcade.collide(player, grounds);
         game.physics.arcade.collide(player, platforms);
         game.physics.arcade.collide(player, clouds);
-        game.physics.arcade.collide(player, bullets, function () {
+        game.physics.arcade.overlap(player, bullets, function () {
             game.state.start("Play");
         });
         // game.physics.arcade.overlap(player, stars, collectStar, null, this);
 
         //  Reset the players velocity (movement)
         player.body.velocity.x = 0;
-        player.animations.play('run', 10);
+        if (!player.body.touching.down) {
+            player.body.velocity.x = 0;
+        } else if (player.x < 160) {
+            player.body.velocity.x = 300;
+        } else if (player.x > 180) {
+            player.body.velocity.x = 100;
+        } else {
+            player.body.velocity.x = 170;
+        }
+        
+        player.animations.play('run', speed/40);
         
         if (cursors.left.isDown) {
             player.body.velocity.x = -250;
@@ -105,47 +120,37 @@ play.prototype = {
         }
 
         if (cursors.up.isDown && player.body.touching.down) {
-            player.body.velocity.y = -500;   
-            player.animations.play('jump');
+            player.body.velocity.y = -500;
+            // player.animations.play('jump', 10);
         }
 
-        if (cursors.down.isDown && player.body.touching.down) {
-            // debugger;
+        if (!player.sliding && cursors.down.isDown && player.body.touching.down) {
             player.animations.play('slide', 10);
-            // player.body.syncBounds = true;
-            // player.sliding = 15;
-            // player.body.velocity.y = -500; 
-            player.body.setSize(player.width*2, player.height*2);
-            player.body.offset.y = 100/2;
-            player.body.offset.x = 0;
-        } else {
-            player.body.setSize(player.width*2, player.height*2);
-            player.body.offset.y = 0;
-            player.body.offset.x = 62/2;
+            player.setSliding(true);
+        } else if (player.sliding > 1) {
+            player.animations.play('slide', 10);
+            player.sliding--;
+        } else if (player.sliding === 1) {
+            player.setSliding(false);
+            player.sliding--;
         }
-        // else if (player.sliding) {
-        //     player.sliding = false;
-        //     player.loadTexture('dude');
-        //     // player.animations.play('right');
-        //     player.body.setSize(player.standDimensions.width, player.standDimensions.height);
-        // }
 
         if (player.x + 32 < 0 || player.y > 600) {
             game.state.start("Play");
         }
 
-        // if (platforms.length < 3) {
-        //     var platform = new MovingStationaryObject(game, game.world.width + 10, Math.random() * (game.world.height - 70), 'ground', platforms);
-        // }
+        if (platforms.length < 1) {
+            var platform = new MovingStationaryObject(game, game.world.width + 10, Math.random() * (game.world.height - 70), 'ground', platforms);
+        }
 
         if (grounds.length < 2) {
-            var ground = new MovingStationaryObject(game, game.world.width + Math.random() * 500, game.world.height - 64, 'ground', grounds);
+            var ground = new MovingStationaryObject(game, game.world.width + Math.random() * 200, game.world.height - 64, 'ground', grounds);
             ground.scale.setTo(2, 2);
         }
 
         // if (bullets.length < 1) {
-        //     var ground = new EnemyBullet(game, game.world.width + 10, Math.random() * (game.world.height - 70), 'bullet', bullets);
-        //     ground.scale.setTo(0.5, 0.5);
+        //     var bullet = new EnemyBullet(game, game.world.width + 10, Math.random() * (game.world.height - 100), 'bullet', bullets);
+        //     bullet.scale.setTo(0.25, 0.25);
         // }
 
         // if (clouds.length < 2) {
