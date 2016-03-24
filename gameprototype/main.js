@@ -12,9 +12,9 @@ play.prototype = {
         game.load.image('ground', 'assets/platform.png');
         game.load.image('star', 'assets/star.png');
         game.load.atlasJSONHash('harrison', 'assets/run.png', 'assets/run.json');
-        game.load.image('background', 'assets/clouds-h.png');
+        game.load.image('background', 'assets/bg.png');
         game.load.image('bullet', 'assets/bullet.png');
-        game.load.image('trees', 'assets/trees-h.png');
+        game.load.image('trees', 'assets/treespink.png');
         game.load.image('cloud-platform', 'assets/cloud-platform.png');
     },
 
@@ -22,7 +22,7 @@ play.prototype = {
         score = 0;
         game.physics.startSystem(Phaser.Physics.ARCADE);
         game.background = game.add.tileSprite(0, 0, 800, 600, 'background');
-        middleGround = game.add.tileSprite(0, game.world.height - 116 - 64, 800, 116, 'trees');
+        middleGround = game.add.tileSprite(0, game.world.height - 216 - 64, 800, 216, 'trees');
         // middleGround.scale.setTo(2,2);
 
         scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
