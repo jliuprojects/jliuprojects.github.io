@@ -28,7 +28,6 @@ play.prototype = {
         // game.scale.pageAlignVertically = true;
         // game.scale.setScreenSize(true);
     },
-
     create: function() {
         score = 0;
         game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -45,9 +44,6 @@ play.prototype = {
 
         var ground = new MovingStationaryObject(game, 0, game.world.height - 64, 'ground', grounds);
         ground.scale.setTo(14, 1);
-        
-        // var ledge = new MovingStationaryObject(game, 400, 500, 'ground', platforms);
-        // ledge = new MovingStationaryObject(game, -150, 250, 'ground', platforms);
 
         var abullet = new EnemyBullet(game, 800, game.world.height - 200, 'bullet', bullets);
         abullet.scale.setTo(0.25, 0.25);
@@ -109,7 +105,6 @@ play.prototype = {
             game.state.start("Play");
         });
         // game.physics.arcade.overlap(player, stars, collectStar, null, this);
-
         
         player.animations.play('run', speed/35);
 
@@ -118,11 +113,11 @@ play.prototype = {
             player.body.velocity.x = 0;
             player.animations.play('jump', speed/40);
         } else if (player.x < 160) {
-            player.body.velocity.x = 300;
+            player.body.velocity.x = speed + 100;
         } else if (player.x > 180) {
-            player.body.velocity.x = 100;
+            player.body.velocity.x = speed - 100;
         } else {
-            player.body.velocity.x = 170;
+            player.body.velocity.x = speed;
         }
         
         
@@ -152,10 +147,15 @@ play.prototype = {
             game.state.start("Play");
         }
 
-        if (platforms.length < 1) {
-            var platform = new MovingStationaryObject(game, game.world.width + 10, Math.random() * (game.world.height - 370), "medPlatform", platforms);
-            platform = new MovingStationaryObject(game, game.world.width + 10, Math.random() * (game.world.height - 370), "smallPlatform", platforms);
-            platform = new MovingStationaryObject(game, game.world.width + 10, Math.random() * (game.world.height - 370), "stepPlatform", platforms);
+        if (platforms.length < 5) {
+            var width = randomIntFromInterval(game.world.width, game.world.width * 2);
+            var platform = new MovingStationaryObject(game, width, game.world.height - 200, "medPlatform", platforms);
+
+            width = randomIntFromInterval(game.world.width, game.world.width * 2);
+            platform = new MovingStationaryObject(game, width, game.world.height - 300, "smallPlatform", platforms);
+
+            width = randomIntFromInterval(game.world.width, game.world.width * 2);
+            platform = new MovingStationaryObject(game, width, game.world.height - 400, "stepPlatform", platforms);
         }
 
         var hasground = false;
@@ -189,7 +189,13 @@ game.state.start("Play");
 
 
 
+function randomFloatFromInterval(min, max) {
+    return Math.random()*(max-min)+min;
+};
 
+function randomIntFromInterval(min, max) {
+    return Math.floor(Math.random()*(max-min+1)+min);
+};
 
 
 
