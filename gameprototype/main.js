@@ -158,10 +158,20 @@ play.prototype = {
             platform = new MovingStationaryObject(game, game.world.width + 10, Math.random() * (game.world.height - 370), "stepPlatform", platforms);
         }
 
-        if (grounds.length < 2) {
-            var ground = new MovingStationaryObject(game, game.world.width - 100, game.world.height - 64, 'ground', grounds);
+        var hasground = false;
+        for (var i = 0; i < grounds.length; i++) {
+            if (grounds.children[i].x > 0) {
+                hasground = true;
+            }
+        }
+        if (!hasground) {
+            var ground = new MovingStationaryObject(game, game.world.width, game.world.height - 64, 'ground', grounds);
             ground.scale.setTo(14, 1);
         }
+        // if (grounds.length < 2) {
+        //     var ground = new MovingStationaryObject(game, game.world.width, game.world.height - 64, 'ground', grounds);
+        //     ground.scale.setTo(14, 1);
+        // }
 
         if (bullets.length < 1) {
             var bullet = new EnemyBullet(game, game.world.width + 10, Math.random() * (game.world.height - 100), 'bullet', bullets);
