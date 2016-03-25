@@ -1,3 +1,5 @@
+// var gameHeight = Math.min()
+// var gameWidth = 
 var game = new Phaser.Game(800, 600, Phaser.AUTO, '');
 var grounds, platforms, clouds, bullets, player, cursors, stars, scoreText, middleGround;
 var score = 0;
@@ -9,20 +11,28 @@ var play = function () {};
 play.prototype = {
     preload: function() {
         game.load.image('sky', 'assets/sky.png');
-        game.load.image('ground', 'assets/platform.png');
+        game.load.image('longPlatform', 'assets/longPlatform.png');
+        game.load.image('medPlatform', 'assets/medPlatform.png');
+        game.load.image('smallPlatform', 'assets/smallPlatform.png');
+        game.load.image('stepPlatform', 'assets/stepPlatform.png');
         game.load.image('star', 'assets/star.png');
         game.load.atlasJSONHash('harrison', 'assets/run.png', 'assets/run.json');
         game.load.image('background', 'assets/bg.png');
         game.load.image('bullet', 'assets/bullet.png');
-        game.load.image('trees', 'assets/treespink.png');
+        game.load.image('trees', 'assets/trees.png');
         game.load.image('cloud-platform', 'assets/cloud-platform.png');
+
+        // game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+        // game.scale.pageAlignHorizontally = true;
+        // game.scale.pageAlignVertically = true;
+        // game.scale.setScreenSize(true);
     },
 
     create: function() {
         score = 0;
         game.physics.startSystem(Phaser.Physics.ARCADE);
         game.background = game.add.tileSprite(0, 0, 800, 600, 'background');
-        middleGround = game.add.tileSprite(0, game.world.height - 216 - 64, 800, 216, 'trees');
+        middleGround = game.add.tileSprite(0, game.world.height - 140 - 64, 800, 140, 'trees');
         // middleGround.scale.setTo(2,2);
 
         scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
@@ -32,8 +42,8 @@ play.prototype = {
         bullets = game.add.group();
         clouds = game.add.physicsGroup();
 
-        var ground = new MovingStationaryObject(game, 0, game.world.height - 64, 'ground', grounds);
-        ground.scale.setTo(2, 2);
+        var ground = new MovingStationaryObject(game, 0, game.world.height - 64, 'longPlatform', grounds);
+        // ground.scale.setTo(2, 2);
         
         // var ledge = new MovingStationaryObject(game, 400, 500, 'ground', platforms);
         // ledge = new MovingStationaryObject(game, -150, 250, 'ground', platforms);
@@ -142,12 +152,14 @@ play.prototype = {
         }
 
         if (platforms.length < 1) {
-            var platform = new MovingStationaryObject(game, game.world.width + 10, Math.random() * (game.world.height - 70), 'ground', platforms);
+            var platform = new MovingStationaryObject(game, game.world.width + 10, Math.random() * (game.world.height - 70), "medPlatform", platforms);
+            platform = new MovingStationaryObject(game, game.world.width + 10, Math.random() * (game.world.height - 70), "smallPlatform", platforms);
+            platform = new MovingStationaryObject(game, game.world.width + 10, Math.random() * (game.world.height - 70), "stepPlatform", platforms);
         }
 
         if (grounds.length < 2) {
-            var ground = new MovingStationaryObject(game, game.world.width + Math.random() * 200, game.world.height - 64, 'ground', grounds);
-            ground.scale.setTo(2, 2);
+            var ground = new MovingStationaryObject(game, game.world.width + Math.random() * 200, game.world.height - 64, 'longPlatform', grounds);
+            // ground.scale.setTo(2, 2);
         }
 
         if (bullets.length < 1) {

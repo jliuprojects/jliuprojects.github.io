@@ -1,4 +1,3 @@
-
 MovingStationaryObject = function(game, x, y, key, group) {
     if (typeof group === 'undefined') { group = game.world; }
     Phaser.Sprite.call(this, game, x, y, key);
