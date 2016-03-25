@@ -147,7 +147,7 @@ play.prototype = {
             game.state.start("Play");
         }
 
-        if (platforms.length < 5) {
+        if (platforms.length < 2) {
             var width = randomIntFromInterval(game.world.width, game.world.width * 2);
             var platform = new MovingStationaryObject(game, width, game.world.height - 200, "medPlatform", platforms);
 
