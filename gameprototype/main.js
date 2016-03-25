@@ -3,7 +3,7 @@
 var game = new Phaser.Game(800, 600, Phaser.AUTO, '');
 var grounds, platforms, clouds, bullets, player, cursors, stars, scoreText, middleGround;
 var score = 0;
-var speed = 170;
+var speed = 200;
 var lastTime = Date.now();
 
 var play = function () {};
@@ -11,6 +11,7 @@ var play = function () {};
 play.prototype = {
     preload: function() {
         game.load.image('sky', 'assets/sky.png');
+        game.load.image('ground', 'assets/ground.png');
         game.load.image('longPlatform', 'assets/longPlatform.png');
         game.load.image('medPlatform', 'assets/medPlatform.png');
         game.load.image('smallPlatform', 'assets/smallPlatform.png');
@@ -42,8 +43,8 @@ play.prototype = {
         bullets = game.add.group();
         clouds = game.add.physicsGroup();
 
-        var ground = new MovingStationaryObject(game, 0, game.world.height - 64, 'longPlatform', grounds);
-        // ground.scale.setTo(2, 2);
+        var ground = new MovingStationaryObject(game, 0, game.world.height - 64, 'ground', grounds);
+        ground.scale.setTo(14, 1);
         
         // var ledge = new MovingStationaryObject(game, 400, 500, 'ground', platforms);
         // ledge = new MovingStationaryObject(game, -150, 250, 'ground', platforms);
@@ -152,14 +153,14 @@ play.prototype = {
         }
 
         if (platforms.length < 1) {
-            var platform = new MovingStationaryObject(game, game.world.width + 10, Math.random() * (game.world.height - 70), "medPlatform", platforms);
-            platform = new MovingStationaryObject(game, game.world.width + 10, Math.random() * (game.world.height - 70), "smallPlatform", platforms);
-            platform = new MovingStationaryObject(game, game.world.width + 10, Math.random() * (game.world.height - 70), "stepPlatform", platforms);
+            var platform = new MovingStationaryObject(game, game.world.width + 10, Math.random() * (game.world.height - 370), "medPlatform", platforms);
+            platform = new MovingStationaryObject(game, game.world.width + 10, Math.random() * (game.world.height - 370), "smallPlatform", platforms);
+            platform = new MovingStationaryObject(game, game.world.width + 10, Math.random() * (game.world.height - 370), "stepPlatform", platforms);
         }
 
         if (grounds.length < 2) {
-            var ground = new MovingStationaryObject(game, game.world.width + Math.random() * 200, game.world.height - 64, 'longPlatform', grounds);
-            // ground.scale.setTo(2, 2);
+            var ground = new MovingStationaryObject(game, game.world.width - 100, game.world.height - 64, 'ground', grounds);
+            ground.scale.setTo(14, 1);
         }
 
         if (bullets.length < 1) {
