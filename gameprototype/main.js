@@ -3,7 +3,7 @@
 var game = new Phaser.Game(800, 600, Phaser.AUTO, '');
 var grounds, platforms, clouds, bullets, player, cursors, stars, scoreText, middleGround;
 var score = 0;
-var speed = 200;
+var speed = 300;
 var lastTime = Date.now();
 
 var play = function () {};
