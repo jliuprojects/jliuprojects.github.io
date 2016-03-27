@@ -33,6 +33,8 @@ play.prototype = {
     },
     create: function() {
         score = 0;
+        currentLevel = 0;
+        levelFrame = 0;
         game.physics.startSystem(Phaser.Physics.ARCADE);
         game.background = game.add.tileSprite(0, 0, 1920, 1080, 'background');
         middleGround = game.add.tileSprite(0, game.world.height - 140 - 125, 1920, 140, 'trees');
@@ -183,18 +185,6 @@ play.prototype = {
             }
         }
         
-
-        // if (platforms.length < 2) {
-        //     var width = randomIntFromInterval(game.world.width, game.world.width * 2);
-        //     var platform = new MovingStationaryObject(game, width, game.world.height - 200, "medPlatform", platforms);
-
-        //     width = randomIntFromInterval(game.world.width, game.world.width * 2);
-        //     platform = new MovingStationaryObject(game, width, game.world.height - 300, "smallPlatform", platforms);
-
-        //     width = randomIntFromInterval(game.world.width, game.world.width * 2);
-        //     platform = new MovingStationaryObject(game, width, game.world.height - 400, "stepPlatform", platforms);
-        // }
-
         var hasground = false;
         for (var i = 0; i < grounds.length; i++) {
             if (grounds.children[i].x > 0) {
@@ -219,7 +209,6 @@ play.prototype = {
 }
 
 $.getJSON("levels/levels.json", function(json) {
-    // debugger;
     levels = json;
     game.state.add("Play", play);
     game.state.start("Play");
