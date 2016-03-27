@@ -5,6 +5,9 @@ var grounds, platforms, clouds, bullets, player, cursors, stars, scoreText, midd
 var score = 0;
 var speed = 300;
 var lastTime = Date.now();
+var levels = [];
+var currentLevel = 0;
+var levelFrame = 0;
 
 var play = function () {};
 
@@ -16,7 +19,7 @@ play.prototype = {
         game.load.image('medPlatform', 'assets/medPlatform.png');
         game.load.image('smallPlatform', 'assets/smallPlatform.png');
         game.load.image('stepPlatform', 'assets/stepPlatform.png');
-        game.load.image('star', 'assets/star.png');
+        game.load.image('biscuit', 'assets/biscuit.png');
         game.load.atlasJSONHash('harrison', 'assets/run.png', 'assets/run.json');
         game.load.image('background', 'assets/bg.png');
         game.load.image('bullet', 'assets/bullet.png');
@@ -49,6 +52,8 @@ play.prototype = {
         var abullet = new EnemyBullet(game, 800, game.world.height - 200, 'bullet', bullets);
         abullet.scale.setTo(0.25, 0.25);
 
+        var platform = new MovingStationaryObject(game, game.world.width/2, game.world.height/2, "stepPlatform", platforms);
+
         // var cloud = new MovingCloudPlatform(game, 400, 500, 'cloud-platform', clouds);
 
         player = game.add.sprite(32, game.world.height - 500, 'harrison');
@@ -79,17 +84,17 @@ play.prototype = {
 
         cursors = game.input.keyboard.createCursorKeys();
 
-        // stars = game.add.group();
-        // stars.enableBody = true;
-        // //  Here we'll create 12 of them evenly spaced apart
-        // for(var i = 0; i < 12; i++) {
-        //     //  Create a star inside of the 'stars' group
-        //     var star = stars.create(i * 70, 0, 'star');
-        //     //  Let gravity do its thing
-        //     star.body.gravity.y = 6;
-        //     //  This just gives each star a slightly random bounce value
-        //     star.body.bounce.y = 0.7 + Math.random() * 0.2;
-        // }
+        stars = game.add.group();
+        stars.enableBody = true;
+        //  Here we'll create 12 of them evenly spaced apart
+        for(var i = 0; i < 1; i++) {
+            //  Create a star inside of the 'stars' group
+            var star = stars.create(i * 70, 0, 'biscuit');
+            //  Let gravity do its thing
+            star.body.gravity.y = 6;
+            //  This just gives each star a slightly random bounce value
+            star.body.bounce.y = 0.7 + Math.random() * 0.2;
+        }
     },
     update: function() {
         game.debug.spriteInfo(player, 20, 32);
@@ -105,6 +110,7 @@ play.prototype = {
         game.physics.arcade.overlap(player, bullets, function () {
             game.state.start("Play");
         });
+        game.physics.arcade.overlap(player, stars, null, null, this);
         // game.physics.arcade.overlap(player, stars, collectStar, null, this);
         
         player.animations.play('run', speed/35);
@@ -148,16 +154,46 @@ play.prototype = {
             game.state.start("Play");
         }
 
-        if (platforms.length < 2) {
-            var width = randomIntFromInterval(game.world.width, game.world.width * 2);
-            var platform = new MovingStationaryObject(game, width, game.world.height - 200, "medPlatform", platforms);
+        if (platforms.length) {
+            if (platforms.children[platforms.length - 1].x + platforms.children[platforms.length - 1].width < game.world.width) {
+                nextPlatform = levels[currentLevel][levelFrame];
 
-            width = randomIntFromInterval(game.world.width, game.world.width * 2);
-            platform = new MovingStationaryObject(game, width, game.world.height - 300, "smallPlatform", platforms);
+                var x = nextPlatform.spacingBefore * 100 + 100;
+                var y = nextPlatform.heightLevel * 150;
 
-            width = randomIntFromInterval(game.world.width, game.world.width * 2);
-            platform = new MovingStationaryObject(game, width, game.world.height - 400, "stepPlatform", platforms);
+                switch(nextPlatform.type) {
+                    case "longPlatform":
+                        var platform = new MovingStationaryObject(game, game.world.width + x, game.world.height - 125 - y, "longPlatform", platforms);
+                        break;
+                    case "medPlatform":
+                        var platform = new MovingStationaryObject(game, game.world.width + x, game.world.height - 125 - y, "medPlatform", platforms);
+                        break;
+                    case "smallPlatform":
+                        var platform = new MovingStationaryObject(game, game.world.width + x, game.world.height - 125 - y, "smallPlatform", platforms);
+                        break;
+                    case "stepPlatform":
+                        var platform = new MovingStationaryObject(game, game.world.width + x, game.world.height - 125 - y, "stepPlatform", platforms);
+                        break;
+                }
+
+                levelFrame++;
+                if (levelFrame === levels[currentLevel].length) {
+                    levelFrame = 0;
+                }
+            }
         }
+        
+
+        // if (platforms.length < 2) {
+        //     var width = randomIntFromInterval(game.world.width, game.world.width * 2);
+        //     var platform = new MovingStationaryObject(game, width, game.world.height - 200, "medPlatform", platforms);
+
+        //     width = randomIntFromInterval(game.world.width, game.world.width * 2);
+        //     platform = new MovingStationaryObject(game, width, game.world.height - 300, "smallPlatform", platforms);
+
+        //     width = randomIntFromInterval(game.world.width, game.world.width * 2);
+        //     platform = new MovingStationaryObject(game, width, game.world.height - 400, "stepPlatform", platforms);
+        // }
 
         var hasground = false;
         for (var i = 0; i < grounds.length; i++) {
@@ -182,10 +218,12 @@ play.prototype = {
     }
 }
 
-game.state.add("Play", play);
-game.state.start("Play");
-
-
+$.getJSON("levels/levels.json", function(json) {
+    // debugger;
+    levels = json;
+    game.state.add("Play", play);
+    game.state.start("Play");
+});
 
 function randomFloatFromInterval(min, max) {
     return Math.random()*(max-min)+min;
