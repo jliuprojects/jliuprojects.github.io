@@ -1,18 +1,49 @@
-[
-    {
-        "longPlatform" : 2,
-        "medPlatform" : 3,
-        "smallPlatform" : 4,
-        "stepPlatform" : ,
-    }
-],
-[
-],
-[
-],
-[
-],
-[
-],
-[
-],
+[ //level 1
+    [
+        {
+            "type" : "longPlatform",
+            "spacingBefore" : 0,
+            "heightLevel" : 1
+        },
+        {
+            "type" : "smallPlatform",
+            "spacingBefore" : 1,
+            "heightLevel" : 2
+        },
+        {
+            "type" : "stepPlatform",
+            "spacingBefore" : 2,
+            "heightLevel" : 1
+        },
+        {
+            "type" : "longPlatform",
+            "spacingBefore" : 0,
+            "heightLevel" : 1
+        },
+        {
+            "type" : "longPlatform",
+            "spacingBefore" : 0,
+            "heightLevel" : 1
+        },
+        {
+            "type" : "longPlatform",
+            "spacingBefore" : 0,
+            "heightLevel" : 1
+        },
+        {
+            "type" : "longPlatform",
+            "spacingBefore" : 0,
+            "heightLevel" : 1
+        },
+        {
+            "type" : "longPlatform",
+            "spacingBefore" : 0,
+            "heightLevel" : 1
+        },
+        {
+            "type" : "longPlatform",
+            "spacingBefore" : 0,
+            "heightLevel" : 1
+        },
+    ],
+]

@@ -148,16 +148,16 @@ play.prototype = {
             game.state.start("Play");
         }
 
-        // if (platforms.length < 2) {
-        //     var width = randomIntFromInterval(game.world.width, game.world.width * 2);
-        //     var platform = new MovingStationaryObject(game, width, game.world.height - 200, "medPlatform", platforms);
+        if (platforms.length < 2) {
+            var width = randomIntFromInterval(game.world.width, game.world.width * 2);
+            var platform = new MovingStationaryObject(game, width, game.world.height - 200, "medPlatform", platforms);
 
-        //     width = randomIntFromInterval(game.world.width, game.world.width * 2);
-        //     platform = new MovingStationaryObject(game, width, game.world.height - 300, "smallPlatform", platforms);
+            width = randomIntFromInterval(game.world.width, game.world.width * 2);
+            platform = new MovingStationaryObject(game, width, game.world.height - 300, "smallPlatform", platforms);
 
-        //     width = randomIntFromInterval(game.world.width, game.world.width * 2);
-        //     platform = new MovingStationaryObject(game, width, game.world.height - 400, "stepPlatform", platforms);
-        // }
+            width = randomIntFromInterval(game.world.width, game.world.width * 2);
+            platform = new MovingStationaryObject(game, width, game.world.height - 400, "stepPlatform", platforms);
+        }
 
         var hasground = false;
         for (var i = 0; i < grounds.length; i++) {
@@ -170,15 +170,11 @@ play.prototype = {
             var scale = gameWidth / 71 + 1;
             ground.scale.setTo(scale, 1);
         }
-        // if (grounds.length < 2) {
-        //     var ground = new MovingStationaryObject(game, game.world.width, game.world.height - 64, 'ground', grounds);
-        //     ground.scale.setTo(14, 1);
-        // }
 
-        // if (bullets.length < 1) {
-        //     var bullet = new EnemyBullet(game, game.world.width + 10, Math.random() * (game.world.height - 100), 'bullet', bullets);
-        //     bullet.scale.setTo(0.25, 0.25);
-        // }
+        if (bullets.length < 1) {
+            var bullet = new EnemyBullet(game, game.world.width + 10, Math.random() * (game.world.height - 100), 'bullet', bullets);
+            bullet.scale.setTo(0.25, 0.25);
+        }
 
         // if (clouds.length < 2) {
         //     var cloud = new MovingCloudPlatform(game, game.world.width + 10, Math.random() * (game.world.height - 70), 'cloud-platform', clouds);
