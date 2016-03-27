@@ -3,47 +3,56 @@
         {
             "type" : "longPlatform",
             "spacingBefore" : 0,
-            "heightLevel" : 1
+            "heightLevel" : 1,
+            "hasBiscuit" : false
         },
         {
             "type" : "smallPlatform",
             "spacingBefore" : 1,
-            "heightLevel" : 2
+            "heightLevel" : 2,
+            "hasBiscuit" : false
         },
         {
             "type" : "stepPlatform",
             "spacingBefore" : 2,
-            "heightLevel" : 3
+            "heightLevel" : 3,
+            "hasBiscuit" : true
         },
         {
             "type" : "medPlatform",
             "spacingBefore" : 3,
-            "heightLevel" : 1
+            "heightLevel" : 1,
+            "hasBiscuit" : false
         },
         {
             "type" : "longPlatform",
             "spacingBefore" : 1,
-            "heightLevel" : 2
+            "heightLevel" : 2,
+            "hasBiscuit" : false
         },
         {
             "type" : "medPlatform",
             "spacingBefore" : 2,
-            "heightLevel" : 1
+            "heightLevel" : 1,
+            "hasBiscuit" : true
         },
         {
             "type" : "stepPlatform",
             "spacingBefore" : 2,
-            "heightLevel" : 2
+            "heightLevel" : 2,
+            "hasBiscuit" : false
         },
         {
             "type" : "medPlatform",
             "spacingBefore" : 2,
-            "heightLevel" : 3
+            "heightLevel" : 3,
+            "hasBiscuit" : true
         },
         {
             "type" : "longPlatform",
             "spacingBefore" : 1,
-            "heightLevel" : 1
+            "heightLevel" : 1,
+            "hasBiscuit" : false
         }
     ]
 ]

@@ -1,13 +1,14 @@
 var gameHeight = Math.max(600, window.innerHeight);
 var gameWidth = Math.max(800, window.innerWidth);
 var game = new Phaser.Game(gameWidth, gameHeight, Phaser.AUTO, '');
-var grounds, platforms, clouds, bullets, player, cursors, stars, scoreText, middleGround;
+var grounds, platforms, clouds, bullets, player, cursors, biscuits, scoreText, middleGround;
 var score = 0;
 var speed = 300;
 var lastTime = Date.now();
 var levels = [];
 var currentLevel = 0;
 var levelFrame = 0;
+var dead = false;
 
 var play = function () {};
 
@@ -35,6 +36,7 @@ play.prototype = {
         score = 0;
         currentLevel = 0;
         levelFrame = 0;
+        dead = false;
         game.physics.startSystem(Phaser.Physics.ARCADE);
         game.background = game.add.tileSprite(0, 0, 1920, 1080, 'background');
         middleGround = game.add.tileSprite(0, game.world.height - 140 - 125, 1920, 140, 'trees');
@@ -86,33 +88,44 @@ play.prototype = {
 
         cursors = game.input.keyboard.createCursorKeys();
 
-        stars = game.add.group();
-        stars.enableBody = true;
+        biscuits = game.add.group();
+        biscuits.enableBody = true;
         //  Here we'll create 12 of them evenly spaced apart
         for(var i = 0; i < 1; i++) {
             //  Create a star inside of the 'stars' group
-            var star = stars.create(i * 70, 0, 'biscuit');
+            var biscuit = biscuits.create(170, 0, 'biscuit');
             //  Let gravity do its thing
-            star.body.gravity.y = 6;
+            biscuit.body.gravity.y = 800;
             //  This just gives each star a slightly random bounce value
-            star.body.bounce.y = 0.7 + Math.random() * 0.2;
+            biscuit.body.bounce.y = 0.7 + Math.random() * 0.2;
         }
     },
     update: function() {
-        game.debug.spriteInfo(player, 20, 32);
+        // game.debug.spriteInfo(player, 20, 32);
         // game.debug.body(player);
         updateScore();
+        if (dead) {
+            return;
+        }
 
         game.background.tilePosition.x -= 1;
         middleGround.tilePosition.x -= 2;
 
+        game.physics.arcade.collide(biscuits, grounds);
+        game.physics.arcade.collide(biscuits, platforms);
         game.physics.arcade.collide(player, grounds);
         game.physics.arcade.collide(player, platforms);
         game.physics.arcade.collide(player, clouds);
         game.physics.arcade.overlap(player, bullets, function () {
-            game.state.start("Play");
+            dead = true;
+            window.setTimeout(function() {
+                game.state.start("Play");
+            }, 2000);
         });
-        game.physics.arcade.overlap(player, stars, null, null, this);
+        game.physics.arcade.overlap(player, biscuits, function(player, biscuit) {
+            score += 50;
+            biscuit.destroy();
+        });
         // game.physics.arcade.overlap(player, stars, collectStar, null, this);
         
         player.animations.play('run', speed/35);
@@ -153,29 +166,38 @@ play.prototype = {
         }
 
         if (player.x + 32 < 0 || player.y > 600) {
-            game.state.start("Play");
+            dead = true;
+            window.setTimeout(function() {
+                game.state.start("Play");
+            }, 2000);
         }
 
         if (platforms.length) {
             if (platforms.children[platforms.length - 1].x + platforms.children[platforms.length - 1].width < game.world.width) {
                 nextPlatform = levels[currentLevel][levelFrame];
 
-                var x = nextPlatform.spacingBefore * 70 + 70;
-                var y = nextPlatform.heightLevel * 150;
+                var x = game.world.width + nextPlatform.spacingBefore * 70 + 70;
+                var y = game.world.height - 125 - nextPlatform.heightLevel * 150;
 
                 switch(nextPlatform.type) {
                     case "longPlatform":
-                        var platform = new MovingStationaryObject(game, game.world.width + x, game.world.height - 125 - y, "longPlatform", platforms);
+                        var platform = new MovingStationaryObject(game, x, y, "longPlatform", platforms);
                         break;
                     case "medPlatform":
-                        var platform = new MovingStationaryObject(game, game.world.width + x, game.world.height - 125 - y, "medPlatform", platforms);
+                        var platform = new MovingStationaryObject(game, x, y, "medPlatform", platforms);
                         break;
                     case "smallPlatform":
-                        var platform = new MovingStationaryObject(game, game.world.width + x, game.world.height - 125 - y, "smallPlatform", platforms);
+                        var platform = new MovingStationaryObject(game, x, y, "smallPlatform", platforms);
                         break;
                     case "stepPlatform":
-                        var platform = new MovingStationaryObject(game, game.world.width + x, game.world.height - 125 - y, "stepPlatform", platforms);
+                        var platform = new MovingStationaryObject(game, x, y, "stepPlatform", platforms);
                         break;
+                }
+
+                if (nextPlatform.hasBiscuit = true) {
+                    var biscuit = biscuits.create(x + Math.random() * 300, y - 100, 'biscuit');
+                    biscuit.body.gravity.y = 800;
+                    biscuit.body.bounce.y = 0.7 + Math.random() * 0.2;
                 }
 
                 levelFrame++;
