@@ -43,7 +43,8 @@ play.prototype = {
         clouds = game.add.physicsGroup();
 
         var ground = new MovingStationaryObject(game, 0, game.world.height - 64, 'ground', grounds);
-        ground.scale.setTo(14, 1);
+        var scale = gameWidth / 71 + 1;
+        ground.scale.setTo(scale, 1);
 
         var abullet = new EnemyBullet(game, 800, game.world.height - 200, 'bullet', bullets);
         abullet.scale.setTo(0.25, 0.25);
@@ -166,7 +167,8 @@ play.prototype = {
         }
         if (!hasground) {
             var ground = new MovingStationaryObject(game, game.world.width, game.world.height - 64, 'ground', grounds);
-            ground.scale.setTo(14, 1);
+            var scale = gameWidth / 71 + 1;
+            ground.scale.setTo(scale, 1);
         }
         // if (grounds.length < 2) {
         //     var ground = new MovingStationaryObject(game, game.world.width, game.world.height - 64, 'ground', grounds);
