@@ -160,7 +160,7 @@ play.prototype = {
             if (platforms.children[platforms.length - 1].x + platforms.children[platforms.length - 1].width < game.world.width) {
                 nextPlatform = levels[currentLevel][levelFrame];
 
-                var x = nextPlatform.spacingBefore * 100 + 100;
+                var x = nextPlatform.spacingBefore * 70 + 70;
                 var y = nextPlatform.heightLevel * 150;
 
                 switch(nextPlatform.type) {
