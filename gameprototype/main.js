@@ -1,6 +1,6 @@
-// var gameHeight = Math.min()
-// var gameWidth = 
-var game = new Phaser.Game(800, 600, Phaser.AUTO, '');
+var gameHeight = Math.max(600, window.innerHeight);
+var gameWidth = Math.max(800, window.innerWidth);
+var game = new Phaser.Game(gameWidth, gameHeight, Phaser.AUTO, '');
 var grounds, platforms, clouds, bullets, player, cursors, stars, scoreText, middleGround;
 var score = 0;
 var speed = 300;
@@ -23,7 +23,7 @@ play.prototype = {
         game.load.image('trees', 'assets/trees.png');
         game.load.image('cloud-platform', 'assets/cloud-platform.png');
 
-        // game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+        game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
         // game.scale.pageAlignHorizontally = true;
         // game.scale.pageAlignVertically = true;
         // game.scale.setScreenSize(true);
@@ -31,8 +31,8 @@ play.prototype = {
     create: function() {
         score = 0;
         game.physics.startSystem(Phaser.Physics.ARCADE);
-        game.background = game.add.tileSprite(0, 0, 800, 600, 'background');
-        middleGround = game.add.tileSprite(0, game.world.height - 140 - 64, 800, 140, 'trees');
+        game.background = game.add.tileSprite(0, 0, 1920, 1080, 'background');
+        middleGround = game.add.tileSprite(0, game.world.height - 140 - 64, 1920, 140, 'trees');
         // middleGround.scale.setTo(2,2);
 
         scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
