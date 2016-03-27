@@ -101,12 +101,12 @@ play.prototype = {
         }
     },
     update: function() {
-        // game.debug.spriteInfo(player, 20, 32);
-        // game.debug.body(player);
-        updateScore();
         if (dead) {
             return;
         }
+        // game.debug.spriteInfo(player, 20, 32);
+        // game.debug.body(player);
+        updateScore();
 
         game.background.tilePosition.x -= 1;
         middleGround.tilePosition.x -= 2;
