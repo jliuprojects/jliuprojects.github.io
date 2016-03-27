@@ -32,7 +32,7 @@ play.prototype = {
         score = 0;
         game.physics.startSystem(Phaser.Physics.ARCADE);
         game.background = game.add.tileSprite(0, 0, 1920, 1080, 'background');
-        middleGround = game.add.tileSprite(0, game.world.height - 140 - 64, 1920, 140, 'trees');
+        middleGround = game.add.tileSprite(0, game.world.height - 140 - 125, 1920, 140, 'trees');
         // middleGround.scale.setTo(2,2);
 
         scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
@@ -42,7 +42,7 @@ play.prototype = {
         bullets = game.add.group();
         clouds = game.add.physicsGroup();
 
-        var ground = new MovingStationaryObject(game, 0, game.world.height - 64, 'ground', grounds);
+        var ground = new MovingStationaryObject(game, 0, game.world.height - 125, 'ground', grounds);
         var scale = gameWidth / 71 + 1;
         ground.scale.setTo(scale, 1);
 
@@ -148,16 +148,16 @@ play.prototype = {
             game.state.start("Play");
         }
 
-        if (platforms.length < 2) {
-            var width = randomIntFromInterval(game.world.width, game.world.width * 2);
-            var platform = new MovingStationaryObject(game, width, game.world.height - 200, "medPlatform", platforms);
+        // if (platforms.length < 2) {
+        //     var width = randomIntFromInterval(game.world.width, game.world.width * 2);
+        //     var platform = new MovingStationaryObject(game, width, game.world.height - 200, "medPlatform", platforms);
 
-            width = randomIntFromInterval(game.world.width, game.world.width * 2);
-            platform = new MovingStationaryObject(game, width, game.world.height - 300, "smallPlatform", platforms);
+        //     width = randomIntFromInterval(game.world.width, game.world.width * 2);
+        //     platform = new MovingStationaryObject(game, width, game.world.height - 300, "smallPlatform", platforms);
 
-            width = randomIntFromInterval(game.world.width, game.world.width * 2);
-            platform = new MovingStationaryObject(game, width, game.world.height - 400, "stepPlatform", platforms);
-        }
+        //     width = randomIntFromInterval(game.world.width, game.world.width * 2);
+        //     platform = new MovingStationaryObject(game, width, game.world.height - 400, "stepPlatform", platforms);
+        // }
 
         var hasground = false;
         for (var i = 0; i < grounds.length; i++) {
@@ -166,7 +166,7 @@ play.prototype = {
             }
         }
         if (!hasground) {
-            var ground = new MovingStationaryObject(game, game.world.width, game.world.height - 64, 'ground', grounds);
+            var ground = new MovingStationaryObject(game, game.world.width, game.world.height - 125, 'ground', grounds);
             var scale = gameWidth / 71 + 1;
             ground.scale.setTo(scale, 1);
         }
@@ -175,10 +175,10 @@ play.prototype = {
         //     ground.scale.setTo(14, 1);
         // }
 
-        if (bullets.length < 1) {
-            var bullet = new EnemyBullet(game, game.world.width + 10, Math.random() * (game.world.height - 100), 'bullet', bullets);
-            bullet.scale.setTo(0.25, 0.25);
-        }
+        // if (bullets.length < 1) {
+        //     var bullet = new EnemyBullet(game, game.world.width + 10, Math.random() * (game.world.height - 100), 'bullet', bullets);
+        //     bullet.scale.setTo(0.25, 0.25);
+        // }
 
         // if (clouds.length < 2) {
         //     var cloud = new MovingCloudPlatform(game, game.world.width + 10, Math.random() * (game.world.height - 70), 'cloud-platform', clouds);
@@ -199,13 +199,15 @@ function randomIntFromInterval(min, max) {
     return Math.floor(Math.random()*(max-min+1)+min);
 };
 
-
-
-
 function updateScore() {
     if (Date.now() - 1000 > lastTime) {
         score += 1;
         scoreText.text = 'Score: ' + score;
         lastTime = Date.now();
     }
-}
+};
+
+// window.onresize = function () {
+//     console.log("resize");  
+//     game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+// }
