@@ -1,7 +1,7 @@
 var gameHeight = Math.max(600, window.innerHeight);
 var gameWidth = Math.max(800, window.innerWidth);
 var game = new Phaser.Game(gameWidth, gameHeight, Phaser.AUTO, '');
-var grounds, platforms, clouds, bullets, player, cursors, bones, scoreText, middleGround;
+var grounds, platforms, clouds, bullets, player, cursors, bones, scoreText, speedText, middleGround;
 var score = 0;
 var speed = 300;
 var lastTime = Date.now();
@@ -42,7 +42,8 @@ play.prototype = {
         middleGround = game.add.tileSprite(0, game.world.height - 140 - 125, 1920, 140, 'trees');
         // middleGround.scale.setTo(2,2);
 
-        scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+        scoreText = game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
+        speedText = game.add.text(16, 50, 'Speed: ' + speed, { fontSize: '32px', fill: '#000' });
 
         platforms = game.add.group();
         grounds = game.add.group();
@@ -97,7 +98,7 @@ play.prototype = {
             //  Let gravity do its thing
             bone.body.gravity.y = 800;
             //  This just gives each star a slightly random bounce value
-            bone.body.bounce.y = 0.7 + Math.random() * 0.2;
+            // bone.body.bounce.y = 0.7 + Math.random() * 0.2;
         }
     },
     update: function() {
@@ -107,7 +108,9 @@ play.prototype = {
         // game.debug.spriteInfo(player, 20, 32);
         // game.debug.body(player);
         // game.debug.body(bullets.children[0]);
-        updateScore();
+        this.updateSpeed();
+        this.updateScore();
+        
 
         game.background.tilePosition.x -= 1;
         middleGround.tilePosition.x -= 2;
@@ -119,6 +122,7 @@ play.prototype = {
         game.physics.arcade.collide(player, clouds);
         game.physics.arcade.overlap(player, bullets, function () {
             dead = true;
+            player.body.velocity.x = 0;
             window.setTimeout(function() {
                 game.state.start("Play");
             }, 2000);
@@ -142,14 +146,6 @@ play.prototype = {
         } else {
             player.body.velocity.x = speed;
         }
-        
-        
-        
-        if (cursors.left.isDown) {
-            player.body.velocity.x = -250;
-        } else if (cursors.right.isDown) {
-            player.body.velocity.x = 250;
-        }
 
         if (cursors.up.isDown && player.body.touching.down) {
             player.body.velocity.y = -500;
@@ -168,6 +164,7 @@ play.prototype = {
 
         if (player.x + 32 < 0 || player.y > 600) {
             dead = true;
+            player.body.velocity.x = 0;
             window.setTimeout(function() {
                 game.state.start("Play");
             }, 2000);
@@ -228,12 +225,26 @@ play.prototype = {
         if (bones.length < 40) {
             var bone = bones.create(game.world.width + Math.random() * game.world.width, 100, 'bone');
             bone.body.gravity.y = 400;
-            bone.body.bounce.y = 0.7 + Math.random() * 0.2;
+            // bone.body.bounce.y = 0.7 + Math.random() * 0.2;
         }
 
         // if (clouds.length < 2) {
         //     var cloud = new MovingCloudPlatform(game, game.world.width + 10, Math.random() * (game.world.height - 70), 'cloud-platform', clouds);
         // }
+    },
+    updateSpeed : function() {
+        if (Date.now() - 1000 > lastTime) {
+            speed += 1;
+            speedText.text = 'Speed: ' + speed;
+        }
+
+    },
+    updateScore : function() {
+        if (Date.now() - 1000 > lastTime) {
+            score += 1;
+            scoreText.text = 'Score: ' + score;
+            lastTime = Date.now();
+        }
     }
 }
 
@@ -249,14 +260,6 @@ function randomFloatFromInterval(min, max) {
 
 function randomIntFromInterval(min, max) {
     return Math.floor(Math.random()*(max-min+1)+min);
-};
-
-function updateScore() {
-    if (Date.now() - 1000 > lastTime) {
-        score += 1;
-        scoreText.text = 'Score: ' + score;
-        lastTime = Date.now();
-    }
 };
 
 // window.onresize = function () {
