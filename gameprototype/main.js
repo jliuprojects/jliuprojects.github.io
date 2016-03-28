@@ -193,7 +193,7 @@ play.prototype = {
                 }
 
                 for (var i = 0; i < nextPlatform.bones; i++) {
-                    var bone = bones.create(x + i * 50, y - 100, 'bone');
+                    var bone = bones.create(x + i * 100, y - 100, 'bone');
                     bone.body.gravity.y = 800;
                     bone.body.bounce.y = 0.7 + Math.random() * 0.2;
                 }
@@ -222,11 +222,11 @@ play.prototype = {
             bullet.scale.setTo(0.25, 0.25);
         }
 
-        if (bones.length < 40) {
-            var bone = bones.create(game.world.width + Math.random() * game.world.width, 100, 'bone');
-            bone.body.gravity.y = 400;
-            // bone.body.bounce.y = 0.7 + Math.random() * 0.2;
-        }
+        // if (bones.length < 40) {
+        //     var bone = bones.create(game.world.width + Math.random() * game.world.width, 100, 'bone');
+        //     bone.body.gravity.y = 400;
+        //     // bone.body.bounce.y = 0.7 + Math.random() * 0.2;
+        // }
 
         // if (clouds.length < 2) {
         //     var cloud = new MovingCloudPlatform(game, game.world.width + 10, Math.random() * (game.world.height - 70), 'cloud-platform', clouds);
