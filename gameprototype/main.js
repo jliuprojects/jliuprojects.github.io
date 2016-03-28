@@ -37,6 +37,7 @@ play.prototype = {
         currentLevel = 0;
         levelFrame = 0;
         dead = false;
+        speed = 300;
         game.physics.startSystem(Phaser.Physics.ARCADE);
         game.background = game.add.tileSprite(0, 0, 1920, 1080, 'background');
         middleGround = game.add.tileSprite(0, game.world.height - 140 - 125, 1920, 140, 'trees');
@@ -234,7 +235,7 @@ play.prototype = {
     },
     updateSpeed : function() {
         if (Date.now() - 1000 > lastTime) {
-            speed += 1;
+            speed += 2;
             speedText.text = 'Speed: ' + speed;
         }
 
