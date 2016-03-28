@@ -1,7 +1,7 @@
 var gameHeight = Math.max(600, window.innerHeight);
 var gameWidth = Math.max(800, window.innerWidth);
 var game = new Phaser.Game(gameWidth, gameHeight, Phaser.AUTO, '');
-var grounds, platforms, clouds, bullets, player, cursors, biscuits, scoreText, middleGround;
+var grounds, platforms, clouds, bullets, player, cursors, bones, scoreText, middleGround;
 var score = 0;
 var speed = 300;
 var lastTime = Date.now();
@@ -20,7 +20,7 @@ play.prototype = {
         game.load.image('medPlatform', 'assets/medPlatform.png');
         game.load.image('smallPlatform', 'assets/smallPlatform.png');
         game.load.image('stepPlatform', 'assets/stepPlatform.png');
-        game.load.image('biscuit', 'assets/biscuit.png');
+        game.load.image('bone', 'assets/bone.png');
         game.load.atlasJSONHash('harrison', 'assets/run.png', 'assets/run.json');
         game.load.image('background', 'assets/bg.png');
         game.load.image('bullet', 'assets/bullet.png');
@@ -88,16 +88,16 @@ play.prototype = {
 
         cursors = game.input.keyboard.createCursorKeys();
 
-        biscuits = game.add.group();
-        biscuits.enableBody = true;
+        bones = game.add.group();
+        bones.enableBody = true;
         //  Here we'll create 12 of them evenly spaced apart
         for(var i = 0; i < 1; i++) {
             //  Create a star inside of the 'stars' group
-            var biscuit = biscuits.create(170, 0, 'biscuit');
+            var bone = bones.create(170, 0, 'bone');
             //  Let gravity do its thing
-            biscuit.body.gravity.y = 800;
+            bone.body.gravity.y = 800;
             //  This just gives each star a slightly random bounce value
-            biscuit.body.bounce.y = 0.7 + Math.random() * 0.2;
+            bone.body.bounce.y = 0.7 + Math.random() * 0.2;
         }
     },
     update: function() {
@@ -106,13 +106,14 @@ play.prototype = {
         }
         // game.debug.spriteInfo(player, 20, 32);
         // game.debug.body(player);
+        // game.debug.body(bullets.children[0]);
         updateScore();
 
         game.background.tilePosition.x -= 1;
         middleGround.tilePosition.x -= 2;
 
-        game.physics.arcade.collide(biscuits, grounds);
-        game.physics.arcade.collide(biscuits, platforms);
+        game.physics.arcade.collide(bones, grounds);
+        game.physics.arcade.collide(bones, platforms);
         game.physics.arcade.collide(player, grounds);
         game.physics.arcade.collide(player, platforms);
         game.physics.arcade.collide(player, clouds);
@@ -122,9 +123,9 @@ play.prototype = {
                 game.state.start("Play");
             }, 2000);
         });
-        game.physics.arcade.overlap(player, biscuits, function(player, biscuit) {
+        game.physics.arcade.overlap(player, bones, function(player, bone) {
             score += 50;
-            biscuit.destroy();
+            bone.destroy();
         });
         // game.physics.arcade.overlap(player, stars, collectStar, null, this);
         
@@ -194,10 +195,10 @@ play.prototype = {
                         break;
                 }
 
-                if (nextPlatform.hasBiscuit = true) {
-                    var biscuit = biscuits.create(x + Math.random() * 300, y - 100, 'biscuit');
-                    biscuit.body.gravity.y = 800;
-                    biscuit.body.bounce.y = 0.7 + Math.random() * 0.2;
+                for (var i = 0; i < nextPlatform.bones; i++) {
+                    var bone = bones.create(x + i * 50, y - 100, 'bone');
+                    bone.body.gravity.y = 800;
+                    bone.body.bounce.y = 0.7 + Math.random() * 0.2;
                 }
 
                 levelFrame++;
@@ -222,6 +223,12 @@ play.prototype = {
         if (bullets.length < 1) {
             var bullet = new EnemyBullet(game, game.world.width + 10, Math.random() * (game.world.height - 100), 'bullet', bullets);
             bullet.scale.setTo(0.25, 0.25);
+        }
+
+        if (bones.length < 40) {
+            var bone = bones.create(game.world.width + Math.random() * game.world.width, 100, 'bone');
+            bone.body.gravity.y = 400;
+            bone.body.bounce.y = 0.7 + Math.random() * 0.2;
         }
 
         // if (clouds.length < 2) {
