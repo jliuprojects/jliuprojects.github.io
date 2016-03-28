@@ -53,7 +53,7 @@ play.prototype = {
         var scale = gameWidth / 71 + 1;
         ground.scale.setTo(scale, 1);
 
-        var abullet = new EnemyBullet(game, 800, game.world.height - 200, 'bullet', bullets);
+        var abullet = new EnemyBullet(game, 800, game.world.height - 240, 'bullet', bullets);
         abullet.scale.setTo(0.25, 0.25);
 
         var platform = new MovingStationaryObject(game, game.world.width/2, game.world.height/2, "stepPlatform", platforms);
@@ -221,7 +221,7 @@ play.prototype = {
         }
 
         if (bullets.length < 1) {
-            var bullet = new EnemyBullet(game, game.world.width + 10, Math.random() * (game.world.height - 100), 'bullet', bullets);
+            var bullet = new EnemyBullet(game, game.world.width + 10, Math.random() * (game.world.height - 240), 'bullet', bullets);
             bullet.scale.setTo(0.25, 0.25);
         }
 
