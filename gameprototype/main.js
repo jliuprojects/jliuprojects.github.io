@@ -195,7 +195,7 @@ play.prototype = {
                 for (var i = 0; i < nextPlatform.bones; i++) {
                     var bone = bones.create(x + i * 100, y - 100, 'bone');
                     bone.body.gravity.y = 800;
-                    bone.body.bounce.y = 0.7 + Math.random() * 0.2;
+                    // bone.body.bounce.y = 0.7 + Math.random() * 0.2;
                 }
 
                 levelFrame++;
