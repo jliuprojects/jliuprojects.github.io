@@ -1,7 +1,7 @@
 var gameHeight = Math.max(600, window.innerHeight);
 var gameWidth = Math.max(800, window.innerWidth);
 var game = new Phaser.Game(gameWidth, gameHeight, Phaser.AUTO, '');
-var grounds, platforms, clouds, bullets, player, cursors, bones, scoreText, speedText, middleGround;
+var grounds, platforms, clouds, bullets, player, cursors, bones, scoreText, speedText, middleGround, spikes;
 var score = 0;
 var speed = 300;
 var levels = [];
@@ -23,6 +23,7 @@ play.prototype = {
         game.load.image('background', 'assets/bg.png');
         game.load.image('bullet', 'assets/bullet.png');
         game.load.image('trees', 'assets/trees.png');
+        game.load.image('spike', 'assets/spike.png');
         game.load.image('cloud-platform', 'assets/cloud-platform.png');
 
         game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
@@ -48,6 +49,7 @@ play.prototype = {
         platforms = game.add.group();
         grounds = game.add.group();
         bullets = game.add.group();
+        spikes = game.add.group();
         bones = game.add.group();
         bones.enableBody = true;
 
@@ -92,6 +94,9 @@ play.prototype = {
         game.physics.arcade.overlap(player, bullets, function () {
             player.kill();
         });
+        game.physics.arcade.overlap(player, spikes, function () {
+            player.kill();
+        });
         game.physics.arcade.overlap(player, bones, function(player, bone) {
             score += 50;
             bone.destroy();
@@ -100,6 +105,11 @@ play.prototype = {
         if (bullets.length < 1) {
             var bullet = new EnemyBullet(game, game.world.width + 10, Math.random() * (game.world.height - 240), 'bullet', bullets);
             bullet.scale.setTo(0.25, 0.25);
+        }
+
+        if (spikes.length < 1) {
+            var spike = new MovingStationaryObject(game, game.world.width + 10, game.world.height - 170, 'spike', spikes);
+            spike.scale.setTo(0.4, 0.4);
         }
 
         // if (clouds.length < 2) {
