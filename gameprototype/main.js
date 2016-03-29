@@ -91,10 +91,10 @@ play.prototype = {
         game.physics.arcade.collide(player, grounds);
         game.physics.arcade.collide(player, platforms);
         game.physics.arcade.collide(player, clouds);
-        game.physics.arcade.overlap(player, bullets, function () {
+        game.physics.arcade.overlap(player, bullets, function() {
             player.kill();
         });
-        game.physics.arcade.overlap(player, spikes, function () {
+        game.physics.arcade.overlap(player, spikes, function() {
             player.kill();
         });
         game.physics.arcade.overlap(player, bones, function(player, bone) {
