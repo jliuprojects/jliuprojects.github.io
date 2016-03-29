@@ -55,7 +55,7 @@ play.prototype = {
         var scale = gameWidth / 71 + 1;
         ground.scale.setTo(scale, 1);
 
-        var abullet = new EnemyBullet(game, 800, game.world.height - 240, 'bullet', bullets);
+        var abullet = new EnemyBullet(game, game.world.width, game.world.height - 240, 'bullet', bullets);
         abullet.scale.setTo(0.25, 0.25);
 
         var platform = new MovingStationaryObject(game, game.world.width/2, game.world.height/2, "stepPlatform", platforms);
@@ -104,6 +104,8 @@ play.prototype = {
     },
     update: function() {
         if (dead) {
+            game.physics.arcade.collide(bones, grounds);
+            game.physics.arcade.collide(bones, platforms);
             return;
         }
         // game.debug.spriteInfo(player, 20, 32);
@@ -132,6 +134,14 @@ play.prototype = {
             score += 50;
             bone.destroy();
         });
+
+        if (player.x + 32 < 0) {
+            dead = true;
+            player.body.velocity.x = 0;
+            window.setTimeout(function() {
+                game.state.start("Play");
+            }, 2000);
+        }
         // game.physics.arcade.overlap(player, stars, collectStar, null, this);
         
         player.animations.play('run', speed/35);
@@ -161,14 +171,6 @@ play.prototype = {
         } else if (player.sliding === 1) {
             player.setSliding(false);
             player.sliding--;
-        }
-
-        if (player.x + 32 < 0 || player.y > 600) {
-            dead = true;
-            player.body.velocity.x = 0;
-            window.setTimeout(function() {
-                game.state.start("Play");
-            }, 2000);
         }
 
         if (platforms.length) {
