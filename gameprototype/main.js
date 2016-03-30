@@ -36,7 +36,7 @@ play.prototype = {
         currentLevel = 0;
         levelFrame = 0;
         dying = 0;
-        speed = 370;
+        speed = 420;
         game.physics.startSystem(Phaser.Physics.ARCADE);
         game.background = game.add.tileSprite(0, 0, 1920, 1080, 'background');
         middleGround = game.add.tileSprite(0, game.world.height - 140 - 125, 1920, 140, 'trees');
