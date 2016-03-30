@@ -8,33 +8,11 @@ Player = function(game) {
     this.body.gravity.y = 2000;
     this.alive = true;
     this.sliding = true;
-
+    
     this.scale.setTo(0.50, 0.50); // TO DO : REMOVE THIS AND CHANGE ALL THE * 2
+    this.initMobileControls();
     this.run();
     game.world.add(this);
-
-    var self = this;
-    this.touchStart = 0;
-    this.touchMoved = false;
-    document.addEventListener('touchstart', function(e) {
-        e.preventDefault();
-        self.touchStart = Date.now();
-        self.touchMoved = false;
-    }, false);
-
-    document.addEventListener('touchmove', function(e) {
-        e.preventDefault();  
-        self.touchMoved = true;
-    }, false);
-
-    document.addEventListener('touchend', function(e) {
-        e.preventDefault();
-        if (self.touchMoved) {
-            self.slide();
-        } else {
-            self.body.velocity.y = -800;
-        }
-    }, false);
 };
 
 Player.prototype = Object.create(Phaser.Sprite.prototype);
@@ -68,13 +46,17 @@ Player.prototype.update = function() {
         this.body.velocity.x = 0;
         this.animations.play('jump', speed/40);
     } else if (cursors.up.isDown && this.body.touching.down) {
-        this.body.velocity.y = -800;
+        this.jump();
     } else if (cursors.down.isDown && this.body.touching.down || this.slideMin > 0) {
         this.slide();
         this.slideMin--;
     } else {
         this.run();
     }
+};
+
+Player.prototype.jump = function() {
+    this.body.velocity.y = -800;
 };
 
 Player.prototype.slide = function() {
@@ -102,4 +84,30 @@ Player.prototype.run = function() {
 
 Player.prototype.kill = function() {
     this.alive = false;
+};
+
+Player.prototype.initMobileControls = function() {
+    var self = this;
+    this.mobileStartClientY = 0;
+    this.mobileEndClientY = 0;
+
+    document.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        self.mobileStartClientY = e.touches[0].clientY;
+        self.mobileEndClientY = e.touches[0].clientY;
+    }, false);
+
+    document.addEventListener('touchmove', function(e) {
+        e.preventDefault();  
+        self.mobileEndClientY = e.touches[0].clientY;
+    }, false);
+
+    document.addEventListener('touchend', function(e) {
+        e.preventDefault();
+        if (self.mobileEndClientY - self.mobileStartClientY > 100) {
+            self.slide();
+        } else {
+            self.jump();
+        }
+    }, false);
 };
