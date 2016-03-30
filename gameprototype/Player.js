@@ -87,11 +87,11 @@ Player.prototype.kill = function() {
 //     alert(touch.pageX + " - " + touch.pageY);
 // }, false);
 
-$(document).on("taphold",function(){
-    alert("taphold");
+$(document).bind('tapone', function () {
+    alert("tap");
 });
 
-$(document).on("tap",function(){
-    alert("tap");
+$(document).bind('taptwo', function () {
+    alert("taptwo");
 });
 
