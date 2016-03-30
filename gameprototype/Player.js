@@ -45,7 +45,7 @@ Player.prototype.update = function() {
         this.body.velocity.x = 0;
         this.animations.play('jump', speed/40);
     } else if (cursors.up.isDown && this.body.touching.down) {
-        this.body.velocity.y = -500;
+        this.body.velocity.y = -1000;
     } else if (cursors.down.isDown && this.body.touching.down) {
         this.animations.play('slide', 10);
         this.slide();
