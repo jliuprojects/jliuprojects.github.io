@@ -15,21 +15,23 @@ Player = function(game) {
 
     var self = this;
     this.touchStart = 0;
+    this.touchMoved = false;
     document.addEventListener('touchstart', function(e) {
         e.preventDefault();
         self.touchStart = Date.now();
+        self.touchMoved = false;
     }, false);
 
     document.addEventListener('touchmove', function(e) {
-        e.preventDefault();
-        if (Date.now() - self.touchStart > 500 && self.body.touching.down) {
-            self.slide();
-        }
+        e.preventDefault();  
+        self.touchMoved = true;
     }, false);
 
     document.addEventListener('touchend', function(e) {
         e.preventDefault();
-        if (Date.now() - self.touchStart < 500 && self.body.touching.down) {
+        if (self.touchMoved) {
+            self.slide();
+        } else {
             self.body.velocity.y = -800;
         }
     }, false);
