@@ -12,6 +12,27 @@ Player = function(game) {
     this.scale.setTo(0.50, 0.50); // TO DO : REMOVE THIS AND CHANGE ALL THE * 2
     this.run();
     game.world.add(this);
+
+    var self = this;
+    this.touchStart = 0;
+    document.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        self.touchStart = Date.now();
+    }, false);
+
+    document.addEventListener('touchmove', function(e) {
+        e.preventDefault();
+        if (Date.now() - self.touchStart > 500 && self.body.touching.down) {
+            self.slide();
+        }
+    }, false);
+
+    document.addEventListener('touchend', function(e) {
+        e.preventDefault();
+        if (Date.now() - self.touchStart < 500 && self.body.touching.down) {
+            self.body.velocity.y = -800;
+        }
+    }, false);
 };
 
 Player.prototype = Object.create(Phaser.Sprite.prototype);
@@ -80,23 +101,3 @@ Player.prototype.run = function() {
 Player.prototype.kill = function() {
     this.alive = false;
 };
-
-var start = 0;
-document.addEventListener('touchstart', function(e) {
-    e.preventDefault();
-    start = Date.now();
-}, false);
-
-document.addEventListener('touchmove', function(e) {
-    e.preventDefault();
-    if (Date.now() - start > 500 && this.body.touching.down) {
-        this.slide();
-    }
-}, false);
-
-document.addEventListener('touchend', function(e) {
-    e.preventDefault();
-    if (Date.now() - start < 500 && this.body.touching.down) {
-        this.body.velocity.y = -800;
-    }
-}, false);
