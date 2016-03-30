@@ -1,4 +1,4 @@
-var gameHeight = Math.min(Math.max(600, window.innerHeight), 700);
+var gameHeight = Math.min(Math.max(600, window.innerHeight), 900);
 var gameWidth = Math.max(800, window.innerWidth);
 var game = new Phaser.Game(gameWidth, gameHeight, Phaser.AUTO, '');
 var grounds, platforms, clouds, bullets, player, cursors, bones, scoreText, speedText, middleGround, spikes;
