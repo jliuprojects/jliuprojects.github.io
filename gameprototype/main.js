@@ -184,9 +184,11 @@ function randomIntFromInterval(min, max) {
     return Math.floor(Math.random()*(max-min+1)+min);
 };
 
-$(window).click(function(e) {
-    alert("clicked");
-});
+document.addEventListener('touchmove', function(e) {
+    e.preventDefault();
+    var touch = e.touches[0];
+    alert(touch.pageX + " - " + touch.pageY);
+}, false);
 
 // window.onresize = function () {
 //     console.log("resize");  
