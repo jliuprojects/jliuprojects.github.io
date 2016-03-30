@@ -1,4 +1,4 @@
-var gameHeight = Math.max(600, window.innerHeight);
+var gameHeight = Math.min(Math.max(600, window.innerHeight), 700);
 var gameWidth = Math.max(800, window.innerWidth);
 var game = new Phaser.Game(gameWidth, gameHeight, Phaser.AUTO, '');
 var grounds, platforms, clouds, bullets, player, cursors, bones, scoreText, speedText, middleGround, spikes;
@@ -26,9 +26,9 @@ play.prototype = {
         game.load.image('spike', 'assets/spike.png');
         game.load.image('cloud-platform', 'assets/cloud-platform.png');
 
-        game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+        // game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
         // game.scale.pageAlignHorizontally = true;
-        // game.scale.pageAlignVertically = true;
+        game.scale.pageAlignVertically = true;
         // game.scale.setScreenSize(true);
     },
     create: function() {
