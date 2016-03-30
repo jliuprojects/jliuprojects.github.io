@@ -81,3 +81,17 @@ Player.prototype.kill = function() {
     this.alive = false;
 };
 
+// document.addEventListener('touchmove', function(e) {
+//     e.preventDefault();
+//     var touch = e.touches[0];
+//     alert(touch.pageX + " - " + touch.pageY);
+// }, false);
+
+$(document).on("taphold",function(){
+    alert("taphold");
+});
+
+$(document).on("tap",function(){
+    alert("tap");
+});
+
