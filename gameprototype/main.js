@@ -42,7 +42,7 @@ play.prototype = {
         middleGround = game.add.tileSprite(0, game.world.height - 140 - 125, 1920, 140, 'trees');
         // middleGround.scale.setTo(2,2);
 
-        game.add.text(16, 90, 'v1.02', { fontSize: '32px', fill: '#000' });
+        game.add.text(16, 90, 'v1.03', { fontSize: '32px', fill: '#000' });
         scoreText = game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
         speedText = game.add.text(16, 50, 'Speed: ' + speed, { fontSize: '32px', fill: '#000' });
 

@@ -81,17 +81,13 @@ Player.prototype.kill = function() {
     this.alive = false;
 };
 
-// document.addEventListener('touchmove', function(e) {
-//     e.preventDefault();
-//     var touch = e.touches[0];
-//     alert(touch.pageX + " - " + touch.pageY);
-// }, false);
+var start = 0;
+document.addEventListener('touchstart', function(e) {
+    e.preventDefault();
+    start = Date.now();
+}, false);
 
-$(document).bind('tapone', function () {
-    alert("tap");
-});
-
-$(document).bind('swipedown', function () {
-    alert("swipe");
-});
-
+document.addEventListener('touchend', function(e) {
+    e.preventDefault();
+    alert(Date.now() - start);
+}, false);
