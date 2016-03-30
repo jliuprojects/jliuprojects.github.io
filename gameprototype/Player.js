@@ -46,26 +46,28 @@ Player.prototype.update = function() {
         this.animations.play('jump', speed/40);
     } else if (cursors.up.isDown && this.body.touching.down) {
         this.body.velocity.y = -800;
-    } else if (cursors.down.isDown && this.body.touching.down) {
-        this.animations.play('slide', 10);
+    } else if (cursors.down.isDown && this.body.touching.down || this.slideMin > 0) {
         this.slide();
+        this.slideMin--;
     } else {
-        this.animations.play('run', speed/35);
         this.run();
     }
 };
 
 Player.prototype.slide = function() {
+    this.animations.play('slide', 10);
     if (!this.sliding) {
         this.body.setSize(this.width*2, this.height*2);
         this.body.offset.y = 100/2;
         this.body.offset.x = 0;
         console.log("adjusted for slide");
         this.sliding = true;
+        this.slideMin = 30;
     }
 };
 
 Player.prototype.run = function() {
+    this.animations.play('run', speed/35);
     if (this.sliding) {
         this.body.setSize(this.width*2, this.height*2);
         this.body.offset.y = 0;
