@@ -5,7 +5,7 @@ Player = function(game) {
     this.animations.add('stand', [0]);
     this.animations.add('slide', [6]);
     this.animations.add('jump', [3]);
-    this.body.gravity.y = 1000;
+    this.body.gravity.y = 1500;
     this.alive = true;
     this.sliding = true;
 
@@ -45,7 +45,7 @@ Player.prototype.update = function() {
         this.body.velocity.x = 0;
         this.animations.play('jump', speed/40);
     } else if (cursors.up.isDown && this.body.touching.down) {
-        this.body.velocity.y = -1000;
+        this.body.velocity.y = -800;
     } else if (cursors.down.isDown && this.body.touching.down) {
         this.animations.play('slide', 10);
         this.slide();
