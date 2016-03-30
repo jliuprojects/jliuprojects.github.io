@@ -91,7 +91,7 @@ $(document).bind('tapone', function () {
     alert("tap");
 });
 
-$(document).bind('taptwo', function () {
-    alert("taptwo");
+$(document).bind('swipedown', function () {
+    alert("swipe");
 });
 
