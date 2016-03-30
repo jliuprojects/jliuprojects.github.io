@@ -3,7 +3,7 @@ var gameWidth = Math.max(800, window.innerWidth);
 var game = new Phaser.Game(gameWidth, gameHeight, Phaser.AUTO, '');
 var grounds, platforms, clouds, bullets, player, cursors, bones, scoreText, speedText, middleGround, spikes;
 var score = 0;
-var speed = 300;
+var speed = 370;
 var levels = [];
 var currentLevel = 0;
 var levelFrame = 0;
