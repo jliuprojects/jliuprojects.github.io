@@ -184,6 +184,10 @@ function randomIntFromInterval(min, max) {
     return Math.floor(Math.random()*(max-min+1)+min);
 };
 
+$(window).click(function(e) {
+    alert("clicked");
+});
+
 // window.onresize = function () {
 //     console.log("resize");  
 //     game.scale.scaleMode = Phaser.ScaleManager.RESIZE;

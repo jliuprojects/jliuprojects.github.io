@@ -79,5 +79,5 @@ Player.prototype.run = function() {
 
 Player.prototype.kill = function() {
     this.alive = false;
-}
+};
 
