@@ -87,7 +87,16 @@ document.addEventListener('touchstart', function(e) {
     start = Date.now();
 }, false);
 
+document.addEventListener('touchmove', function(e) {
+    e.preventDefault();
+    if (Date.now() - start > 500 && this.body.touching.down) {
+        this.slide();
+    }
+}, false);
+
 document.addEventListener('touchend', function(e) {
     e.preventDefault();
-    alert(Date.now() - start);
+    if (Date.now() - start < 500 && this.body.touching.down) {
+        this.body.velocity.y = -800;
+    }
 }, false);
