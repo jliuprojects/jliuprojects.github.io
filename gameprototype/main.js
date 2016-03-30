@@ -117,7 +117,7 @@ play.prototype = {
         // }
 
         this.generateLevelPlatforms();
-        this.generateGround();
+        // this.generateGround();
     },
     generateGround : function() {
         var hasground = false;
