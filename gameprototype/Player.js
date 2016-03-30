@@ -5,7 +5,7 @@ Player = function(game) {
     this.animations.add('stand', [0]);
     this.animations.add('slide', [6]);
     this.animations.add('jump', [3]);
-    this.body.gravity.y = 800;
+    this.body.gravity.y = 1000;
     this.alive = true;
     this.sliding = true;
 
