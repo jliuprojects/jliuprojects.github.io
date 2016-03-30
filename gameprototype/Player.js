@@ -104,10 +104,12 @@ Player.prototype.initMobileControls = function() {
 
     document.addEventListener('touchend', function(e) {
         e.preventDefault();
-        if (self.mobileEndClientY - self.mobileStartClientY > 100) {
-            self.slide();
-        } else {
-            self.jump();
+        if (self.body.touching.down) {
+            if (self.mobileEndClientY - self.mobileStartClientY > 100) {
+                self.slide();
+            } else {
+                self.jump();
+            }
         }
     }, false);
 };
