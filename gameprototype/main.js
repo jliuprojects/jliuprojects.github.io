@@ -102,22 +102,12 @@ play.prototype = {
             score += 50;
             bone.destroy();
         });
-        
-        if (bullets.length < 1) {
-            var bullet = new EnemyBullet(game, game.world.width + 10, Math.random() * (game.world.height - 240), 'bullet', bullets);
-            bullet.scale.setTo(0.25, 0.25);
-        }
-
-        if (spikes.length < 1) {
-            var spike = new MovingStationaryObject(game, game.world.width + 10, game.world.height - 170, 'spike', spikes);
-            spike.scale.setTo(0.4, 0.4);
-        }
 
         // if (clouds.length < 2) {
         //     var cloud = new MovingCloudPlatform(game, game.world.width + 10, Math.random() * (game.world.height - 70), 'cloud-platform', clouds);
         // }
 
-        this.generateLevelPlatforms();
+        this.generateLevel();
         this.generateGround();
     },
     generateGround : function() {
@@ -133,7 +123,7 @@ play.prototype = {
             ground.scale.setTo(scale, 1);
         }
     },
-    generateLevelPlatforms : function() {
+    generateLevel : function() {
         if (platforms.length) {
             if (platforms.children[platforms.length - 1].x + platforms.children[platforms.length - 1].width < game.world.width) {
                 nextPlatform = levels[currentLevel][levelFrame];
@@ -157,9 +147,24 @@ play.prototype = {
                 }
 
                 for (var i = 0; i < nextPlatform.bones; i++) {
-                    var bone = bones.create(x + i * 100, y - 100, 'bone');
+                    var bone = bones.create(x + i * 100 - 60, y - 100, 'bone');
                     bone.body.gravity.y = 800;
                     // bone.body.bounce.y = 0.7 + Math.random() * 0.2;
+                }
+
+                if (nextPlatform.spikes) {
+                    for (var i = 0; i < nextPlatform.spikes.length; i++) {
+                        var spike = new MovingStationaryObject(game, x + nextPlatform.spikes[i].x, y + nextPlatform.spikes[i].y - 50, 'spike', spikes);
+                        spike.scale.setTo(0.4, 0.4);
+                        // spike.body.gravity.y = 800;
+                    }
+                }
+
+                if (nextPlatform.bullets) {
+                    for (var i = 0; i < nextPlatform.bullets.length; i++) {
+                        var bullet = new EnemyBullet(game, x + nextPlatform.bullets[i].x, y + nextPlatform.bullets[i].y, 'bullet', bullets);
+                        bullet.scale.setTo(0.25, 0.25);
+                    }
                 }
 
                 levelFrame++;

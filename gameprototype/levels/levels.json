@@ -1,16 +1,25 @@
 [
-    [
+    [   
         {
             "type" : "longPlatform",
             "spacingBefore" : 0,
             "heightLevel" : 1,
-            "bones" : 10
+            "bones" : 8,
+            "spikes" : [
+                {"x" : 0, "y" : 0}
+            ],
+            "bullets" : [
+                {"x" : -100, "y" : -200}
+            ]
         },
         {
             "type" : "smallPlatform",
             "spacingBefore" : 1,
             "heightLevel" : 2,
-            "bones" : 4
+            "bones" : 2,
+            "spikes" : [
+                {"x" : 0, "y" : 300}
+            ]
         },
         {
             "type" : "stepPlatform",
@@ -22,13 +31,19 @@
             "type" : "medPlatform",
             "spacingBefore" : 3,
             "heightLevel" : 1,
-            "bones" : 8
+            "bones" : 4
         },
         {
             "type" : "longPlatform",
             "spacingBefore" : 1,
             "heightLevel" : 2,
-            "bones" : 10
+            "bones" : 6,
+            "spikes" : [
+                {"x" : 100, "y" : 0}
+            ],
+            "bullets" : [
+                {"x" : 0, "y" : 0}
+            ]
         },
         {
             "type" : "medPlatform",
@@ -46,13 +61,22 @@
             "type" : "medPlatform",
             "spacingBefore" : 2,
             "heightLevel" : 3,
-            "bones" : 8
+            "bones" : 4,
+            "spikes" : [
+                {"x" : 140, "y" : 0}
+            ],
+            "bullets" : [
+                {"x" : 0, "y" : 0}
+            ]
         },
         {
             "type" : "longPlatform",
             "spacingBefore" : 1,
             "heightLevel" : 1,
-            "bones" : 10
+            "bones" : 8,
+            "spikes" : [
+                {"x" : 200, "y" : 0}
+            ]
         }
     ]
 ]
