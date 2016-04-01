@@ -21,7 +21,7 @@ Player.prototype.constructor = Player;
 
 Player.prototype.update = function() {
     // game.debug.spriteInfo(player, 20, 32);
-    // game.debug.body(player);
+    game.debug.body(player);
 
     if (!this.alive) {
         this.body.velocity.x = 0;
@@ -63,7 +63,7 @@ Player.prototype.slide = function() {
     this.animations.play('slide', 10);
     if (!this.sliding) {
         this.body.setSize(this.width, this.height);
-        this.body.offset.y = 100/2;
+        this.body.offset.y = 100;
         this.body.offset.x = 0;
         console.log("adjusted for slide");
         this.sliding = true;
@@ -76,7 +76,7 @@ Player.prototype.run = function() {
     if (this.sliding) {
         this.body.setSize(this.width, this.height);
         this.body.offset.y = 0;
-        this.body.offset.x = 62/2;
+        this.body.offset.x = 62;
         console.log("adjusted for run");
         this.sliding = false;
     }

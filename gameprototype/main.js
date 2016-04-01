@@ -13,7 +13,7 @@ var play = function () {};
 
 play.prototype = {
     preload: function() {
-        game.load.atlasJSONHash('harrison', 'assets/harrison.png', 'assets/harrison.json');
+        game.load.atlasJSONHash('harrison', 'assets/run.png', 'assets/run.json');
         game.load.image('ground', 'assets/ground.png');
         game.load.image('longPlatform', 'assets/longPlatform.png');
         game.load.image('medPlatform', 'assets/medPlatform.png');
