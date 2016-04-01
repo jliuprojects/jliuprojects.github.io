@@ -63,7 +63,7 @@ Player.prototype.slide = function() {
     this.animations.play('slide', 10);
     if (!this.sliding) {
         this.body.setSize(this.width, this.height);
-        this.body.offset.y = 100;
+        this.body.offset.y = 60;
         this.body.offset.x = 0;
         console.log("adjusted for slide");
         this.sliding = true;
@@ -76,7 +76,7 @@ Player.prototype.run = function() {
     if (this.sliding) {
         this.body.setSize(this.width, this.height);
         this.body.offset.y = 0;
-        this.body.offset.x = 62;
+        this.body.offset.x = 30;
         console.log("adjusted for run");
         this.sliding = false;
     }
