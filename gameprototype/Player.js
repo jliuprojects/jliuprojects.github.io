@@ -63,7 +63,7 @@ Player.prototype.slide = function() {
     this.animations.play('slide', 10);
     if (!this.sliding) {
         this.body.setSize(this.width, this.height);
-        this.body.offset.y = 60;
+        this.body.offset.y = 65;
         this.body.offset.x = 0;
         console.log("adjusted for slide");
         this.sliding = true;
