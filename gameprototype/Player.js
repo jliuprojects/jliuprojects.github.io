@@ -1,7 +1,7 @@
 Player = function(game) {
     Phaser.Sprite.call(this, game, 100, game.world.height - 500, 'harrison');
     game.physics.arcade.enable(this);
-    this.animations.add('run', [1, 2, 3, 4,5]);
+    this.animations.add('run', [1, 2, 3, 4, 5]);
     this.animations.add('stand', [0]);
     this.animations.add('slide', [6]);
     this.animations.add('jump', [3]);
@@ -9,7 +9,7 @@ Player = function(game) {
     this.alive = true;
     this.sliding = true;
     
-    this.scale.setTo(0.50, 0.50); // TO DO : REMOVE THIS AND CHANGE ALL THE * 2
+    // this.scale.setTo(0.50, 0.50); // TO DO : REMOVE THIS AND CHANGE ALL THE * 2
     this.initMobileControls();
     this.run();
     game.world.add(this);
@@ -62,7 +62,7 @@ Player.prototype.jump = function() {
 Player.prototype.slide = function() {
     this.animations.play('slide', 10);
     if (!this.sliding) {
-        this.body.setSize(this.width*2, this.height*2);
+        this.body.setSize(this.width, this.height);
         this.body.offset.y = 100/2;
         this.body.offset.x = 0;
         console.log("adjusted for slide");
@@ -74,7 +74,7 @@ Player.prototype.slide = function() {
 Player.prototype.run = function() {
     this.animations.play('run', speed/35);
     if (this.sliding) {
-        this.body.setSize(this.width*2, this.height*2);
+        this.body.setSize(this.width, this.height);
         this.body.offset.y = 0;
         this.body.offset.x = 62/2;
         console.log("adjusted for run");
