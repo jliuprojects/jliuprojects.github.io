@@ -8,6 +8,7 @@ var levels = [];
 var currentLevel = 0;
 var levelFrame = 0;
 var dying = 0;
+var coinSfx;
 
 var play = function () {};
 
@@ -27,6 +28,7 @@ play.prototype = {
         game.load.image('cloud-platform', 'assets/cloud-platform.png');
         game.load.audio('jump', 'assets/jump.mp3');
         game.load.audio('slide', 'assets/slide.mp3');
+        game.load.audio('coin', 'assets/coin.wav');
 
         // game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
         // game.scale.pageAlignHorizontally = true;
@@ -69,6 +71,8 @@ play.prototype = {
             "slide" : game.add.audio('slide')
         });
 
+        coinSfx = game.add.audio('coin');
+
         cursors = game.input.keyboard.createCursorKeys();
     },
     update: function() {
@@ -106,6 +110,7 @@ play.prototype = {
         game.physics.arcade.overlap(player, bones, function(player, bone) {
             score += 50;
             bone.destroy();
+            coinSfx.play();
         });
 
         // if (clouds.length < 2) {
