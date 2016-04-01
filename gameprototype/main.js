@@ -8,6 +8,7 @@ var levels = [];
 var currentLevel = 0;
 var levelFrame = 0;
 var dying = 0;
+var jumpFx;
 
 var play = function () {};
 
@@ -25,6 +26,7 @@ play.prototype = {
         game.load.image('trees', 'assets/trees.png');
         game.load.image('spike', 'assets/spike.png');
         game.load.image('cloud-platform', 'assets/cloud-platform.png');
+        game.load.audio('jump', 'assets/jump.mp3');
 
         // game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
         // game.scale.pageAlignHorizontally = true;
@@ -63,6 +65,8 @@ play.prototype = {
         // var cloud = new MovingCloudPlatform(game, 400, 500, 'cloud-platform', clouds);
 
         player = new Player(game);
+
+        jumpFx = game.add.audio('jump');
 
         cursors = game.input.keyboard.createCursorKeys();
     },
