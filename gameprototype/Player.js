@@ -69,6 +69,7 @@ Player.prototype.slide = function() {
         this.body.offset.x = 0;
         this.sliding = true;
         this.slideMin = 30;
+        this.sfx.slide.play();
     }
 };
 

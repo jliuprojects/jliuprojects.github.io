@@ -26,6 +26,7 @@ play.prototype = {
         game.load.image('spike', 'assets/spike.png');
         game.load.image('cloud-platform', 'assets/cloud-platform.png');
         game.load.audio('jump', 'assets/jump.mp3');
+        game.load.audio('slide', 'assets/slide.mp3');
 
         // game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
         // game.scale.pageAlignHorizontally = true;
@@ -64,7 +65,8 @@ play.prototype = {
         // var cloud = new MovingCloudPlatform(game, 400, 500, 'cloud-platform', clouds);
 
         player = new Player(game, {
-            "jump" : game.add.audio('jump')
+            "jump" : game.add.audio('jump'),
+            "slide" : game.add.audio('slide')
         });
 
         cursors = game.input.keyboard.createCursorKeys();
