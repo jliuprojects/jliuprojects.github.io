@@ -8,7 +8,6 @@ var levels = [];
 var currentLevel = 0;
 var levelFrame = 0;
 var dying = 0;
-var jumpFx;
 
 var play = function () {};
 
@@ -64,9 +63,9 @@ play.prototype = {
 
         // var cloud = new MovingCloudPlatform(game, 400, 500, 'cloud-platform', clouds);
 
-        player = new Player(game);
-
-        jumpFx = game.add.audio('jump');
+        player = new Player(game, {
+            "jump" : game.add.audio('jump')
+        });
 
         cursors = game.input.keyboard.createCursorKeys();
     },
