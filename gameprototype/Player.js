@@ -85,6 +85,7 @@ Player.prototype.run = function() {
 
 Player.prototype.kill = function() {
     this.alive = false;
+    this.sfx.die.play();
 };
 
 Player.prototype.initMobileControls = function() {

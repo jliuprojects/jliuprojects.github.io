@@ -29,6 +29,7 @@ play.prototype = {
         game.load.audio('jump', 'assets/jump.mp3');
         game.load.audio('slide', 'assets/slide.mp3');
         game.load.audio('coin', 'assets/coin.wav');
+        game.load.audio('die', 'assets/die.wav');
 
         // game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
         // game.scale.pageAlignHorizontally = true;
@@ -68,7 +69,8 @@ play.prototype = {
 
         player = new Player(game, {
             "jump" : game.add.audio('jump'),
-            "slide" : game.add.audio('slide')
+            "slide" : game.add.audio('slide'),
+            "die" : game.add.audio('die')
         });
 
         coinSfx = game.add.audio('coin');
