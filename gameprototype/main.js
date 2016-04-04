@@ -27,9 +27,9 @@ play.prototype = {
         game.load.image('spike', 'assets/spike.png');
         game.load.image('cloud-platform', 'assets/cloud-platform.png');
         game.load.audio('jump', 'assets/jump.mp3');
-        game.load.audio('slide', 'assets/slide.mp3');
-        game.load.audio('coin', 'assets/coin.wav');
-        game.load.audio('die', 'assets/die.wav');
+        game.load.audio('slide', 'assets/laserSlide.mp3');
+        game.load.audio('coin', 'assets/coinCollect.mp3');
+        game.load.audio('die', 'assets/happyDeathJingle.mp3');
 
         // game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
         // game.scale.pageAlignHorizontally = true;
@@ -159,14 +159,14 @@ play.prototype = {
                 }
 
                 for (var i = 0; i < nextPlatform.bones; i++) {
-                    var bone = bones.create(x + i * 100 - 60, y - 100, 'bone');
+                    var bone = bones.create(x + i * 100 - 60, y - 100, "bone");
                     bone.body.gravity.y = 800;
                     // bone.body.bounce.y = 0.7 + Math.random() * 0.2;
                 }
 
                 if (nextPlatform.spikes) {
                     for (var i = 0; i < nextPlatform.spikes.length; i++) {
-                        var spike = new MovingStationaryObject(game, x + nextPlatform.spikes[i].x, y + nextPlatform.spikes[i].y - 50, 'spike', spikes);
+                        var spike = new MovingStationaryObject(game, x + nextPlatform.spikes[i].x, y + nextPlatform.spikes[i].y - 50, "spike", spikes);
                         spike.scale.setTo(0.4, 0.4);
                         // spike.body.gravity.y = 800;
                     }
@@ -174,7 +174,7 @@ play.prototype = {
 
                 if (nextPlatform.bullets) {
                     for (var i = 0; i < nextPlatform.bullets.length; i++) {
-                        var bullet = new EnemyBullet(game, x + nextPlatform.bullets[i].x, y + nextPlatform.bullets[i].y, 'bullet', bullets);
+                        var bullet = new EnemyBullet(game, x + nextPlatform.bullets[i].x, y + nextPlatform.bullets[i].y, "bullet", bullets);
                         bullet.scale.setTo(0.25, 0.25);
                     }
                 }

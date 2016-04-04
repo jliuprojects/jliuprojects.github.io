@@ -32,7 +32,7 @@ Player.prototype.update = function() {
     }
 
     if (this.x + 32 < 0) {
-        this.alive = false;
+        this.kill();
     }
 
     if (this.x < 160) {
