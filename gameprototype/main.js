@@ -8,13 +8,14 @@ var levels = [];
 var currentLevel = 0;
 var levelFrame = 0;
 var dying = 0;
-var coinSfx;
+var coinSfx, bgMusic;
 
 var play = function () {};
 
 play.prototype = {
     preload: function() {
         game.load.atlasJSONHash('harrison', 'assets/harrison.png', 'assets/harrison.json');
+
         game.load.image('ground', 'assets/ground.png');
         game.load.image('longPlatform', 'assets/longPlatform.png');
         game.load.image('medPlatform', 'assets/medPlatform.png');
@@ -26,10 +27,12 @@ play.prototype = {
         game.load.image('trees', 'assets/trees.png');
         game.load.image('spike', 'assets/spike.png');
         game.load.image('cloud-platform', 'assets/cloud-platform.png');
+
         game.load.audio('jump', 'assets/jump.mp3');
         game.load.audio('slide', 'assets/laserSlide.mp3');
         game.load.audio('coin', 'assets/coinCollect.mp3');
         game.load.audio('die', 'assets/happyDeathJingle.mp3');
+        game.load.audio('bgMusic', 'assets/happyDeathJingle.mp3');
 
         // game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
         // game.scale.pageAlignHorizontally = true;
@@ -74,6 +77,11 @@ play.prototype = {
         });
 
         coinSfx = game.add.audio('coin');
+        bgMusic = game.add.audio('bgMusic');
+        bgMusic.loop = true;
+        // game.sound.setDecodedCallback([bgMusic], function() {
+        //     bgMusic.play();
+        // }, this);
 
         cursors = game.input.keyboard.createCursorKeys();
     },
