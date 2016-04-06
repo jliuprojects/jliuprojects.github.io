@@ -9,7 +9,8 @@ Player = function(game, sfx) {
     this.alive = true;
     this.sliding = true;
     this.sfx = sfx;
-    
+    this.anchor.x = 0.5;
+    this.anchor.y = 1;
     // this.scale.setTo(0.50, 0.50); // TO DO : REMOVE THIS AND CHANGE ALL THE * 2
     this.initMobileControls();
     this.run();
@@ -25,9 +26,10 @@ Player.prototype.update = function() {
     // game.debug.body(player);
 
     if (!this.alive) {
-        this.body.velocity.x = 0;
-        this.body.velocity.y = 350;
-        this.animations.play('stand', speed/40);
+        // this.body.velocity.x = 0;
+        // this.body.velocity.y = 350;
+        // this.animations.play('stand', speed/40);
+        this.animations.play('die', 4);
         return;
     }
 
@@ -65,8 +67,8 @@ Player.prototype.slide = function() {
     this.animations.play('slide', 10);
     if (!this.sliding) {
         this.body.setSize(this.width, this.height);
-        this.body.offset.y = 75;
-        this.body.offset.x = 0;
+        // this.body.offset.y = 75;
+        // this.body.offset.x = 0;
         this.sliding = true;
         this.slideMin = 30;
         this.sfx.slide.play();
@@ -77,8 +79,8 @@ Player.prototype.run = function() {
     this.animations.play('run', speed/35);
     if (this.sliding) {
         this.body.setSize(this.width, this.height);
-        this.body.offset.y = 10;
-        this.body.offset.x = 35;
+        // this.body.offset.y = 10;
+        // this.body.offset.x = 35;
         this.sliding = false;
     }
 };
@@ -86,6 +88,9 @@ Player.prototype.run = function() {
 Player.prototype.kill = function() {
     this.alive = false;
     this.sfx.die.play();
+    speed = 0; // TODO: fix this is stupid
+    this.loadTexture('die');
+    this.animations.add('die', [0, 1, 2, 3, 4, 5]);
 };
 
 Player.prototype.initMobileControls = function() {

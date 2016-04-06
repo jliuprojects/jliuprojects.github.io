@@ -13,8 +13,9 @@ var coinSfx, bgMusic;
 var play = function () {};
 
 play.prototype = {
-    preload: function() {
+    preload : function() {
         game.load.atlasJSONHash('harrison', 'assets/harrison.png', 'assets/harrison.json');
+        game.load.atlasJSONHash('die', 'assets/die.png', 'assets/die.json');
 
         game.load.image('ground', 'assets/ground.png');
         game.load.image('longPlatform', 'assets/longPlatform.png');
@@ -39,7 +40,7 @@ play.prototype = {
         game.scale.pageAlignVertically = true;
         // game.scale.setScreenSize(true);
     },
-    create: function() {
+    create : function() {
         score = 0;
         currentLevel = 0;
         levelFrame = 0;
@@ -85,32 +86,19 @@ play.prototype = {
 
         cursors = game.input.keyboard.createCursorKeys();
     },
-    update: function() {
+    update : function() {
+        this.handleBounds();
+
         if (!player.alive && !dying) {
             // just died
-            dying = 120;
+            dying = 90;
         } else if (dying === 1) {
             game.state.start("Play");
         } else if (dying) {
             dying--;
-            game.physics.arcade.collide(bones, grounds);
-            game.physics.arcade.collide(bones, platforms);
             return;
         }
 
-        score += 1 / 60;
-        speed += 2 / 60;
-        scoreText.text = 'Score: ' + score;
-        speedText.text = 'Speed: ' + speed;
-
-        game.background.tilePosition.x -= 1;
-        middleGround.tilePosition.x -= 2;
-
-        game.physics.arcade.collide(bones, grounds);
-        game.physics.arcade.collide(bones, platforms);
-        game.physics.arcade.collide(player, grounds);
-        game.physics.arcade.collide(player, platforms);
-        game.physics.arcade.collide(player, clouds);
         game.physics.arcade.overlap(player, bullets, function() {
             player.kill();
         });
@@ -123,12 +111,27 @@ play.prototype = {
             coinSfx.play();
         });
 
+        score += 1 / 60;
+        speed += 2 / 60;
+        scoreText.text = 'Score: ' + score;
+        speedText.text = 'Speed: ' + speed;
+
+        game.background.tilePosition.x -= 1;
+        middleGround.tilePosition.x -= 2;
+
         // if (clouds.length < 2) {
         //     var cloud = new MovingCloudPlatform(game, game.world.width + 10, Math.random() * (game.world.height - 70), 'cloud-platform', clouds);
         // }
 
         this.generateLevel();
         this.generateGround();
+    },
+    handleBounds : function() {
+        game.physics.arcade.collide(bones, grounds);
+        game.physics.arcade.collide(bones, platforms);
+        game.physics.arcade.collide(player, grounds);
+        game.physics.arcade.collide(player, platforms);
+        game.physics.arcade.collide(player, clouds);
     },
     generateGround : function() {
         var hasground = false;
