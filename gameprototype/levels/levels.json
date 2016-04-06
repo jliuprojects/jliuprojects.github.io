@@ -1,7 +1,7 @@
 [
     [   
         {
-            "type" : "longPlatform",
+            "platform" : "longPlatform",
             "spacingBefore" : 0,
             "heightLevel" : 1,
             "bones" : 8,
@@ -13,7 +13,7 @@
             ]
         },
         {
-            "type" : "smallPlatform",
+            "platform" : "smallPlatform",
             "spacingBefore" : 1,
             "heightLevel" : 2,
             "bones" : 2,
@@ -22,19 +22,19 @@
             ]
         },
         {
-            "type" : "stepPlatform",
+            "platform" : "stepPlatform",
             "spacingBefore" : 2,
             "heightLevel" : 3,
             "bones" : 1
         },
         {
-            "type" : "medPlatform",
+            "platform" : "medPlatform",
             "spacingBefore" : 3,
             "heightLevel" : 1,
             "bones" : 4
         },
         {
-            "type" : "longPlatform",
+            "platform" : "longPlatform",
             "spacingBefore" : 1,
             "heightLevel" : 2,
             "bones" : 6,
@@ -46,19 +46,19 @@
             ]
         },
         {
-            "type" : "medPlatform",
+            "platform" : "medPlatform",
             "spacingBefore" : 2,
             "heightLevel" : 1,
             "bones" : 4
         },
         {
-            "type" : "stepPlatform",
+            "platform" : "stepPlatform",
             "spacingBefore" : 2,
             "heightLevel" : 2,
             "bones" : 1
         },
         {
-            "type" : "medPlatform",
+            "platform" : "medPlatform",
             "spacingBefore" : 2,
             "heightLevel" : 3,
             "bones" : 4,
@@ -70,7 +70,7 @@
             ]
         },
         {
-            "type" : "longPlatform",
+            "platform" : "longPlatform",
             "spacingBefore" : 1,
             "heightLevel" : 1,
             "bones" : 8,

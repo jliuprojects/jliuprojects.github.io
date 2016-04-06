@@ -11,7 +11,7 @@ Player = function(game, sfx) {
     this.sfx = sfx;
     this.anchor.x = 0.5;
     this.anchor.y = 1;
-    // this.scale.setTo(0.50, 0.50); // TO DO : REMOVE THIS AND CHANGE ALL THE * 2
+
     this.initMobileControls();
     this.run();
     game.world.add(this);
@@ -27,8 +27,6 @@ Player.prototype.update = function() {
 
     if (!this.alive) {
         this.body.velocity.x = 300;
-        // this.body.velocity.y = 350;
-        // this.animations.play('stand', speed/40);
         this.animations.play('die', 4);
         return;
     }
@@ -52,7 +50,6 @@ Player.prototype.update = function() {
         this.jump();
     } else if (cursors.down.isDown && this.body.touching.down || this.slideMin > 0) {
         this.slide();
-        this.slideMin--;
     } else {
         this.run();
     }
@@ -67,20 +64,17 @@ Player.prototype.slide = function() {
     this.animations.play('slide', 10);
     if (!this.sliding) {
         this.body.setSize(this.width, this.height);
-        // this.body.offset.y = 75;
-        // this.body.offset.x = 0;
         this.sliding = true;
         this.slideMin = 30;
         this.sfx.slide.play();
     }
+    this.slideMin--;
 };
 
 Player.prototype.run = function() {
     this.animations.play('run', speed/35);
     if (this.sliding) {
         this.body.setSize(this.width, this.height);
-        // this.body.offset.y = 10;
-        // this.body.offset.x = 35;
         this.sliding = false;
     }
 };

@@ -6,7 +6,7 @@ var score = 0;
 var speed = 370;
 var levels = [];
 var currentLevel = 0;
-var levelFrame = 0;
+var levelGroup = 0;
 var dying = 0;
 var coinSfx, bgMusic;
 
@@ -43,7 +43,7 @@ play.prototype = {
     create : function() {
         score = 0;
         currentLevel = 0;
-        levelFrame = 0;
+        levelGroup = 0;
         dying = 0;
         speed = 420;
         game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -90,7 +90,6 @@ play.prototype = {
         this.handleBounds();
 
         if (!player.alive && !dying) {
-            // just died
             dying = 90;
         } else if (dying === 1) {
             game.state.start("Play");
@@ -119,10 +118,6 @@ play.prototype = {
         game.background.tilePosition.x -= 1;
         middleGround.tilePosition.x -= 2;
 
-        // if (clouds.length < 2) {
-        //     var cloud = new MovingCloudPlatform(game, game.world.width + 10, Math.random() * (game.world.height - 70), 'cloud-platform', clouds);
-        // }
-
         this.generateLevel();
         this.generateGround();
     },
@@ -147,53 +142,36 @@ play.prototype = {
         }
     },
     generateLevel : function() {
-        if (platforms.length) {
-            if (platforms.children[platforms.length - 1].x + platforms.children[platforms.length - 1].width < game.world.width) {
-                nextPlatform = levels[currentLevel][levelFrame];
+        if (platforms.length 
+        && (platforms.children[platforms.length - 1].x + platforms.children[platforms.length - 1].width < game.world.width)) {
+            nextGroup = levels[currentLevel][levelGroup];
+            var x = game.world.width + nextGroup.spacingBefore * 70 + 70;
+            var y = game.world.height - 125 - nextGroup.heightLevel * 150;
 
-                var x = game.world.width + nextPlatform.spacingBefore * 70 + 70;
-                var y = game.world.height - 125 - nextPlatform.heightLevel * 150;
+            var platform = new MovingStationaryObject(game, x, y, nextGroup.platform, platforms);
 
-                switch(nextPlatform.type) {
-                    case "longPlatform":
-                        var platform = new MovingStationaryObject(game, x, y, "longPlatform", platforms);
-                        break;
-                    case "medPlatform":
-                        var platform = new MovingStationaryObject(game, x, y, "medPlatform", platforms);
-                        break;
-                    case "smallPlatform":
-                        var platform = new MovingStationaryObject(game, x, y, "smallPlatform", platforms);
-                        break;
-                    case "stepPlatform":
-                        var platform = new MovingStationaryObject(game, x, y, "stepPlatform", platforms);
-                        break;
+            for (var i = 0; i < nextGroup.bones; i++) {
+                var bone = bones.create(x + i * 100 - 60, y - 100, "bone");
+                bone.body.gravity.y = 800;
+            }
+
+            if (nextGroup.spikes) {
+                for (var i = 0; i < nextGroup.spikes.length; i++) {
+                    var spike = new MovingStationaryObject(game, x + nextGroup.spikes[i].x, y + nextGroup.spikes[i].y - 50, "spike", spikes);
+                    spike.scale.setTo(0.4, 0.4);
                 }
+            }
 
-                for (var i = 0; i < nextPlatform.bones; i++) {
-                    var bone = bones.create(x + i * 100 - 60, y - 100, "bone");
-                    bone.body.gravity.y = 800;
-                    // bone.body.bounce.y = 0.7 + Math.random() * 0.2;
+            if (nextGroup.bullets) {
+                for (var i = 0; i < nextGroup.bullets.length; i++) {
+                    var bullet = new EnemyBullet(game, x + nextGroup.bullets[i].x, y + nextGroup.bullets[i].y, "bullet", bullets);
+                    bullet.scale.setTo(0.25, 0.25);
                 }
+            }
 
-                if (nextPlatform.spikes) {
-                    for (var i = 0; i < nextPlatform.spikes.length; i++) {
-                        var spike = new MovingStationaryObject(game, x + nextPlatform.spikes[i].x, y + nextPlatform.spikes[i].y - 50, "spike", spikes);
-                        spike.scale.setTo(0.4, 0.4);
-                        // spike.body.gravity.y = 800;
-                    }
-                }
-
-                if (nextPlatform.bullets) {
-                    for (var i = 0; i < nextPlatform.bullets.length; i++) {
-                        var bullet = new EnemyBullet(game, x + nextPlatform.bullets[i].x, y + nextPlatform.bullets[i].y, "bullet", bullets);
-                        bullet.scale.setTo(0.25, 0.25);
-                    }
-                }
-
-                levelFrame++;
-                if (levelFrame === levels[currentLevel].length) {
-                    levelFrame = 0;
-                }
+            levelGroup++;
+            if (levelGroup === levels[currentLevel].length) {
+                levelGroup = 0;
             }
         }
     },
