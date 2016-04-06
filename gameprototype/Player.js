@@ -26,7 +26,7 @@ Player.prototype.update = function() {
     // game.debug.body(player);
 
     if (!this.alive) {
-        // this.body.velocity.x = 0;
+        this.body.velocity.x = 300;
         // this.body.velocity.y = 350;
         // this.animations.play('stand', speed/40);
         this.animations.play('die', 4);
