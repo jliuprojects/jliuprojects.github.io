@@ -112,8 +112,8 @@ play.prototype = {
 
         score += 1 / 60;
         speed += 2 / 60;
-        scoreText.text = 'Score: ' + score;
-        speedText.text = 'Speed: ' + speed;
+        scoreText.text = 'Score: ' + Math.floor(score);
+        speedText.text = 'Speed: ' + Math.floor(speed);
 
         game.background.tilePosition.x -= 1;
         middleGround.tilePosition.x -= 2;
@@ -142,6 +142,11 @@ play.prototype = {
         }
     },
     generateLevel : function() {
+        if (score > 500 && currentLevel === 0) {
+            currentLevel++;
+            levelGroup = 0;
+        }
+
         if (platforms.length 
         && (platforms.children[platforms.length - 1].x + platforms.children[platforms.length - 1].width < game.world.width)) {
             nextGroup = levels[currentLevel][levelGroup];
