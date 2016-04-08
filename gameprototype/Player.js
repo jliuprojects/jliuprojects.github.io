@@ -31,7 +31,7 @@ Player.prototype.update = function() {
         return;
     }
 
-    if (this.x + 32 < 0) {
+    if (this.x + 60 < 0) {
         this.kill();
     }
 
