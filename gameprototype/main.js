@@ -9,6 +9,7 @@ var currentLevel = 0;
 var levelGroup = 0;
 var dying = 0;
 var coinSfx, bgMusic;
+var levelAnimation = -1;
 
 var play = function () {};
 
@@ -46,6 +47,7 @@ play.prototype = {
         levelGroup = 0;
         dying = 0;
         speed = 420;
+        levelAnimation = -1;
         game.physics.startSystem(Phaser.Physics.ARCADE);
         game.background = game.add.tileSprite(0, 0, 1920, 1080, 'background');
         middleGround = game.add.tileSprite(0, game.world.height - 140 - 125, 1920, 140, 'trees');
@@ -98,55 +100,62 @@ play.prototype = {
             return;
         }
 
-        game.physics.arcade.overlap(player, bullets, function() {
-            player.kill();
-        });
-        game.physics.arcade.overlap(player, spikes, function() {
-            player.kill();
-        });
-        game.physics.arcade.overlap(player, bones, function(player, bone) {
-            score += 50;
-            bone.destroy();
-            coinSfx.play();
-        });
-
-        score += 1 / 60;
-        speed += 2 / 60;
         scoreText.text = 'Score: ' + Math.floor(score);
         speedText.text = 'Speed: ' + Math.floor(speed);
 
-        game.background.tilePosition.x -= 1;
-        middleGround.tilePosition.x -= 2;
-
-        this.generateLevel();
-        this.generateGround();
+        this.handleLevels();
     },
     handleBounds : function() {
         game.physics.arcade.collide(bones, grounds);
         game.physics.arcade.collide(bones, platforms);
         game.physics.arcade.collide(player, grounds);
-        game.physics.arcade.collide(player, platforms);
-        game.physics.arcade.collide(player, clouds);
-    },
-    generateGround : function() {
-        var hasground = false;
-        for (var i = 0; i < grounds.length; i++) {
-            if (grounds.children[i].x > 0) {
-                hasground = true;
-            }
-        }
-        if (!hasground) {
-            var ground = new MovingStationaryObject(game, game.world.width, game.world.height - 125, 'ground', grounds);
-            var scale = gameWidth / 71 + 1;
-            ground.scale.setTo(scale, 1);
+
+        if (levelAnimation < 0) {
+            game.physics.arcade.collide(player, platforms);
+            game.physics.arcade.collide(player, clouds);
         }
     },
-    generateLevel : function() {
-        if (score > 500 && currentLevel === 0) {
+    handleLevels : function() {
+        if ((score > 100 && currentLevel === 0) ||
+            (score > 1000 && currentLevel === 1) ||
+            (score > 1500 && currentLevel === 2)) {
+            
             currentLevel++;
             levelGroup = 0;
-        }
+            levelAnimation = 260;
 
+            bullets.destroy();
+            speed = 0;
+        } else if (levelAnimation > 0) {
+            levelAnimation--;
+        } else if (levelAnimation === 0) {
+            levelAnimation--;
+            player.x = 100;
+            player.y = game.world.height - 500;
+            speed = 500;
+        } else {
+            score += 1 / 60;
+            speed += 2 / 60;
+
+            game.background.tilePosition.x -= 1;
+            middleGround.tilePosition.x -= 2;
+
+            this.generateLevelSprites();
+
+            game.physics.arcade.overlap(player, bullets, function() {
+                player.kill();
+            });
+            game.physics.arcade.overlap(player, spikes, function() {
+                player.kill();
+            });
+            game.physics.arcade.overlap(player, bones, function(player, bone) {
+                score += 50;
+                bone.destroy();
+                coinSfx.play();
+            });
+        }
+    },
+    generateLevelSprites : function() {
         if (platforms.length 
         && (platforms.children[platforms.length - 1].x + platforms.children[platforms.length - 1].width < game.world.width)) {
             nextGroup = levels[currentLevel][levelGroup];
@@ -179,7 +188,21 @@ play.prototype = {
                 levelGroup = 0;
             }
         }
+        this.generateGround();
     },
+    generateGround : function() {
+        var hasground = false;
+        for (var i = 0; i < grounds.length; i++) {
+            if (grounds.children[i].x > 0) {
+                hasground = true;
+            }
+        }
+        if (!hasground) {
+            var ground = new MovingStationaryObject(game, game.world.width, game.world.height - 125, 'ground', grounds);
+            var scale = gameWidth / 71 + 1;
+            ground.scale.setTo(scale, 1);
+        }
+    }
 }
 
 $.getJSON("levels/levels.json", function(json) {

@@ -35,12 +35,17 @@ Player.prototype.update = function() {
         this.kill();
     }
 
-    if (this.x < 160) {
-        this.body.velocity.x = speed + 100;
-    } else if (this.x > 180) {
-        this.body.velocity.x = speed - 100;
+    if (speed === 0) {
+        this.body.velocity.x = 400;
+        console.log("400");
     } else {
-        this.body.velocity.x = speed;
+        if (this.x < 160) {
+            this.body.velocity.x = speed + 100;
+        } else if (this.x > 180) {
+            this.body.velocity.x = speed - 100;
+        } else {
+            this.body.velocity.x = speed;
+        }
     }
     
     if (!this.body.touching.down) {
@@ -72,7 +77,7 @@ Player.prototype.slide = function() {
 };
 
 Player.prototype.run = function() {
-    this.animations.play('run', speed/35);
+    this.animations.play('run', Math.max(10, speed/35));
     if (this.sliding) {
         this.body.setSize(this.width, this.height);
         this.sliding = false;

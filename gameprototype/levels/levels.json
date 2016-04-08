@@ -1,5 +1,5 @@
 [
-    [   
+    [
         {
             "platform" : "longPlatform",
             "spacingBefore" : 0,
@@ -77,6 +77,64 @@
             "spikes" : [
                 {"x" : 200, "y" : 0}
             ]
+        }
+    ],
+    [   
+        {
+            "platform" : "longPlatform",
+            "spacingBefore" : 0,
+            "heightLevel" : 1,
+            "bones" : 8,
+            "spikes" : [
+                {"x" : 0, "y" : 0}
+            ],
+            "bullets" : [
+                {"x" : -100, "y" : -200}
+            ]
+        },
+        {
+            "platform" : "longPlatform",
+            "spacingBefore" : 1,
+            "heightLevel" : 2,
+            "bones" : 2,
+            "spikes" : [
+                {"x" : 0, "y" : 300}
+            ]
+        },
+        {
+            "platform" : "longPlatform",
+            "spacingBefore" : 2,
+            "heightLevel" : 3,
+            "bones" : 1
+        }
+    ],
+    [   
+        {
+            "platform" : "medPlatform",
+            "spacingBefore" : 0,
+            "heightLevel" : 1,
+            "bones" : 8,
+            "spikes" : [
+                {"x" : 0, "y" : 0}
+            ],
+            "bullets" : [
+                {"x" : -100, "y" : -200}
+            ]
+        },
+        {
+            "platform" : "medPlatform",
+            "spacingBefore" : 1,
+            "heightLevel" : 2,
+            "bones" : 2,
+            "spikes" : [
+                {"x" : 0, "y" : 300}
+            ]
+        },
+        {
+            "platform" : "medPlatform",
+            "spacingBefore" : 2,
+            "heightLevel" : 3,
+            "bones" : 1
         }
     ],
     [   
