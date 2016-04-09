@@ -53,9 +53,9 @@ play.prototype = {
         middleGround = game.add.tileSprite(0, game.world.height - 140 - 125, 1920, 140, 'trees');
         // middleGround.scale.setTo(2,2);
 
-        game.add.text(16, 90, 'v1.08', { fontSize: '32px', fill: '#000' });
-        scoreText = game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
-        speedText = game.add.text(16, 50, 'Speed: ' + speed, { fontSize: '32px', fill: '#000' });
+        game.add.text(16, 90, 'v1.08', {fontSize: '32px', fill: '#000'});
+        scoreText = game.add.text(16, 16, 'Score: 0', {fontSize: '32px', fill: '#000'});
+        speedText = game.add.text(16, 50, 'Speed: ' + speed, {fontSize: '32px', fill: '#000'});
 
         clouds = game.add.physicsGroup();
         platforms = game.add.group();
@@ -124,8 +124,9 @@ play.prototype = {
             levelGroup = 0;
             levelAnimation = 260;
 
-            bullets.destroy();
             speed = 0;
+            player.levelTransitioning = true;
+
         } else if (levelAnimation > 0) {
             levelAnimation--;
         } else if (levelAnimation === 0) {
@@ -133,6 +134,10 @@ play.prototype = {
             player.x = 100;
             player.y = game.world.height - 500;
             speed = 500;
+            player.levelTransitioning = false;
+
+            game.world.alpha = 0;
+            game.add.tween(game.world).to({alpha : 1}, 2000, Phaser.Easing.Linear.None, true, 0, 0, false);
         } else {
             score += 1 / 60;
             speed += 2 / 60;
