@@ -39,6 +39,7 @@ Player.prototype.update = function() {
 
     if (this.levelTransitioning) {
         this.body.velocity.x = 400;
+        this.animations.play('run', 10);
     } else {
         if (this.x < 160) {
             this.body.velocity.x = speed + 100;
@@ -50,7 +51,7 @@ Player.prototype.update = function() {
     
         if (!this.body.touching.down) {
             this.body.velocity.x = 0;
-            this.animations.play('jump', speed/40);
+            this.animations.play('jump', 10);
         } else if (cursors.up.isDown && this.body.touching.down) {
             this.jump();
         } else if (cursors.down.isDown && this.body.touching.down || this.slideMin > 0) {
