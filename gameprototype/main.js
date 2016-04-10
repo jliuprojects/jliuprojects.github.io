@@ -10,6 +10,7 @@ var levelGroup = 0;
 var dying = 0;
 var coinSfx, bgMusic;
 var levelAnimation = -1;
+var worldFade;
 
 var play = function () {};
 
@@ -69,8 +70,6 @@ play.prototype = {
         var scale = gameWidth / 71 + 1;
         ground.scale.setTo(scale, 1);
 
-        var platform = new MovingStationaryObject(game, game.world.width/2, game.world.height/2, "stepPlatform", platforms);
-
         // var cloud = new MovingCloudPlatform(game, 400, 500, 'cloud-platform', clouds);
 
         player = new Player(game, {
@@ -87,6 +86,7 @@ play.prototype = {
         // }, this);
 
         cursors = game.input.keyboard.createCursorKeys();
+        worldFade = game.add.tween(game.world).to({alpha : 1}, 2000, Phaser.Easing.Linear.None, true, 0, 0, false);
     },
     update : function() {
         this.handleBounds();
@@ -137,7 +137,28 @@ play.prototype = {
             player.levelTransitioning = false;
 
             game.world.alpha = 0;
-            game.add.tween(game.world).to({alpha : 1}, 2000, Phaser.Easing.Linear.None, true, 0, 0, false);
+
+            var len = platforms.children.length;
+            for (var i = 0; i < len; i++) {
+                platforms.children[0].destroy();
+            }
+
+            len = bullets.children.length;
+            for (var i = 0; i < len; i++) {
+                bullets.children[0].destroy();
+            }
+
+            len = bones.children.length;
+            for (var i = 0; i < len; i++) {
+                bones.children[0].destroy();
+            }
+
+            len = spikes.children.length;
+            for (var i = 0; i < len; i++) {
+                spikes.children[0].destroy();
+            }
+
+            worldFade.start();
         } else {
             score += 1 / 60;
             speed += 2 / 60;
@@ -161,8 +182,8 @@ play.prototype = {
         }
     },
     generateLevelSprites : function() {
-        if (platforms.length 
-        && (platforms.children[platforms.length - 1].x + platforms.children[platforms.length - 1].width < game.world.width)) {
+        if (platforms.length === 0 
+        || (platforms.children[platforms.length - 1].x + platforms.children[platforms.length - 1].width < game.world.width)) {
             nextGroup = levels[currentLevel][levelGroup];
             var x = game.world.width + nextGroup.spacingBefore * 70 + 70;
             var y = game.world.height - 125 - nextGroup.heightLevel * 150;
