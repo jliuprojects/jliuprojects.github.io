@@ -7,5 +7,5 @@ EnemyBullet.prototype = Object.create(MovingStationaryObject.prototype);
 EnemyBullet.prototype.constructor = EnemyBullet;
 
 EnemyBullet.prototype.customUpdate = function() {
-    this.body.velocity.x = -2*speed;
+    this.body.velocity.x = -2*this.game.speed;
 };

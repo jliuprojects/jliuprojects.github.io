@@ -14,7 +14,7 @@ MovingStationaryObject.prototype.customUpdate = function() {
     // override this to do more cool shit....
 };
 MovingStationaryObject.prototype.update = function() {
-    this.body.velocity.x = -speed;
+    this.body.velocity.x = -this.game.speed;
     this.customUpdate();
     if (this.x < -this.width) {
         this.destroy();

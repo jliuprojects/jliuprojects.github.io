@@ -42,19 +42,19 @@ Player.prototype.update = function() {
         this.animations.play('run', 10);
     } else {
         if (this.x < 160) {
-            this.body.velocity.x = speed + 100;
+            this.body.velocity.x = this.game.speed + 100;
         } else if (this.x > 180) {
-            this.body.velocity.x = speed - 100;
+            this.body.velocity.x = this.game.speed - 100;
         } else {
-            this.body.velocity.x = speed;
+            this.body.velocity.x = this.game.speed;
         }
     
         if (!this.body.touching.down) {
             this.body.velocity.x = 0;
             this.animations.play('jump', 10);
-        } else if (cursors.up.isDown && this.body.touching.down) {
+        } else if (this.game.cursors.up.isDown && this.body.touching.down) {
             this.jump();
-        } else if (cursors.down.isDown && this.body.touching.down || this.slideMin > 0) {
+        } else if (this.game.cursors.down.isDown && this.body.touching.down || this.slideMin > 0) {
             this.slide();
         } else {
             this.run();
@@ -79,7 +79,7 @@ Player.prototype.slide = function() {
 };
 
 Player.prototype.run = function() {
-    this.animations.play('run', Math.max(10, speed/35));
+    this.animations.play('run', Math.max(10, this.game.speed/35));
     if (this.sliding) {
         this.body.setSize(this.width, this.height);
         this.sliding = false;
@@ -89,7 +89,6 @@ Player.prototype.run = function() {
 Player.prototype.kill = function() {
     this.alive = false;
     this.sfx.die.play();
-    speed = 0; // TODO: fix this is stupid
     this.loadTexture('die');
     this.animations.add('die', [0, 1, 2, 3, 4, 5]);
 };
