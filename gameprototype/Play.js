@@ -61,57 +61,15 @@ Play.prototype.preload = function() {
 };
 
 Play.prototype.create = function() {
-    this.levels = this.game.cache.getJSON('levels');
-    this.score = 0;
-    this.currentLevel = 0;
-    this.levelGroup = 0;
-    this.dyingAnimation = 0;
-    this.game.speed = 420;
-    this.levelUpAnimation = -1;
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
     this.game.background = this.game.add.tileSprite(0, 0, 1920, 1080, 'background');
     this.middleGround = this.game.add.tileSprite(0, this.game.world.height - 140 - 125, 1920, 140, 'trees');
+    this.worldFade = this.game.add.tween(this.game.world).to({alpha : 0}, 2000, Phaser.Easing.Linear.None, false, 0, 0, true);
 
-    this.game.add.text(16, 90, 'v1.08', {fontSize: '32px', fill: '#000'});
-    this.scoreText = this.game.add.text(16, 16, 'Score: 0', {fontSize: '32px', fill: '#000'});
-    this.speedText = this.game.add.text(16, 50, 'Speed: ' + this.game.speed, {fontSize: '32px', fill: '#000'});
-    this.levelUpText = this.game.add.text(this.game.width/2 - 295, this.game.height/2 - 200, 'LEVEL UP!!!', {fontSize: '100px', fill: '#000'});
-    this.gameOverText = this.game.add.text(this.game.width/2 - 330, this.game.height/2 - 200, 'GAME OVER!!!', {fontSize: '100px', fill: '#000'});
-    
-    this.levelUpText.alpha = 0;
-    this.gameOverText.alpha = 0;
-    this.levelUpText.tween = this.game.add.tween(this.levelUpText).to({alpha : 1}, 200, Phaser.Easing.Linear.None, true, 0, -1, false);
-    this.gameOverText.tween = this.game.add.tween(this.gameOverText).to({alpha : 1}, 200, Phaser.Easing.Linear.None, false, 0, -1, false);
-    this.levelUpText.tween.pause();
-
-    this.clouds = this.game.add.physicsGroup();
-    this.platforms = this.game.add.group();
-    this.grounds = this.game.add.group();
-    this.bullets = this.game.add.group();
-    this.spikes = this.game.add.group();
-    this.bones = this.game.add.group();
-    this.bones.enableBody = true;
-
-    var ground = new MovingStationaryObject(this.game, 0, this.game.world.height - 125, 'ground', this.grounds);
-    var scale = gameWidth / 71 + 1;
-    ground.scale.setTo(scale, 1);
-
-    this.player = new Player(this.game, {
-        "jump" : this.game.add.audio('jump'),
-        "slide" : this.game.add.audio('slide'),
-        "die" : this.game.add.audio('die')
-    });
-
-    this.levelUpSfx = this.game.add.audio('levelUp');
-    this.coinSfx = this.game.add.audio('coin');
-    this.bgMusic = this.game.add.audio('bgMusic');
-    this.bgMusic.loop = true;
-    this.game.sound.setDecodedCallback([this.bgMusic], function() {
-        this.bgMusic.play();
-    }, this);
-
-    this.game.cursors = this.game.input.keyboard.createCursorKeys();
-    this.worldFade = this.game.add.tween(this.game.world).to({alpha : 1}, 2000, Phaser.Easing.Linear.None, false, 0, 0, false);
+    this.resetConfig();
+    this.setupGameTexts();
+    this.setupSprites();
+    this.setupSfx();
 };
 
 Play.prototype.update = function() {
@@ -134,6 +92,60 @@ Play.prototype.update = function() {
     this.handleLevels();
 };
 
+Play.prototype.resetConfig = function() {
+    this.levels = this.game.cache.getJSON('levels');
+    this.score = 0;
+    this.currentLevel = 0;
+    this.levelGroup = 0;
+    this.dyingAnimation = 0;
+    this.game.speed = 420;
+    this.levelUpAnimation = -1;
+};
+
+Play.prototype.setupGameTexts = function() {
+    this.scoreText = this.game.add.text(16, 16, 'Score: 0', {fontSize: '32px', fill: '#000'});
+    this.speedText = this.game.add.text(16, 50, 'Speed: ' + this.game.speed, {fontSize: '32px', fill: '#000'});
+    this.game.add.text(16, 90, 'v1.08', {fontSize: '32px', fill: '#000'});
+
+    this.levelUpText = this.game.add.text(this.game.width/2 - 295, this.game.height/2 - 200, 'LEVEL UP!!!', {fontSize: '100px', fill: '#000'});
+    this.levelUpText.alpha = 0;
+    this.levelUpText.tween = this.game.add.tween(this.levelUpText).to({alpha : 1}, 200, Phaser.Easing.Linear.None, true, 0, -1, false);
+    this.levelUpText.tween.pause();
+    
+    this.gameOverText = this.game.add.text(this.game.width/2 - 330, this.game.height/2 - 200, 'GAME OVER!!!', {fontSize: '100px', fill: '#000'});
+    this.gameOverText.alpha = 0;
+    this.gameOverText.tween = this.game.add.tween(this.gameOverText).to({alpha : 1}, 200, Phaser.Easing.Linear.None, false, 0, -1, false);
+};
+
+Play.prototype.setupSfx = function() {
+    this.levelUpSfx = this.game.add.audio('levelUp');
+    this.coinSfx = this.game.add.audio('coin');
+    this.bgMusic = this.game.add.audio('bgMusic');
+    this.bgMusic.loop = true;
+    this.game.sound.setDecodedCallback([this.bgMusic], function() {
+        this.bgMusic.play();
+    }, this);
+};
+
+Play.prototype.setupSprites = function() {
+    this.clouds = this.game.add.physicsGroup();
+    this.platforms = this.game.add.group();
+    this.grounds = this.game.add.group();
+    this.bullets = this.game.add.group();
+    this.spikes = this.game.add.group();
+    this.bones = this.game.add.group();
+
+    this.player = new Player(this.game, {
+        "jump" : this.game.add.audio('jump'),
+        "slide" : this.game.add.audio('slide'),
+        "die" : this.game.add.audio('die')
+    });
+
+    var ground = new MovingStationaryObject(this.game, 0, this.game.world.height - 125, 'ground', this.grounds);
+    var scale = gameWidth / 71 + 1;
+    ground.scale.setTo(scale, 1);
+};
+
 Play.prototype.handleBounds = function() {
     this.game.physics.arcade.collide(this.bones, this.grounds);
     this.game.physics.arcade.collide(this.bones, this.platforms);
@@ -145,55 +157,75 @@ Play.prototype.handleBounds = function() {
     }
 };
 
+Play.prototype.clearLevel = function () { 
+    var len = this.platforms.children.length;
+    for (var i = 0; i < len; i++) {
+        this.platforms.children[0].destroy();
+    }
+
+    len = this.bullets.children.length;
+    for (var i = 0; i < len; i++) {
+        this.bullets.children[0].destroy();
+    }
+
+    len = this.bones.children.length;
+    for (var i = 0; i < len; i++) {
+        this.bones.children[0].destroy();
+    }
+
+    len = this.spikes.children.length;
+    for (var i = 0; i < len; i++) {
+        this.spikes.children[0].destroy();
+    }
+};
+
+Play.prototype.startLevelUpAnimation = function() {
+    if (this.currentLevel === 3) {
+
+    } else {
+        this.currentLevel++;
+    }
+
+    this.levelGroup = 0;
+    this.levelUpAnimation = 260;
+
+    this.game.speed = 0;
+    this.player.levelTransitioning = true;
+
+    this.levelUpSfx.play();
+    this.levelUpText.tween.resume();
+};
+
+Play.prototype.finishLevelUpAnimation = function() {
+    this.clearLevel();
+
+    this.game.speed = 500;
+    this.player.levelTransitioning = false;
+    this.player.respawn();
+
+    this.levelUpText.tween.pause();
+    this.levelUpText.alpha = 0;
+
+    this.levelUpAnimation--;
+};
+
+Play.prototype.doLevelUpAnimation = function() {
+    if (this.levelUpAnimation === 120) {
+        this.worldFade.start();
+    }
+    this.levelUpAnimation--;
+};
+
 Play.prototype.handleLevels = function() {
     if ((this.score > 100 && this.currentLevel === 0) ||
-        (this.score > 200 && this.currentLevel === 1) ||
-        (this.score > 1500 && this.currentLevel === 2)) {
+        (this.score > 1000 && this.currentLevel === 1) ||
+        (this.score > 2000 && this.currentLevel === 2)) {
         
-        this.currentLevel++;
-        this.levelGroup = 0;
-        this.levelUpAnimation = 260;
-
-        this.game.speed = 0;
-        this.player.levelTransitioning = true;
-
-        this.levelUpSfx.play();
-
-        this.levelUpText.tween.resume();
+        this.startLevelUpAnimation();
     } else if (this.levelUpAnimation > 0) {
-        this.levelUpAnimation--;
+        this.doLevelUpAnimation();
     } else if (this.levelUpAnimation === 0) {
-        this.levelUpAnimation--;
-        this.player.x = 100;
-        this.player.y = this.game.world.height - 500;
-        this.game.speed = 500;
-        this.player.levelTransitioning = false;
-
-        this.game.world.alpha = 0;
-
-        var len = this.platforms.children.length;
-        for (var i = 0; i < len; i++) {
-            this.platforms.children[0].destroy();
-        }
-
-        len = this.bullets.children.length;
-        for (var i = 0; i < len; i++) {
-            this.bullets.children[0].destroy();
-        }
-
-        len = this.bones.children.length;
-        for (var i = 0; i < len; i++) {
-            this.bones.children[0].destroy();
-        }
-
-        len = this.spikes.children.length;
-        for (var i = 0; i < len; i++) {
-            this.spikes.children[0].destroy();
-        }
-
-        this.worldFade.start();
-        this.levelUpText.tween.pause();
-        this.levelUpText.alpha = 0;
+        this.finishLevelUpAnimation();
     } else {
         this.score += 1 / 60;
         this.game.speed += 2 / 60;
@@ -228,8 +260,7 @@ Play.prototype.generateLevelSprites = function() {
         var platform = new MovingStationaryObject(this.game, x, y, nextGroup.platform, this.platforms);
 
         for (var i = 0; i < nextGroup.bones; i++) {
-            var bone = this.bones.create(x + i * 100 - 60, y - 100, "bone");
-            bone.body.gravity.y = 800;
+            var bone = new MovingStationaryObject(this.game, x + i * 100 - 60, y - 60, "bone", this.bones);
         }
 
         if (nextGroup.spikes) {
@@ -267,13 +298,6 @@ Play.prototype.generateGround = function() {
         ground.scale.setTo(scale, 1);
     }
 };
-
-var gameHeight = Math.min(Math.max(600, window.innerHeight), 900);
-var gameWidth = Math.max(800, window.innerWidth);
-var game = new Phaser.Game(gameWidth, gameHeight, Phaser.AUTO, '');
-game.state.add("Play", Play);
-game.state.start("Play");
-game = null;
 
 // window.onresize = function () {
 //     console.log("resize");  

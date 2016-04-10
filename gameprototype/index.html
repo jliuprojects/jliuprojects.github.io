@@ -17,6 +17,14 @@
     <script type="text/javascript" src="Player.js"> </script>
 </head>
 <body>
-    <script type="text/javascript" src="main.js"> </script>
+    <script type="text/javascript" src="Play.js"> </script>
+    <script>
+        var gameHeight = Math.min(Math.max(600, window.innerHeight), 900);
+        var gameWidth = Math.max(800, window.innerWidth);
+        var game = new Phaser.Game(gameWidth, gameHeight, Phaser.AUTO, '');
+        game.state.add("Play", Play);
+        game.state.start("Play");
+        game = null;
+    </script>
 </body>
 </html>

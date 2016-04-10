@@ -14,9 +14,11 @@ Player = function(game, sfx) {
     this.anchor.x = 0.5;
     this.anchor.y = 1;
 
+    game.world.add(this);
+    
+    this.game.cursors = this.game.input.keyboard.createCursorKeys();
     this.initMobileControls();
     this.run();
-    game.world.add(this);
 };
 
 Player.prototype = Object.create(Phaser.Sprite.prototype);
@@ -91,6 +93,11 @@ Player.prototype.kill = function() {
     this.sfx.die.play();
     this.loadTexture('die');
     this.animations.add('die', [0, 1, 2, 3, 4, 5]);
+};
+
+Player.prototype.respawn = function() {
+    this.x = 100;
+    this.y = this.game.world.height - 500;
 };
 
 Player.prototype.initMobileControls = function() {
