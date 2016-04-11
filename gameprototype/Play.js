@@ -76,7 +76,7 @@ Play.prototype.update = function() {
 
     if (!this.player.alive && !this.dyingAnimation) {
         this.dyingAnimation = 90;
-        this.gameOverText.tween.start();
+        this.game.add.tween(this.gameOverText).to({alpha : 1}, 200, Phaser.Easing.Linear.None, false, 0, -1, false);
         this.bgMusic.stop();
     } else if (this.dyingAnimation === 1) {
         this.game.state.start("Play");
@@ -114,7 +114,6 @@ Play.prototype.setupGameTexts = function() {
     
     this.gameOverText = this.game.add.text(this.game.width/2 - 330, this.game.height/2 - 200, 'GAME OVER!!!', {fontSize: '100px', fill: '#000'});
     this.gameOverText.alpha = 0;
-    this.gameOverText.tween = this.game.add.tween(this.gameOverText).to({alpha : 1}, 200, Phaser.Easing.Linear.None, false, 0, -1, false);
 };
 
 Play.prototype.setupSfx = function() {
@@ -218,9 +217,9 @@ Play.prototype.doLevelUpAnimation = function() {
 };
 
 Play.prototype.handleLevels = function() {
-    if ((this.score > 100 && this.currentLevel === 0) ||
-        (this.score > 500 && this.currentLevel === 1) ||
-        (this.score > 1000 && this.currentLevel === 2)) {
+    if ((this.score > 500 && this.currentLevel === 0) ||
+        (this.score > 1000 && this.currentLevel === 1) ||
+        (this.score > 2000 && this.currentLevel === 2)) {
         
         this.startLevelUpAnimation();
     } else if (this.levelUpAnimation > 0) {
