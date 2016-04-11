@@ -13,6 +13,7 @@ function Play(game) {
     this.speedText = null;
     this.levelUpText = null;
     this.gameOverText = null;
+    this.levelStartText = null;
 
     this.score = 0;
     this.game.speed = 420;
@@ -22,7 +23,6 @@ function Play(game) {
 
     this.dyingAnimation = 0;
     this.levelUpAnimation = -1;
-    this.worldFade = null;
 
     this.coinSfx = null;
     this.bgMusic = null;
@@ -64,7 +64,6 @@ Play.prototype.create = function() {
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
     this.game.background = this.game.add.tileSprite(0, 0, 1920, 1080, 'background');
     this.middleGround = this.game.add.tileSprite(0, this.game.world.height - 140 - 125, 1920, 140, 'trees');
-    this.worldFade = this.game.add.tween(this.game.world).to({alpha : 0}, 2000, Phaser.Easing.Linear.None, false, 0, 0, true);
 
     this.resetConfig();
     this.setupGameTexts();
@@ -109,8 +108,9 @@ Play.prototype.setupGameTexts = function() {
 
     this.levelUpText = this.game.add.text(this.game.width/2 - 295, this.game.height/2 - 200, 'LEVEL UP!!!', {fontSize: '100px', fill: '#000'});
     this.levelUpText.alpha = 0;
-    this.levelUpText.tween = this.game.add.tween(this.levelUpText).to({alpha : 1}, 200, Phaser.Easing.Linear.None, true, 0, -1, false);
-    this.levelUpText.tween.pause();
+
+    this.levelStartText = this.game.add.text(this.game.width/2 - 215, this.game.height/2 - 200, 'LEVEL 1', {fontSize: '100px', fill: '#000'});
+    this.levelStartText.alpha = 0;
     
     this.gameOverText = this.game.add.text(this.game.width/2 - 330, this.game.height/2 - 200, 'GAME OVER!!!', {fontSize: '100px', fill: '#000'});
     this.gameOverText.alpha = 0;
@@ -193,7 +193,8 @@ Play.prototype.startLevelUpAnimation = function() {
     this.player.levelTransitioning = true;
 
     this.levelUpSfx.play();
-    this.levelUpText.tween.resume();
+
+    this.game.add.tween(this.levelUpText).to({alpha : 1}, 200, Phaser.Easing.Linear.None, true, 0, 3, true);
 };
 
 Play.prototype.finishLevelUpAnimation = function() {
@@ -203,23 +204,23 @@ Play.prototype.finishLevelUpAnimation = function() {
     this.player.levelTransitioning = false;
     this.player.respawn();
 
-    this.levelUpText.tween.pause();
-    this.levelUpText.alpha = 0;
+    this.levelStartText.text = "LEVEL " + (this.currentLevel + 1);
+    this.game.add.tween(this.levelStartText).to({alpha : 1}, 200, Phaser.Easing.Linear.None, true, 0, 2, true);
 
     this.levelUpAnimation--;
 };
 
 Play.prototype.doLevelUpAnimation = function() {
     if (this.levelUpAnimation === 120) {
-        this.worldFade.start();
+        this.game.add.tween(this.game.world).to({alpha : 0}, 2000, Phaser.Easing.Linear.None, true, 0, 0, true);
     }
     this.levelUpAnimation--;
 };
 
 Play.prototype.handleLevels = function() {
     if ((this.score > 100 && this.currentLevel === 0) ||
-        (this.score > 1000 && this.currentLevel === 1) ||
-        (this.score > 2000 && this.currentLevel === 2)) {
+        (this.score > 500 && this.currentLevel === 1) ||
+        (this.score > 1000 && this.currentLevel === 2)) {
         
         this.startLevelUpAnimation();
     } else if (this.levelUpAnimation > 0) {

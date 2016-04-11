@@ -6,7 +6,7 @@
             "heightLevel" : 1,
             "bones" : 8,
             "spikes" : [
-                {"x" : 0, "y" : 0}
+                
             ],
             "bullets" : [
                 {"x" : -100, "y" : -200}
@@ -18,7 +18,7 @@
             "heightLevel" : 2,
             "bones" : 2,
             "spikes" : [
-                {"x" : 0, "y" : 300}
+                
             ]
         },
         {
@@ -39,7 +39,7 @@
             "heightLevel" : 2,
             "bones" : 6,
             "spikes" : [
-                {"x" : 100, "y" : 0}
+                
             ],
             "bullets" : [
                 {"x" : 0, "y" : 0}
