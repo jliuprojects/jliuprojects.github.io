@@ -37,14 +37,16 @@ function update() {
 };
 
 canvas.addEventListener("click", function(e) {
-	ball = {
-		x : e.x - (window.innerWidth/2 - W/2),
-		y : e.y,
-		radius : 15,
+	if (ball === null) {
+		ball = {
+			x : e.x - (window.innerWidth/2 - W/2),
+			y : e.y,
+			radius : 15,
 
-		vx : 0,
-		vy : 1
-	};
+			vx : 0,
+			vy : 1
+		};
+	}
 });
 
 setInterval(update, 1000/60);
