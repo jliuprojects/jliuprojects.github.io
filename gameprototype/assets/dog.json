@@ -1,0 +1,84 @@
+{"frames": {
+
+"d-01.png":
+{
+	"frame": {"x":730,"y":1,"w":112,"h":74},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":41,"y":84,"w":112,"h":74},
+	"sourceSize": {"w":112,"h":74}
+},
+"d-02.png":
+{
+	"frame": {"x":619,"y":1,"w":109,"h":81},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":44,"y":82,"w":109,"h":81},
+	"sourceSize": {"w":109,"h":81}
+},
+"d-03.png":
+{
+	"frame": {"x":393,"y":1,"w":111,"h":81},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":42,"y":81,"w":111,"h":81},
+	"sourceSize": {"w":111,"h":81}
+},
+"d-04.png":
+{
+	"frame": {"x":506,"y":1,"w":111,"h":81},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":42,"y":85,"w":111,"h":81},
+	"sourceSize": {"w":111,"h":81}
+},
+"d-05.png":
+{
+	"frame": {"x":844,"y":1,"w":108,"h":72},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":45,"y":86,"w":108,"h":72},
+	"sourceSize": {"w":108,"h":72}
+},
+"dog-01.png":
+{
+	"frame": {"x":101,"y":1,"w":96,"h":82},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":59,"y":73,"w":96,"h":82},
+	"sourceSize": {"w":96,"h":82}
+},
+"dog-02.png":
+{
+	"frame": {"x":199,"y":1,"w":95,"h":82},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":60,"y":73,"w":95,"h":82},
+	"sourceSize": {"w":95,"h":82}
+},
+"dog-03.png":
+{
+	"frame": {"x":1,"y":1,"w":98,"h":82},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":57,"y":73,"w":98,"h":82},
+	"sourceSize": {"w":98,"h":82}
+},
+"dog-04.png":
+{
+	"frame": {"x":296,"y":1,"w":95,"h":82},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":60,"y":73,"w":95,"h":82},
+	"sourceSize": {"w":95,"h":82}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "dog.png",
+	"format": "RGBA8888",
+	"size": {"w":953,"h":84},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:9763d962514053c323879e8e8e32954b:3a939b8e0e484ef5cbae8a655aa14846:ec6c3e0b9eb3cd3c555a7c426f3b0ee8$"
+}
+}

@@ -31,7 +31,7 @@ function Play(game) {
 
 Play.prototype.preload = function() {
     this.game.load.atlasJSONHash('harrison', 'assets/harrison.png', 'assets/harrison.json');
-    // this.game.load.atlasJSONHash('die', 'assets/die.png', 'assets/die.json');
+    this.game.load.atlasJSONHash('dog', 'assets/dog.png', 'assets/dog.json');
 
     this.game.load.image('ground', 'assets/ground.png');
     this.game.load.image('longPlatform', 'assets/longPlatform.png');
@@ -140,6 +140,8 @@ Play.prototype.setupSprites = function() {
         "die" : this.game.add.audio('die')
     });
 
+    this.dog = new Dog(this.game, {});
+
     var ground = new MovingStationaryObject(this.game, 0, this.game.world.height - 125, 'ground', this.grounds);
     var scale = gameWidth / 71 + 1;
     ground.scale.setTo(scale, 1);
@@ -149,6 +151,8 @@ Play.prototype.handleBounds = function() {
     this.game.physics.arcade.collide(this.bones, this.grounds);
     this.game.physics.arcade.collide(this.bones, this.platforms);
     this.game.physics.arcade.collide(this.player, this.grounds);
+    // this.game.physics.arcade.collide(this.dog, this.platforms);
+    this.game.physics.arcade.collide(this.dog, this.grounds);
 
     if (this.levelUpAnimation < 0) {
         this.game.physics.arcade.collide(this.player, this.platforms);

@@ -8,7 +8,7 @@ Player = function(game, sfx) {
     this.animations.add('die', [0, 1, 2, 3, 4, 5]);
     this.body.gravity.y = 2000;
     this.alive = true;
-    this.sliding = true;
+    this.sliding = false;
     this.sfx = sfx;
     this.levelTransitioning = false;
 
@@ -19,7 +19,6 @@ Player = function(game, sfx) {
     
     this.game.cursors = this.game.input.keyboard.createCursorKeys();
     this.initMobileControls();
-    this.run();
 };
 
 Player.prototype = Object.create(Phaser.Sprite.prototype);
@@ -28,7 +27,7 @@ Player.prototype.constructor = Player;
 
 Player.prototype.update = function() {
     // this.game.debug.spriteInfo(player, 20, 32);
-    // this.game.debug.body(this);
+    this.game.debug.body(this);
     
     if (!this.alive) {
         this.body.velocity.x = 300;
