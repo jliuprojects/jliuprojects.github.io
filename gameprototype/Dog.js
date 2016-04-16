@@ -12,7 +12,7 @@ Dog = function(game, sfx) {
 
     this.standingFrames = 100;
 
-    this.body.offset.setTo(40, 70);
+    this.body.offset.setTo(40, 80);
 
     game.world.add(this);
 };

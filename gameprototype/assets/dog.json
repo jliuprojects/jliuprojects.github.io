@@ -45,7 +45,7 @@
 	"frame": {"x":101,"y":1,"w":96,"h":82},
 	"rotated": false,
 	"trimmed": true,
-	"spriteSourceSize": {"x":59,"y":73,"w":96,"h":82},
+	"spriteSourceSize": {"x":59,"y":83,"w":96,"h":82},
 	"sourceSize": {"w":96,"h":82}
 },
 "dog-02.png":
@@ -53,7 +53,7 @@
 	"frame": {"x":199,"y":1,"w":95,"h":82},
 	"rotated": false,
 	"trimmed": true,
-	"spriteSourceSize": {"x":60,"y":73,"w":95,"h":82},
+	"spriteSourceSize": {"x":60,"y":83,"w":95,"h":82},
 	"sourceSize": {"w":95,"h":82}
 },
 "dog-03.png":
@@ -61,7 +61,7 @@
 	"frame": {"x":1,"y":1,"w":98,"h":82},
 	"rotated": false,
 	"trimmed": true,
-	"spriteSourceSize": {"x":57,"y":73,"w":98,"h":82},
+	"spriteSourceSize": {"x":57,"y":83,"w":98,"h":82},
 	"sourceSize": {"w":98,"h":82}
 },
 "dog-04.png":
@@ -69,7 +69,7 @@
 	"frame": {"x":296,"y":1,"w":95,"h":82},
 	"rotated": false,
 	"trimmed": true,
-	"spriteSourceSize": {"x":60,"y":73,"w":95,"h":82},
+	"spriteSourceSize": {"x":60,"y":83,"w":95,"h":82},
 	"sourceSize": {"w":95,"h":82}
 }},
 "meta": {
@@ -79,6 +79,6 @@
 	"format": "RGBA8888",
 	"size": {"w":953,"h":84},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:9763d962514053c323879e8e8e32954b:3a939b8e0e484ef5cbae8a655aa14846:ec6c3e0b9eb3cd3c555a7c426f3b0ee8$"
+	"smartupdate": "$TexturePacker:SmartUpdate:3392900306821b5ba2c0d9b4999d0880:9fdb3100a3da7792e2b21901c28e8243:ec6c3e0b9eb3cd3c555a7c426f3b0ee8$"
 }
 }
