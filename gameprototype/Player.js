@@ -1,10 +1,11 @@
 Player = function(game, sfx) {
     Phaser.Sprite.call(this, game, 100, game.world.height - 500, 'harrison');
     game.physics.arcade.enable(this);
-    this.animations.add('run', [1, 2, 3, 4, 5]);
-    this.animations.add('stand', [0]);
-    this.animations.add('slide', [6]);
-    this.animations.add('jump', [3]);
+    this.animations.add('run', [7, 8, 9, 10]);
+    this.animations.add('stand', [13]);
+    this.animations.add('slide', [12]);
+    this.animations.add('jump', [6]);
+    this.animations.add('die', [0, 1, 2, 3, 4, 5]);
     this.body.gravity.y = 2000;
     this.alive = true;
     this.sliding = true;
@@ -27,8 +28,8 @@ Player.prototype.constructor = Player;
 
 Player.prototype.update = function() {
     // game.debug.spriteInfo(player, 20, 32);
-    // game.debug.body(player);
-
+    this.game.debug.body(this);
+    
     if (!this.alive) {
         this.body.velocity.x = 300;
         this.animations.play('die', 4);
@@ -91,8 +92,6 @@ Player.prototype.run = function() {
 Player.prototype.kill = function() {
     this.alive = false;
     this.sfx.die.play();
-    this.loadTexture('die');
-    this.animations.add('die', [0, 1, 2, 3, 4, 5]);
 };
 
 Player.prototype.respawn = function() {

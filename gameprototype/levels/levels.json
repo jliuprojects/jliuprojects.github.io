@@ -6,7 +6,7 @@
             "heightLevel" : 1,
             "bones" : 8,
             "spikes" : [
-                
+                {"x" : 0, "y" : 0}
             ],
             "bullets" : [
                 {"x" : -100, "y" : -200}

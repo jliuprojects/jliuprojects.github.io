@@ -57,6 +57,9 @@ table {
 }
 
 /* End of css reset */
+body {
+	overflow-x: scroll;
+}
 
 body * {
 	border: 1px dashed black;
@@ -105,7 +108,7 @@ body * * * {
     opacity : 1;
     bottom : 0;
 }
-/* CSS ANIMATIONS */
+/* CSS ANIMATIONS END */
 
 .hidden {
 	opacity : 0;

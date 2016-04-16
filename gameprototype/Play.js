@@ -31,7 +31,7 @@ function Play(game) {
 
 Play.prototype.preload = function() {
     this.game.load.atlasJSONHash('harrison', 'assets/harrison.png', 'assets/harrison.json');
-    this.game.load.atlasJSONHash('die', 'assets/die.png', 'assets/die.json');
+    // this.game.load.atlasJSONHash('die', 'assets/die.png', 'assets/die.json');
 
     this.game.load.image('ground', 'assets/ground.png');
     this.game.load.image('longPlatform', 'assets/longPlatform.png');
@@ -122,7 +122,7 @@ Play.prototype.setupSfx = function() {
     this.bgMusic = this.game.add.audio('bgMusic');
     this.bgMusic.loop = true;
     this.game.sound.setDecodedCallback([this.bgMusic], function() {
-        this.bgMusic.play();
+        // this.bgMusic.play();
     }, this);
 };
 
