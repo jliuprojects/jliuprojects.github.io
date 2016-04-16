@@ -70,6 +70,7 @@ body * * * {
 	border: 1px dashed red;
 }
 
+/* CSS ANIMATIONS */
 @keyframes fadeInUpUsePaddingTop {
     from {
     	padding-top: 200px;
@@ -92,18 +93,19 @@ body * * * {
     }
 }
 
-.fade-in-up {
+.fade-in-up-use-padding-top {
 	animation-name : fadeInUpUsePaddingTop;
     animation-duration : 2s;
     opacity : 1;
 }
 
-.fade-in-up-float-bottom {
+.fade-in-up-use-bottom {
 	animation-name : fadeInUpUseBottom;
     animation-duration : 2s;
     opacity : 1;
     bottom : 0;
 }
+/* CSS ANIMATIONS */
 
 .hidden {
 	opacity : 0;

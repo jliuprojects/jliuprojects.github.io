@@ -39,30 +39,32 @@
             </div>
         </div>
         <script type='text/javascript'>
-            const CSS_CLASS_FIU = 'fade-in-up';
-            const CSS_CLASS_FIU_FLOAT_BOTTOM = 'fade-in-up-float-bottom';
+            const CSS_CLASS_FIU_USE_PADDING_TOP = 'fade-in-up-use-padding-top';
+            const CSS_CLASS_FIU_USE_BOTTOM = 'fade-in-up-use-bottom';
             const CSS_CLASS_HIDDEN = 'hidden';
 
-            var utils = {
-                fiuElement : function(element) {
-                    element.classList.remove(CSS_CLASS_HIDDEN);
-                    element.classList.add(CSS_CLASS_FIU);
-                },
-                fiuElementFloatBottom : function(element) {
-                    element.classList.remove(CSS_CLASS_HIDDEN);
-                    element.classList.add(CSS_CLASS_FIU_FLOAT_BOTTOM);
+            var ANIM = ANIM || {};
+            ANIM.fadeInUp = (elem, prop = null) => {
+                elem.classList.remove(CSS_CLASS_HIDDEN);
+                switch (prop) {
+                    case 'bottom':
+                        elem.classList.add(CSS_CLASS_FIU_USE_BOTTOM);
+                        break;
+                    default:
+                        elem.classList.add(CSS_CLASS_FIU_USE_PADDING_TOP);
+                        break;
                 }
             };
 
-            (function() {
+            (() => {
                 var mainTitle = document.getElementById('main-title');
-                utils.fiuElement(mainTitle);
+                ANIM.fadeInUp(mainTitle);
 
                 var horizontalContent = document.getElementById('main-horizontal-content');
                 
-                mainTitle.addEventListener('webkitAnimationEnd', () => utils.fiuElementFloatBottom(horizontalContent));
-                mainTitle.addEventListener('animationend', () => utils.fiuElementFloatBottom(horizontalContent));
-                mainTitle.addEventListener('oanimationend', () => utils.fiuElementFloatBottom(horizontalContent));
+                mainTitle.addEventListener('webkitAnimationEnd', () => ANIM.fadeInUp(horizontalContent, 'bottom'));
+                mainTitle.addEventListener('animationend', () => ANIM.fadeInUp(horizontalContent, 'bottom'));
+                mainTitle.addEventListener('oanimationend', () => ANIM.fadeInUp(horizontalContent, 'bottom'));
 
 
 
