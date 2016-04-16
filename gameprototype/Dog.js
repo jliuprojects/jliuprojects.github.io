@@ -28,7 +28,7 @@ Dog.prototype.update = function() {
     this.body.velocity.x = 0;
 
     if (this.standingFrames === 0 && this.body.touching.down && this.body.x < this.game.world.width + 100) {
-        this.body.velocity.x = this.game.speed + 100;
+        this.body.velocity.x = this.game.speed + 200;
         this.run();
     } else if (this.standingFrames > 0) {
         this.standingFrames--;
@@ -45,7 +45,7 @@ Dog.prototype.stand = function() {
 };
 
 Dog.prototype.respawn = function() {
-    this.x = this.game.world.width - 350;
-    this.y = this.game.world.height - 400;
+    this.body.x = this.game.world.width - 350;
+    this.body.y = this.game.world.height - 400;
     this.standingFrames = 120;
 };
