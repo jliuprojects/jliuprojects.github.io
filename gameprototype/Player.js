@@ -51,7 +51,7 @@ Player.prototype.update = function() {
             this.body.velocity.x = this.game.speed;
         }
     
-        if (!this.body.touching.down) {
+        if (!this.body.touching.down || !this.alive) {
             this.body.velocity.x = 0;
             this.animations.play('jump', 10);
         } else if (this.game.cursors.up.isDown && this.body.touching.down) {

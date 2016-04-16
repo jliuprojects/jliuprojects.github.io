@@ -1,5 +1,5 @@
 Dog = function(game, sfx) {
-    Phaser.Sprite.call(this, game, 400, game.world.height - 500, 'dog');
+    Phaser.Sprite.call(this, game, game.world.width - 350, game.world.height - 500, 'dog');
     game.physics.arcade.enable(this);
     this.animations.add('run', [0, 1, 2, 3, 4]);
     this.body.gravity.y = 2000;
@@ -22,7 +22,12 @@ Dog.prototype.update = function() {
     // this.game.debug.spriteInfo(Dog, 20, 32);
     // this.game.debug.body(this);
 
-    this.body.velocity.x = this.game.speed;
+    this.body.velocity.x = 0;
+
+    if (this.body.touching.down) {
+        this.body.velocity.x = this.game.speed;
+    }
+    
     this.run();
 };
 
@@ -36,6 +41,6 @@ Dog.prototype.kill = function() {
 };
 
 Dog.prototype.respawn = function() {
-    this.x = 400;
+    this.x = game.world.width - 350;
     this.y = this.game.world.height - 500;
 };
