@@ -1,13 +1,16 @@
 Dog = function(game, sfx) {
-    Phaser.Sprite.call(this, game, game.world.width - 350, game.world.height - 500, 'dog');
+    Phaser.Sprite.call(this, game, game.world.width - 350, game.world.height - 400, 'dog');
     game.physics.arcade.enable(this);
     this.animations.add('run', [0, 1, 2, 3, 4]);
+    this.animations.add('stand', [5, 6, 7, 8]);
     this.body.gravity.y = 2000;
     this.sfx = sfx;
     this.levelTransitioning = false;
 
     this.anchor.x = 0;
     this.anchor.y = 0;
+
+    this.standingFrames = 120;
 
     this.body.offset.setTo(40, 85);
 
@@ -24,23 +27,25 @@ Dog.prototype.update = function() {
 
     this.body.velocity.x = 0;
 
-    if (this.body.touching.down) {
-        this.body.velocity.x = this.game.speed;
+    if (this.standingFrames === 0 && this.body.touching.down && this.body.x < this.game.world.width + 100) {
+        this.body.velocity.x = this.game.speed + 100;
+        this.run();
+    } else if (this.standingFrames > 0) {
+        this.standingFrames--;
+        this.stand();
     }
-    
-    this.run();
 };
 
 Dog.prototype.run = function() {
     this.animations.play('run', 10);
 };
 
-Dog.prototype.kill = function() {
-    this.alive = false;
-    this.sfx.die.play();
+Dog.prototype.stand = function() {
+    this.animations.play('stand', 10);
 };
 
 Dog.prototype.respawn = function() {
-    this.x = game.world.width - 350;
-    this.y = this.game.world.height - 500;
+    this.x = this.game.world.width - 350;
+    this.y = this.game.world.height - 400;
+    this.standingFrames = 120;
 };

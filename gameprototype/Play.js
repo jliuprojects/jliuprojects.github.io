@@ -139,7 +139,6 @@ Play.prototype.setupSprites = function() {
         "slide" : this.game.add.audio('slide'),
         "die" : this.game.add.audio('die')
     });
-
     this.dog = new Dog(this.game, {});
 
     var ground = new MovingStationaryObject(this.game, 0, this.game.world.height - 125, 'ground', this.grounds);
@@ -206,6 +205,7 @@ Play.prototype.finishLevelUpAnimation = function() {
     this.game.speed = 500;
     this.player.levelTransitioning = false;
     this.player.respawn();
+    this.dog.respawn();
 
     this.levelStartText.text = "LEVEL " + (this.currentLevel + 1);
     this.game.add.tween(this.levelStartText).to({alpha : 1}, 200, Phaser.Easing.Linear.None, true, 0, 2, true);
