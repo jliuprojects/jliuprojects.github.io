@@ -27,8 +27,8 @@ Player.prototype = Object.create(Phaser.Sprite.prototype);
 Player.prototype.constructor = Player;
 
 Player.prototype.update = function() {
-    // game.debug.spriteInfo(player, 20, 32);
-    this.game.debug.body(this);
+    // this.game.debug.spriteInfo(player, 20, 32);
+    // this.game.debug.body(this);
     
     if (!this.alive) {
         this.body.velocity.x = 300;
