@@ -6,8 +6,10 @@ Dog = function(game, sfx) {
     this.sfx = sfx;
     this.levelTransitioning = false;
 
-    this.anchor.x = 0.5;
-    this.anchor.y = 0.5;
+    this.anchor.x = 0;
+    this.anchor.y = 0;
+
+    this.body.offset.setTo(40, 85);
 
     game.world.add(this);
 };
@@ -18,14 +20,14 @@ Dog.prototype.constructor = Dog;
 
 Dog.prototype.update = function() {
     // this.game.debug.spriteInfo(Dog, 20, 32);
-    this.game.debug.body(this);
+    // this.game.debug.body(this);
 
     this.body.velocity.x = this.game.speed;
     this.run();
 };
 
 Dog.prototype.run = function() {
-    this.animations.play('run', Math.max(10, this.game.speed/35));
+    this.animations.play('run', 10);
 };
 
 Dog.prototype.kill = function() {

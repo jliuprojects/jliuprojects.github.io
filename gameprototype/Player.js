@@ -27,7 +27,7 @@ Player.prototype.constructor = Player;
 
 Player.prototype.update = function() {
     // this.game.debug.spriteInfo(player, 20, 32);
-    this.game.debug.body(this);
+    // this.game.debug.body(this);
     
     if (!this.alive) {
         this.body.velocity.x = 300;
