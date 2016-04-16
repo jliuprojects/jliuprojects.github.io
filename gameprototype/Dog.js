@@ -10,9 +10,9 @@ Dog = function(game, sfx) {
     this.anchor.x = 0;
     this.anchor.y = 0;
 
-    this.standingFrames = 120;
+    this.standingFrames = 100;
 
-    this.body.offset.setTo(40, 85);
+    this.body.offset.setTo(40, 75);
 
     game.world.add(this);
 };
@@ -47,5 +47,5 @@ Dog.prototype.stand = function() {
 Dog.prototype.respawn = function() {
     this.body.x = this.game.world.width - 350;
     this.body.y = this.game.world.height - 400;
-    this.standingFrames = 120;
+    this.standingFrames = 100;
 };
