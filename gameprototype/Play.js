@@ -122,7 +122,7 @@ Play.prototype.setupSfx = function() {
     this.bgMusic = this.game.add.audio('bgMusic');
     this.bgMusic.loop = true;
     this.game.sound.setDecodedCallback([this.bgMusic], function() {
-        this.bgMusic.play();
+        // this.bgMusic.play();
     }, this);
 };
 
