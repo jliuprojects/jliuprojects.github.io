@@ -1,0 +1,143 @@
+<!doctype html> 
+<html lang="en"> 
+    <head> 
+    	<meta charset="UTF-8" />
+    	<title></title>
+        <style type="text/css">
+            body {
+                margin: 0;
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
+        <script src="https://rawgithub.com/drom/fourier/master/fourier.js"></script>
+    </head>
+    <body>
+        <div id="url"></div>
+        <img id="img"/>
+        <div id="example2"></div>
+        <h1>LOW FILTER PASS</h1>
+        <canvas id="lowfilter" width="3600" height="500"></canvas>
+        <h1>HIGH FILTER PASS</h1>
+        <canvas id="highfilter" width="3600" height="500"></canvas>
+        <script>
+        var PLAYER, interval = null;
+        var xmlhttp = new XMLHttpRequest();
+        var url = "https://w1.sndcdn.com/JUWasRlbRPDH_m.json";
+        var PATH = "users/roywoodsofficial/tracks/drama-feat-drake";
+        var lowfilter, highfilter = null;
+        var counter = 0;
+
+        SC.initialize({
+          client_id: 'c664ed3d4833e6856ba726a6207f39d5'
+        });
+
+        SC.get(PATH).then(function(tracks){
+            $("#url").html(tracks.waveform_url);
+            $("#img").attr("src", tracks.waveform_url);
+            SC.stream("/tracks/" + tracks.id).then(function(player) {
+                PLAYER = player;
+                xmlhttp.open("GET", url, true);
+                xmlhttp.send();
+            });
+        });
+
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                var data = JSON.parse(xmlhttp.responseText).samples;
+                var locanvas = document.getElementById('lowfilter');
+                var locontext = locanvas.getContext('2d');
+                locontext.lineWidth = 1;
+                locontext.strokeStyle = 'blue';
+                locontext.beginPath();
+                locontext.moveTo(0, 500);
+
+                var highcanvas = document.getElementById('highfilter');
+                var highcontext = highcanvas.getContext('2d');
+                highcontext.lineWidth = 1;
+                highcontext.strokeStyle = 'blue';
+                highcontext.beginPath();
+                highcontext.moveTo(0, 500);
+                
+                var img = [];
+                for (var i = 0; i < 1800; i++) {
+                    img.push(0);
+                }
+
+                var fft = fourier.dft(data,img);
+                for (var i = 0; i < 1800; i++) {
+                    if (100 < i && i < 1700) {
+                        fft[0][i] = 0;
+                        fft[1][i] = 0;
+                    } else {
+                        // fft[0][i] = 0;
+                        // fft[1][i] = 0;
+                    }
+                }
+                lowfilter = fourier.idft(fft[0], fft[1]);
+
+                fft = fourier.dft(data,img);
+                for (var i = 0; i < 1800; i++) {
+                    if (800 < i && i < 1000) {
+                        // fft[0][i] = 0;
+                        // fft[1][i] = 0;
+                    } else {
+                        fft[0][i] = 0;
+                        fft[1][i] = 0;
+                    }
+                }
+                highfilter = fourier.idft(fft[0], fft[1]);
+
+                var counter = 0;
+                interval = window.setInterval(function() {
+                    if (counter == 0) {
+                        PLAYER.play();
+                    }
+                    if (counter == 1800) {
+                        window.clearInterval(interval);
+                    } else {
+                        locontext.lineTo(counter*2, lowfilter[0][counter]*2 + 250);
+                        locontext.stroke();
+                        highcontext.lineTo(counter*2, highfilter[0][counter]*2 + 250);
+                        highcontext.stroke();
+                        counter++;
+                    }
+                }, 139.985);
+            }
+        };
+
+        // (min, max) -> first half of range
+        function createWave(min, max, data) {
+            var data = JSON.parse(xmlhttp.responseText).samples;
+            var canvas = $("<canvas width='3600' height='500'></canvas>")
+            $("body").append(canvas);
+
+            var context = canvas[0].getContext('2d');
+            context.lineWidth = 1;
+            context.strokeStyle = 'blue';
+            context.beginPath();
+            context.moveTo(0, 500);
+
+            var imaginary = [];
+            for (var i = 0; i < 1800; i++) {
+                imaginary.push(0);
+            }
+
+            var fft = fourier.dft(data,imaginary);
+            for (var i = 0; i < 900; i++) {
+                if (i < min || i > max) {
+                    fft[0][i] = 0;
+                    fft[1][i] = 0;
+                }
+            }
+            for (var i = 900; i < 1800; i++) {
+                if (i < 1800 - max || i > 1800 - min) {
+                    fft[0][i] = 0;
+                    fft[1][i] = 0;
+                }
+            }
+            return fourier.idft(fft[0], fft[1]);
+        }
+        </script>
+    </body>
+</html>

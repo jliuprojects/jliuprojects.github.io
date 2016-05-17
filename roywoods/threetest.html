@@ -1,0 +1,76 @@
+<html>
+	<head>
+		<title>jliu.projects</title>
+		<!-- <link rel="shortcut icon" href="favicon.ico"> -->
+		<!-- <link rel="stylesheet" href="stylesheets/style.css"> -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="scripts/three.min.js"></script>
+	</head>
+	<body style="background-color : black; margin : 0;">
+		<script src="scripts/branch.js"></script>
+		<script src="scripts/tree.js"></script>
+		<script src="scripts/leaf.js"></script>
+		<script>
+			var camera, scene, renderer;
+			var mesh, trunk, branch;
+			var mouseX = 0, mouseY = 0;
+			var windowHalfX = window.innerWidth / 2;
+			var windowHalfY = window.innerHeight / 2;
+
+			var tree;
+
+			init();
+			animate();
+
+			function init() {
+				camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 10000);
+				camera.position.z = 350;
+
+				scene = new THREE.Scene();
+				scene.fog = new THREE.FogExp2(0x000000, 0.0020);
+				var light = new THREE.PointLight( 0xffffff, 50, 2000 );
+				light.position.set( 1000, 1000, 1000 );
+				scene.add( light );
+
+				tree = new Tree(scene);
+				// scene.add(new THREE.AxisHelper(500));
+
+				renderer = new THREE.WebGLRenderer({alpha : true,antialias : true});
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.setClearColor( 0x000000, 0);
+				document.body.appendChild( renderer.domElement );
+
+				window.addEventListener( 'resize', onWindowResize, false );
+				window.addEventListener( 'mousemove', onDocumentMouseMove, false );
+			}
+
+			function onWindowResize() {
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+				renderer.setSize( window.innerWidth, window.innerHeight );
+			}
+
+			function onDocumentMouseMove(event) {
+				mouseX = event.clientX - windowHalfX;
+				mouseY = event.clientY - windowHalfY;
+			}
+
+			function animate() {
+				requestAnimationFrame(animate);
+				camera.position.x += (mouseX - camera.position.x) * .5;
+				camera.position.y += (-mouseY - camera.position.y) * .5;
+				camera.lookAt( scene.position );
+
+				tree.grow();
+				tree.generations[0][0].mesh.rotation.y += 0.01;
+				
+				renderer.render( scene, camera );
+			}
+
+			$("body").click(function () {
+				tree.splitBranches();
+			});
+		</script>
+	</body>
+</html>

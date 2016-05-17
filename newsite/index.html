@@ -1,0 +1,74 @@
+<html>
+    <head>
+        <title>jasonLiu</title>
+        <link rel='shortcut icon' href='favicon.ico'>
+        <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+        <link rel='stylesheet' href='style.css'>
+        <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'></script>
+    </head>
+    <body>
+        <div id='main-title' class='plain-wraper hidden'>
+            <div class='center-wraper'>
+                <span id='main-title-name'>JASON LIU</span>
+            </div>
+            <div class='center-wraper'>
+                <span id='main-title-term-school'>4A Computer Science student at the University of Waterloo</span> 
+            </div>
+        </div>
+        <div id='main-horizontal-content' class='plain-wraper hidden'>
+            <div class='img-wraper main-horizontal-content-img-wraper'>
+                <img src="assets/d2.png" height="100%">
+            </div>
+            <div class='img-wraper main-horizontal-content-img-wraper'>
+                <img src="assets/d2.png" height="100%">
+            </div>
+            <div class='img-wraper main-horizontal-content-img-wraper'>
+                <img src="assets/d2.png" height="100%">
+            </div>
+            <div class='img-wraper main-horizontal-content-img-wraper'>
+                <img src="assets/d2.png" height="100%">
+            </div>
+            <div class='img-wraper main-horizontal-content-img-wraper'>
+                <img src="assets/d2.png" height="100%">
+            </div>
+            <div class='img-wraper main-horizontal-content-img-wraper'>
+                <img src="assets/d2.png" height="100%">
+            </div>
+            <div class='img-wraper main-horizontal-content-img-wraper'>
+                <img src="assets/d2.png" height="100%">
+            </div>
+        </div>
+        <script type='text/javascript'>
+            const CSS_CLASS_FIU_USE_PADDING_TOP = 'fade-in-up-use-padding-top';
+            const CSS_CLASS_FIU_USE_BOTTOM = 'fade-in-up-use-bottom';
+            const CSS_CLASS_HIDDEN = 'hidden';
+
+            var ANIM = ANIM || {};
+            ANIM.fadeInUp = (elem, prop = null) => {
+                elem.classList.remove(CSS_CLASS_HIDDEN);
+                switch (prop) {
+                    case 'bottom':
+                        elem.classList.add(CSS_CLASS_FIU_USE_BOTTOM);
+                        break;
+                    default:
+                        elem.classList.add(CSS_CLASS_FIU_USE_PADDING_TOP);
+                        break;
+                }
+            };
+
+            (() => {
+                var mainTitle = document.getElementById('main-title');
+                ANIM.fadeInUp(mainTitle);
+
+                var horizontalContent = document.getElementById('main-horizontal-content');
+                
+                mainTitle.addEventListener('webkitAnimationEnd', () => ANIM.fadeInUp(horizontalContent, 'bottom'));
+                mainTitle.addEventListener('animationend', () => ANIM.fadeInUp(horizontalContent, 'bottom'));
+                mainTitle.addEventListener('oanimationend', () => ANIM.fadeInUp(horizontalContent, 'bottom'));
+
+
+
+            })();
+        </script>
+    </body>
+</html>
