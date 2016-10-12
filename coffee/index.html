@@ -15,7 +15,7 @@
         <div id="content">asdf</div>
         <script>
             (function(window, undefined) {
-                // Check Location
+                Check Location
                 if (document.location.protocol === 'file:') {
                     alert('The HTML5 History API (and thus History.js) do not work on files, please upload it to a server.');
                 }
@@ -27,18 +27,24 @@
 
                 // Log Initial State
                 History.log('initial:', State.data, State.title, State.url);
+                console.log(jQuery.isEmptyObject(State.data));
 
                 // Bind to State Change
-                History.Adapter.bind(window,'statechange',function(){ // Note: We are using statechange instead of popstate
+                History.Adapter.bind(window,'statechange', function() { // Note: We are using statechange instead of popstate
                     // Log the State
                     var State = History.getState(); // Note: We are using History.getState() instead of event.state
                     History.log('statechange:', State.data, State.title, State.url);
-                    console.log("trying to load " + State.url);
-                    $('#content').load(State.url);
+                    
+
+                    if (!jQuery.isEmptyObject(State.data)) {
+                        console.log("trying to load ");
+                        console.log(State.data['state']);
+                        $('#content').load(State.data['state']); 
+                    }
                 });
 
                 $("#content").load('ajax/home.html');
-                History.pushState({state: 2, rand: Math.random()}, "home", "?state=1");
+                History.pushState({state: "ajax/home.html"}, "home", "?state=1");
             })(window);
         </script>
     </body>
