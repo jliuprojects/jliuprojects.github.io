@@ -21,6 +21,9 @@
 
 <script type="text/javascript">
 	$("#homeBeginButton").click(function() {
+		
+		
 		$("#content").load('ajax/test.html');
+		History.pushState({state: 2, rand: Math.random()}, "2nd page", "?state=2");
 	});
 </script>
