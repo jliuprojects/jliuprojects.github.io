@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>COOOFOFEFEFEFEFEEEEE</title>
+        <title>v1</title>
         <link rel="stylesheet" href="stylesheets/56.css">
         <link rel="stylesheet" href="stylesheets/animations.css">
         <script type="text/javascript" src="jquery-3.1.1.min.js"></script>
@@ -33,6 +33,7 @@
                     // Log the State
                     var State = History.getState(); // Note: We are using History.getState() instead of event.state
                     History.log('statechange:', State.data, State.title, State.url);
+                    console.log("trying to load " + State.url);
                     $('#content').load(State.url);
                 });
 
