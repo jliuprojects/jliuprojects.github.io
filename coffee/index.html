@@ -45,11 +45,11 @@
                 switch (state) {
                     case "home":
                         $("#content").load('ajax/home.html');
-                        History.pushState({state: "home"}, "home", "?home");
+                        History.pushState({state: "home"}, "home", "home");
                         break;
                     case "test":
                         $("#content").load('ajax/test.html');
-                        History.pushState({state: "test"}, "test", "?test");
+                        History.pushState({state: "test"}, "test", "test");
                         break;
                     case "draftBldgChoice":
                         $("#content").load('ajax/draftBldgChoice.html');
@@ -57,7 +57,7 @@
                         break;
                     default:
                         $("#content").load('ajax/error.html');
-                        History.pushState({state: "error"}, "error", "?error");
+                        History.pushState({state: "error"}, "error", "error");
                         break;
                 }
             }
