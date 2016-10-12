@@ -1,0 +1,56 @@
+* {
+	border: 1px dashed red;
+}
+
+* * {
+	border: 1px dashed blue;
+}
+
+* * * {
+	border: 1px dashed green;
+}
+
+* * * * {
+	border: 1px dashed black;
+}
+
+header {
+	padding: 35px 35px;
+
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+}
+
+#headerShare {
+	float: right;
+}
+
+button {
+    background-color: #000000; /* Green */
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+}
+
+.centeredContainer {
+	position: relative;
+	display: block;
+	width: 80%;
+	margin: auto;
+}
+
+.centeredText {
+	text-align: center;
+}
+
+#content {
+	display: flex;
+	flex-grow: 1;
+}
