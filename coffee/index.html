@@ -15,37 +15,46 @@
         <div id="content">asdf</div>
         <script>
             (function(window, undefined) {
-                // Check Location
-                if (document.location.protocol === 'file:') {
-                    alert('The HTML5 History API (and thus History.js) do not work on files, please upload it to a server.');
-                }
-
                 // Establish Variables
-                var
-                    State = History.getState(),
-                    $log = $('#log');
+                var State = History.getState();
+                var $log = $('#log');
 
                 // Log Initial State
                 History.log('initial:', State.data, State.title, State.url);
-                console.log(jQuery.isEmptyObject(State.data));
 
                 // Bind to State Change
                 History.Adapter.bind(window,'statechange', function() { // Note: We are using statechange instead of popstate
                     // Log the State
                     var State = History.getState(); // Note: We are using History.getState() instead of event.state
                     History.log('statechange:', State.data, State.title, State.url);
-                    
 
-                    if (!jQuery.isEmptyObject(State.data)) {
-                        console.log("trying to load ");
-                        console.log(State.data['state']);
-                        $('#content').load(State.data['state']); 
-                    }
+                    loadContent(State.data); 
                 });
 
-                $("#content").load('ajax/home.html');
-                History.pushState({state: "ajax/home.html"}, "home", "?state=1");
-            })(window);
+                loadContent(State.data);
+            }) (window);
+
+            function loadContent(data) {
+                var state = data["state"];
+                if (jQuery.isEmptyObject(data)) {
+                    state = "home";
+                }
+
+                switch (state) {
+                    case "home":
+                        $("#content").load('ajax/home.html');
+                        History.pushState({state: "home"}, "home", "?home");
+                        break;
+                    case "test":
+                        $("#content").load('ajax/test.html');
+                        History.pushState({state: "test"}, "test", "?test");
+                        break;
+                    default:
+                        $("#content").load('ajax/error.html');
+                        History.pushState({state: "error"}, "error", "?error");
+                        break;
+                }
+            }
         </script>
     </body>
 </html>
