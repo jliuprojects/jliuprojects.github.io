@@ -34,6 +34,9 @@
                     var State = History.getState(); // Note: We are using History.getState() instead of event.state
                     History.log('statechange:', State.data, State.title, State.url);
                 });
+
+                $("#content").load('ajax/home.html');
+                History.pushState({state: 2, rand: Math.random()}, "home", "?state=1");
             })(window);
         </script>
     </body>
