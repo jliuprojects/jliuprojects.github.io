@@ -18,7 +18,7 @@
     }            
 }
 
-.fadeInUp {
+.fadeInUp0 {
     -moz-animation-name : fadeInUp;
     -moz-animation-duration : 1s;
     -moz-animation-iteration-count : 1;
@@ -28,4 +28,60 @@
     -webkit-animation-duration : 1s;
     -webkit-animation-iteration-count : 1;
     -webkit-animation-fill-mode : forwards;
+}
+
+.fadeInUp1 {
+    -moz-animation-name : fadeInUp;
+    -moz-animation-duration : 1s;
+    -moz-animation-iteration-count : 1;
+    -moz-animation-fill-mode : forwards;
+    -moz-animation-delay: 0.5s;
+
+    -webkit-animation-name : fadeInUp;
+    -webkit-animation-duration : 1s;
+    -webkit-animation-iteration-count : 1;
+    -webkit-animation-fill-mode : forwards;
+    -webkit-animation-delay: 0.5s;    
+}
+
+.fadeInUp2 {
+    -moz-animation-name : fadeInUp;
+    -moz-animation-duration : 1s;
+    -moz-animation-iteration-count : 1;
+    -moz-animation-fill-mode : forwards;
+    -moz-animation-delay: 1s;
+
+    -webkit-animation-name : fadeInUp;
+    -webkit-animation-duration : 1s;
+    -webkit-animation-iteration-count : 1;
+    -webkit-animation-fill-mode : forwards;
+    -webkit-animation-delay: 1s;    
+}
+
+.fadeInUp3 {
+    -moz-animation-name : fadeInUp;
+    -moz-animation-duration : 1s;
+    -moz-animation-iteration-count : 1;
+    -moz-animation-fill-mode : forwards;
+    -moz-animation-delay: 1.5s;
+
+    -webkit-animation-name : fadeInUp;
+    -webkit-animation-duration : 1s;
+    -webkit-animation-iteration-count : 1;
+    -webkit-animation-fill-mode : forwards;
+    -webkit-animation-delay: 1.5s;    
+}
+
+.fadeInUp4 {
+    -moz-animation-name : fadeInUp;
+    -moz-animation-duration : 1s;
+    -moz-animation-iteration-count : 1;
+    -moz-animation-fill-mode : forwards;
+    -moz-animation-delay: 2s;
+
+    -webkit-animation-name : fadeInUp;
+    -webkit-animation-duration : 1s;
+    -webkit-animation-iteration-count : 1;
+    -webkit-animation-fill-mode : forwards;
+    -webkit-animation-delay: 2s;    
 }

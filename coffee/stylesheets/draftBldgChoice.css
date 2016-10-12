@@ -1,0 +1,48 @@
+.choiceAImg {
+	display: block;
+	margin: auto;
+}
+
+.choiceBImg {
+	display: block;
+	margin: auto;
+}
+
+#draftBldgChoiceContainer {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+}
+
+.choiceAImgContainer {
+	opacity: 0;
+	flex-grow: 2;
+	position: relative;
+}
+
+.choiceATextContainer {
+	opacity: 0;
+	flex-grow: 2;
+	position: relative;
+}
+
+.choiceORContainer {
+	opacity: 0;
+	flex-grow: 2;
+	position: relative;
+}
+
+.choiceBTextContainer {
+	opacity: 0;
+	flex-grow: 2;
+	position: relative;
+}
+
+.choiceBImgContainer {
+	opacity: 0;
+	flex-grow: 2;
+	position: relative;
+}
+
+
+

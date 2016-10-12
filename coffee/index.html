@@ -3,6 +3,8 @@
         <title>v2</title>
         <link rel="stylesheet" href="stylesheets/56.css">
         <link rel="stylesheet" href="stylesheets/animations.css">
+        <link rel="stylesheet" href="stylesheets/home.css">
+        <link rel="stylesheet" href="stylesheets/draftBldgChoice.css">
         <script type="text/javascript" src="jquery-3.1.1.min.js"></script>
         <script type="text/javascript" src="jquery.history.js"></script>
     </head>
@@ -48,6 +50,10 @@
                     case "test":
                         $("#content").load('ajax/test.html');
                         History.pushState({state: "test"}, "test", "?test");
+                        break;
+                    case "draftBldgChoice":
+                        $("#content").load('ajax/draftBldgChoice.html');
+                        History.pushState({state: "draftBldgChoice"}, "draftBldgChoice", "?draftBldgChoice");
                         break;
                     default:
                         $("#content").load('ajax/error.html');

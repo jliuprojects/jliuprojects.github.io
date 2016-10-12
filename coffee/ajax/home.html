@@ -1,26 +1,33 @@
-<link rel="stylesheet" href="stylesheets/home.css">
 <div id="homeContainer"> 
-	<div id="homeHeaderContainer" class="centeredContainer">
-		<h1 id="homeHeaderText" class="centeredText">WELCOME TO THE<br> LOWER JUNCTION</h1>
+	<div id="homeHeaderContainer" class="centeredContainer fadeInUp0">
+		<h1 id="homeHeaderText" class="centeredText">
+			WELCOME TO THE <br> LOWER JUNCTION
+		</h1>
 	</div>
 
-	<div id="homeIntroContainer" class="centeredContainer">
-		<p id="homeIntroText" class="centeredText">You arrive in the Lower Junction: an unprecedented eight-acre ecosystem of <br> making, creating, and living -- and hopefully grinding, roasting, and brewing.</p>
+	<div id="homeIntroContainer" class="centeredContainer fadeInUp1">
+		<p id="homeIntroText" class="centeredText">
+			You arrive in the Lower Junction: an unprecedented eight-acre ecosystem of <br> making, creating, and living -- and hopefully grinding, roasting, and brewing.
+		</p>
 	</div>
 
-	<div id="homeCoffeeContainer" class="centeredContainer">
-		<p id="homeCoffeeText" class="centeredText">You need a coffee, bad.</p>
+	<div id="homeCoffeeContainer" class="centeredContainer fadeInUp2">
+		<p id="homeCoffeeText" class="centeredText">
+			You need a coffee, bad.
+		</p>
 	</div>
 
-	<div id="homeButtonContainer" class="centeredContainer">
+	<div id="homeButtonContainer" class="centeredContainer fadeInUp3">
 		<div style="text-align:center;">
-			<button type="button" id="homeBeginButton">BEGIN THE ADVENTURE</button>
+			<button type="button" id="homeBeginButton">
+				BEGIN THE ADVENTURE
+			</button>
 		</div>
 	</div>
 </div>
 
 <script type="text/javascript">
 	$("#homeBeginButton").click(function() {
-		loadContent({state: "test"});
+		loadContent({state: "draftBldgChoice"});
 	});
 </script>
