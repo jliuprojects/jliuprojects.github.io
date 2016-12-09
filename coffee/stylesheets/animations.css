@@ -1,87 +1,87 @@
-@-moz-keyframes fadeInUp /*--for firefox--*/{
+.fadedOut {
+    opacity: 0;
+    -webkit-transform: translateY(100px);
+    transform: translateY(100px);
+}
+
+.fadeOut {
+    opacity: 0;
+    -webkit-transform: translateY(-100px);
+    transform: translateY(-100px);
+}
+
+.fadable {
+    -webkit-transition: opacity 1s, -webkit-transform 1s;
+    transition: opacity 1s, transform 1s;
+}
+
+.fadableFaster {
+    -webkit-transition: opacity 0.6s, -webkit-transform 0.6s;
+    transition: opacity 0.6s, transform 0.6s;
+}
+
+@keyframes downArrowFrames {
     from {
-    	opacity : 0;
-    	top : 100px;
+        margin-top: 0;
     } to {
-    	opacity : 1;
-    	top : 0px;
+        margin-top: -15px;
     }
 }
 
-@-webkit-keyframes fadeInUp /*--for webkit--*/{
+@keyframes drawFrames {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes rotateJunction1 {
     from {
-    	opacity : 0;
-    	top : 100px;
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
     } to {
-    	opacity : 1;
-    	top : 0px;
-    }            
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
 }
 
-.fadeInUp0 {
-    -moz-animation-name : fadeInUp;
-    -moz-animation-duration : 1s;
-    -moz-animation-iteration-count : 1;
-    -moz-animation-fill-mode : forwards;
-
-    -webkit-animation-name : fadeInUp;
-    -webkit-animation-duration : 1s;
-    -webkit-animation-iteration-count : 1;
-    -webkit-animation-fill-mode : forwards;
+@keyframes rotateJunction2 {
+    from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    } to {
+        -webkit-transform: rotate(-360deg);
+        transform: rotate(-360deg);
+    }
 }
 
-.fadeInUp1 {
-    -moz-animation-name : fadeInUp;
-    -moz-animation-duration : 1s;
-    -moz-animation-iteration-count : 1;
-    -moz-animation-fill-mode : forwards;
-    -moz-animation-delay: 0.5s;
-
-    -webkit-animation-name : fadeInUp;
-    -webkit-animation-duration : 1s;
-    -webkit-animation-iteration-count : 1;
-    -webkit-animation-fill-mode : forwards;
-    -webkit-animation-delay: 0.5s;    
+.drawCoffee {
+    animation-name: drawFrames;
+    animation-duration: 4s;
+    animation-fill-mode: forwards; // Stay on the last frame
+    animation-iteration-count: 1; // Run only once
+    animation-timing-function: ease-in-out;
 }
 
-.fadeInUp2 {
-    -moz-animation-name : fadeInUp;
-    -moz-animation-duration : 1s;
-    -moz-animation-iteration-count : 1;
-    -moz-animation-fill-mode : forwards;
-    -moz-animation-delay: 1s;
-
-    -webkit-animation-name : fadeInUp;
-    -webkit-animation-duration : 1s;
-    -webkit-animation-iteration-count : 1;
-    -webkit-animation-fill-mode : forwards;
-    -webkit-animation-delay: 1s;    
+.draw {
+    animation-name: drawFrames;
+    animation-duration: 5s;
+    animation-fill-mode: forwards; // Stay on the last frame
+    animation-iteration-count: 1; // Run only once
+    animation-timing-function: ease-in-out;
 }
 
-.fadeInUp3 {
-    -moz-animation-name : fadeInUp;
-    -moz-animation-duration : 1s;
-    -moz-animation-iteration-count : 1;
-    -moz-animation-fill-mode : forwards;
-    -moz-animation-delay: 1.5s;
+.junction1 {
+/*    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;*/
 
-    -webkit-animation-name : fadeInUp;
-    -webkit-animation-duration : 1s;
-    -webkit-animation-iteration-count : 1;
-    -webkit-animation-fill-mode : forwards;
-    -webkit-animation-delay: 1.5s;    
+/*    -webkit-transform: rotate(50deg);
+    transform: rotate(50deg);*/
 }
 
-.fadeInUp4 {
-    -moz-animation-name : fadeInUp;
-    -moz-animation-duration : 1s;
-    -moz-animation-iteration-count : 1;
-    -moz-animation-fill-mode : forwards;
-    -moz-animation-delay: 2s;
+.junction2 {
+/*    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;*/
 
-    -webkit-animation-name : fadeInUp;
-    -webkit-animation-duration : 1s;
-    -webkit-animation-iteration-count : 1;
-    -webkit-animation-fill-mode : forwards;
-    -webkit-animation-delay: 2s;    
+/*    -webkit-transform: rotate(160deg);
+    transform: rotate(160deg);*/
 }
