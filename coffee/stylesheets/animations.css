@@ -1,0 +1,87 @@
+.fadedOut {
+    opacity: 0;
+    -webkit-transform: translateY(100px);
+    transform: translateY(100px);
+}
+
+.fadeOut {
+    opacity: 0;
+    -webkit-transform: translateY(-100px);
+    transform: translateY(-100px);
+}
+
+.fadable {
+    -webkit-transition: opacity 1s, -webkit-transform 1s;
+    transition: opacity 1s, transform 1s;
+}
+
+.fadableFaster {
+    -webkit-transition: opacity 0.6s, -webkit-transform 0.6s;
+    transition: opacity 0.6s, transform 0.6s;
+}
+
+@keyframes downArrowFrames {
+    from {
+        margin-top: 0;
+    } to {
+        margin-top: -15px;
+    }
+}
+
+@keyframes drawFrames {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes rotateJunction1 {
+    from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    } to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotateJunction2 {
+    from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    } to {
+        -webkit-transform: rotate(-360deg);
+        transform: rotate(-360deg);
+    }
+}
+
+.drawCoffee {
+    animation-name: drawFrames;
+    animation-duration: 4s;
+    animation-fill-mode: forwards; // Stay on the last frame
+    animation-iteration-count: 1; // Run only once
+    animation-timing-function: ease-in-out;
+}
+
+.draw {
+    animation-name: drawFrames;
+    animation-duration: 5s;
+    animation-fill-mode: forwards; // Stay on the last frame
+    animation-iteration-count: 1; // Run only once
+    animation-timing-function: ease-in-out;
+}
+
+.junction1 {
+/*    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;*/
+
+/*    -webkit-transform: rotate(50deg);
+    transform: rotate(50deg);*/
+}
+
+.junction2 {
+/*    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;*/
+
+/*    -webkit-transform: rotate(160deg);
+    transform: rotate(160deg);*/
+}
