@@ -28,6 +28,8 @@
 		<script src="js/libs/stats.min.js"></script>
 		<script src="js/modifiers/BendModifier.js"></script>
 		<script src="fonts/gentilis_bold.typeface.js"></script>
+
+
 		<script>
 			if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 
@@ -82,10 +84,10 @@
 				window.addEventListener( 'resize', onWindowResize, false );
 				document.addEventListener( 'mousedown', onDocumentMouseDown, false );
 
-				var text = "Three.BendModifier Three.BendModifier Three.BendModifier";
+				var text = "Three.BendModifier ";
 				var geoParams = {
 					size: 128,
-					height: 50,
+					height: 1,
 					curveSegments: 4,
 					font: "gentilis",
 					weight: "bold",
