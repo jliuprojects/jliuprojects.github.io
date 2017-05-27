@@ -14,74 +14,78 @@
 	</head>
 	<body>
 		<div id="container"></div>
+		<img src="pic.png" alt="Smiley face" height="805" width="1527">
+		<img src="pic.png" alt="Smiley face" height="805" width="1527">
+		<img src="pic.png" alt="Smiley face" height="805" width="1527">
 		<script src="../three.js"></script>
 		<script src="../vendor.js"></script>
 		<script>
-			var scrollDisabled = true;
-			disableScroll();
 			var camera, scene, renderer;
 			var mesh;
 			var objs = [];
+			var scrollDisabled = false;
+			var NUM_POSTS = 5;
+
 			init();
 			animate();
 
-
 			function init() {
-				camera = new THREE.PerspectiveCamera( 90, window.innerWidth / window.innerHeight, 1, 1000 );
+				camera = new THREE.PerspectiveCamera(90, window.innerWidth / window.innerHeight, 1, 3000);
 				camera.position.z = 400;
 				scene = new THREE.Scene();
 
-				// lights
-				light = new THREE.DirectionalLight( 0xffffff );
-				light.position.set( 0, 100, 200 );
-				scene.add( light );
-
-				light = new THREE.DirectionalLight( 0xffffff );
-				light.position.set( 0, -100, -200 );
-				scene.add( light );
-
-				for (let i = 0; i < 2; i++) {
+				for (let i = 0; i < NUM_POSTS; i++) {
 					let texture = new THREE.TextureLoader().load( 'pic.png' );
 					let geometry = new THREE.BoxBufferGeometry(1527/2, 805/2, 0);
-					let material = new THREE.MeshBasicMaterial({ map: texture, transparent: true, opacity: 1});
+					let material = new THREE.MeshBasicMaterial({map: texture, transparent: true, opacity: 1});
 					objs.push(new THREE.Mesh(geometry, material));
 					objs[i].position.z = -i * 500;
 					objs[i].position.x = -i * 500;
 					scene.add(objs[i]);
 				}
 
-
 				renderer = new THREE.WebGLRenderer();
 				renderer.setClearColor( 0xffffff );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 
+				document.getElementById('container').appendChild(renderer.domElement);
+				window.addEventListener('resize', onWindowResize, false);
+				window.addEventListener('wheel', onWindowScroll, true);
 
-				document.getElementById( 'container' ).appendChild( renderer.domElement );
-				window.addEventListener( 'resize', onWindowResize, false );
-				window.addEventListener( 'wheel', onWindowScroll, true );
+				disableScroll();
+				scrollDisabled = true;
+
+				window.onunload = function(){ window.scrollTo(0,0); }
 			}
+
 			function onWindowResize() {
 				camera.aspect = window.innerWidth / window.innerHeight;
 				camera.updateProjectionMatrix();
 				renderer.setSize( window.innerWidth, window.innerHeight );
 			}
-			function onWindowScroll(e) {
-				let wDelta = e.wheelDelta < 0 ? 'down' : 'up';
-    			console.log(wDelta);
 
-    			let dir = wDelta === 'down' ? 1 : -1;
+			function onWindowScroll(e) {
+    			let dir = e.wheelDelta < 0 ? 1 : -1; // 1 = down , -1 = up
+
     			if (scrollDisabled) {
     				for (let i = 0; i < objs.length; i++) {
-    					objs[i].position.z += dir * 5;
-    					objs[i].position.x += dir * 5;
+    					objs[i].position.z += dir * 20;
+    					objs[i].position.x += dir * 20;
     				}
+
+    				if (objs[objs.length - 1].position.z === 0) {
+    					enableScroll();
+    					scrollDisabled = false;
+    				}
+    			} else if (window.scrollY === 0 && dir === -1) {
+    				disableScroll();
+    				scrollDisabled = true;
     			}
 			}
+
 			function animate() {
 				requestAnimationFrame( animate );
-				// mesh.rotation.x += 0.005;
-				// mesh.rotation.y += 0.01;
 				renderer.render( scene, camera );
 			}
 		</script>
