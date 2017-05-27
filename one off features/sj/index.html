@@ -25,6 +25,7 @@
 			var objs = [];
 			var scrollDisabled = false;
 			var NUM_POSTS = 5;
+			var plane;
 
 			init();
 			animate();
@@ -33,6 +34,15 @@
 				camera = new THREE.PerspectiveCamera(90, window.innerWidth / window.innerHeight, 1, 3000);
 				camera.position.z = 400;
 				scene = new THREE.Scene();
+
+				let geo = new THREE.PlaneBufferGeometry(2000, 2000, 20, 20);
+				let mat = new THREE.MeshBasicMaterial({color: 0x000000, side: THREE.DoubleSide, wireframe: true});
+				plane = new THREE.Mesh(geo, mat);
+				plane.position.x = 0;
+				plane.position.y = -500;
+				plane.position.z = -1000;
+				plane.rotateX(Math.PI / 2);
+				scene.add(plane);
 
 				for (let i = 0; i < NUM_POSTS; i++) {
 					let texture = new THREE.TextureLoader().load( 'pic.png' );
@@ -73,6 +83,9 @@
     					objs[i].position.z += dir * 20;
     					objs[i].position.x += dir * 20;
     				}
+
+    				plane.position.z += dir * 20;
+    				// plane.position.y += -dir * 20;
 
     				if (objs[objs.length - 1].position.z === 0) {
     					enableScroll();
