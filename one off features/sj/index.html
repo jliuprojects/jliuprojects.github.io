@@ -119,6 +119,7 @@
 
 			    if (scrollDisabled && evt.target.nodeName !== 'INPUT') {
 		            evt.preventDefault();
+		            evt.stopPropagation();
 		        }                                      
 			};                                                
 
@@ -154,7 +155,10 @@
 			    xDown = null;
 			    yDown = null;  
 
-			    if (scrollDisabled) evt.preventDefault();                                           
+			    if (scrollDisabled) {
+			    	evt.preventDefault();
+			    	evt.stopPropagation();
+			    }
 			};
 		</script>
 
