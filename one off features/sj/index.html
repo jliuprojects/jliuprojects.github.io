@@ -76,6 +76,9 @@
 				document.body.parentElement.addEventListener("touchmove" , handleTouchMove);
 				document.body.addEventListener("touchstart", handleTouchStart);
 				document.body.addEventListener("touchmove" , handleTouchMove);
+
+				// if mobile
+				document.body.style.overflow = "hidden";
 			}
 
 			function onWindowResize() {
@@ -106,6 +109,9 @@
 				if (objs[objs.length - 1].position.z === 0) {
 					enableScroll();
 					scrollDisabled = false;
+
+					// if mobile 
+					document.body.style.overflow = "scroll";
 				}
 			}
 
@@ -125,6 +131,7 @@
 			    if (scrollDisabled && evt.target.nodeName !== 'INPUT') {
 		            // evt.preventDefault();
 		            // evt.stopPropagation();
+		            
 		        }                                      
 			};                                                
 
@@ -161,7 +168,7 @@
 			    yDown = null;  
 
 			    if (scrollDisabled) {
-			    	// evt.preventDefault();
+			    	// document.body.style.overflow = "hidden";
 			    }
 			};
 		</script>
