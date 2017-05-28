@@ -13,7 +13,7 @@
 		</style>
 	</head>
 	<body>
-		<p style="color:white">v.1.1</p>
+		<p style="color:white">v.1.2</p>
 		<div id="container"></div>
 		<img src="pic.png" alt="Smiley face" height="805" width="1527">
 		<img src="pic.png" alt="Smiley face" height="805" width="1527">
@@ -123,8 +123,8 @@
 			    yDown = evt.touches[0].clientY;
 
 			    if (scrollDisabled && evt.target.nodeName !== 'INPUT') {
-		            evt.preventDefault();
-		            evt.stopPropagation();
+		            // evt.preventDefault();
+		            // evt.stopPropagation();
 		        }                                      
 			};                                                
 
@@ -161,8 +161,7 @@
 			    yDown = null;  
 
 			    if (scrollDisabled) {
-			    	evt.preventDefault();
-			    	evt.stopPropagation();
+			    	// evt.preventDefault();
 			    }
 			};
 		</script>
