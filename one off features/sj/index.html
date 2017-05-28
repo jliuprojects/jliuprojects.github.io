@@ -72,6 +72,10 @@
 				// mobile scroll events
 				document.addEventListener('touchstart', handleTouchStart, false);        
 				document.addEventListener('touchmove', handleTouchMove, false);
+				document.body.parentElement.addEventListener("touchstart", handleTouchStart);
+				document.body.parentElement.addEventListener("touchmove" , handleTouchMove);
+				document.body.addEventListener("touchstart", handleTouchStart);
+				document.body.addEventListener("touchmove" , handleTouchMove);
 			}
 
 			function onWindowResize() {
