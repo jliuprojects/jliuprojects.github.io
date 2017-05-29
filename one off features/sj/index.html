@@ -13,7 +13,7 @@
 		</style>
 	</head>
 	<body>
-		<p style="color:white">v.2.0</p>
+		<p style="color:white">v.2.1</p>
 		<div id="container"></div>
 		<img src="pic.png" alt="Smiley face" height="805" width="1527">
 		<img src="pic.png" alt="Smiley face" height="805" width="1527">
@@ -44,7 +44,7 @@
 				scene.add(plane);
 
 				for (let i = 0; i < NUM_POSTS; i++) {
-					let texture = new THREE.TextureLoader().load( 'pic.png' );
+					let texture = new THREE.TextureLoader().load('pic.png');
 					let geometry = new THREE.BoxBufferGeometry(1527/2, 805/2, 0);
 					let material = new THREE.MeshBasicMaterial({map: texture, transparent: true, opacity: 1});
 					objs.push(new THREE.Mesh(geometry, material));
@@ -61,10 +61,6 @@
 				document.getElementById('container').appendChild(renderer.domElement);
 				window.addEventListener('resize', onWindowResize, false);
 				window.addEventListener('wheel', onWindowWheel, true);
-
-				disableScroll();
-				scrollDisabled = true;
-
 				window.onunload = function(){ window.scrollTo(0,0); } // force scroll to top
 
 				// mobile scroll events
@@ -72,6 +68,9 @@
 					document.addEventListener('touchstart', handleTouchStart, false);        
 					document.addEventListener('touchmove', handleTouchMove, false);
 				}
+
+				disableScroll();
+				scrollDisabled = true;
 			}
 
 			function onWindowResize() {
