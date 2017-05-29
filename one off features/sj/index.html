@@ -32,14 +32,14 @@
 			animate();
 
 			function init() {
-				camera = new THREE.PerspectiveCamera(90, window.innerWidth / window.innerHeight, 1, 3000);
+				camera = new THREE.PerspectiveCamera(90, window.innerWidth / window.innerHeight, 1, 10000);
 				camera.position.z = 400;
 				scene = new THREE.Scene();
 
-				let geo = new THREE.PlaneBufferGeometry(2000, 2000, 20, 20);
+				let geo = new THREE.PlaneBufferGeometry(5000, 5000, 20, 20);
 				let mat = new THREE.MeshBasicMaterial({color: 0x000000, side: THREE.DoubleSide, wireframe: true});
 				plane = new THREE.Mesh(geo, mat);
-				plane.position.set(0, -500,-1000);
+				plane.position.set(0, -500,-2000);
 				plane.rotateX(Math.PI / 2);
 				scene.add(plane);
 
