@@ -39,9 +39,7 @@
 				let geo = new THREE.PlaneBufferGeometry(2000, 2000, 20, 20);
 				let mat = new THREE.MeshBasicMaterial({color: 0x000000, side: THREE.DoubleSide, wireframe: true});
 				plane = new THREE.Mesh(geo, mat);
-				plane.position.x = 0;
-				plane.position.y = -500;
-				plane.position.z = -1000;
+				plane.position.set(0, -500,-1000);
 				plane.rotateX(Math.PI / 2);
 				scene.add(plane);
 
@@ -62,22 +60,18 @@
 
 				document.getElementById('container').appendChild(renderer.domElement);
 				window.addEventListener('resize', onWindowResize, false);
-				window.addEventListener('wheel', onWindowScroll, true);
+				window.addEventListener('wheel', onWindowWheel, true);
 
 				disableScroll();
-				// if mobile
-				document.body.style.overflow = "hidden";
 				scrollDisabled = true;
 
 				window.onunload = function(){ window.scrollTo(0,0); } // force scroll to top
 
 				// mobile scroll events
-				document.addEventListener('touchstart', handleTouchStart, false);        
-				document.addEventListener('touchmove', handleTouchMove, false);
-				document.body.parentElement.addEventListener("touchstart", handleTouchStart);
-				document.body.parentElement.addEventListener("touchmove" , handleTouchMove);
-				document.body.addEventListener("touchstart", handleTouchStart);
-				document.body.addEventListener("touchmove" , handleTouchMove);
+				if (isMobile()) {
+					document.addEventListener('touchstart', handleTouchStart, false);        
+					document.addEventListener('touchmove', handleTouchMove, false);
+				}
 			}
 
 			function onWindowResize() {
@@ -86,32 +80,28 @@
 				renderer.setSize( window.innerWidth, window.innerHeight );
 			}
 
-			function onWindowScroll(e) {
+			function onWindowWheel(e) {
     			let dir = e.wheelDelta < 0 ? 1 : -1; // 1 = down , -1 = up
-
-    			if (scrollDisabled) {
-    				animateObjs(dir);
-    			} else if (window.scrollY === 0 && dir === -1) {
-    				disableScroll();
-    				scrollDisabled = true;
-    			}
+				animateObjs(dir);
 			}
 
 			function animateObjs(dir) {
-				for (let i = 0; i < objs.length; i++) {
-					objs[i].position.z += dir * 20;
-					objs[i].position.x += dir * 20;
-				}
+				if (scrollDisabled) {
+					for (let i = 0; i < objs.length; i++) {
+						objs[i].position.z += dir * 20;
+						objs[i].position.x += dir * 20;
+					}
 
-				plane.position.z += dir * 20;
+					plane.position.z += dir * 20;
 
-				if (objs[objs.length - 1].position.z === 0) {
-					enableScroll();
-					scrollDisabled = false;
-
-					// if mobile 
-					document.body.style.overflow = "scroll";
-				}
+					if (objs[objs.length - 1].position.z === 0) {
+						enableScroll();
+						scrollDisabled = false;
+					}
+				} else if (window.scrollY === 0 && dir === -1) {
+    				disableScroll();
+    				scrollDisabled = true;
+    			}
 			}
 
 			function animate() {
@@ -119,64 +109,21 @@
 				renderer.render( scene, camera );
 			}
 
-			// mobile
-			var xDown = null;                                                        
+			// mobile                                                   
 			var yDown = null;                                                        
-
-			function handleTouchStart(evt) {                                         
-			    xDown = evt.touches[0].clientX;                                      
-			    yDown = evt.touches[0].clientY;
-
-			    if (scrollDisabled && evt.target.nodeName !== 'INPUT') {
-		            // evt.preventDefault();
-		            // evt.stopPropagation();
-		            
-		        }                                      
+			function handleTouchStart(evt) {                                 
+			    yDown = evt.touches[0].clientY;                                  
 			};                                                
 
 			function handleTouchMove(evt) {
-			    if ( ! xDown || ! yDown ) {
-			        return;
-			    }
-
-			    let xUp = evt.touches[0].clientX;                                    
+			    if (!yDown) return;
+                  
 			    let yUp = evt.touches[0].clientY;
-
-			    let xDiff = xDown - xUp;
 			    let yDiff = yDown - yUp;
+			    let dir = yDiff > 0 ? 1 : -1;
 
-			    let dir = 0;
-
-			    if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
-			        if ( xDiff > 0 ) {
-			            /* left swipe */ 
-			        } else {
-			            /* right swipe */
-			        }                       
-			    } else {
-			        if ( yDiff > 0 ) {
-			            /* up swipe */ 
-			            console.log("up swipe");
-			            animateObjs(1);
-			            dir = 1;
-			        } else { 
-			            /* down swipe */
-			            animateObjs(-1);
-			            dir = -1;
-			            console.log("down swipe");
-			        }                                                                 
-			    }
-			    /* reset values */
-			    xDown = null;
-			    yDown = null;  
-
-			    if (scrollDisabled) {
-			    	animateObjs(dir);
-			    	// document.body.style.overflow = "hidden";
-			    } else if (window.scrollY === 0 && dir === -1) {
-			    	document.body.style.overflow = "hidden";
-    				scrollDisabled = false;
-    			}
+			    animateObjs(dir);
+			    yDown = yUp;  
 			};
 		</script>
 
