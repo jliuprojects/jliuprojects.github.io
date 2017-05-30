@@ -15,21 +15,30 @@
 	<body>
 		<p style="color:white">v.2.1</p>
 		<div id="container"></div>
-		<img src="pic.png" alt="Smiley face" height="805" width="1527">
-		<img src="pic.png" alt="Smiley face" height="805" width="1527">
-		<img src="pic.png" alt="Smiley face" height="805" width="1527">
+		<img src="pic.png" alt="Smiley face" height="400" width="750">
+		<img src="pic.png" alt="Smiley face" height="400" width="750">
+		<img src="pic.png" alt="Smiley face" height="400" width="750">
 		<script src="../three.js"></script>
 		<script src="../vendor.js"></script>
 		<script>
 			var camera, scene, renderer;
 			var mesh;
+			var plane;
+			var scrollDisabled = false;
+
+			// calculations related to posts
 			var POST_URLS = ['pic.png', 'pic.png', 'pic.png', 'pic.png', 'pic.png'];
 			var posts = [];
-			var plane;
-			var aspectRatio = 1527 / 805;
+			var ASPECT_RATIO = 1527 / 805;
 			var IMG_WIDTH = window.innerWidth * .5;
-			var IMG_HEIGHT = IMG_WIDTH / aspectRatio;
-			var scrollDisabled = false;
+			var IMG_HEIGHT = IMG_WIDTH / ASPECT_RATIO;
+			var POST_GAP_Z = 600;
+			var POST_GAP_X = IMG_WIDTH / 1.8;
+			var POST_OFFSET_X = 100;
+			var POST_SCROLL_DIST = 30;
+			var POST_SCROLL_SPEED_Z = POST_GAP_Z / POST_SCROLL_DIST;
+			var POST_OPC_FADED = 0.3;
+			var POST_SCROLL_SPEED_OPC = (1 - POST_OPC_FADED) / POST_SCROLL_DIST;
 
 			init();
 			animate();
@@ -62,10 +71,10 @@
 				for (let i = 0; i < urls.length; i++) {
 					let texture = new THREE.TextureLoader().load(urls[i]);
 					let geometry = new THREE.BoxBufferGeometry(IMG_WIDTH, IMG_HEIGHT, 0);
-					let material = new THREE.MeshBasicMaterial({map: texture, transparent: true, opacity: 1});
+					let material = new THREE.MeshBasicMaterial({map: texture, transparent: true, opacity: i === 0 ? 1 : POST_OPC_FADED});
 					posts.push(new THREE.Mesh(geometry, material));
-					posts[i].position.z = -i * 600;
-					posts[i].position.x = -(i % 2) * IMG_WIDTH / 1.8 + 100;
+					posts[i].position.z = -i * POST_GAP_Z;
+					posts[i].position.x = -(i % 2) * POST_GAP_X + POST_OFFSET_X;
 					scene.add(posts[i]);
 				}
 				return posts;
@@ -121,10 +130,11 @@
 			function animatePosts(dir) {
 				if (scrollDisabled) {
 					for (let i = 0; i < posts.length; i++) {
-						posts[i].position.z += dir * 20;
+						posts[i].position.z += dir * POST_SCROLL_SPEED_Z;
+						if (-POST_GAP_Z <= posts[i].position.z && posts[i].position.z <= 0) posts[i].material.opacity += dir * POST_SCROLL_SPEED_OPC;
 					}
 
-					plane.position.z += dir * 20;
+					plane.position.z += dir * POST_SCROLL_SPEED_Z;
 
 					if (posts[posts.length - 1].position.z === 0) {
 						enableScroll();
