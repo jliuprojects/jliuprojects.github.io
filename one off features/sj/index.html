@@ -23,13 +23,13 @@
 		<script>
 			var camera, scene, renderer;
 			var mesh;
-			var objs = [];
-			var scrollDisabled = false;
 			var POST_URLS = ['pic.png', 'pic.png', 'pic.png', 'pic.png', 'pic.png'];
+			var posts = [];
 			var plane;
 			var aspectRatio = 1527 / 805;
 			var IMG_WIDTH = window.innerWidth * .5;
 			var IMG_HEIGHT = IMG_WIDTH / aspectRatio;
+			var scrollDisabled = false;
 
 			init();
 			animate();
@@ -39,7 +39,7 @@
 				camera.position.z = 400;
 				scene = new THREE.Scene();
 				plane = createPlane(scene);
-				objs = createPosts(POST_URLS, scene);
+				posts = createPosts(POST_URLS, scene);
 				renderer = JLIU.Util.Three.createRenderer(0xffffff, document.getElementById('container'));
 
 				attachListeners();
@@ -58,17 +58,17 @@
 			}
 
 			function createPosts(urls, scene) {
-				let objs = [];
+				let posts = [];
 				for (let i = 0; i < urls.length; i++) {
 					let texture = new THREE.TextureLoader().load(urls[i]);
 					let geometry = new THREE.BoxBufferGeometry(IMG_WIDTH, IMG_HEIGHT, 0);
 					let material = new THREE.MeshBasicMaterial({map: texture, transparent: true, opacity: 1});
-					objs.push(new THREE.Mesh(geometry, material));
-					objs[i].position.z = -i * 600;
-					objs[i].position.x = -(i % 2) * IMG_WIDTH / 1.8 + 100;
-					scene.add(objs[i]);
+					posts.push(new THREE.Mesh(geometry, material));
+					posts[i].position.z = -i * 600;
+					posts[i].position.x = -(i % 2) * IMG_WIDTH / 1.8 + 100;
+					scene.add(posts[i]);
 				}
-				return objs;
+				return posts;
 			}
 
 			function createPlane(scene) {
@@ -120,13 +120,13 @@
 
 			function animatePosts(dir) {
 				if (scrollDisabled) {
-					for (let i = 0; i < objs.length; i++) {
-						objs[i].position.z += dir * 20;
+					for (let i = 0; i < posts.length; i++) {
+						posts[i].position.z += dir * 20;
 					}
 
 					plane.position.z += dir * 20;
 
-					if (objs[objs.length - 1].position.z === 0) {
+					if (posts[posts.length - 1].position.z === 0) {
 						enableScroll();
 					}
 				} else if (window.scrollY === 0 && dir === -1) {
