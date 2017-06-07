@@ -30,6 +30,7 @@
 
 		<script src="../three.js"></script>
 		<script src="../vendor.js"></script>
+		<script src="../domready.js"></script>
 		<script>
 			var camera, scene, renderer, raycaster, mouse;
 			var plane;
@@ -58,7 +59,7 @@
 			var POST_SCROLL_SPEED_Z = POST_GAP_Z / POST_SCROLL_DIST;
 			var POST_OPC_FADED = 0.3;
 			var POST_SCROLL_SPEED_OPC = (1 - POST_OPC_FADED) / POST_SCROLL_DIST;
-
+			
 			init();
 			animate();
 
@@ -66,6 +67,8 @@
 				camera = new THREE.PerspectiveCamera(90, window.innerWidth / window.innerHeight, 1, 10000);
 				camera.position.z = 400;
 				scene = new THREE.Scene();
+				scene.fog = new THREE.FogExp2(0xffffff, 0.001);
+
 				plane = createPlane(scene);
 				posts = createPosts(POST_URLS, scene);
 				renderer = JLIU.Util.Three.createRenderer(0xffffff, document.getElementById('container'));
@@ -157,16 +160,19 @@
 			    yDown = yUp;  
 			}; // end of mobile
 			
+			var loadingFrames = 60;
 			function animate() {
-				handlePostHover();
+				if (isNaN(loadingFrames) || loadingFrames > 0) {
+					isNaN(loadingFrames) ? loadingFrames = 60 : loadingFrames--;
+				} else {
+					handlePostHover();
+				}
+
 				requestAnimationFrame(animate);
 				renderer.render(scene, camera);
 			}
 
-			var initFrames = 0;
 			function handlePostHover() {
-				if (isNaN(initFrames)) return; // loading check
-
 				raycaster.setFromCamera(mouse, camera);
 				let intersects = raycaster.intersectObjects(scene.children);
 				let hoverId = -1;
@@ -192,6 +198,8 @@
 
 			function animatePosts(dir) {
 				if (scrollDisabled) {
+					if (posts[0].position.z < -POST_GAP_Z && dir === -1) return;
+
 					for (let i = 0; i < posts.length; i++) {
 						posts[i].position.z += dir * POST_SCROLL_SPEED_Z;
 						if (-POST_GAP_Z <= posts[i].position.z && posts[i].position.z <= 0) posts[i].material.opacity += dir * POST_SCROLL_SPEED_OPC;
