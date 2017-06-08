@@ -37,11 +37,7 @@ var JLIU = {
 
 		disableScroll: function () {
 			if (JLIU.Util.isMobile()) {
-				let container = document.getElementById('scroll-disabling-container');
-				container.style.overflow = "hidden";
-
-				container.addEventListener('touchstart', JLIU.Util.disableScrollTouchStart);
-				container.addEventListener('touchmove', JLIU.Util.disableScrollTouchMove);
+				document.body.style.position = "fixed";
 				return;
 			}
 
@@ -55,11 +51,7 @@ var JLIU = {
 
 		enableScroll: function () {
 			if (JLIU.Util.isMobile()) {
-				let container = document.getElementById('scroll-disabling-container');
-				container.style.overflow = "scroll";
-
-				container.removeEventListener('touchstart', JLIU.Util.disableScrollTouchStart);
-				container.removeEventListener('touchmove', JLIU.Util.disableScrollTouchMove);
+				document.body.style.position = "relative";
 				return;
 			}
 
