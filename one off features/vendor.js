@@ -17,28 +17,31 @@ var JLIU = {
 			}
 		},
 
+		disableScrollTouchStart: function(event) {
+		    this.allowUp = (this.scrollTop > 0);
+		    this.allowDown = (this.scrollTop < this.scrollHeight - this.clientHeight);
+		    this.slideBeginY = event.pageY;
+		},
+
+		disableScrollTouchMove: function(event) {
+		    var up = (event.pageY > this.slideBeginY);
+		    var down = (event.pageY < this.slideBeginY);
+		    this.slideBeginY = event.pageY;
+		    if ((up && this.allowUp) || (down && this.allowDown)) {
+		        event.stopPropagation();
+		    }
+		    else {
+		        event.preventDefault();
+		    }
+		},
+
 		disableScroll: function () {
 			if (JLIU.Util.isMobile()) {
 				let container = document.getElementById('scroll-disabling-container');
 				container.style.overflow = "hidden";
 
-				container.addEventListener('touchstart', function(event) {
-				    this.allowUp = (this.scrollTop > 0);
-				    this.allowDown = (this.scrollTop < this.scrollHeight - this.clientHeight);
-				    this.slideBeginY = event.pageY;
-				});
-
-				container.addEventListener('touchmove', function(event) {
-				    var up = (event.pageY > this.slideBeginY);
-				    var down = (event.pageY < this.slideBeginY);
-				    this.slideBeginY = event.pageY;
-				    if ((up && this.allowUp) || (down && this.allowDown)) {
-				        event.stopPropagation();
-				    }
-				    else {
-				        event.preventDefault();
-				    }
-				});
+				container.addEventListener('touchstart', JLIU.Util.disableScrollTouchStart);
+				container.addEventListener('touchmove', JLIU.Util.disableScrollTouchMove);
 				return;
 			}
 
@@ -55,7 +58,8 @@ var JLIU = {
 				let container = document.getElementById('scroll-disabling-container');
 				container.style.overflow = "scroll";
 
-
+				container.removeEventListener('touchstart', JLIU.Util.disableScrollTouchStart);
+				container.removeEventListener('touchmove', JLIU.Util.disableScrollTouchMove);
 				return;
 			}
 
