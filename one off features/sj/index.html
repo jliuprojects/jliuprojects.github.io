@@ -43,7 +43,7 @@
 		</style>
 	</head>
 	<body>
-		<p>v.2.5</p>
+		<p>v.2.6</p>
 		<div id="container"></div>
 		<img src="pic.png" alt="Smiley face" height="400" width="750">
 		<img src="pic.png" alt="Smiley face" height="400" width="750">
@@ -108,9 +108,9 @@
 					document.addEventListener('touchstart', handleTouchStart, false);        
 					document.addEventListener('touchmove', handleTouchMove, false);
 
-					window.addEventListener('scroll', function() {
-				    	if (scrollDisabled) window.scrollTo(0, 0);
-				    });
+					// window.addEventListener('scroll', function() {
+				 //    	if (scrollDisabled) window.scrollTo(0, 0);
+				 //    });
 
 				    // window.addEventListener('touchmove', function() {
 				    // 	$(window).trigger('scroll');
@@ -227,7 +227,7 @@
 
 			function animatePosts(dir) {
 				if (scrollDisabled) {
-					if (JLIU.Util.isMobile()) window.scrollTo(0, 0);
+					// if (JLIU.Util.isMobile()) window.scrollTo(0, 0);
 
 					if (posts[0].position.z < -POST_GAP_Z && dir === -1) return;
 
