@@ -5,29 +5,11 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<style>
-			/*body {
+			html, body {
 				margin: 0px;
-				overflow: scroll;
-			}
-*/
-			html, body {
-			    position: fixed;
-			}
-
-			html, body {
-			    position: relative;
-			    overflow: hidden;
-			}
-
-			body {
 			    position: fixed;
 			    overflow: hidden;
-			}
-
-			body {
-			    position: fixed;
 			    height: 100%;
-			    overflow: hidden;
 			    width: 100%;
 			}
 
@@ -43,7 +25,7 @@
 		</style>
 	</head>
 	<body>
-		<p>v.2.6</p>
+		<p>v.2.7</p>
 		<div id="container"></div>
 		<img src="pic.png" alt="Smiley face" height="400" width="750">
 		<img src="pic.png" alt="Smiley face" height="400" width="750">
@@ -107,14 +89,6 @@
 				if (JLIU.Util.isMobile()) { // mobile scroll events
 					document.addEventListener('touchstart', handleTouchStart, false);        
 					document.addEventListener('touchmove', handleTouchMove, false);
-
-					// window.addEventListener('scroll', function() {
-				 //    	if (scrollDisabled) window.scrollTo(0, 0);
-				 //    });
-
-				    // window.addEventListener('touchmove', function() {
-				    // 	$(window).trigger('scroll');
-				    // });	
 				} else {
 					window.addEventListener('mousemove', onMouseMove, false);
 				}
@@ -227,8 +201,6 @@
 
 			function animatePosts(dir) {
 				if (scrollDisabled) {
-					// if (JLIU.Util.isMobile()) window.scrollTo(0, 0);
-
 					if (posts[0].position.z < -POST_GAP_Z && dir === -1) return;
 
 					for (let i = 0; i < posts.length; i++) {
