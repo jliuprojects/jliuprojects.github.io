@@ -19,7 +19,8 @@ var JLIU = {
 
 		disableScroll: function () {
 			if (JLIU.Util.isMobile()) {
-				document.body.style.position = "fixed";
+				let container = document.getElementById('scroll-disabling-container');
+				container.style.overflow = "hidden";
 				return;
 			}
 
@@ -33,7 +34,8 @@ var JLIU = {
 
 		enableScroll: function () {
 			if (JLIU.Util.isMobile()) {
-				document.body.style.position = "relative";
+				let container = document.getElementById('scroll-disabling-container');
+				container.style.overflow = "scroll";
 				return;
 			}
 

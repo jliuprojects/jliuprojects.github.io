@@ -7,12 +7,7 @@
 		<style>
 			body {
 				margin: 0px;
-				/*position: relative;
-			    overflow: scroll;*/
-			    position: fixed;
-			    /*overflow: hidden;*/
-			    /*height: 100%;
-			    width: 100%;*/
+			    /*position: fixed;*/
 			}
 
 			.post-desc {
@@ -24,15 +19,22 @@
 		       	-moz-transition: opacity 1.0s ease-in;
 		        -o-transition: opacity 1.0s ease-in;
 			}
+
+			#scroll-disabling-container {
+				position: absolute;
+				height: 100%;
+				overflow: scroll;
+			}
 		</style>
 	</head>
 	<body>
-		<p>v.2.9</p>
-		<div id="container"></div>
-		<img src="pic.png" alt="Smiley face" height="400" width="750">
-		<img src="pic.png" alt="Smiley face" height="400" width="750">
-		<img src="pic.png" alt="Smiley face" height="400" width="750">
-
+		<p>v.3.0</p>
+		<div id="scroll-disabling-container">
+			<div id="container"></div>
+			<img src="pic.png" alt="Smiley face" height="400" width="750">
+			<img src="pic.png" alt="Smiley face" height="400" width="750">
+			<img src="pic.png" alt="Smiley face" height="400" width="750">
+		</div>
 		<script src="../three.js"></script>
 		<script src="../vendor.js"></script>
 		<script>
