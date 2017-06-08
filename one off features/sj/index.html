@@ -30,7 +30,6 @@
 
 		<script src="../three.js"></script>
 		<script src="../vendor.js"></script>
-		<script src="../domready.js"></script>
 		<script>
 			var camera, scene, renderer, raycaster, mouse;
 			var plane;
@@ -83,11 +82,20 @@
 			function attachListeners() {
 				window.addEventListener('resize', JLIU.Util.Three.onWindowResize, false);
 				window.addEventListener('wheel', onWindowWheel, true);
-				window.addEventListener('mousemove', onMouseMove, false);
 
 				if (JLIU.Util.isMobile()) { // mobile scroll events
 					document.addEventListener('touchstart', handleTouchStart, false);        
 					document.addEventListener('touchmove', handleTouchMove, false);
+
+					window.addEventListener('scroll', function() {
+				    	if (scrollDisabled) $(window).scrollTop(0);
+				    });
+
+				    // window.addEventListener('touchmove', function() {
+				    // 	$(window).trigger('scroll');
+				    // });	
+				} else {
+					window.addEventListener('mousemove', onMouseMove, false);
 				}
 			}
 
