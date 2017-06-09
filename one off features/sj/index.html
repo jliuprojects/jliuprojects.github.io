@@ -7,6 +7,7 @@
 		<style>
 			body {
 				margin: 0px;
+				overflow: scroll;
 			}
 
 			.post-desc {
@@ -21,11 +22,12 @@
 		</style>
 	</head>
 	<body>
-		<p>v.3.4</p>
+		<p>v.2.1</p>
 		<div id="container"></div>
 		<img src="pic.png" alt="Smiley face" height="400" width="100%">
 		<img src="pic.png" alt="Smiley face" height="400" width="100%">
 		<img src="pic.png" alt="Smiley face" height="400" width="100%">
+
 		<script src="../three.js"></script>
 		<script src="../vendor.js"></script>
 		<script>
@@ -80,12 +82,11 @@
 			function attachListeners() {
 				window.addEventListener('resize', JLIU.Util.Three.onWindowResize, false);
 				window.addEventListener('wheel', onWindowWheel, true);
+				window.addEventListener('mousemove', onMouseMove, false);
 
 				if (JLIU.Util.isMobile()) { // mobile scroll events
 					document.addEventListener('touchstart', handleTouchStart, false);        
 					document.addEventListener('touchmove', handleTouchMove, false);
-				} else {
-					window.addEventListener('mousemove', onMouseMove, false);
 				}
 			}
 

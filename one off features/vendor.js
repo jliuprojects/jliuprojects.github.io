@@ -17,27 +17,10 @@ var JLIU = {
 			}
 		},
 
-		disableScrollTouchStart: function(event) {
-		    this.allowUp = (this.scrollTop > 0);
-		    this.allowDown = (this.scrollTop < this.scrollHeight - this.clientHeight);
-		    this.slideBeginY = event.pageY;
-		},
-
-		disableScrollTouchMove: function(event) {
-		    var up = (event.pageY > this.slideBeginY);
-		    var down = (event.pageY < this.slideBeginY);
-		    this.slideBeginY = event.pageY;
-		    if ((up && this.allowUp) || (down && this.allowDown)) {
-		        event.stopPropagation();
-		    }
-		    else {
-		        event.preventDefault();
-		    }
-		},
-
 		disableScroll: function () {
 			if (JLIU.Util.isMobile()) {
 				document.body.style.position = "fixed";
+				document.body.style.overflow = "hidden";
 				return;
 			}
 
@@ -52,6 +35,7 @@ var JLIU = {
 		enableScroll: function () {
 			if (JLIU.Util.isMobile()) {
 				document.body.style.position = "relative";
+				document.body.style.overflow = "scroll";
 				return;
 			}
 
