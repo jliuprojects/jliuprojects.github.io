@@ -26,7 +26,7 @@
 		</style>
 	</head>
 	<body>
-		<p>v.2.5</p>
+		<p>v.2.6</p>
 		<div id="container"></div>
 		<img src="pic.png" alt="Smiley face" height="400" width="100%">
 		<img src="pic.png" alt="Smiley face" height="400" width="100%">
@@ -84,14 +84,13 @@
 			}
 
 			function attachListeners() {
-				window.addEventListener('resize', JLIU.Util.Three.onWindowResize, false);
-
 				if (JLIU.Util.isMobile()) { // mobile scroll events
 					document.addEventListener('touchstart', handleTouchStart, false, {passive: false});        
 					document.addEventListener('touchmove', handleTouchMove, false, {passive: false});
 				} else {
 					window.addEventListener('wheel', onWindowWheel, true);
 					window.addEventListener('mousemove', onMouseMove, false);
+					window.addEventListener('resize', JLIU.Util.Three.onWindowResize, false);
 				}
 			}
 
