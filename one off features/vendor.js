@@ -21,6 +21,8 @@ var JLIU = {
 			if (JLIU.Util.isMobile()) {
 				// document.body.style.position = "fixed";
 				// document.body.style.overflow = "hidden";
+				let con = document.getElementById('container');
+				con.style["touch-action"] = "none";
 				return;
 			}
 
@@ -36,6 +38,9 @@ var JLIU = {
 			if (JLIU.Util.isMobile()) {
 				// document.body.style.position = "relative";
 				// document.body.style.overflow = "scroll";
+
+				let con = document.getElementById('container');
+				con.style["touch-action"] = "auto";
 				return;
 			}
 
