@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>three.js webgl - geometry - cube</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body {
+				margin: 0px;
+				overflow: scroll;
+			}
+
+			.post-desc {
+				position: fixed;
+				top: 20vh;
+				opacity: 0;
+
+				-webkit-transition: opacity 1.0s ease-in;
+		       	-moz-transition: opacity 1.0s ease-in;
+		        -o-transition: opacity 1.0s ease-in;
+			}
+
+			#container {
+				
+			}
+		</style>
+	</head>
+	<body>
+		<p>v.3.1</p>
+		<div id="container"></div>
+		<img src="pic.png" alt="Smiley face" height="400" width="100%">
+		<img src="pic.png" alt="Smiley face" height="400" width="100%">
+		<img src="pic.png" alt="Smiley face" height="400" width="100%">
+
+		<script src="../three.js"></script>
+		<script src="../vendor.js"></script>
+		<script src="desktop.js"></script>
+		<script src="mobile.js"></script>
+		<script>
+			// calculations related to posts
+			var POST_URLS = [
+				'pic.png', 
+				'pic.png', 
+				'pic.png',
+			];
+			var POST_DESCS = [
+				"P1: AN ODE TO ORDINARY LIFE. ALL ABOUT <br>FINDING YOUR OWN ENERGY, YOUR<br>PERSONAL BUZZ, YOUR DOWNTEMPO,<br> IN PLACES YOU ARE TOO USED TO", 
+				"P2: AN ODE TO ORDINARY LIFE. ALL ABOUT <br>FINDING YOUR OWN ENERGY, YOUR<br>PERSONAL BUZZ, YOUR DOWNTEMPO,<br> IN PLACES YOU ARE TOO USED TO", 
+				"P3: AN ODE TO ORDINARY LIFE. ALL ABOUT <br>FINDING YOUR OWN ENERGY, YOUR<br>PERSONAL BUZZ, YOUR DOWNTEMPO,<br> IN PLACES YOU ARE TOO USED TO", 
+			];
+			var ASPECT_RATIO = 1527 / 805;
+			var IMG_WIDTH = window.innerWidth * .5;
+			var IMG_HEIGHT = IMG_WIDTH / ASPECT_RATIO;
+			var POST_GAP_Z = 600;
+			var POST_GAP_X = IMG_WIDTH / 1.8;
+			var POST_OFFSET_X = 100;
+			var POST_SCROLL_DIST = 30;
+			var POST_SCROLL_SPEED_Z = POST_GAP_Z / POST_SCROLL_DIST;
+			var POST_OPC_FADED = 0.3;
+			var POST_SCROLL_SPEED_OPC = (1 - POST_OPC_FADED) / POST_SCROLL_DIST;
+			
+			if (JLIU.Util.isMobile()) {
+				Mobile.run();
+			} else {
+				Desktop.run();
+			}
+		</script>
+	</body>
+</html>
