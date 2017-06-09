@@ -63,12 +63,6 @@ var JLIU = {
 		},
 
 		Three: {
-			onWindowResize: function () {
-				camera.aspect = window.innerWidth / window.innerHeight;
-				camera.updateProjectionMatrix();
-				renderer.setSize(window.innerWidth, window.innerHeight);
-			},
-
 			createRenderer: function (colour, container) {
 				let renderer = new THREE.WebGLRenderer();
 				renderer.setClearColor(colour);

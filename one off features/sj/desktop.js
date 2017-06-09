@@ -24,7 +24,11 @@ var Desktop = {
 	},
 
 	attachListeners: function() {
-		window.addEventListener('resize', JLIU.Util.Three.onWindowResize, false);
+		window.addEventListener('resize', function () {
+			Desktop.camera.aspect = window.innerWidth / window.innerHeight;
+			Desktop.camera.updateProjectionMatrix();
+			Desktop.renderer.setSize(window.innerWidth, window.innerHeight);
+		}, false);
 		window.addEventListener('wheel', Desktop.onWindowWheel, true);
 		window.addEventListener('mousemove', Desktop.onMouseMove, false);
 	},
