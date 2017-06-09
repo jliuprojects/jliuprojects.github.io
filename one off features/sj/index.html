@@ -34,11 +34,9 @@
 
 		<script src="../three.js"></script>
 		<script src="../vendor.js"></script>
+		<script src="desktop.js"></script>
+		<script src="mobile.js"></script>
 		<script>
-			var camera, scene, renderer, raycaster, mouse;
-			var plane;
-			var scrollDisabled = false;
-
 			// calculations related to posts
 			var POST_URLS = [
 				'pic.png', 
@@ -50,8 +48,6 @@
 				"P2: AN ODE TO ORDINARY LIFE. ALL ABOUT <br>FINDING YOUR OWN ENERGY, YOUR<br>PERSONAL BUZZ, YOUR DOWNTEMPO,<br> IN PLACES YOU ARE TOO USED TO", 
 				"P3: AN ODE TO ORDINARY LIFE. ALL ABOUT <br>FINDING YOUR OWN ENERGY, YOUR<br>PERSONAL BUZZ, YOUR DOWNTEMPO,<br> IN PLACES YOU ARE TOO USED TO", 
 			];
-			var posts = [];
-			var postDetails = [];
 			var ASPECT_RATIO = 1527 / 805;
 			var IMG_WIDTH = window.innerWidth * .5;
 			var IMG_HEIGHT = IMG_WIDTH / ASPECT_RATIO;
@@ -63,166 +59,10 @@
 			var POST_OPC_FADED = 0.3;
 			var POST_SCROLL_SPEED_OPC = (1 - POST_OPC_FADED) / POST_SCROLL_DIST;
 			
-			init();
-			animate();
-
-			function init() {
-				camera = new THREE.PerspectiveCamera(90, window.innerWidth / window.innerHeight, 1, 10000);
-				camera.position.z = 400;
-				scene = new THREE.Scene();
-				scene.fog = new THREE.FogExp2(0xffffff, 0.001);
-
-				plane = createPlane(scene);
-				posts = createPosts(POST_URLS, scene);
-				renderer = JLIU.Util.Three.createRenderer(0xffffff, document.getElementById('container'));
-				raycaster = new THREE.Raycaster();
-				mouse = new THREE.Vector2();
-
-				attachListeners();
-				disableScroll();
-				JLIU.Util.forceTopOnRefresh();
-			}
-
-			function attachListeners() {
-				if (JLIU.Util.isMobile()) { // mobile scroll events
-					document.addEventListener('touchstart', handleTouchStart, false, {passive: false});        
-					document.addEventListener('touchmove', handleTouchMove, false, {passive: false});
-				} else {
-					window.addEventListener('resize', JLIU.Util.Three.onWindowResize, false);
-					window.addEventListener('wheel', onWindowWheel, true);
-					window.addEventListener('mousemove', onMouseMove, false);
-				}
-			}
-
-			function createPosts(urls, scene) {
-				let posts = [];
-				for (let i = 0; i < urls.length; i++) {
-					let texture = new THREE.TextureLoader().load(urls[i]);
-					let geometry = new THREE.BoxBufferGeometry(IMG_WIDTH, IMG_HEIGHT, 0);
-					let material = new THREE.MeshBasicMaterial({map: texture, transparent: true, opacity: i === 0 ? 1 : POST_OPC_FADED});
-					posts.push(new THREE.Mesh(geometry, material));
-					posts[i].postId = i;
-					posts[i].position.z = -i * POST_GAP_Z;
-					posts[i].position.x = -(i % 2) * POST_GAP_X + POST_OFFSET_X;
-					scene.add(posts[i]);
-
-					// create html on-hover text
-					let div = document.createElement("div");
-					div.classList.add("post-desc");
-					div.style.left = i % 2 === 0 ? "10vw" : "65vw";
-					div.innerHTML = POST_DESCS[i];
-					document.body.appendChild(div);
-					postDetails.push(div);
-				}
-				return posts;
-			}
-
-			function createPlane(scene) {
-				let geo = new THREE.PlaneBufferGeometry(1500, 6000, 20, 60);
-				let mat = new THREE.MeshBasicMaterial({color: 0x000000, side: THREE.DoubleSide, wireframe: true});
-				let plane = new THREE.Mesh(geo, mat);
-				plane.position.set(0, -IMG_HEIGHT / 2, 0);
-				plane.rotateX(Math.PI / 2);
-				scene.add(plane);
-				return plane;
-			}
-
-			function disableScroll() {
-				JLIU.Util.disableScroll();
-				scrollDisabled = true;
-			}
-
-			function enableScroll() {
-				JLIU.Util.enableScroll();
-				scrollDisabled = false;
-
-				for (let i = 0; i < posts.length; i++) {
-					postDetails[i].style.opacity = 0;
-				}
-			}
-
-			function onWindowWheel(e) {
-    			let dir = e.wheelDelta < 0 ? 1 : -1; // 1 = down , -1 = up
-				animatePosts(dir);
-			}
-			function onMouseMove(event) {
-				mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1; // for raycasting 
-				mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1; // for raycasting 
-			}
-
-			// mobile                                                   
-			var yDown = null;                                        
-			function handleTouchStart(evt) {                                 
-			    yDown = evt.touches[0].clientY;                            
-			};                                                
-			function handleTouchMove(evt) {
-			    if (!yDown) return;
-                  
-			    let yUp = evt.touches[0].clientY;
-			    let yDiff = yDown - yUp;
-			    let dir = yDiff > 0 ? 1 : -1;
-			    yDown = yUp;
-
-				if (scrollDisabled || document.body.scrollTop + yDiff <= 0) {
-					animatePosts(dir);
-					evt.preventDefault();
-				} 
-			}; // end of mobile
-			
-			var loadingFrames = 60;
-			function animate() {
-				if (isNaN(loadingFrames) || loadingFrames > 0) {
-					isNaN(loadingFrames) ? loadingFrames = 60 : loadingFrames--;
-				} else if (!JLIU.Util.isMobile() && scrollDisabled) {
-					handlePostHover();
-				}
-
-				// if (JLIU.Util.isMobile() && document.body.scrollTop > 0) 
-				requestAnimationFrame(animate);
-				renderer.render(scene, camera);
-			}
-
-			function handlePostHover() {
-				raycaster.setFromCamera(mouse, camera);
-				let intersects = raycaster.intersectObjects(scene.children);
-				let hoverId = -1;
-
-				for (let i = 0; i < intersects.length; i++) {
-					let id = intersects[i].object.postId;
-					if (id === undefined || POST_GAP_Z / 2 < posts[id].position.z || posts[id].position.z < -POST_GAP_Z / 4) continue;
-					hoverId = id;
-
-					let hoverDesc = postDetails[hoverId];
-					if (hoverDesc.style.opacity === "" || hoverDesc.style.opacity === "0") {
-						hoverDesc.style.opacity = 1;
-					}
-					break;
-				}
-
-				for (let i = 0; i < posts.length; i++) {
-					if (postDetails[i].style.opacity === "1" && hoverId !== i) {
-						postDetails[i].style.opacity = 0;
-					}
-				}
-			}
-
-			function animatePosts(dir) {
-				if (scrollDisabled) {
-					if (posts[0].position.z < -POST_GAP_Z && dir === -1) return;
-
-					for (let i = 0; i < posts.length; i++) {
-						posts[i].position.z += dir * POST_SCROLL_SPEED_Z;
-						if (-POST_GAP_Z <= posts[i].position.z && posts[i].position.z <= 0) posts[i].material.opacity += dir * POST_SCROLL_SPEED_OPC;
-					}
-
-					plane.position.z += dir * POST_SCROLL_SPEED_Z;
-
-					if (posts[posts.length - 1].position.z === 0) {
-						enableScroll();
-					}
-				} else if (window.scrollY === 0 && dir === -1) {
-    				disableScroll();
-    			}
+			if (JLIU.Util.isMobile()) {
+				Mobile.run();
+			} else {
+				Desktop.run();
 			}
 		</script>
 	</body>
