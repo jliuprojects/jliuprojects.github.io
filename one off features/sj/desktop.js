@@ -34,7 +34,7 @@ var Desktop = {
 		for (let i = 0; i < urls.length; i++) {
 			let texture = new THREE.TextureLoader().load(urls[i]);
 			let geometry = new THREE.BoxBufferGeometry(IMG_WIDTH, IMG_HEIGHT, 0);
-			let material = new THREE.MeshBasicMaterial({map: texture, transparent: true, opacity: i === 0 ? 1 : POST_OPC_FADED});
+			let material = new THREE.MeshBasicMaterial({map: texture, transparent: true, opacity: 1});
 			posts.push(new THREE.Mesh(geometry, material));
 			posts[i].postId = i;
 			posts[i].position.z = -i * POST_GAP_Z;
@@ -80,7 +80,8 @@ var Desktop = {
 
 	onWindowWheel: function (e) {
 		let dir = e.wheelDelta < 0 ? 1 : -1; // 1 = down , -1 = up
-		Desktop.animatePosts(dir);
+		console.log(e.wheelDelta);
+		Desktop.animatePosts(dir, -e.wheelDelta);
 	},
 
 	onMouseMove: function (e) {
@@ -123,16 +124,16 @@ var Desktop = {
 		}
 	},
 
-	animatePosts: function (dir) {
+	animatePosts: function (dir, delta) {
 		if (Desktop.scrollDisabled) {
 			if (Desktop.posts[0].position.z < -POST_GAP_Z && dir === -1) return;
 
 			for (let i = 0; i < Desktop.posts.length; i++) {
-				Desktop.posts[i].position.z += dir * POST_SCROLL_SPEED_Z;
-				if (-POST_GAP_Z <= Desktop.posts[i].position.z && Desktop.posts[i].position.z <= 0) Desktop.posts[i].material.opacity += dir * POST_SCROLL_SPEED_OPC;
+				Desktop.posts[i].position.z += delta;
+				// if (-POST_GAP_Z <= Desktop.posts[i].position.z && Desktop.posts[i].position.z <= 0) Desktop.posts[i].material.opacity += dir * POST_SCROLL_SPEED_OPC;
 			}
 
-			Desktop.plane.position.z += dir * POST_SCROLL_SPEED_Z;
+			Desktop.plane.position.z += delta;
 
 			if (Desktop.posts[Desktop.posts.length - 1].position.z >= 0) {
 				Desktop.enableScroll();
