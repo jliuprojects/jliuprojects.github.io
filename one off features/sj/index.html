@@ -26,7 +26,7 @@
 		</style>
 	</head>
 	<body>
-		<p>v.2.3</p>
+		<p>v.2.4</p>
 		<div id="container"></div>
 		<img src="pic.png" alt="Smiley face" height="400" width="100%">
 		<img src="pic.png" alt="Smiley face" height="400" width="100%">
@@ -85,12 +85,13 @@
 
 			function attachListeners() {
 				window.addEventListener('resize', JLIU.Util.Three.onWindowResize, false);
-				window.addEventListener('wheel', onWindowWheel, true);
-				window.addEventListener('mousemove', onMouseMove, false);
 
 				if (JLIU.Util.isMobile()) { // mobile scroll events
 					document.addEventListener('touchstart', handleTouchStart, false, {passive: false});        
 					document.addEventListener('touchmove', handleTouchMove, false, {passive: false});
+				} else {
+					window.addEventListener('wheel', onWindowWheel, true);
+					window.addEventListener('mousemove', onMouseMove, false);
 				}
 			}
 
@@ -135,6 +136,10 @@
 			function enableScroll() {
 				JLIU.Util.enableScroll();
 				scrollDisabled = false;
+
+				for (let i = 0; i < posts.length; i++) {
+					postDetails[i].style.opacity = 0;
+				}
 			}
 
 			function onWindowWheel(e) {
@@ -148,18 +153,9 @@
 			}
 
 			// mobile                                                   
-			var yDown = null;
-			var maybePreventPullToRefresh = false;         
-			var lastTouchY = 0;                                          
+			var yDown = null;                                        
 			function handleTouchStart(evt) {                                 
-			    yDown = evt.touches[0].clientY;
-
-
-			    if (evt.touches.length != 1) return;
-		        lastTouchY = evt.touches[0].clientY;
-		        // Pull-to-refresh will only trigger if the scroll begins when the
-		        // document's Y offset is zero.
-		        maybePreventPullToRefresh = scrollDisabled && window.pageYOffset == 0;                                  
+			    yDown = evt.touches[0].clientY;                            
 			};                                                
 			function handleTouchMove(evt) {
 			    if (!yDown) return;
@@ -169,42 +165,16 @@
 			    let dir = yDiff > 0 ? 1 : -1;
 
 			    animatePosts(dir);
-			    yDown = yUp;  
+			    yDown = yUp;
 
-
-
-			    var touchY = evt.touches[0].clientY;
-		        var touchYDelta = touchY - lastTouchY;
-		        lastTouchY = touchY;
-
-		        if (maybePreventPullToRefresh) {
-		          // To suppress pull-to-refresh it is sufficient to preventDefault the
-		          // first overscrolling touchmove.
-		          maybePreventPullToRefresh = false;
-					if (touchYDelta > 0) {
-						evt.preventDefault();
-						return;
-					}
-		        }
-
-		        if (scrollDisabled) {
-					evt.preventDefault();
-					return;
-		        }
-
-		        if (scrollDisabled) {
-					if (window.pageYOffset == 0 && touchYDelta > 0) {
-						evt.preventDefault();
-						return;
-					}
-		        }
+				evt.preventDefault();
 			}; // end of mobile
 			
 			var loadingFrames = 60;
 			function animate() {
 				if (isNaN(loadingFrames) || loadingFrames > 0) {
 					isNaN(loadingFrames) ? loadingFrames = 60 : loadingFrames--;
-				} else {
+				} else if (!JLIU.Util.isMobile() && scrollDisabled) {
 					handlePostHover();
 				}
 
