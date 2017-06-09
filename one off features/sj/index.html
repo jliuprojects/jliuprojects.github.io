@@ -26,7 +26,7 @@
 		</style>
 	</head>
 	<body>
-		<p>v.2.6</p>
+		<p>v.2.7</p>
 		<div id="container"></div>
 		<img src="pic.png" alt="Smiley face" height="400" width="100%">
 		<img src="pic.png" alt="Smiley face" height="400" width="100%">
@@ -165,8 +165,8 @@
 
 			    animatePosts(dir);
 			    yDown = yUp;
-
-				if (scrollDisabled) evt.preventDefault();
+console.log(document.body.scrollTop + yDiff);
+				if (scrollDisabled || document.body.scrollTop + yDiff < 0) evt.preventDefault();
 			}; // end of mobile
 			
 			var loadingFrames = 60;
