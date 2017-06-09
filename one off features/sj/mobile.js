@@ -59,8 +59,6 @@ var Mobile = {
 	    let yUp = evt.touches[0].clientY;
 	    Mobile.yDiff = Mobile.yDown - yUp;
 	    Mobile.yDiff *= 3;
-	    console.log(Mobile.yDiff)
-	    // let dir = Mobile.yDiff > 0 ? 1 : -1;
 	    Mobile.yDown = yUp;
 
 		if (Mobile.scrollDisabled) evt.preventDefault();
@@ -71,7 +69,6 @@ var Mobile = {
 			Mobile.yDiff = Mobile.yDiff < 0 ? Math.max(Mobile.yDiff, -30) : Math.min(Mobile.yDiff, 30);
 		}
 		if (Mobile.posts[Mobile.posts.length - 1].position.z >= 0 && Mobile.yDiff > 0) Mobile.scrollDisabled = false;
-
 		if (Mobile.scrollDisabled && Math.abs(Mobile.yDiff) > 0) Mobile.animatePosts();
 
 		requestAnimationFrame(Mobile.animate);
@@ -79,11 +76,10 @@ var Mobile = {
 	},
 
 	animatePosts: function () {
-		// if (Mobile.posts[0].position.z < -POST_GAP_Z && dir === -1) return;
+		if (Mobile.posts[0].position.z < -POST_GAP_Z && Mobile.yDiff < 0) return;
 
 		for (let i = 0; i < Mobile.posts.length; i++) {
 			Mobile.posts[i].position.z += Mobile.yDiff;
-			// if (-POST_GAP_Z <= Mobile.posts[i].position.z && Mobile.posts[i].position.z <= 0) Mobile.posts[i].material.opacity += dir * POST_SCROLL_SPEED_OPC;
 		}
 
 		Mobile.plane.position.z += Mobile.yDiff;
