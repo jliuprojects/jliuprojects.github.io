@@ -21,7 +21,7 @@
 			}
 
 			#container {
-				touch-action: none;
+				
 			}
 		</style>
 	</head>
@@ -89,8 +89,8 @@
 				window.addEventListener('mousemove', onMouseMove, false);
 
 				if (JLIU.Util.isMobile()) { // mobile scroll events
-					document.addEventListener('touchstart', handleTouchStart, false);        
-					document.addEventListener('touchmove', handleTouchMove, false);
+					document.addEventListener('touchstart', handleTouchStart, false, {passive: false});        
+					document.addEventListener('touchmove', handleTouchMove, false, {passive: false});
 				}
 			}
 
@@ -148,9 +148,18 @@
 			}
 
 			// mobile                                                   
-			var yDown = null;                                                        
+			var yDown = null;
+			var maybePreventPullToRefresh = false;         
+			var lastTouchY = 0;                                          
 			function handleTouchStart(evt) {                                 
-			    yDown = evt.touches[0].clientY;                                  
+			    yDown = evt.touches[0].clientY;
+
+
+			    if (evt.touches.length != 1) return;
+		        lastTouchY = evt.touches[0].clientY;
+		        // Pull-to-refresh will only trigger if the scroll begins when the
+		        // document's Y offset is zero.
+		        maybePreventPullToRefresh = scrollDisabled && window.pageYOffset == 0;                                  
 			};                                                
 			function handleTouchMove(evt) {
 			    if (!yDown) return;
@@ -161,6 +170,34 @@
 
 			    animatePosts(dir);
 			    yDown = yUp;  
+
+
+
+			    var touchY = evt.touches[0].clientY;
+		        var touchYDelta = touchY - lastTouchY;
+		        lastTouchY = touchY;
+
+		        if (maybePreventPullToRefresh) {
+		          // To suppress pull-to-refresh it is sufficient to preventDefault the
+		          // first overscrolling touchmove.
+		          maybePreventPullToRefresh = false;
+					if (touchYDelta > 0) {
+						evt.preventDefault();
+						return;
+					}
+		        }
+
+		        if (scrollDisabled) {
+					evt.preventDefault();
+					return;
+		        }
+
+		        if (scrollDisabled) {
+					if (window.pageYOffset == 0 && touchYDelta > 0) {
+						evt.preventDefault();
+						return;
+					}
+		        }
 			}; // end of mobile
 			
 			var loadingFrames = 60;
