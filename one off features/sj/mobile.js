@@ -58,6 +58,7 @@ var Mobile = {
 	               
 	    let yUp = evt.touches[0].clientY;
 	    Mobile.yDiff = Mobile.yDown - yUp;
+	    Mobile.yDiff *= 3;
 	    console.log(Mobile.yDiff)
 	    // let dir = Mobile.yDiff > 0 ? 1 : -1;
 	    Mobile.yDown = yUp;
@@ -65,7 +66,10 @@ var Mobile = {
 		if (Mobile.scrollDisabled) evt.preventDefault();
 	},
 	animate: function () {
-		if (document.body.scrollTop <= 0) Mobile.scrollDisabled = true;
+		if (!Mobile.scrollDisabled && document.body.scrollTop <= 0) {
+			Mobile.scrollDisabled = true;
+			Mobile.yDiff = Mobile.yDiff < 0 ? Math.max(Mobile.yDiff, -30) : Math.min(Mobile.yDiff, 30);
+		}
 		if (Mobile.posts[Mobile.posts.length - 1].position.z >= 0 && Mobile.yDiff > 0) Mobile.scrollDisabled = false;
 
 		if (Mobile.scrollDisabled && Math.abs(Mobile.yDiff) > 0) Mobile.animatePosts();
