@@ -15,6 +15,8 @@ var Mobile = {
 		Mobile.renderer = JLIU.Util.Three.createRenderer(0xffffff, document.getElementById('container'));
 		Mobile.yDown = null;
 		Mobile.yDiff = 0;
+		Mobile.scrollDisabled = true;
+		document.body.style.overflow = "hidden";
 		Mobile.attachListeners();
 		JLIU.Util.forceTopOnRefresh();
 	},
