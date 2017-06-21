@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>56 slots</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			/* CSS reset { */
+			body,div,h1,button,p{margin:0;padding:0}
+			button{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit}
+			a:active,a:focus {outline: 0}
+			/* } */
+
+			body, input, select, textarea {font:18px/18px "Helvetica Neue",Helvetica,Arial,sans-serif;}
+			body {
+			  background:#ddd url(https://subtlepatterns.com/patterns/texturetastic_gray.png);
+			}
+
+			h1 {
+			  text-align:center;
+			  margin-top: 20px;
+			  font-size: 1.75em;
+			  font-weight: normal;
+			  color: #bbb;
+			}
+
+			h1, a {
+			  text-shadow: 0 1px 0 rgba(255,255,255,.8);
+			}
+
+			#sm {
+
+			  width: 540px;
+			  margin: 10px auto 20px;
+			  padding: 20px;
+			  border-radius: 50px;
+			}
+
+
+
+			.group {
+			  border-radius: 30px;
+			  padding: 20px 0 20px 20px;
+			}
+
+			  .reel {
+			    text-align:center;
+			    float: left;
+			    padding:0 10px;
+			    width: 80px;
+			    height: 100px;
+			    overflow: hidden;
+			    margin-right: 20px;
+			    border-radius: 10px;
+			    box-shadow: 0 2px 7px rgba(0,0,0,.3) inset, 0 0px 1px rgba(0,0,0,.2) inset;
+			  }
+			    .reel div {
+			      position: relative;
+			      top: -48px;
+			    }
+			    .reel p {
+			      font-weight: bold;
+			      height: 60px;
+			      margin-top: 10px;
+			    }
+			    .reel p:nth-child(1) {color:#c60}
+			    .reel p:nth-child(2) {color:#690}
+			    .reel p:nth-child(3) {color:#630}
+
+			.lever {
+			  float: right;
+			  padding-right: 20px;
+			}
+			  .lever button {
+			    text-align:center;
+			    border-radius: 10px;
+			    line-height: 100px;
+			    width: 100px;
+			    border: none;
+			    font-size:1.8em;
+			    -webkit-transition: all .2s ease;
+			    -moz-transition: all .2s ease;
+			    -o-transition: all .2s ease;
+			  }
+			  .lever button:active {
+			    color: #900;
+			    box-shadow: 0 1px 4px rgba(0,0,0,.3);
+			    margin: 2px 0 -2px;
+			  }
+
+			.msg {
+			  text-align: center;
+			  color: #bbb;
+			  font-size:1.8em;
+			  padding: 25px 0 5px;
+			  text-shadow: 0 -1px 0 rgba(0,0,0,.3), 0 1px 0 rgba(255,255,255,.5);
+			}
+
+			a {
+			  color: #222cff;
+			  margin-top: 15px;
+			  text-align: center;
+			  display: block;
+			  text-decoration:none;
+			}
+
+			a:hover {
+			  color:#ff4c00
+			}
+		</style>
+	</head>
+	<body>
+		<p>v.0.1</p>
+		<h1>Slot Machine</h1>
+		<a href="https://indamix.github.io/">Check my Portolio Webapp for other shiny things</a>
+		<div id="sm">
+			<div class="group lever">
+				<button>Start</button>
+			</div>
+				<div class="group">
+				<div class="reel"></div>
+				<div class="reel"></div>
+				<div class="reel"></div>
+			</div>
+			<p class="msg">Press Start</p>
+		</div>
+
+		<script
+		  src="https://code.jquery.com/jquery-3.2.1.js"
+		  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+		  crossorigin="anonymous"></script>
+<!-- 		// <script src="../three.js"></script>
+		// <script src="../vendor.js"></script>
+		// <script src="desktop.js"></script>
+		// <script src="mobile.js"></script> -->
+		<script>
+			/*
+				requestAnimationFrame polyfill
+			*/
+			(function(w){
+				var lastTime = 0,
+					vendors = ['webkit', /*'moz',*/ 'o', 'ms'];
+				for (var i = 0; i < vendors.length && !w.requestAnimationFrame; ++i){
+					w.requestAnimationFrame = w[vendors[i] + 'RequestAnimationFrame'];
+					w.cancelAnimationFrame = w[vendors[i] + 'CancelAnimationFrame']
+						|| w[vendors[i] + 'CancelRequestAnimationFrame'];
+				}
+
+				if (!w.requestAnimationFrame)
+					w.requestAnimationFrame = function(callback, element){
+						var currTime = +new Date(),
+							timeToCall = Math.max(0, 16 - (currTime - lastTime)),
+							id = w.setTimeout(function(){ callback(currTime + timeToCall) }, timeToCall);
+						lastTime = currTime + timeToCall;
+						return id;
+					};
+
+				if (!w.cancelAnimationFrame)
+					w.cancelAnimationFrame = function(id){
+					clearTimeout(id);
+				};
+			})(this);
+
+			/*
+				Slot Machine
+			*/
+			var sm = (function(undefined){
+
+				var tMax = 3000, // animation time, ms
+					height = 210,
+					speeds = [],
+					r = [],
+					reels = [
+						['coffee maker',   'teapot',       'espresso machine'],
+						['coffee filter',  'tea strainer', 'espresso tamper'],
+						['coffee grounds', 'loose tea',    'ground espresso beans']
+					],
+					$reels, $msg,
+					start;
+
+				function init() {
+					$reels = $('.reel').each(function(i, el){
+						el.innerHTML = '<div><p>' + reels[i].join('</p><p>') + '</p></div><div><p>' + reels[i].join('</p><p>') + '</p></div>'
+					});
+
+					$msg = $('.msg');
+
+					$('button').click(action);
+				}
+
+				function action(){
+					if (start !== undefined) return;
+
+					for (var i = 0; i < 3; ++i) {
+						speeds[i] = Math.random() + .5;	
+						r[i] = (Math.random() * 3 | 0) * height / 3; // rand(1-3) * height of each icon => picking a wheel to land on
+					}
+
+					$msg.html('Spinning...');
+					animate();
+				}
+
+				function animate(now){
+					if (!start) start = now;
+					var t = now - start || 0;
+
+					for (var i = 0; i < 3; ++i)
+						$reels[i].scrollTop = (speeds[i] / tMax / 2 * (tMax - t) * (tMax - t) + r[i]) % height | 0;
+
+					if (t < tMax)
+						requestAnimationFrame(animate);
+					else {
+						start = undefined;
+						check();
+					}
+				}
+
+				function check() {
+					$msg.html(
+						r[0] === r[1] && r[1] === r[2] ?
+							'You won! Enjoy your ' + reels[1][ (r[0] / 70 + 1) % 3 | 0 ].split(' ')[0]
+						:
+							'Try again'
+					);
+				}
+
+				return {init: init}
+
+			})();
+
+			$(sm.init);
+		</script>
+	</body>
+</html>

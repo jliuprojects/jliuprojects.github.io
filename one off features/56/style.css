@@ -1,0 +1,91 @@
+body, html {
+	padding: 0;
+	margin: 0;
+}
+
+.flex {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.b {
+	box-sizing: border-box;
+}
+
+#slots-container {
+	padding-top: 50px;
+	padding-bottom: 50px;
+	width: 100%;
+	height: 100%;
+	z-index: 10;
+	background-color: #c03c35;
+	justify-content: center;
+	align-items: center;
+	transition: 0.3s ease-in-out visibility, 0.3s ease-in-out opacity;
+}
+#slots-container #close-inquiry {
+	position: absolute;
+	cursor: pointer;
+	bottom: 20px;
+	left: 20px;
+	border-bottom: 1px solid black;
+}
+
+#spin-btn {
+	border-radius: 5px;
+	align-self: center;
+	border: 1px solid black;
+	display: inline-block;
+	cursor: pointer;
+	font-size: 100px;
+}
+#spin-btn:hover {
+	background-color: #000;
+	color: #c03c35;
+}
+#spin-btn:active {
+	transform: scale(0.97, 0.97);
+}
+
+#spin-container {
+	max-width: 1000px;
+	width: 100%;
+	padding: 10px;
+}
+
+#spin {
+	flex-grow: 1;
+	justify-content: center;
+	padding-left: 40px;
+}
+
+.spinner {
+	flex-basis: 33%;
+	box-shadow: inset 0px 0px 70px -13px rgba(0, 0, 0, 0.75);
+	height: 300px;
+	overflow: hidden;
+}
+
+.spinner-item {
+	height: 300px;
+	width: 100%;
+	display: block;
+	background-size: 50%;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+.spinner-item.seven {
+	background-image: url("https://vignette2.wikia.nocookie.net/fantendo/images/4/4a/Lucky7.png/revision/latest?cb=20111223111914");
+}
+
+.spinner-item.cherry {
+	background-image: url("http://www.freepngimg.com/download/cherry/17-red-cherry-png-image-download.png");
+}
+
+.spinner-item.bar {
+	background-image: url("http://dice-casino.com/wp-content/uploads/2016/12/slot-bar-symbols.png");
+}
+
+.slots-container-moving {
+	position: relative;
+}
