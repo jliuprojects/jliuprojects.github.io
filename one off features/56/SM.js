@@ -47,15 +47,17 @@ var SM = {
 	},
 
 	requestSpin: function(cb) {
-		var xhr = new XMLHttpRequest();
+		let xhr = new XMLHttpRequest();
 		xhr.open("POST", "http://stg56.herokuapp.com/spin", true);
-		xhr.setRequestHeader("Content-type", "application/json");
+		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
 		xhr.onreadystatechange = function () {
 		    if (xhr.readyState === 4 && xhr.status === 200) {
 		        cb(JSON.parse(xhr.responseText));
 		    } // TODO : error check
 		};
-		xhr.send(JSON.stringify({numSlots: SM.numSlots}));
+
+		xhr.send("numSlots=" + SM.numSlots); // TODO : hard code this on server after we know how many items per slot
 	},
 
 	animate: function(ts) {
