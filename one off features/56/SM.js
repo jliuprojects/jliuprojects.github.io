@@ -27,7 +27,7 @@ var SM = {
 		if (SM.lastFrame !== undefined) return; // already spinning
 
 		for (let i = 0; i < SM.numSlots; i++) {
-			SM.spinSpeeds[i] = Math.random() + .5;	
+			SM.spinSpeeds[i] = Math.random() + 1;	
 			SM.selectedSlots[i] = Math.random() * SM.numSlots | 0;
 		}
 
@@ -41,7 +41,7 @@ var SM = {
 		for (let i = 0; i < SM.numSlots; i++) {
 			let coef = SM.spinSpeeds[i] / SM.animationTime / 2;
 			let tLeft = SM.animationTime - t;
-			let selectedOffset = SM.selectedSlots[i] * SM.slotHeight;
+			let selectedOffset = SM.selectedSlots[i] * SM.slotHeight;// * (t / SM.animationTime);
 			let dist = (coef * tLeft * tLeft + selectedOffset) % SM.slotsContainerHeight | 0;
 			SM.slotsContainers[i].style.top = -dist + "px";
 		}
