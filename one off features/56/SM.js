@@ -10,53 +10,60 @@ var SM = {
 	},
 
 	init: function(slotsContainerClassName, slotClassName, buttonId) {
-		SM.animationTime = 3000;
+		SM.animationTime = 8000;
 		SM.slotHeight = document.getElementsByClassName(slotClassName)[0].clientHeight;
 		SM.slotsContainers = document.getElementsByClassName(slotsContainerClassName);
 		SM.numSlots = SM.slotsContainers[0].children.length - 1;
 		SM.slotsContainerHeight = SM.slotHeight * SM.numSlots;
-		SM.spinSpeeds = [];
-		SM.selectedSlots = [];
-		SM.lastFrame = undefined;
+		SM.selectedSlotTops = []; // top of selected slots
+		SM.startingSlotTops = [0, 0, 0];
+		SM.startFrame = undefined;
+
+		SM.C = []; // quadratic constant C
+		SM.A = []; // quadratic constant A
 
 		document.getElementById(buttonId).addEventListener("click", SM.spin);
 	},
 
 	spin: function() {
-		console.log("trying to spin");
-		if (SM.lastFrame !== undefined) return; // already spinning
+		if (SM.startFrame !== undefined) return; // already spinning
 
-		for (let i = 0; i < SM.numSlots; i++) {
-			SM.spinSpeeds[i] = Math.random() + 1;	
-			SM.selectedSlots[i] = Math.random() * SM.numSlots | 0;
+		for (let i = 0; i < 3; i++) {
+			SM.selectedSlotTops[i] = (Math.random() * SM.numSlots | 0) * -SM.slotHeight; // randomly select landing icon
+			let revs = Math.random() * 10 + 4 | 0; // random number of revolutions
+
+			SM.C[i] = SM.selectedSlotTops[i] - revs * SM.slotsContainerHeight; // constant offset
+			SM.A[i] = (-SM.C[i] + SM.startingSlotTops[i]) / Math.pow(SM.animationTime, 2); // coefficient of x^2
+
+			SM.startingSlotTops[i] = SM.selectedSlotTops[i];
 		}
 
-		SM.animate();
+		requestAnimationFrame(SM.animate);
 	},
 
 	animate: function(ts) {
-		if (!SM.lastFrame) SM.lastFrame = ts;
-		let t = ts - SM.lastFrame || 0;
+		if (!SM.startFrame) SM.startFrame = ts;
+		let t = ts - SM.startFrame || 0;
 
-		for (let i = 0; i < SM.numSlots; i++) {
-			let coef = SM.spinSpeeds[i] / SM.animationTime / 2;
-			let tLeft = SM.animationTime - t;
-			let selectedOffset = SM.selectedSlots[i] * SM.slotHeight * (t / SM.animationTime);
-			let dist = (coef * tLeft * tLeft + selectedOffset) % SM.slotsContainerHeight | 0;
-			SM.slotsContainers[i].style.top = -dist + "px";
+		for (let i = 0; i < 3; i++) { // apply quadratic equation
+			let x = t - SM.animationTime;
+			let y = SM.A[i] * Math.pow(x, 2) + SM.C[i];
+			let top = y % SM.slotsContainerHeight | 0;
+
+			SM.slotsContainers[i].style.top = top + "px";
 		}
 
 		if (t < SM.animationTime) {
 			requestAnimationFrame(SM.animate);
 		} else {
-			SM.lastFrame = undefined;
+			SM.startFrame = undefined;
 			SM.check();
 		}
 	},
 
 	check: function() {
-		for (let i = 0; i < SM.numSlots; i++) {
-			if (SM.selectedSlots[0] !== SM.selectedSlots[i]) {
+		for (let i = 0; i < 3; i++) {
+			if (SM.selectedSlotTops[0] !== SM.selectedSlotTops[i]) {
 				console.log("you lose");
 				return;
 			}	
