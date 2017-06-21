@@ -41,7 +41,7 @@ var SM = {
 		for (let i = 0; i < SM.numSlots; i++) {
 			let coef = SM.spinSpeeds[i] / SM.animationTime / 2;
 			let tLeft = SM.animationTime - t;
-			let selectedOffset = SM.selectedSlots[i] * SM.slotHeight;// * (t / SM.animationTime);
+			let selectedOffset = SM.selectedSlots[i] * SM.slotHeight * (t / SM.animationTime);
 			let dist = (coef * tLeft * tLeft + selectedOffset) % SM.slotsContainerHeight | 0;
 			SM.slotsContainers[i].style.top = -dist + "px";
 		}
