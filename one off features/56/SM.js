@@ -18,6 +18,7 @@ var SM = {
 		SM.selectedSlotTops = []; // top of selected slots
 		SM.startingSlotTops = [0, 0, 0];
 		SM.startFrame = undefined;
+		SM.pw = '';
 
 		SM.C = []; // quadratic constant C
 		SM.A = []; // quadratic constant A
@@ -28,17 +29,33 @@ var SM = {
 	spin: function() {
 		if (SM.startFrame !== undefined) return; // already spinning
 
-		for (let i = 0; i < 3; i++) {
-			SM.selectedSlotTops[i] = (Math.random() * SM.numSlots | 0) * -SM.slotHeight; // randomly select landing icon
-			let revs = Math.random() * 10 + 4 | 0; // random number of revolutions
+		SM.requestSpin(function(res) {
+			SM.pw = res.pw;
 
-			SM.C[i] = SM.selectedSlotTops[i] - revs * SM.slotsContainerHeight; // constant offset
-			SM.A[i] = (-SM.C[i] + SM.startingSlotTops[i]) / Math.pow(SM.animationTime, 2); // coefficient of x^2
+			for (let i = 0; i < 3; i++) {
+				SM.selectedSlotTops[i] = res.selected[i] * -SM.slotHeight;
+				let revs = Math.random() * 10 + 4 | 0; // random number of revolutions
 
-			SM.startingSlotTops[i] = SM.selectedSlotTops[i];
-		}
+				SM.C[i] = SM.selectedSlotTops[i] - revs * SM.slotsContainerHeight; // constant offset
+				SM.A[i] = (-SM.C[i] + SM.startingSlotTops[i]) / Math.pow(SM.animationTime, 2); // coefficient of x^2
 
-		requestAnimationFrame(SM.animate);
+				SM.startingSlotTops[i] = SM.selectedSlotTops[i];
+			}
+
+			requestAnimationFrame(SM.animate);
+		});
+	},
+
+	requestSpin: function(cb) {
+		var xhr = new XMLHttpRequest();
+		xhr.open("POST", "http://stg56.herokuapp.com/spin", true);
+		xhr.setRequestHeader("Content-type", "application/json");
+		xhr.onreadystatechange = function () {
+		    if (xhr.readyState === 4 && xhr.status === 200) {
+		        cb(JSON.parse(xhr.responseText));
+		    } // TODO : error check
+		};
+		xhr.send(JSON.stringify({numSlots: SM.numSlots}));
 	},
 
 	animate: function(ts) {
@@ -68,6 +85,7 @@ var SM = {
 				return;
 			}	
 		}
-		console.log("you win");
+		console.log("you win, pw is " + SM.pw);
+		SM.pw = '';
 	}
 };
