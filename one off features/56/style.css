@@ -44,7 +44,7 @@ body, html {
 	color: #c03c35;
 }
 #spin-btn:active {
-	transform: scale(0.97, 0.97);
+	/*transform: scale(0.97, 0.97);*/
 }
 
 #spin-container {
