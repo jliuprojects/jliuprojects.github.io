@@ -53,10 +53,51 @@ body, html {
 	padding: 10px;
 }
 
+#won {
+	height: 300px;
+	width: 100%;
+	box-shadow: inset 0px 0px 70px -13px rgba(0, 0, 0, 0.75);
+	display: none;
+	flex-direction: column;
+}
+
+#win-text-container {
+	display: flex;
+	flex-grow: 5;
+	text-align: center;
+
+	justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}
+
+#win-text-pw {
+	margin-top: 0;
+	font-size: 28pt;
+}
+
+.win-banner {
+	display: flex;
+	width: 100%;
+	overflow: hidden;
+	flex-grow: 1;
+
+	justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}
+
+.win-banner-text {
+	width: 0px;
+	white-space: nowrap;
+}
+
 #spin {
+	height: 300px;
 	flex-grow: 1;
 	justify-content: center;
 	padding-left: 40px;
+	overflow: hidden;
 }
 
 .spinner {

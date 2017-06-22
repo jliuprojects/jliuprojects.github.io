@@ -8,43 +8,74 @@
 	</head>
 	<body>
 		<p>v.1.0</p>
+		<form id="url-form" action="javascript:changeSettings()">
+			Duration: <input type="number" id="duration"> Min Revs: <input type="number" id="minrev"> Max Revs: <input type="number" id="maxrev"> <input type="submit" value="Submit">
+		</form><br>
+
 		<div id="slots-container" class="b flex">
 			<div id="spin-container" class="b flex">
-			<div id="spin-btn" class="serif">
-				SPIN
-			</div>
+				<div id="spin-btn" class="serif">
+					SPIN
+				</div>
 
-			<div id="spin" class="b flex">
-				<div class="spinner b">
-					<div class="slots-container-moving">
-						<div class="spinner-item cherry"></div>
-						<div class="spinner-item seven"></div>
-						<div class="spinner-item bar"></div>
-						<div class="spinner-item cherry"></div>
+				<div id="spin" class="b flex">
+					<div id="won">
+						<div class="win-banner">
+							<p class="win-banner-text">WINNER! WINNER! WINNER! WINNER! WINNER! WINNER! WINNER! WINNER! WINNER! WINNER! WINNER! WINNER!</p>
+						</div>
+						<div id="win-text-container">
+							<p id="win-text">the password is...</p>
+							<p id="win-text-pw">JHFASF23</p>
+						</div>
+						<div class="win-banner">
+							<p class="win-banner-text">WINNER! WINNER! WINNER! WINNER! WINNER! WINNER! WINNER! WINNER! WINNER! WINNER! WINNER! WINNER!</p>
+						</div>
 					</div>
-				</div>
-				<div class="spinner b">
-					<div class="slots-container-moving">
-						<div class="spinner-item cherry"></div>
-						<div class="spinner-item seven"></div>
-						<div class="spinner-item bar"></div>
-						<div class="spinner-item cherry"></div>
+					<div class="spinner b">
+						<div class="slots-container-moving">
+							<div class="spinner-item cherry"></div>
+							<div class="spinner-item seven"></div>
+							<div class="spinner-item bar"></div>
+							<div class="spinner-item cherry"></div>
+						</div>
 					</div>
-				</div>
-				<div class="spinner b">
-					<div class="slots-container-moving">
-						<div class="spinner-item cherry"></div>
-						<div class="spinner-item seven"></div>
-						<div class="spinner-item bar"></div>
-						<div class="spinner-item cherry"></div>
+					<div class="spinner b">
+						<div class="slots-container-moving">
+							<div class="spinner-item cherry"></div>
+							<div class="spinner-item seven"></div>
+							<div class="spinner-item bar"></div>
+							<div class="spinner-item cherry"></div>
+						</div>
 					</div>
-				</div>
+					<div class="spinner b">
+						<div class="slots-container-moving">
+							<div class="spinner-item cherry"></div>
+							<div class="spinner-item seven"></div>
+							<div class="spinner-item bar"></div>
+							<div class="spinner-item cherry"></div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 		// <script src="SM.js"></script>
 		<script>
 			SM.run("slots-container-moving", "spinner-item", "spin-btn");
+
+			let duration = document.getElementById("duration");
+			let min = document.getElementById("minrev");
+			let max = document.getElementById("maxrev");
+
+			duration.value = SM.animationTime;
+			min.value = SM.revMin;
+			max.value = SM.revMax;
+
+			function changeSettings() {
+				SM.animationTime = Number(duration.value);
+				SM.revMin = Number(min.value);
+				SM.revMax = Number(max.value);
+			}
+
 		</script>
 	</body>
 </html>

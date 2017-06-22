@@ -11,6 +11,8 @@ var SM = {
 
 	init: function(slotsContainerClassName, slotClassName, buttonId) {
 		SM.animationTime = 8000;
+		SM.revMin = 4;
+		SM.revMax = 10;
 		SM.slotHeight = document.getElementsByClassName(slotClassName)[0].clientHeight;
 		SM.slotsContainers = document.getElementsByClassName(slotsContainerClassName);
 		SM.numSlots = SM.slotsContainers[0].children.length - 1;
@@ -34,7 +36,7 @@ var SM = {
 
 			for (let i = 0; i < 3; i++) {
 				SM.selectedSlotTops[i] = res.selected[i] * -SM.slotHeight;
-				let revs = Math.random() * 10 + 4 | 0; // random number of revolutions
+				let revs = (Math.random() * (SM.revMax - SM.revMin) + SM.revMin) | 0; // random number of revolutions
 
 				SM.C[i] = SM.selectedSlotTops[i] - revs * SM.slotsContainerHeight; // constant offset
 				SM.A[i] = (-SM.C[i] + SM.startingSlotTops[i]) / Math.pow(SM.animationTime, 2); // coefficient of x^2
@@ -87,7 +89,16 @@ var SM = {
 				return;
 			}	
 		}
+		SM.showWin(SM.pw);
 		console.log("you win, pw is " + SM.pw);
 		SM.pw = '';
-	}
+	},
+
+	showWin: function(pw) {
+		let slotsContainer = document.getElementById("slots-container");
+		slotsContainer.style["background-color"] = "green";
+
+		document.getElementById("won").style.display = "flex";
+		document.getElementById("win-text-pw").innerHTML = pw;
+	},
 };
