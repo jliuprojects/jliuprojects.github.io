@@ -89,9 +89,11 @@ var SM = {
 				return;
 			}	
 		}
-		setTimeout(function() { SM.showWin(SM.pw) }, 1000);
+		setTimeout(function() { 
+			SM.showWin(SM.pw);
+			SM.pw = '';
+		}, 1000);
 		console.log("you win, pw is " + SM.pw);
-		SM.pw = '';
 	},
 
 	showWin: function(pw) {
