@@ -7,7 +7,7 @@
 		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 	<body>
-		<p>v.2.2</p>
+		<p>v.2.3</p>
 		<form id="url-form" action="javascript:changeSettings()">
 			Duration: <input type="number" name="duration"> Min Revs: <input type="number" name="minrev"> Max Revs: <input type="number" name="maxrev"> <input type="submit" value="Submit">
 		</form><br>
@@ -60,7 +60,6 @@
 		</div>
 		<script src="SM.js"></script>
 		<script>
-			alert("werf");
 			SM.run("slots-container-moving", "spinner-item", "spin-btn");
 
 			let duration = document.getElementsByName("duration")[0];
