@@ -30,6 +30,7 @@ var SM = {
 	},
 
 	spin: function() {
+		alert("fucken ios");
 		if (SM.startFrame !== undefined) return; // already spinning
 
 		SM.requestSpin(function(res) {
