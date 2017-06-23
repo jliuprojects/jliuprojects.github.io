@@ -7,7 +7,7 @@
 		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 	<body>
-		<p>v.1.9</p>
+		<p>v.2.0</p>
 		<form id="url-form" action="javascript:changeSettings()">
 			Duration: <input type="number" id="duration"> Min Revs: <input type="number" id="minrev"> Max Revs: <input type="number" id="maxrev"> <input type="submit" value="Submit">
 		</form><br>
@@ -63,9 +63,9 @@
 			alert("werf");
 			SM.run("slots-container-moving", "spinner-item", "spin-btn");
 
-			// let duration = document.getElementById("duration");
-			// let min = document.getElementById("minrev");
-			// let max = document.getElementById("maxrev");
+			let duration = document.getElementById("duration");
+			let min = document.getElementById("minrev");
+			let max = document.getElementById("maxrev");
 
 			// duration.value = SM.animationTime;
 			// min.value = SM.revMin;
