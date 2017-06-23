@@ -7,7 +7,7 @@
 		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 	<body>
-		<p>v.1.6</p>
+		<!-- <p>v.1.6</p>
 		<form id="url-form" action="javascript:changeSettings()">
 			Duration: <input type="number" id="duration"> Min Revs: <input type="number" id="minrev"> Max Revs: <input type="number" id="maxrev"> <input type="submit" value="Submit">
 		</form><br>
@@ -57,25 +57,25 @@
 					</div>
 				</div>
 			</div>
-		</div>
-		<script src="SM.js"></script>
+		</div> -->
+		<!-- // <script src="SM.js"></script> -->
 		<script>
 			alert("werf");
-			SM.run("slots-container-moving", "spinner-item", "spin-btn");
+			// SM.run("slots-container-moving", "spinner-item", "spin-btn");
 
-			let duration = document.getElementById("duration");
-			let min = document.getElementById("minrev");
-			let max = document.getElementById("maxrev");
+			// let duration = document.getElementById("duration");
+			// let min = document.getElementById("minrev");
+			// let max = document.getElementById("maxrev");
 
-			duration.value = SM.animationTime;
-			min.value = SM.revMin;
-			max.value = SM.revMax;
+			// duration.value = SM.animationTime;
+			// min.value = SM.revMin;
+			// max.value = SM.revMax;
 
-			function changeSettings() {
-				SM.animationTime = Number(duration.value);
-				SM.revMin = Number(min.value);
-				SM.revMax = Number(max.value);
-			}
+			// function changeSettings() {
+			// 	SM.animationTime = Number(duration.value);
+			// 	SM.revMin = Number(min.value);
+			// 	SM.revMax = Number(max.value);
+			// }
 
 		</script>
 	</body>
