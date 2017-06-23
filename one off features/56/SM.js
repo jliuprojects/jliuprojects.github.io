@@ -26,7 +26,7 @@ var SM = {
 		SM.A = []; // quadratic constant A
 
 		document.getElementById(buttonId).addEventListener("click", SM.spin);
-		document.getElementById(buttonId).addEventListener("touchstart", SM.spin);
+		// document.getElementById(buttonId).addEventListener("touchstart", SM.spin);
 	},
 
 	spin: function() {
