@@ -7,7 +7,7 @@
 		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 	<body>
-		<p>v.2.1</p>
+		<p>v.2.2</p>
 		<form id="url-form" action="javascript:changeSettings()">
 			Duration: <input type="number" name="duration"> Min Revs: <input type="number" name="minrev"> Max Revs: <input type="number" name="maxrev"> <input type="submit" value="Submit">
 		</form><br>
@@ -67,15 +67,15 @@
 			let min = document.getElementsByName("minrev")[0];
 			let max = document.getElementsByName("maxrev")[0];
 
-			// duration.value = SM.animationTime;
-			// min.value = SM.revMin;
-			// max.value = SM.revMax;
+			duration.value = SM.animationTime;
+			min.value = SM.revMin;
+			max.value = SM.revMax;
 
-			// function changeSettings() {
-			// 	SM.animationTime = Number(duration.value);
-			// 	SM.revMin = Number(min.value);
-			// 	SM.revMax = Number(max.value);
-			// }
+			function changeSettings() {
+				SM.animationTime = Number(duration.value);
+				SM.revMin = Number(min.value);
+				SM.revMax = Number(max.value);
+			}
 
 		</script>
 	</body>
