@@ -23,6 +23,7 @@ body, html {
 	align-items: center;
 	transition: 0.3s ease-in-out visibility, 0.3s ease-in-out opacity;
 }
+
 #slots-container #close-inquiry {
 	position: absolute;
 	cursor: pointer;
@@ -101,9 +102,9 @@ body, html {
 }
 
 .spinner {
-	flex-basis: 33%;
+	flex-basis: 33.333%;
 	box-shadow: inset 0px 0px 70px -13px rgba(0, 0, 0, 0.75);
-	height: 300px;
+	/*height: 300px;*/
 	overflow: hidden;
 }
 
@@ -131,3 +132,48 @@ body, html {
 .slots-container-moving {
 	position: relative;
 }
+
+
+@media (min-width:320px) { /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */ 
+	#spin-container {
+		flex-direction: column-reverse;
+	}
+
+	#spin-btn {
+		margin-top: 25px;
+		font-size: 80px;
+	}
+
+	#spin-btn:hover {
+		background-color: transparent;
+		color: #000;
+	}
+
+	#spin {
+		padding-left: 0px;
+		height: 150px;
+	}
+
+	.spinner-item {
+		height: 150px;
+	}
+
+	#won {
+		height: 150px;
+	}
+
+	#win-text-pw {
+		margin: 0;
+		font-size: 18pt;
+	}
+
+	#win-text {
+		margin: 0;
+		margin-bottom: 10px;
+	}
+}
+@media (min-width:480px) { /* smartphones, Android phones, landscape iPhone */ }
+@media (min-width:600px) { /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */ }
+@media (min-width:801px) { /* tablet, landscape iPad, lo-res laptops ands desktops */ }
+@media (min-width:1025px) { /* big landscape tablets, laptops, and desktops */ }
+@media (min-width:1281px) { /* hi-res laptops and desktops */ }
