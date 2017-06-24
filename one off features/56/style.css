@@ -134,7 +134,7 @@ body, html {
 }
 
 
-@media (min-width:320px) { /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */ 
+@media (min-width:320px), (min-width:480px) { /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */  /* smartphones, Android phones, landscape iPhone */ 
 	#spin-container {
 		flex-direction: column-reverse;
 	}
