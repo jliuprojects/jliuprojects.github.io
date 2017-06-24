@@ -10,9 +10,9 @@ var SM = {
 	},
 
 	init: function(slotsContainerClassName, slotClassName, buttonId) {
-		SM.animationTime = 8000;
-		SM.revMin = 4;
-		SM.revMax = 10;
+		SM.animationTime = 4000;
+		SM.revMin = 5;
+		SM.revMax = 12;
 		SM.slotHeight = document.getElementsByClassName(slotClassName)[0].clientHeight;
 		SM.slotsContainers = document.getElementsByClassName(slotsContainerClassName);
 		SM.numSlots = SM.slotsContainers[0].children.length - 1;
@@ -26,7 +26,6 @@ var SM = {
 		SM.A = []; // quadratic constant A
 
 		document.getElementById(buttonId).addEventListener("click", SM.spin);
-		// document.getElementById(buttonId).addEventListener("touchstart", SM.spin);
 	},
 
 	spin: function() {
