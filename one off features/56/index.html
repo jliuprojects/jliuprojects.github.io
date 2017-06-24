@@ -9,7 +9,7 @@
 	<body>
 		<p>v.2.4</p>
 		<form id="url-form" action="javascript:changeSettings()">
-			Duration: <input type="number" name="duration"> Min Revs: <input type="number" name="minrev"> Max Revs: <input type="number" name="maxrev"> <input type="submit" value="Submit">
+			Duration: <input type="number" name="duration"> Min Revs: <input type="number" name="minrev"> Max Revs: <input type="number" name="maxrev"> power: <input type="number" name="power"> <input type="submit" value="Submit">
 		</form><br>
 
 		<div id="slots-container" class="b flex">
@@ -65,15 +65,18 @@
 			let duration = document.getElementsByName("duration")[0];
 			let min = document.getElementsByName("minrev")[0];
 			let max = document.getElementsByName("maxrev")[0];
+			let power = document.getElementsByName("power")[0];
 
 			duration.value = SM.animationTime;
 			min.value = SM.revMin;
 			max.value = SM.revMax;
+			power.value = SM.power;
 
 			function changeSettings() {
 				SM.animationTime = Number(duration.value);
 				SM.revMin = Number(min.value);
 				SM.revMax = Number(max.value);
+				SM.power = Number(power.value);
 			}
 
 		</script>
