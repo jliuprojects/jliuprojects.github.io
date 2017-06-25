@@ -22,6 +22,7 @@ var SM = {
 		SM.startingSlotTops = [0, 0, 0];
 		SM.startFrame = undefined;
 		SM.pw = '';
+		SM.sfxStart = new Audio('slots.mp3');
 
 		SM.C = []; // quadratic constant C
 		SM.A = []; // quadratic constant A
@@ -46,6 +47,7 @@ var SM = {
 			}
 
 			requestAnimationFrame(SM.animate);
+			SM.sfxStart.play();
 		});
 	},
 
