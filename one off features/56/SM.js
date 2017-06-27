@@ -103,6 +103,7 @@ var SM = {
 		let slotsContainer = document.getElementById("slots-container");
 		slotsContainer.style["background-color"] = "green";
 
+		document.getElementById("line").style.display = "none";
 		document.getElementById("won").style.display = "flex";
 		document.getElementById("win-text-pw").innerHTML = pw;
 	},
