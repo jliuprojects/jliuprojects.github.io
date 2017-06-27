@@ -95,17 +95,17 @@ body, html {
 }
 
 #spin {
+	position: relative;
 	height: 300px;
 	flex-grow: 1;
 	justify-content: center;
-	padding-left: 40px;
+	margin-left: 40px;
 	overflow: hidden;
 }
 
 .spinner {
 	flex-basis: 33.333%;
 	box-shadow: inset 0px 0px 70px -13px rgba(0, 0, 0, 0.75);
-	/*height: 300px;*/
 	overflow: hidden;
 }
 
@@ -134,6 +134,14 @@ body, html {
 	position: relative;
 }
 
+#line {
+	position: absolute;
+	height: 6px;
+	width: 100%;
+	background-color: #c03c35;
+	top: 143px;
+}
+
 
 @media (max-width:320px), (max-width:480px) { /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */  /* smartphones, Android phones, landscape iPhone */ 
 	#spin-container {
@@ -152,7 +160,7 @@ body, html {
 	}
 
 	#spin {
-		padding-left: 0px;
+		margin-left: 0px;
 		height: 150px;
 	}
 
@@ -172,5 +180,10 @@ body, html {
 	#win-text {
 		margin: 0;
 		margin-bottom: 10px;
+	}
+
+	#line {
+		height: 4px;
+		top: 73px;
 	}
 }
