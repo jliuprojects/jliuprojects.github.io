@@ -10,7 +10,7 @@ var SM = {
 	},
 
 	init: function(slotsContainerClassName, slotClassName, buttonId) {
-		SM.animationTime = 4000;
+		SM.animationTime = [4000, 4500, 5000];
 		SM.power = 2;
 		SM.revMin = 5;
 		SM.revMax = 12;
@@ -41,7 +41,7 @@ var SM = {
 				let revs = (Math.random() * (SM.revMax - SM.revMin) + SM.revMin) | 0; // random number of revolutions
 
 				SM.C[i] = SM.selectedSlotTops[i] - revs * SM.slotsContainerHeight; // constant offset
-				SM.A[i] = (-SM.C[i] + SM.startingSlotTops[i]) / Math.pow(SM.animationTime, SM.power); // coefficient of x^2
+				SM.A[i] = (-SM.C[i] + SM.startingSlotTops[i]) / Math.pow(SM.animationTime[i], SM.power); // coefficient of x^2
 
 				SM.startingSlotTops[i] = SM.selectedSlotTops[i];
 			}
@@ -70,14 +70,15 @@ var SM = {
 		let t = ts - SM.startFrame || 0;
 
 		for (let i = 0; i < 3; i++) { // apply quadratic equation
-			let x = t - SM.animationTime;
+			if (t >= SM.animationTime[i]) continue;
+			let x = t - SM.animationTime[i];
 			let y = SM.A[i] * Math.pow(x, SM.power) + SM.C[i];
 			let top = y % SM.slotsContainerHeight | 0;
 
 			SM.slotsContainers[i].style.top = top + "px";
 		}
 
-		if (t < SM.animationTime) {
+		if (t < SM.animationTime[0] || t < SM.animationTime[1] || t < SM.animationTime[2]) {
 			requestAnimationFrame(SM.animate);
 		} else {
 			SM.startFrame = undefined;

@@ -74,7 +74,9 @@
 			power.value = SM.power;
 
 			function changeSettings() {
-				SM.animationTime = Number(duration.value);
+				SM.animationTime[0] = Number(duration.value);
+				SM.animationTime[1] = Number(duration.value) + 500;
+				SM.animationTime[2] = Number(duration.value) + 1000;
 				SM.revMin = Number(min.value);
 				SM.revMax = Number(max.value);
 				SM.power = Number(power.value);
