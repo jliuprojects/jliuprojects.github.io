@@ -10,7 +10,7 @@ var SM = {
 	},
 
 	init: function(slotsContainerClassName, slotClassName, buttonId) {
-		SM.animationTime = [4000, 4500, 5000];
+		SM.animationTime = [4000, 4700, 5400];
 		SM.power = 2;
 		SM.revMin = 5;
 		SM.revMax = 12;

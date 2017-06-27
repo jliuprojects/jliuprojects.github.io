@@ -9,7 +9,7 @@
 	<body>
 		<p>v.2.4</p>
 		<form id="url-form" action="javascript:changeSettings()">
-			Duration: <input type="number" name="duration"> Min Revs: <input type="number" name="minrev"> Max Revs: <input type="number" name="maxrev"> power: <input type="number" name="power"> <input type="submit" value="Submit">
+			Duration: <input type="number" name="duration"> delay: <input type="number" name="delay"> Min Revs: <input type="number" name="minrev"> Max Revs: <input type="number" name="maxrev"> power: <input type="number" name="power"> <input type="submit" value="Submit">
 		</form><br>
 
 		<div id="slots-container" class="b flex">
@@ -67,16 +67,18 @@
 			let min = document.getElementsByName("minrev")[0];
 			let max = document.getElementsByName("maxrev")[0];
 			let power = document.getElementsByName("power")[0];
+			let delay = document.getElementsByName("delay")[0];
 
-			duration.value = SM.animationTime;
+			duration.value = SM.animationTime[0];
 			min.value = SM.revMin;
 			max.value = SM.revMax;
 			power.value = SM.power;
+			delay.value = SM.animationTime[1] - SM.animationTime[0];
 
 			function changeSettings() {
 				SM.animationTime[0] = Number(duration.value);
-				SM.animationTime[1] = Number(duration.value) + 500;
-				SM.animationTime[2] = Number(duration.value) + 1000;
+				SM.animationTime[1] = Number(duration.value) + Number(delay.value);
+				SM.animationTime[2] = Number(duration.value) + Number(delay.value) * 2;
 				SM.revMin = Number(min.value);
 				SM.revMax = Number(max.value);
 				SM.power = Number(power.value);
