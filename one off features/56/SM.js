@@ -10,10 +10,10 @@ var SM = {
 	},
 
 	init: function(slotsContainerClassName, slotClassName, buttonId) {
-		SM.animationTime = [4000, 4700, 5400];
-		SM.power = 2;
-		SM.revMin = 5;
-		SM.revMax = 12;
+		SM.animationTime = [4200, 4900, 5600];
+		SM.power = .72;
+		SM.revMin = 56;
+		SM.revMax = 88;
 		SM.slotHeight = document.getElementsByClassName(slotClassName)[0].clientHeight;
 		SM.slotsContainers = document.getElementsByClassName(slotsContainerClassName);
 		SM.numSlots = SM.slotsContainers[0].children.length - 1;
@@ -24,8 +24,10 @@ var SM = {
 		SM.pw = '';
 		SM.sfxStart = new Audio('slots.mp3');
 
-		SM.C = []; // quadratic constant C
 		SM.A = []; // quadratic constant A
+		SM.B = []; // quadratic constant B
+		SM.C = []; // quadratic constant C
+		SM.D = []; // quadratic constant D
 
 		document.getElementById(buttonId).addEventListener("click", SM.spin);
 	},
@@ -40,10 +42,21 @@ var SM = {
 				SM.selectedSlotTops[i] = res.selected[i] * -SM.slotHeight;
 				let revs = (Math.random() * (SM.revMax - SM.revMin) + SM.revMin) | 0; // random number of revolutions
 
-				SM.C[i] = SM.selectedSlotTops[i] - revs * SM.slotsContainerHeight; // constant offset
-				SM.A[i] = (-SM.C[i] + SM.startingSlotTops[i]) / Math.pow(SM.animationTime[i], SM.power); // coefficient of x^2
+				// SM.C[i] = SM.selectedSlotTops[i] - revs * SM.slotsContainerHeight; // constant offset
+				// SM.A[i] = (-SM.C[i] + SM.startingSlotTops[i]) / Math.pow(SM.animationTime[i], 2); // coefficient of x^2
+
+				let S = SM.startingSlotTops[i];
+				let E = SM.selectedSlotTops[i] - revs * SM.slotsContainerHeight;
+				let R = E * SM.power;
+
+				SM.A[i] = (8 * (2 * R - S - E)) / (3 * Math.pow(SM.animationTime[i], 3));
+				SM.B[i] = -(64 * R - 38 * S - 26 * E) / (6 * Math.pow(SM.animationTime[i], 2));
+				SM.C[i] = (-2 * (E + 7 * S - 8 * R)) / (3 * SM.animationTime[i]);
+				SM.D[i] = S;
 
 				SM.startingSlotTops[i] = SM.selectedSlotTops[i];
+
+				console.log("y = " + SM.A[i] + "x^3 + " + SM.B[i] + "x^2 + " + SM.C[i] + "x + " + SM.D[i]);
 			}
 
 			requestAnimationFrame(SM.animate);
@@ -71,8 +84,8 @@ var SM = {
 
 		for (let i = 0; i < 3; i++) { // apply quadratic equation
 			if (t >= SM.animationTime[i]) continue;
-			let x = t - SM.animationTime[i];
-			let y = SM.A[i] * Math.pow(x, SM.power) + SM.C[i];
+			let x = t;
+			let y = SM.A[i] * Math.pow(x, 3) + SM.B[i] * Math.pow(x, 2) + SM.C[i] * x + SM.D[i];
 			let top = y % SM.slotsContainerHeight | 0;
 
 			SM.slotsContainers[i].style.top = top + "px";
