@@ -10,10 +10,10 @@ var SM = {
 	},
 
 	init: function(slotsContainerClassName, slotClassName, buttonId) {
-		SM.animationTime = [4200, 4900, 5600];
+		SM.animationTime = [1200, 2200, 3200];
 		SM.power = .72;
-		SM.revMin = 56;
-		SM.revMax = 88;
+		SM.revMin = 50;
+		SM.revMax = 70;
 		SM.slotHeight = document.getElementsByClassName(slotClassName)[0].clientHeight;
 		SM.slotsContainers = document.getElementsByClassName(slotsContainerClassName);
 		SM.numSlots = SM.slotsContainers[0].children.length - 1;
@@ -22,7 +22,8 @@ var SM = {
 		SM.startingSlotTops = [0, 0, 0];
 		SM.startFrame = undefined;
 		SM.pw = '';
-		SM.sfxStart = new Audio('slots.mp3');
+		SM.sfxStart = new Audio('spin-sfx.mp4');
+		SM.sfxWin = new Audio('win-sfx.mp4');
 
 		SM.A = []; // quadratic constant A
 		SM.B = []; // quadratic constant B
@@ -66,7 +67,7 @@ var SM = {
 
 	requestSpin: function(cb) {
 		let xhr = new XMLHttpRequest();
-		xhr.open("POST", "http://stg56.herokuapp.com/spin", true);
+		xhr.open("POST", "http://stg56.herokuapp.com/forcewin", true);
 		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
 		xhr.onreadystatechange = function () {
@@ -120,5 +121,7 @@ var SM = {
 		document.getElementById("line").style.display = "none";
 		document.getElementById("won").style.display = "flex";
 		document.getElementById("win-text-pw").innerHTML = pw;
+
+		SM.sfxWin.play();
 	},
 };
