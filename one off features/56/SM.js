@@ -73,7 +73,7 @@ var SM = {
 
 	requestSpin: function(cb) {
 		let xhr = new XMLHttpRequest();
-		xhr.open("POST", "http://stg56.herokuapp.com/forcewin", true);
+		xhr.open("POST", "http://stg56.herokuapp.com/spin", true);
 		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
 		xhr.onreadystatechange = function () {
