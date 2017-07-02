@@ -59,15 +59,21 @@ var SM = {
 
 				console.log("y = " + SM.A[i] + "x^3 + " + SM.B[i] + "x^2 + " + SM.C[i] + "x + " + SM.D[i]);
 			}
-
+			SM.sfxStart.play();
 			requestAnimationFrame(SM.animate);
 		});
-		SM.sfxStart.play();
+		
+		if (JLIU.Util.isMobile()) {
+			SM.sfxStart.play();
+			SM.sfxStart.pause();
+			SM.sfxWin.play();
+			SM.sfxWin.pause();
+		}
 	},
 
 	requestSpin: function(cb) {
 		let xhr = new XMLHttpRequest();
-		xhr.open("POST", "http://stg56.herokuapp.com/spin", true);
+		xhr.open("POST", "http://stg56.herokuapp.com/forcewin", true);
 		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
 		xhr.onreadystatechange = function () {
