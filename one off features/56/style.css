@@ -121,16 +121,25 @@ body, html {
 	background-position: center center;
 }
 
-.spinner-item.seven {
-	background-image: url("https://vignette2.wikia.nocookie.net/fantendo/images/4/4a/Lucky7.png/revision/latest?cb=20111223111914");
+
+.spinner-item.bell {
+	background-image: url("assets/bell.png");
 }
 
 .spinner-item.cherry {
-	background-image: url("http://www.freepngimg.com/download/cherry/17-red-cherry-png-image-download.png");
+	background-image: url("assets/cherry.png");
 }
 
-.spinner-item.bar {
-	background-image: url("http://dice-casino.com/wp-content/uploads/2016/12/slot-bar-symbols.png");
+.spinner-item.clover {
+	background-image: url("assets/clover.png");
+}
+
+.spinner-item.melon {
+	background-image: url("assets/melon.png");
+}
+
+.spinner-item.seven {
+	background-image: url("assets/seven.png");
 }
 
 .slots-container-moving {
