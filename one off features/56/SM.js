@@ -82,7 +82,7 @@ var SM = {
 		    } // TODO : error check
 		};
 
-		xhr.send("numSlots=" + SM.numSlots); // TODO : hard code this on server after we know how many items per slot
+		xhr.send();
 	},
 
 	animate: function(ts) {
