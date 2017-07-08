@@ -10,7 +10,7 @@ var SM = {
 	},
 
 	init: function(slotsContainerClassName, slotClassName, buttonId) {
-		SM.animationTime = [1200, 2200, 3200];
+		SM.totalFrames = [1.2 * 60, 2.2 * 60, 3.2 * 60];
 		SM.power = .72;
 		SM.revMin = 50;
 		SM.revMax = 70;
@@ -20,7 +20,7 @@ var SM = {
 		SM.slotsContainerHeight = SM.slotHeight * SM.numSlots;
 		SM.selectedSlotTops = []; // top of selected slots
 		SM.startingSlotTops = [0, 0, 0];
-		SM.startFrame = undefined;
+		SM.frames = undefined;
 		SM.pw = '';
 		SM.sfxStart = new Audio('spin-sfx.mp4');
 		SM.sfxWin = new Audio('win-sfx.mp4');
@@ -30,11 +30,32 @@ var SM = {
 		SM.C = []; // quadratic constant C
 		SM.D = []; // quadratic constant D
 
+		let visibilityChange, hidden;
+		if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and later support 
+			hidden = "hidden";
+			visibilityChange = "visibilitychange";
+		} else if (typeof document.msHidden !== "undefined") {
+			hidden = "msHidden";
+			visibilityChange = "msvisibilitychange";
+		} else if (typeof document.webkitHidden !== "undefined") {
+			hidden = "webkitHidden";
+			visibilityChange = "webkitvisibilitychange";
+		}
+		document.addEventListener(visibilityChange, function() {
+			if (isNaN(SM.frames)) return;
+
+			if (document[hidden]) {
+				SM.sfxStart.pause();
+			} else {
+				SM.sfxStart.play();
+			}
+		});
+
 		document.getElementById(buttonId).addEventListener("click", SM.spin);
 	},
 
 	spin: function() {
-		if (SM.startFrame !== undefined) return; // already spinning
+		if (SM.frames !== undefined) return; // already spinning
 
 		SM.requestSpin(function(res) {
 			SM.pw = res.pw;
@@ -43,16 +64,13 @@ var SM = {
 				SM.selectedSlotTops[i] = res.selected[i] * -SM.slotHeight;
 				let revs = (Math.random() * (SM.revMax - SM.revMin) + SM.revMin) | 0; // random number of revolutions
 
-				// SM.C[i] = SM.selectedSlotTops[i] - revs * SM.slotsContainerHeight; // constant offset
-				// SM.A[i] = (-SM.C[i] + SM.startingSlotTops[i]) / Math.pow(SM.animationTime[i], 2); // coefficient of x^2
-
 				let S = SM.startingSlotTops[i];
 				let E = SM.selectedSlotTops[i] - revs * SM.slotsContainerHeight;
 				let R = E * SM.power;
 
-				SM.A[i] = (8 * (2 * R - S - E)) / (3 * Math.pow(SM.animationTime[i], 3));
-				SM.B[i] = -(64 * R - 38 * S - 26 * E) / (6 * Math.pow(SM.animationTime[i], 2));
-				SM.C[i] = (-2 * (E + 7 * S - 8 * R)) / (3 * SM.animationTime[i]);
+				SM.A[i] = (8 * (2 * R - S - E)) / (3 * Math.pow(SM.totalFrames[i], 3));
+				SM.B[i] = -(64 * R - 38 * S - 26 * E) / (6 * Math.pow(SM.totalFrames[i], 2));
+				SM.C[i] = (-2 * (E + 7 * S - 8 * R)) / (3 * SM.totalFrames[i]);
 				SM.D[i] = S;
 
 				SM.startingSlotTops[i] = SM.selectedSlotTops[i];
@@ -86,22 +104,22 @@ var SM = {
 	},
 
 	animate: function(ts) {
-		if (!SM.startFrame) SM.startFrame = ts;
-		let t = ts - SM.startFrame || 0;
+		if (isNaN(SM.frames)) SM.frames = 0;
+		let f = SM.frames;
 
-		for (let i = 0; i < 3; i++) { // apply quadratic equation
-			if (t >= SM.animationTime[i]) continue;
-			let x = t;
-			let y = SM.A[i] * Math.pow(x, 3) + SM.B[i] * Math.pow(x, 2) + SM.C[i] * x + SM.D[i];
+		for (let i = 0; i < 3; i++) { // apply cubic
+			if (f >= SM.totalFrames[i]) continue;
+			let y = SM.A[i] * Math.pow(f, 3) + SM.B[i] * Math.pow(f, 2) + SM.C[i] * f + SM.D[i];
 			let top = y % SM.slotsContainerHeight | 0;
 
 			SM.slotsContainers[i].style.top = top + "px";
 		}
 
-		if (t < SM.animationTime[0] || t < SM.animationTime[1] || t < SM.animationTime[2]) {
+		if (f < SM.totalFrames[0] || f < SM.totalFrames[1] || f < SM.totalFrames[2]) {
+			SM.frames++;
 			requestAnimationFrame(SM.animate);
 		} else {
-			SM.startFrame = undefined;
+			SM.frames = undefined;
 			SM.check();
 		}
 	},

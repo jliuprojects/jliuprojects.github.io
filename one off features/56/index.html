@@ -76,16 +76,16 @@
 			let power = document.getElementsByName("power")[0];
 			let delay = document.getElementsByName("delay")[0];
 
-			duration.value = SM.animationTime[0];
+			duration.value = SM.totalFrames[0] / 60;
 			min.value = SM.revMin;
 			max.value = SM.revMax;
 			power.value = SM.power;
-			delay.value = SM.animationTime[1] - SM.animationTime[0];
+			delay.value = (SM.totalFrames[1] / 60) - (SM.totalFrames[0] / 60);
 
 			function changeSettings() {
-				SM.animationTime[0] = Number(duration.value);
-				SM.animationTime[1] = Number(duration.value) + Number(delay.value);
-				SM.animationTime[2] = Number(duration.value) + Number(delay.value) * 2;
+				SM.totalFrames[0] = Number(duration.value) * 60;
+				SM.totalFrames[1] = (Number(duration.value) + Number(delay.value)) * 60;
+				SM.totalFrames[2] = (Number(duration.value) + Number(delay.value) * 2) * 60;
 				SM.revMin = Number(min.value);
 				SM.revMax = Number(max.value);
 				SM.power = Number(power.value);
