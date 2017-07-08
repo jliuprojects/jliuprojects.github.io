@@ -9,7 +9,7 @@
 	<body>
 		<p>v.2.4</p>
 		<form id="url-form" action="javascript:changeSettings()">
-			Duration: <input type="number" name="duration"> delay: <input type="number" name="delay"> Min Revs: <input type="number" name="minrev"> Max Revs: <input type="number" name="maxrev"> power: <input type="float" name="power"> <input type="submit" value="Submit">
+			Duration: <input type="float" name="duration"> delay: <input type="number" name="delay"> Min Revs: <input type="number" name="minrev"> Max Revs: <input type="number" name="maxrev"> power: <input type="float" name="power"> probability to win: <input type="float" name="prob"> <input type="submit" value="Submit">
 		</form><br>
 
 		<div id="slots-container" class="b flex">
@@ -75,12 +75,14 @@
 			let max = document.getElementsByName("maxrev")[0];
 			let power = document.getElementsByName("power")[0];
 			let delay = document.getElementsByName("delay")[0];
+			let prob = document.getElementsByName("prob")[0];
 
 			duration.value = SM.totalFrames[0] / 60;
 			min.value = SM.revMin;
 			max.value = SM.revMax;
 			power.value = SM.power;
-			delay.value = (SM.totalFrames[1] / 60) - (SM.totalFrames[0] / 60);
+			delay.value = (SM.totalFrames[1] - SM.totalFrames[0]) / 60;
+			prob.value = 0.5;
 
 			function changeSettings() {
 				SM.totalFrames[0] = Number(duration.value) * 60;
@@ -89,6 +91,11 @@
 				SM.revMin = Number(min.value);
 				SM.revMax = Number(max.value);
 				SM.power = Number(power.value);
+
+				let xhr = new XMLHttpRequest();
+				xhr.open("POST", "http://stg56.herokuapp.com/changeProb", true);
+				xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+				xhr.send("prob=" + prob.value);
 			}
 		</script>
 	</body>
