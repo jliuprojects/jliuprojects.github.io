@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>hellen</title>
+		<meta name="description" content="The HTML5 Herald">
+	</head>
+
+	<body>
+		<div id="output"></div>
+		<script>
+			const GRADUATION = new Date(2019, 3, 30);
+			const ONE_SECOND = 1000;
+			const ONE_MINUTE = ONE_SECOND * 60;
+			const ONE_HOUR = ONE_MINUTE * 60;
+			const ONE_DAY = ONE_HOUR * 24;
+
+			function update() {
+
+				var now = new Date();
+
+				let diff = GRADUATION.getTime() - now.getTime();
+				let days = Math.floor(diff / ONE_DAY);
+				let hours = Math.floor((diff % ONE_DAY) / ONE_HOUR);
+				let minutes = Math.floor((diff % ONE_HOUR) / ONE_MINUTE);
+				let seconds = Math.floor((diff % ONE_MINUTE) / ONE_SECOND);
+
+				let normal = "Hellen's graduation is in: <br><br>";
+				normal += days + " days, ";
+				normal += hours + " hours, ";
+				normal += minutes + " minutes, ";
+				normal += seconds + " seconds";
+				normal += "<br><br>";
+				normal += "Or";
+				normal += "<br><br>";
+				normal += Math.floor(diff / ONE_HOUR) + " hours<br>";
+				normal += "<br>OR<br><br>";
+				normal += Math.floor(diff / ONE_MINUTE) + " minutes<br>";
+				normal += "<br>OR<br><br>";
+				normal += Math.floor(diff / ONE_SECOND) + " seconds<br>";
+
+				document.getElementById("output").innerHTML = normal;
+			}
+
+			setInterval(update, 1000);
+		</script>
+	</body>
+</html>
